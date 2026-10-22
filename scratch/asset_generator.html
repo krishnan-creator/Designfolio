@@ -1,0 +1,33 @@
+
+<!DOCTYPE html>
+<html>
+<head><style>body { margin: 0; background: #000; overflow: hidden; }</style></head>
+<body>
+<canvas id="cvs"></canvas>
+<script>
+window.renderAsset = function(idx) {
+  return new Promise((resolve) => {
+    const item = [{"filename":"landscape-01.jpg","w":1280,"h":720,"source":"dune-dneg.jpg","cx":0.5,"cy":0.5},{"filename":"landscape-02.jpg","w":1280,"h":720,"source":"ramayana-output.jpg","cx":0.5,"cy":0.5},{"filename":"landscape-03.jpg","w":1280,"h":720,"source":"veerabhadra-output.jpg","cx":0.5,"cy":0.5},{"filename":"landscape-04.jpg","w":1280,"h":720,"source":"test_frame_1.jpg","cx":0.5,"cy":0.5},{"filename":"landscape-05.jpg","w":1280,"h":720,"source":"landscape-05.jpg","cx":0.5,"cy":0.5},{"filename":"landscape-06.jpg","w":1280,"h":720,"source":"landscape-06.jpg","cx":0.5,"cy":0.5},{"filename":"landscape-07.jpg","w":1280,"h":720,"source":"landscape-07.jpg","cx":0.5,"cy":0.5},{"filename":"landscape-08.jpg","w":1280,"h":720,"source":"dune-dneg.jpg","cx":0.8,"cy":0.4},{"filename":"landscape-09.jpg","w":1280,"h":720,"source":"ramayana-output.jpg","cx":0.2,"cy":0.6},{"filename":"landscape-10.jpg","w":1280,"h":720,"source":"veerabhadra-output.jpg","cx":0.8,"cy":0.6},{"filename":"portrait-01.png","w":720,"h":1080,"source":"Ramayana.png","cx":0.5,"cy":0.3},{"filename":"portrait-02.png","w":720,"h":1080,"source":"VeerBhadra.png","cx":0.5,"cy":0.15},{"filename":"portrait-03.jpg","w":720,"h":1080,"source":"veerabhadra-output.jpg","cx":0.75,"cy":0.3},{"filename":"portrait-04.jpg","w":720,"h":1080,"source":"Ramayana.png","cx":0.5,"cy":0.2},{"filename":"portrait-05.jpg","w":720,"h":1080,"source":"landscape-06.jpg","cx":0.72,"cy":0.5},{"filename":"portrait-06.jpg","w":720,"h":1080,"source":"dune-dneg.jpg","cx":0.55,"cy":0.65},{"filename":"portrait-07.jpg","w":720,"h":1080,"source":"landscape-05.jpg","cx":0.5,"cy":0.4},{"filename":"portrait-08.jpg","w":720,"h":1080,"source":"landscape-07.jpg","cx":0.6,"cy":0.3},{"filename":"portrait-09.jpg","w":720,"h":1080,"source":"test_frame_1.jpg","cx":0.5,"cy":0.5},{"filename":"portrait-10.jpg","w":720,"h":1080,"source":"ramayana-output.jpg","cx":0.4,"cy":0.35}][idx];
+    const cvs = document.getElementById('cvs');
+    cvs.width = item.w;
+    cvs.height = item.h;
+    const ctx = cvs.getContext('2d');
+    
+    const img = new Image();
+    img.onload = () => {
+      const targetW = item.w;
+      const targetH = item.h;
+      const scale = Math.max(targetW / img.naturalWidth, targetH / img.naturalHeight);
+      const sw = targetW / scale;
+      const sh = targetH / scale;
+      const sx = Math.max(0, Math.min(img.naturalWidth - sw, (img.naturalWidth - sw) * item.cx));
+      const sy = Math.max(0, Math.min(img.naturalHeight - sh, (img.naturalHeight - sh) * item.cy));
+      ctx.drawImage(img, sx, sy, sw, sh, 0, 0, targetW, targetH);
+      resolve(true);
+    };
+    img.src = '/' + item.source;
+  });
+};
+</script>
+</body>
+</html>

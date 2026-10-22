@@ -1,0 +1,556 @@
+========================
+LanyardProfileSection.jsx
+========================
+import React, { Fragment, useEffect, useState } from 'react';
+import Lanyard from './Lanyard';
+import './LanyardProfileSection.css';
+
+const TECH_ARSENAL = [
+  'Antigravity',
+  'Qwen',
+  'Gemini',
+  'ChatGPT',
+  'Claude',
+  'Google AI Studio',
+  'ComfyUI',
+  'Supabase',
+  'Midjourney',
+  'FLUX',
+  'Seedream',
+  'Vibe Coding',
+  'Prompt Engineering',
+  'Workflow Testing',
+  'Pipeline Integration',
+  'AI-Assisted Prototyping',
+  'Creative Automation',
+];
+
+const CAREER_STAGES = [
+  'ARTIST',
+  'DESIGNER',
+  'UX DESIGNER',
+  'DESIGN ENGINEER',
+  'AI ARTIST',
+  'CREATIVE DIRECTOR',
+];
+
+/**
+ * Detect common theme conventions used by apps:
+ * - <html data-theme="dark|light">
+ * - <html data-mode="dark|light">
+ * - Tailwind's .dark class
+ * - .light / .theme-light / .theme-dark classes
+ * If none are present, fall back to the OS preference.
+ * Passing theme="dark" or theme="light" is the most reliable option.
+ */
+function detectDocumentTheme() {
+  if (typeof document === 'undefined') return 'dark';
+
+  const elements = [document.documentElement, document.body].filter(Boolean);
+
+  for (const element of elements) {
+    const declaredTheme = `${element.getAttribute('data-theme') || ''} ${element.getAttribute('data-mode') || ''}`.toLowerCase();
+    if (declaredTheme.includes('dark')) return 'dark';
+    if (declaredTheme.includes('light')) return 'light';
+  }
+
+  for (const element of elements) {
+    const classes = element.classList;
+    if (classes.contains('dark') || classes.contains('theme-dark')) return 'dark';
+    if (classes.contains('light') || classes.contains('theme-light')) return 'light';
+  }
+
+  const colorScheme = window.getComputedStyle(document.documentElement).colorScheme;
+  if (colorScheme?.includes('dark')) return 'dark';
+  if (colorScheme?.includes('light')) return 'light';
+
+  return window.matchMedia?.('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+}
+
+/**
+ * Two-column profile section: interactive 3D lanyard on the left,
+ * personal context, Tech Arsenal, and a looping career map on the right.
+ *
+ * theme: "auto" | "dark" | "light". Prefer passing your app's theme state
+ * directly (for example theme={isDark ? 'dark' : 'light'}).
+ */
+export default function LanyardProfileSection({
+  theme = 'auto',
+  frontImage = '/card-front.png',
+  backImage = '/card-back.png',
+  strapImage = '/band.png',
+  className = '',
+}) {
+  const [activeTheme, setActiveTheme] = useState(
+    theme === 'dark' || theme === 'light' ? theme : 'dark'
+  );
+  const [selectedStage, setSelectedStage] = useState('CREATIVE DIRECTOR');
+
+  useEffect(() => {
+    const syncTheme = () => {
+      const nextTheme = theme === 'dark' || theme === 'light' ? theme : detectDocumentTheme();
+      setActiveTheme(nextTheme);
+    };
+
+    syncTheme();
+    if (theme === 'dark' || theme === 'light' || typeof document === 'undefined') {
+      return undefined;
+    }
+
+    const observer = new MutationObserver(syncTheme);
+    const observerOptions = {
+      attributes: true,
+      attributeFilter: ['class', 'data-theme', 'data-mode', 'style'],
+    };
+    observer.observe(document.documentElement, observerOptions);
+    if (document.body) observer.observe(document.body, observerOptions);
+
+    const media = window.matchMedia?.('(prefers-color-scheme: dark)');
+    media?.addEventListener?.('change', syncTheme);
+
+    return () => {
+      observer.disconnect();
+      media?.removeEventListener?.('change', syncTheme);
+    };
+  }, [theme]);
+
+  const lanyardColors = activeTheme === 'dark'
+    ? {
+        cardColor: '#F4F4F1',
+        strapColor: '#BFC0C6',
+        metal: 'graphite',
+      }
+    : {
+        cardColor: '#FFFFFF',
+        strapColor: '#171719',
+        metal: 'silver',
+      };
+
+  return (
+    <section
+      className={`lanyard-profile-section ${className}`.trim()}
+      data-theme={activeTheme}
+      aria-label="C. Bala Krishnan profile and career skill map"
+    >
+      <div className="lanyard-profile-section__visual">
+        <Lanyard
+          frontImage={frontImage}
+          backImage={backImage}
+          strapImage={strapImage}
+          imageFit="contain"
+          cardColor={lanyardColors.cardColor}
+          orientation="portrait"
+          finish="matte"
+          cornerRadius={0.3}
+          size={0.6}
+          anchor="left"
+          strapLength={0.22}
+          strapColor={lanyardColors.strapColor}
+          strapWidth={0.6}
+          metal={lanyardColors.metal}
+          gravity={0.35}
+          damping={0.48}
+          elasticity={0.2}
+          breeze={0.12}
+          interactive
+          intro
+        />
+      </div>
+
+      <div className="lanyard-profile-section__content">
+        <h1 className="lanyard-profile-section__name">C. BALA KRISHNAN</h1>
+
+        <section className="lanyard-profile-section__block" aria-labelledby="tech-arsenal-title">
+          <h2 className="lanyard-profile-section__heading" id="tech-arsenal-title">
+            <span className="lanyard-profile-section__index">01 /</span>
+            <span>TECH ARSENAL</span>
+          </h2>
+          <div className="lanyard-profile-section__tech-list">
+            {TECH_ARSENAL.map((technology) => (
+              <span className="lanyard-profile-section__tech-chip" key={technology}>
+                {technology}
+              </span>
+            ))}
+          </div>
+        </section>
+
+        <section className="lanyard-profile-section__block" aria-labelledby="career-skill-map-title">
+          <h2 className="lanyard-profile-section__heading" id="career-skill-map-title">
+            <span className="lanyard-profile-section__index">02 /</span>
+            <span>CAREER SKILL MAP</span>
+          </h2>
+
+          <p className="lanyard-profile-section__map-instruction">
+            Select a stage · Hover or focus to pause
+          </p>
+
+          <div className="lanyard-profile-section__career-map">
+            <div className="lanyard-profile-section__career-track">
+              {[0, 1].map((copy) => (
+                <div
+                  className="lanyard-profile-section__career-sequence"
+                  aria-hidden={copy === 1 ? 'true' : undefined}
+                  key={copy}
+                >
+                  {CAREER_STAGES.map((stage, index) => (
+                    <Fragment key={`${copy}-${stage}`}>
+                      {copy === 0 ? (
+                        <button
+                          type="button"
+                          className={`lanyard-profile-section__career-stage${selectedStage === stage ? ' is-selected' : ''}`}
+                          onClick={() => setSelectedStage(stage)}
+                          aria-pressed={selectedStage === stage}
+                        >
+                          {stage}
+                        </button>
+                      ) : (
+                        <span className={`lanyard-profile-section__career-stage${selectedStage === stage ? ' is-selected' : ''}`}>
+                          {stage}
+                        </span>
+                      )}
+                      {index < CAREER_STAGES.length - 1 && (
+                        <span className="lanyard-profile-section__career-arrow" aria-hidden="true">→</span>
+                      )}
+                    </Fragment>
+                  ))}
+                  <span className="lanyard-profile-section__career-arrow" aria-hidden="true">→</span>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          <p className="lanyard-profile-section__tagline">The journey behind the practice.</p>
+        </section>
+      </div>
+    </section>
+  );
+}
+
+========================
+LanyardProfileSection.css
+========================
+.lanyard-profile-section {
+  --lps-text: #f2f2ef;
+  --lps-muted: #a4a4aa;
+  --lps-subtle: #85858c;
+  --lps-line: rgba(255, 255, 255, 0.15);
+  --lps-chip-bg: rgba(255, 255, 255, 0.035);
+  --lps-chip-hover: rgba(255, 255, 255, 0.075);
+  --lps-accent: #f06a67;
+  --lps-accent-soft: rgba(240, 106, 103, 0.1);
+  --lps-focus: rgba(240, 106, 103, 0.55);
+  display: grid;
+  grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr);
+  align-items: center;
+  gap: clamp(1.5rem, 4vw, 4.75rem);
+  width: 100%;
+  box-sizing: border-box;
+  color: var(--lps-text);
+  background: transparent;
+}
+
+.lanyard-profile-section[data-theme='light'] {
+  --lps-text: #171719;
+  --lps-muted: #5f5f66;
+  --lps-subtle: #76767d;
+  --lps-line: rgba(20, 20, 24, 0.16);
+  --lps-chip-bg: rgba(20, 20, 24, 0.025);
+  --lps-chip-hover: rgba(20, 20, 24, 0.065);
+  --lps-accent: #c93636;
+  --lps-accent-soft: rgba(201, 54, 54, 0.075);
+  --lps-focus: rgba(201, 54, 54, 0.48);
+}
+
+.lanyard-profile-section,
+.lanyard-profile-section * {
+  box-sizing: border-box;
+}
+
+.lanyard-profile-section__visual {
+  position: relative;
+  width: 100%;
+  min-width: 0;
+  height: clamp(460px, 54vw, 660px);
+}
+
+.lanyard-profile-section__visual .lanyard {
+  width: 100%;
+  height: 100%;
+}
+
+.lanyard-profile-section__content {
+  min-width: 0;
+  padding-block: clamp(1.5rem, 3vw, 3rem);
+}
+
+.lanyard-profile-section__name {
+  margin: 0 0 clamp(2.5rem, 4.2vw, 4.25rem);
+  color: var(--lps-text);
+  font-size: clamp(2.25rem, 4.25vw, 5rem);
+  font-weight: 850;
+  line-height: 0.94;
+  letter-spacing: -0.065em;
+  text-transform: uppercase;
+  overflow-wrap: anywhere;
+}
+
+.lanyard-profile-section__block + .lanyard-profile-section__block {
+  margin-top: clamp(2.25rem, 4vw, 3.75rem);
+}
+
+.lanyard-profile-section__heading {
+  display: flex;
+  align-items: baseline;
+  gap: 0.75rem;
+  margin: 0 0 1.1rem;
+  color: var(--lps-text);
+  font-size: clamp(0.78rem, 1.05vw, 0.96rem);
+  font-weight: 750;
+  line-height: 1.2;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.lanyard-profile-section__index {
+  color: var(--lps-accent);
+  white-space: nowrap;
+  font-variant-numeric: tabular-nums;
+}
+
+.lanyard-profile-section__tech-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.lanyard-profile-section__tech-chip {
+  display: inline-flex;
+  align-items: center;
+  min-height: 2rem;
+  padding: 0.42rem 0.72rem;
+  border: 1px solid var(--lps-line);
+  border-radius: 999px;
+  background: var(--lps-chip-bg);
+  color: var(--lps-muted);
+  font-size: clamp(0.7rem, 0.88vw, 0.82rem);
+  font-weight: 500;
+  line-height: 1.2;
+  transition: color 180ms ease, background 180ms ease, border-color 180ms ease, transform 180ms ease;
+}
+
+.lanyard-profile-section__tech-chip:hover {
+  transform: translateY(-2px);
+  color: var(--lps-text);
+  background: var(--lps-chip-hover);
+  border-color: var(--lps-accent);
+}
+
+.lanyard-profile-section__map-instruction {
+  margin: -0.35rem 0 0.8rem;
+  color: var(--lps-subtle);
+  font-size: 0.72rem;
+  letter-spacing: 0.025em;
+}
+
+.lanyard-profile-section__career-map {
+  width: 100%;
+  overflow: hidden;
+  border-top: 1px solid var(--lps-line);
+  border-bottom: 1px solid var(--lps-line);
+  padding-block: 0.8rem;
+  -webkit-mask-image: linear-gradient(to right, transparent 0, #000 4%, #000 96%, transparent 100%);
+  mask-image: linear-gradient(to right, transparent 0, #000 4%, #000 96%, transparent 100%);
+}
+
+.lanyard-profile-section__career-track {
+  display: flex;
+  width: max-content;
+  animation: lps-career-loop 32s linear infinite;
+  will-change: transform;
+}
+
+.lanyard-profile-section__career-sequence {
+  display: flex;
+  flex: 0 0 auto;
+  align-items: center;
+  gap: 0.6rem;
+  padding-right: 1.75rem;
+  white-space: nowrap;
+}
+
+.lanyard-profile-section__career-stage {
+  display: inline-flex;
+  align-items: center;
+  flex: 0 0 auto;
+  min-height: 2.25rem;
+  padding: 0.5rem 0.72rem;
+  border: 1px solid transparent;
+  border-radius: 0.35rem;
+  background: var(--lps-chip-bg);
+  color: var(--lps-muted);
+  font: inherit;
+  font-size: clamp(0.66rem, 0.82vw, 0.78rem);
+  font-weight: 750;
+  letter-spacing: 0.055em;
+  text-align: center;
+  white-space: nowrap;
+  transition: color 180ms ease, background 180ms ease, border-color 180ms ease, transform 180ms ease;
+}
+
+button.lanyard-profile-section__career-stage {
+  appearance: none;
+  cursor: pointer;
+}
+
+button.lanyard-profile-section__career-stage:hover {
+  transform: translateY(-2px);
+  color: var(--lps-text);
+  background: var(--lps-chip-hover);
+  border-color: var(--lps-line);
+}
+
+.lanyard-profile-section__career-stage.is-selected {
+  color: var(--lps-accent);
+  background: var(--lps-accent-soft);
+  border-color: var(--lps-accent);
+}
+
+.lanyard-profile-section__career-stage:focus-visible {
+  outline: 2px solid var(--lps-focus);
+  outline-offset: 3px;
+}
+
+.lanyard-profile-section__career-arrow {
+  flex: 0 0 auto;
+  color: var(--lps-subtle);
+  font-size: 1rem;
+  line-height: 1;
+}
+
+.lanyard-profile-section__career-map:hover .lanyard-profile-section__career-track,
+.lanyard-profile-section__career-map:focus-within .lanyard-profile-section__career-track {
+  animation-play-state: paused;
+}
+
+.lanyard-profile-section__tagline {
+  margin: 1rem 0 0;
+  color: var(--lps-muted);
+  font-size: clamp(0.9rem, 1.15vw, 1.05rem);
+  font-style: italic;
+  line-height: 1.5;
+}
+
+@keyframes lps-career-loop {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+
+@media (max-width: 900px) {
+  .lanyard-profile-section {
+    grid-template-columns: minmax(0, 0.8fr) minmax(0, 1.2fr);
+    gap: clamp(1rem, 3vw, 2rem);
+  }
+
+  .lanyard-profile-section__visual {
+    height: clamp(420px, 62vw, 560px);
+  }
+
+  .lanyard-profile-section__name {
+    font-size: clamp(2rem, 5vw, 3.5rem);
+  }
+}
+
+@media (max-width: 680px) {
+  .lanyard-profile-section {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 0.25rem;
+  }
+
+  .lanyard-profile-section__visual {
+    height: min(112vw, 500px);
+    min-height: 340px;
+  }
+
+  .lanyard-profile-section__content {
+    padding-top: 0.25rem;
+  }
+
+  .lanyard-profile-section__name {
+    margin-bottom: 2.5rem;
+    font-size: clamp(2.25rem, 10vw, 4rem);
+  }
+
+  .lanyard-profile-section__block + .lanyard-profile-section__block {
+    margin-top: 2.25rem;
+  }
+
+  .lanyard-profile-section__tech-chip {
+    font-size: 0.75rem;
+  }
+
+  .lanyard-profile-section__career-stage {
+    font-size: 0.7rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .lanyard-profile-section__career-track {
+    animation: none;
+    transform: none;
+  }
+
+  .lanyard-profile-section__career-map {
+    overflow-x: auto;
+    -webkit-mask-image: none;
+    mask-image: none;
+  }
+
+  .lanyard-profile-section__career-sequence[aria-hidden='true'] {
+    display: none;
+  }
+
+  .lanyard-profile-section__tech-chip,
+  .lanyard-profile-section__career-stage {
+    transition: none;
+  }
+}
+
+========================
+README.md
+========================
+# Lanyard Profile Section
+
+This is a two-column React section designed to sit inside a portfolio page:
+
+- Left: the existing ReactBits `Lanyard` component.
+- Right: C. Bala Krishnan, the Tech Arsenal chips, and an infinitely looping, interactive Career Skill Map.
+- Dark/light: the wrapper detects common `data-theme`, `data-mode`, `.dark`, and `.light` conventions and changes section styling plus Lanyard card/strap/metal colors.
+- Career map: loops continuously, pauses on hover/focus, and the first row's stages are clickable. Reduced-motion preferences disable the animation.
+
+## Files
+
+- `LanyardProfileSection.jsx`
+- `LanyardProfileSection.css`
+
+Keep these beside your existing `Lanyard.jsx` / `Lanyard.css`, or update the import path to match your project.
+
+## Usage
+
+```jsx
+import LanyardProfileSection from './LanyardProfileSection';
+
+export default function AboutSection({ isDark }) {
+  return (
+    <LanyardProfileSection
+      theme={isDark ? 'dark' : 'light'}
+      frontImage="/card-front.png"
+      backImage="/card-back.png"
+      strapImage="/band.png"
+    />
+  );
+}
+```
+
+If your app's active theme is represented on `html` or `body` via `data-theme="dark|light"`, `data-mode="dark|light"`, `.dark`, or `.light`, you can omit `theme` or set `theme="auto"`. Passing the app's actual theme state directly is the most reliable option.
+
+Make sure the image paths point to real files in your app's `public` directory, or pass the correct asset URLs. The component code expects the existing `Lanyard` implementation and the `three` package to be installed.

@@ -1,0 +1,21 @@
+# Environment variables and secrets (NEVER COMMIT)
+.env
+.env.local
+.env.*.local
+.env.development
+.env.production
+!.env.example
+
+# Auth secrets and state
+data/auth.json
+
+# Temporary uploads and logs
+.temp_uploads/
+*.log
+
+# Dependencies
+node_modules/
+
+# OS metadata
+.DS_Store
+Thumbs.db

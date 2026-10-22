@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 340 110" width="100%" height="auto">
+  <defs>
+    <!-- Subtle rubber stamp ink edge filter -->
+    <filter id="stamp-ink" x="-10%" y="-10%" width="120%" height="120%">
+      <feTurbulence type="fractalNoise" baseFrequency="0.045" numOctaves="3" result="noise"/>
+      <feDisplacementMap in="SourceGraphic" in2="noise" scale="1.4" xChannelSelector="R" yChannelSelector="G"/>
+    </filter>
+  </defs>
+  <g filter="url(#stamp-ink)">
+    <!-- Outer heavy stamp border -->
+    <rect x="4" y="4" width="332" height="102" rx="8" ry="8" fill="none" stroke="#D3121E" stroke-width="4.2"/>
+    <!-- Inner fine stamp border -->
+    <rect x="10" y="10" width="320" height="90" rx="5" ry="5" fill="none" stroke="#D3121E" stroke-width="1.4" opacity="0.9"/>
+    
+    <!-- Top Primary Line: GEN AI -->
+    <text x="170" y="48" text-anchor="middle" font-family="'Space Grotesk', 'Montserrat', Impact, sans-serif" font-weight="900" font-size="34" fill="#D3121E" letter-spacing="5">GEN AI</text>
+    
+    <!-- Thin decorative divider -->
+    <line x1="26" y1="58" x2="314" y2="58" stroke="#D3121E" stroke-width="1.6" opacity="0.75"/>
+    
+    <!-- Bottom Secondary Line: CREATIVE PRODUCER -->
+    <text x="170" y="86" text-anchor="middle" font-family="'Space Grotesk', 'Montserrat', 'JetBrains Mono', sans-serif" font-weight="800" font-size="17" fill="#D3121E" letter-spacing="3.8">CREATIVE PRODUCER</text>
+  </g>
+</svg>

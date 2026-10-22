@@ -1,0 +1,904 @@
+/* ============================================================
+   LANYARD PROFILE SECTION & GLASS-MORPH CONTAINER
+   ============================================================ */
+
+.lanyard-glass-panel-wrapper {
+  --lps-bg: rgba(14, 14, 18, 0.82);
+  --lps-border: rgba(255, 255, 255, 0.14);
+  --lps-glass-bg: rgba(22, 22, 28, 0.76);
+  --lps-text: #FFFFFF;
+  --lps-muted: #B8B8C4;
+  --lps-subtle: #7A7A8A;
+  --lps-line: rgba(255, 255, 255, 0.12);
+  --lps-chip-bg: rgba(255, 255, 255, 0.05);
+  --lps-chip-border: rgba(255, 255, 255, 0.12);
+  --lps-chip-hover: #FFFFFF;
+  --lps-chip-hover-text: #0A0A0C;
+  --lps-accent: #E50914;
+
+  position: relative;
+  width: 100%;
+  border-radius: 20px;
+  background: var(--lps-bg);
+  border: 1px solid var(--lps-border);
+  backdrop-filter: blur(28px) saturate(180%);
+  -webkit-backdrop-filter: blur(28px) saturate(180%);
+  box-shadow: 0 28px 64px -12px rgba(0, 0, 0, 0.65), inset 0 1px 0 rgba(255, 255, 255, 0.14);
+  padding: clamp(28px, 4vw, 48px);
+  box-sizing: border-box;
+  overflow: hidden;
+  transition: background 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.lanyard-glass-panel-wrapper[data-theme='light'] {
+  --lps-bg: rgba(248, 248, 250, 0.88);
+  --lps-border: rgba(0, 0, 0, 0.10);
+  --lps-glass-bg: rgba(255, 255, 255, 0.82);
+  --lps-text: #0E0E12;
+  --lps-muted: #4B4B58;
+  --lps-subtle: #7E7E90;
+  --lps-line: rgba(0, 0, 0, 0.10);
+  --lps-chip-bg: rgba(0, 0, 0, 0.04);
+  --lps-chip-border: rgba(0, 0, 0, 0.09);
+  --lps-chip-hover: #242426;
+  --lps-chip-hover-text: #FFFFFF;
+  --lps-accent: #D3121E;
+
+  box-shadow: 0 28px 64px -12px rgba(0, 0, 0, 0.10), inset 0 1px 0 rgba(255, 255, 255, 0.95);
+}
+
+.lanyard-profile-section {
+  display: grid;
+  grid-template-columns: minmax(320px, 420px) 1fr;
+  gap: clamp(28px, 4vw, 56px);
+  align-items: center;
+  position: relative;
+  z-index: 2;
+  width: 100%;
+}
+
+/* 3D LANYARD STAGE CONTAINER & DRAG INSTRUCTION */
+/* 3D LANYARD STAGE CONTAINER & DRAG INSTRUCTION */
+.lanyard-profile-section__visual {
+  position: relative;
+  width: 100%;
+  height: 600px;
+  padding-top: 38px;
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  user-select: none;
+}
+
+/* TECHNICAL INSTRUCTION DIRECTLY ABOVE ID CARD ASSEMBLY */
+.lanyard-drag-instruction {
+  position: absolute;
+  top: 4px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 5px 14px;
+  border-radius: 999px;
+  background: #FFFFFF !important;
+  border: 1px solid rgba(0, 0, 0, 0.12) !important;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.35);
+  z-index: 10;
+  pointer-events: none;
+  transition: background 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease;
+}
+
+.lanyard-drag-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #E50914 !important;
+  box-shadow: 0 0 8px #E50914 !important;
+  display: inline-block;
+  animation: lanyardDotPulse 2s infinite ease-in-out;
+}
+
+@keyframes lanyardDotPulse {
+  0%, 100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.45;
+    transform: scale(0.85);
+  }
+}
+
+.lanyard-drag-text {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: #111114 !important;
+  line-height: 1;
+  white-space: nowrap;
+}
+
+/* LIGHT THEME: Charcoal Black Pill with Crisp White Text */
+[data-theme='light'] .lanyard-drag-instruction,
+.lanyard-glass-panel-wrapper[data-theme='light'] .lanyard-drag-instruction {
+  background: #18181B !important;
+  border-color: rgba(255, 255, 255, 0.18) !important;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.18);
+}
+
+[data-theme='light'] .lanyard-drag-text,
+.lanyard-glass-panel-wrapper[data-theme='light'] .lanyard-drag-text {
+  color: #FFFFFF !important;
+}
+
+.lanyard-container {
+  width: 100%;
+  height: 100%;
+  position: relative;
+}
+
+.lanyard-canvas {
+  width: 100% !important;
+  height: 100% !important;
+  display: block;
+  pointer-events: auto;
+}
+
+/* RIGHT COLUMN CONTENT */
+.lanyard-profile-section__content {
+  display: flex;
+  flex-direction: column;
+  gap: 1.6rem;
+  color: var(--lps-text);
+}
+
+.lanyard-profile-section__header {
+  border-bottom: 1px solid var(--lps-line);
+  padding-bottom: 0.85rem;
+}
+
+.lanyard-profile-section__badge {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  color: var(--lps-accent);
+  display: block;
+  margin-bottom: 0.35rem;
+}
+
+.lanyard-profile-section__name {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: clamp(24px, 2.6vw, 36px);
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  margin: 0;
+  line-height: 1.05;
+  color: var(--lps-text);
+}
+
+.lanyard-profile-section__block {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.lanyard-profile-section__heading {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  color: var(--lps-muted);
+  margin: 0;
+  display: flex;
+  align-items: center;
+  gap: 0.45rem;
+}
+
+.lanyard-profile-section__index {
+  color: var(--lps-accent);
+  font-family: 'JetBrains Mono', monospace;
+  font-weight: 800;
+}
+
+/* ============================================================
+   01 / FOUNDATIONS GRID (EXACTLY 5 TILES IN HORIZONTAL ROW)
+   ============================================================ */
+
+.foundations-grid {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 8px;
+  width: 100%;
+}
+
+.foundation-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  padding: 14px 8px 10px 8px;
+  border-radius: 10px;
+  background: var(--lps-chip-bg);
+  border: 1px solid var(--lps-chip-border);
+  transition: all 0.18s cubic-bezier(0.16, 1, 0.3, 1);
+  cursor: default;
+  outline: none;
+  min-height: 102px;
+  box-sizing: border-box;
+}
+
+.foundation-card:hover,
+.foundation-card:focus-visible {
+  border-color: var(--lps-accent);
+  background: #242426;
+  transform: translateY(-2px);
+  box-shadow: 0 10px 22px -4px rgba(0, 0, 0, 0.4);
+}
+
+.foundation-icon {
+  width: 52px;
+  height: 52px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex: 1;
+}
+
+.foundation-icon-img {
+  max-width: 52px;
+  max-height: 52px;
+  width: auto;
+  height: auto;
+  object-fit: contain;
+  display: block;
+  transition: transform 0.18s ease;
+}
+
+.foundation-card:hover .foundation-icon-img {
+  transform: scale(1.05);
+}
+
+.foundation-name {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10.5px;
+  font-weight: 600;
+  color: var(--lps-text);
+  letter-spacing: 0.025em;
+  text-align: center;
+  line-height: 1.15;
+  margin-top: 6px;
+  transition: color 0.18s ease;
+}
+
+.foundation-card:hover .foundation-name,
+.foundation-card:focus-visible .foundation-name {
+  color: #FFFFFF !important;
+}
+
+/* Light Theme Foundations */
+:root[data-theme="light"] .foundation-card,
+.lanyard-glass-panel-wrapper[data-theme="light"] .foundation-card {
+  background: #FFFFFF !important;
+  border: 1px solid rgba(0, 0, 0, 0.11) !important;
+  color: #111115 !important;
+}
+
+:root[data-theme="light"] .foundation-card .foundation-name,
+.lanyard-glass-panel-wrapper[data-theme="light"] .foundation-card .foundation-name {
+  color: #111115 !important;
+}
+
+:root[data-theme="light"] .foundation-card:hover,
+:root[data-theme="light"] .foundation-card:focus-visible,
+.lanyard-glass-panel-wrapper[data-theme="light"] .foundation-card:hover,
+.lanyard-glass-panel-wrapper[data-theme="light"] .foundation-card:focus-visible {
+  background: #242426 !important;
+  border-color: #242426 !important;
+  box-shadow: 0 10px 24px rgba(0, 0, 0, 0.22) !important;
+  transform: translateY(-2px);
+}
+
+:root[data-theme="light"] .foundation-card:hover .foundation-name,
+:root[data-theme="light"] .foundation-card:focus-visible .foundation-name,
+.lanyard-glass-panel-wrapper[data-theme="light"] .foundation-card:hover .foundation-name,
+.lanyard-glass-panel-wrapper[data-theme="light"] .foundation-card:focus-visible .foundation-name {
+  color: #FFFFFF !important;
+}
+
+/* ============================================================
+   02 / CREATIVE SKILLS (CLEAN TILES & IMMEDIATE SURFACE INVERSION)
+   ============================================================ */
+
+.creative-skills-header-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.creative-skills-instruction {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px;
+  color: var(--lps-subtle);
+  letter-spacing: 0.04em;
+}
+
+.creative-skills-interactive-zone {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  width: 100%;
+}
+
+.creative-skills-grid {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 8px;
+  width: 100%;
+}
+
+.creative-skill-card {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+  min-height: 86px;
+  padding: 12px 10px;
+  border-radius: 8px;
+  cursor: pointer;
+  outline: none;
+  text-align: center;
+  transition: background-color 0.16s ease, color 0.16s ease, border-color 0.16s ease, box-shadow 0.16s ease, transform 0.16s ease;
+  position: relative;
+  box-sizing: border-box;
+}
+
+.creative-skill-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: color 0.16s ease;
+}
+
+.creative-skill-title {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: clamp(8.5px, 0.78vw, 10px);
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  line-height: 1.25;
+  transition: color 0.16s ease;
+  word-break: break-word;
+}
+
+/* -------------------------------------------------------------
+   CREATIVE SKILLS & CAREER MAP THEME SURFACE INVERSION
+   ------------------------------------------------------------- */
+
+/* DARK THEME: Idle */
+:root[data-theme="dark"] .creative-skill-card,
+html[data-theme="dark"] .creative-skill-card,
+body[data-theme="dark"] .creative-skill-card,
+.lanyard-glass-panel-wrapper[data-theme="dark"] .creative-skill-card,
+:root[data-theme="dark"] .career-tile-card,
+html[data-theme="dark"] .career-tile-card,
+body[data-theme="dark"] .career-tile-card,
+.lanyard-glass-panel-wrapper[data-theme="dark"] .career-tile-card {
+  background: #151519 !important;
+  border: 1px solid rgba(255, 255, 255, 0.09) !important;
+  color: #F3F3F1 !important;
+}
+
+:root[data-theme="dark"] .creative-skill-card .creative-skill-icon,
+.lanyard-glass-panel-wrapper[data-theme="dark"] .creative-skill-card .creative-skill-icon,
+:root[data-theme="dark"] .career-tile-card .career-tile-icon,
+.lanyard-glass-panel-wrapper[data-theme="dark"] .career-tile-card .career-tile-icon {
+  color: #8E8E98 !important;
+}
+
+:root[data-theme="dark"] .creative-skill-card .creative-skill-title,
+.lanyard-glass-panel-wrapper[data-theme="dark"] .creative-skill-card .creative-skill-title,
+:root[data-theme="dark"] .career-tile-card .career-tile-role,
+.lanyard-glass-panel-wrapper[data-theme="dark"] .career-tile-card .career-tile-role {
+  color: #F3F3F1 !important;
+}
+
+/* DARK THEME: Hover / Active (Full Surface Inversion to Crisp White) */
+:root[data-theme="dark"] .creative-skill-card:hover,
+:root[data-theme="dark"] .creative-skill-card.is-active,
+:root[data-theme="dark"] .creative-skill-card:focus-visible,
+.lanyard-glass-panel-wrapper[data-theme="dark"] .creative-skill-card:hover,
+.lanyard-glass-panel-wrapper[data-theme="dark"] .creative-skill-card.is-active,
+.lanyard-glass-panel-wrapper[data-theme="dark"] .creative-skill-card:focus-visible,
+:root[data-theme="dark"] .career-tile-card:hover,
+:root[data-theme="dark"] .career-tile-card.is-hovered,
+:root[data-theme="dark"] .career-tile-card:focus-visible,
+:root[data-theme="dark"] .career-tile-card.is-selected,
+.lanyard-glass-panel-wrapper[data-theme="dark"] .career-tile-card:hover,
+.lanyard-glass-panel-wrapper[data-theme="dark"] .career-tile-card.is-hovered,
+.lanyard-glass-panel-wrapper[data-theme="dark"] .career-tile-card:focus-visible,
+.lanyard-glass-panel-wrapper[data-theme="dark"] .career-tile-card.is-selected {
+  background: #FFFFFF !important;
+  border-color: #FFFFFF !important;
+  box-shadow: 0 10px 24px rgba(0, 0, 0, 0.55) !important;
+  transform: translateY(-2px);
+}
+
+:root[data-theme="dark"] .creative-skill-card:hover .creative-skill-icon,
+:root[data-theme="dark"] .creative-skill-card.is-active .creative-skill-icon,
+.lanyard-glass-panel-wrapper[data-theme="dark"] .creative-skill-card:hover .creative-skill-icon,
+.lanyard-glass-panel-wrapper[data-theme="dark"] .creative-skill-card.is-active .creative-skill-icon,
+:root[data-theme="dark"] .career-tile-card:hover .career-tile-icon,
+:root[data-theme="dark"] .career-tile-card.is-hovered .career-tile-icon,
+:root[data-theme="dark"] .career-tile-card.is-selected .career-tile-icon,
+.lanyard-glass-panel-wrapper[data-theme="dark"] .career-tile-card:hover .career-tile-icon,
+.lanyard-glass-panel-wrapper[data-theme="dark"] .career-tile-card.is-hovered .career-tile-icon,
+.lanyard-glass-panel-wrapper[data-theme="dark"] .career-tile-card.is-selected .career-tile-icon {
+  color: #E50914 !important;
+}
+
+:root[data-theme="dark"] .creative-skill-card:hover .creative-skill-title,
+:root[data-theme="dark"] .creative-skill-card.is-active .creative-skill-title,
+.lanyard-glass-panel-wrapper[data-theme="dark"] .creative-skill-card:hover .creative-skill-title,
+.lanyard-glass-panel-wrapper[data-theme="dark"] .creative-skill-card.is-active .creative-skill-title,
+:root[data-theme="dark"] .career-tile-card:hover .career-tile-role,
+:root[data-theme="dark"] .career-tile-card.is-hovered .career-tile-role,
+:root[data-theme="dark"] .career-tile-card:focus-visible .career-tile-role,
+:root[data-theme="dark"] .career-tile-card.is-selected .career-tile-role,
+.lanyard-glass-panel-wrapper[data-theme="dark"] .career-tile-card:hover .career-tile-role,
+.lanyard-glass-panel-wrapper[data-theme="dark"] .career-tile-card.is-hovered .career-tile-role,
+.lanyard-glass-panel-wrapper[data-theme="dark"] .career-tile-card.is-selected .career-tile-role {
+  color: #0E0E12 !important;
+}
+
+:root[data-theme="dark"] .career-tile-card.is-selected,
+.lanyard-glass-panel-wrapper[data-theme="dark"] .career-tile-card.is-selected {
+  border-color: #E50914 !important;
+}
+
+/* LIGHT THEME: Idle */
+:root[data-theme="light"] .creative-skill-card,
+html[data-theme="light"] .creative-skill-card,
+body[data-theme="light"] .creative-skill-card,
+.lanyard-glass-panel-wrapper[data-theme="light"] .creative-skill-card,
+:root[data-theme="light"] .career-tile-card,
+html[data-theme="light"] .career-tile-card,
+body[data-theme="light"] .career-tile-card,
+.lanyard-glass-panel-wrapper[data-theme="light"] .career-tile-card {
+  background: #FFFFFF !important;
+  border: 1px solid rgba(0, 0, 0, 0.12) !important;
+  color: #111115 !important;
+}
+
+:root[data-theme="light"] .creative-skill-card .creative-skill-icon,
+.lanyard-glass-panel-wrapper[data-theme="light"] .creative-skill-card .creative-skill-icon,
+:root[data-theme="light"] .career-tile-card .career-tile-icon,
+.lanyard-glass-panel-wrapper[data-theme="light"] .career-tile-card .career-tile-icon {
+  color: #6C6C76 !important;
+}
+
+:root[data-theme="light"] .creative-skill-card .creative-skill-title,
+.lanyard-glass-panel-wrapper[data-theme="light"] .creative-skill-card .creative-skill-title,
+:root[data-theme="light"] .career-tile-card .career-tile-role,
+.lanyard-glass-panel-wrapper[data-theme="light"] .career-tile-card .career-tile-role {
+  color: #111115 !important;
+}
+
+/* LIGHT THEME: Hover / Active (Full Surface Inversion to Charcoal #242426, NEVER pitch black) */
+:root[data-theme="light"] .creative-skill-card:hover,
+:root[data-theme="light"] .creative-skill-card.is-active,
+:root[data-theme="light"] .creative-skill-card:focus-visible,
+.lanyard-glass-panel-wrapper[data-theme="light"] .creative-skill-card:hover,
+.lanyard-glass-panel-wrapper[data-theme="light"] .creative-skill-card.is-active,
+.lanyard-glass-panel-wrapper[data-theme="light"] .creative-skill-card:focus-visible,
+:root[data-theme="light"] .career-tile-card:hover,
+:root[data-theme="light"] .career-tile-card.is-hovered,
+:root[data-theme="light"] .career-tile-card:focus-visible,
+:root[data-theme="light"] .career-tile-card.is-selected,
+html[data-theme="light"] .career-tile-card:hover,
+html[data-theme="light"] .career-tile-card.is-hovered,
+html[data-theme="light"] .career-tile-card:focus-visible,
+html[data-theme="light"] .career-tile-card.is-selected,
+.lanyard-glass-panel-wrapper[data-theme="light"] .career-tile-card:hover,
+.lanyard-glass-panel-wrapper[data-theme="light"] .career-tile-card.is-hovered,
+.lanyard-glass-panel-wrapper[data-theme="light"] .career-tile-card:focus-visible,
+.lanyard-glass-panel-wrapper[data-theme="light"] .career-tile-card.is-selected {
+  background: #242426 !important;
+  border-color: #242426 !important;
+  box-shadow: 0 10px 24px rgba(0, 0, 0, 0.22) !important;
+  transform: translateY(-2px);
+}
+
+:root[data-theme="light"] .creative-skill-card:hover .creative-skill-icon,
+:root[data-theme="light"] .creative-skill-card.is-active .creative-skill-icon,
+.lanyard-glass-panel-wrapper[data-theme="light"] .creative-skill-card:hover .creative-skill-icon,
+.lanyard-glass-panel-wrapper[data-theme="light"] .creative-skill-card.is-active .creative-skill-icon,
+:root[data-theme="light"] .career-tile-card:hover .career-tile-icon,
+:root[data-theme="light"] .career-tile-card.is-hovered .career-tile-icon,
+:root[data-theme="light"] .career-tile-card.is-selected .career-tile-icon,
+.lanyard-glass-panel-wrapper[data-theme="light"] .career-tile-card:hover .career-tile-icon,
+.lanyard-glass-panel-wrapper[data-theme="light"] .career-tile-card.is-hovered .career-tile-icon,
+.lanyard-glass-panel-wrapper[data-theme="light"] .career-tile-card.is-selected .career-tile-icon {
+  color: #D3121E !important;
+}
+
+:root[data-theme="light"] .creative-skill-card:hover .creative-skill-icon svg,
+:root[data-theme="light"] .creative-skill-card.is-active .creative-skill-icon svg,
+.lanyard-glass-panel-wrapper[data-theme="light"] .creative-skill-card:hover .creative-skill-icon svg,
+.lanyard-glass-panel-wrapper[data-theme="light"] .creative-skill-card.is-active .creative-skill-icon svg,
+:root[data-theme="light"] .career-tile-card:hover .career-tile-icon svg,
+:root[data-theme="light"] .career-tile-card.is-hovered .career-tile-icon svg,
+:root[data-theme="light"] .career-tile-card.is-selected .career-tile-icon svg,
+.lanyard-glass-panel-wrapper[data-theme="light"] .career-tile-card:hover .career-tile-icon svg,
+.lanyard-glass-panel-wrapper[data-theme="light"] .career-tile-card.is-hovered .career-tile-icon svg,
+.lanyard-glass-panel-wrapper[data-theme="light"] .career-tile-card.is-selected .career-tile-icon svg {
+  stroke: #D3121E !important;
+}
+
+:root[data-theme="light"] .creative-skill-card:hover .creative-skill-title,
+:root[data-theme="light"] .creative-skill-card.is-active .creative-skill-title,
+.lanyard-glass-panel-wrapper[data-theme="light"] .creative-skill-card:hover .creative-skill-title,
+.lanyard-glass-panel-wrapper[data-theme="light"] .creative-skill-card.is-active .creative-skill-title,
+:root[data-theme="light"] .career-tile-card:hover .career-tile-role,
+:root[data-theme="light"] .career-tile-card.is-hovered .career-tile-role,
+:root[data-theme="light"] .career-tile-card:focus-visible .career-tile-role,
+:root[data-theme="light"] .career-tile-card.is-selected .career-tile-role,
+.lanyard-glass-panel-wrapper[data-theme="light"] .career-tile-card:hover .career-tile-role,
+.lanyard-glass-panel-wrapper[data-theme="light"] .career-tile-card.is-hovered .career-tile-role,
+.lanyard-glass-panel-wrapper[data-theme="light"] .career-tile-card.is-selected .career-tile-role {
+  color: #FFFFFF !important;
+}
+
+:root[data-theme="light"] .career-tile-card.is-selected,
+.lanyard-glass-panel-wrapper[data-theme="light"] .career-tile-card.is-selected {
+  border-color: #D3121E !important;
+}
+
+/* REVEALED SUB-SKILLS (COMPACT HORIZONTAL ROW DIRECTLY BELOW) */
+.creative-subskills-wrapper {
+  min-height: 44px;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  border-radius: 8px;
+  background: rgba(0, 0, 0, 0.22);
+  border: 1px dashed var(--lps-chip-border);
+  padding: 6px 8px;
+  box-sizing: border-box;
+  transition: all 0.22s ease;
+}
+
+.lanyard-glass-panel-wrapper[data-theme='light'] .creative-subskills-wrapper {
+  background: rgba(255, 255, 255, 0.6);
+}
+
+.creative-subskills-wrapper.is-open {
+  border-style: solid;
+  border-color: var(--lps-accent);
+  background: var(--lps-glass-bg);
+  box-shadow: 0 8px 24px -6px rgba(0, 0, 0, 0.35);
+}
+
+.creative-subskills-placeholder {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 4px;
+}
+
+.creative-subskills-hint {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px;
+  color: var(--lps-subtle);
+  letter-spacing: 0.04em;
+  text-align: center;
+}
+
+.creative-subskills-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  width: 100%;
+  overflow-x: auto;
+  scrollbar-width: none;
+  padding: 2px 0;
+}
+
+.creative-subskills-row::-webkit-scrollbar {
+  display: none;
+}
+
+.creative-subskill-chip {
+  flex: 1 1 0;
+  min-width: 0;
+  padding: 8px 10px;
+  border-radius: 6px;
+  background: var(--lps-chip-bg);
+  border: 1px solid var(--lps-chip-border);
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 9.5px;
+  font-weight: 600;
+  color: var(--lps-text);
+  letter-spacing: 0.02em;
+  text-align: center;
+  line-height: 1.25;
+  transition: all 0.18s ease;
+  animation: subskillEntrance 0.22s cubic-bezier(0.16, 1, 0.3, 1) both;
+  box-sizing: border-box;
+  word-break: break-word;
+}
+
+.creative-subskill-chip:hover {
+  border-color: var(--lps-accent);
+  color: var(--lps-accent);
+  background: var(--lps-glass-bg);
+  transform: translateY(-1px);
+}
+
+.lanyard-glass-panel-wrapper[data-theme='light'] .creative-subskill-chip:hover {
+  background: #242426 !important;
+  color: #FFFFFF !important;
+  border-color: #242426 !important;
+}
+
+.lanyard-glass-panel-wrapper[data-theme='dark'] .creative-subskill-chip:hover {
+  background: rgba(255, 255, 255, 0.16) !important;
+  color: #FFFFFF !important;
+  border-color: var(--lps-accent) !important;
+}
+
+.creative-subskills-close {
+  flex: 0 0 28px;
+  height: 28px;
+  border-radius: 6px;
+  background: var(--lps-chip-bg);
+  border: 1px solid var(--lps-chip-border);
+  color: var(--lps-muted);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  font-size: 11px;
+  transition: all 0.18s ease;
+  padding: 0;
+  outline: none;
+}
+
+.creative-subskills-close:hover {
+  background: var(--lps-accent);
+  border-color: var(--lps-accent);
+  color: #FFFFFF;
+}
+
+@keyframes subskillEntrance {
+  from {
+    opacity: 0;
+    transform: translateY(5px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ============================================================
+   03 / CAREER SKILL MAP (BIGGER ICONS, TITLES BELOW, NO NUMBERS)
+   ============================================================ */
+
+.lanyard-timeline-header-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.lanyard-timeline-instruction {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px;
+  color: var(--lps-subtle);
+  letter-spacing: 0.04em;
+}
+
+.career-map-container {
+  position: relative;
+  width: 100%;
+  padding: 0.4rem 0 0.2rem;
+  box-sizing: border-box;
+}
+
+.career-tiles-grid {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  gap: 8px;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.career-tile-card {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+  min-height: 94px;
+  padding: 14px 8px;
+  border-radius: 8px;
+  cursor: pointer;
+  outline: none;
+  box-sizing: border-box;
+  text-align: center;
+  transition: background-color 0.16s ease, color 0.16s ease, border-color 0.16s ease, box-shadow 0.16s ease, transform 0.16s ease;
+  position: relative;
+}
+
+.career-tile-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: color 0.16s ease;
+}
+
+.career-tile-role {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: clamp(9px, 0.8vw, 10.5px);
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  line-height: 1.2;
+  transition: color 0.16s ease;
+  word-break: break-word;
+}
+
+/* ============================================================
+   CAREER DETAIL PANEL (RICH CONTEXT PRESERVED)
+   ============================================================ */
+
+.career-timeline-detail-panel {
+  margin-top: 0.6rem;
+  padding: 1rem 1.3rem;
+  border-radius: 12px;
+  background: var(--lps-chip-bg);
+  border: 1px solid var(--lps-line);
+  display: flex;
+  flex-direction: column;
+  gap: 0.45rem;
+  transition: all 0.25s ease;
+}
+
+.detail-panel-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.detail-panel-role {
+  display: flex;
+  align-items: baseline;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.detail-panel-step {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+  font-weight: 800;
+  color: var(--lps-accent);
+  letter-spacing: 0.08em;
+}
+
+.detail-panel-title {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 13.5px;
+  font-weight: 800;
+  letter-spacing: 0.06em;
+  color: var(--lps-text);
+  text-transform: uppercase;
+}
+
+.detail-panel-sep {
+  color: var(--lps-subtle);
+}
+
+.detail-panel-sub {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11.5px;
+  font-weight: 600;
+  color: var(--lps-accent);
+  letter-spacing: 0.04em;
+}
+
+.detail-panel-desc {
+  margin: 0;
+  font-size: 13px;
+  line-height: 1.5;
+  color: var(--lps-muted);
+}
+
+.lanyard-profile-section__tagline {
+  margin: 0.6rem 0 0;
+  color: var(--lps-subtle);
+  font-size: 11.5px;
+  font-style: italic;
+}
+
+/* ============================================================
+   RESPONSIVE LAYOUTS
+   ============================================================ */
+
+@media (max-width: 1024px) {
+  .lanyard-profile-section {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+  .lanyard-profile-section__visual {
+    height: 480px;
+    padding-top: 38px;
+    box-sizing: border-box;
+  }
+}
+
+@media (max-width: 900px) {
+  .foundations-grid {
+    grid-template-columns: repeat(5, 1fr);
+  }
+  .creative-skills-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+  .career-tiles-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@media (max-width: 680px) {
+  .foundations-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+  .foundation-card {
+    min-height: 88px;
+    padding: 10px 6px 8px 6px;
+  }
+  .foundation-icon {
+    width: 42px;
+    height: 42px;
+  }
+  .foundation-icon-img {
+    max-width: 42px;
+    max-height: 42px;
+  }
+  .creative-skills-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .career-tiles-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .creative-subskills-row {
+    flex-wrap: wrap;
+  }
+  .creative-subskill-chip {
+    flex: 1 1 45%;
+  }
+}
+
+@media (max-width: 480px) {
+  .foundations-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .creative-skills-grid {
+    grid-template-columns: 1fr;
+  }
+  .career-tiles-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .creative-subskill-chip {
+    flex: 1 1 100%;
+  }
+}

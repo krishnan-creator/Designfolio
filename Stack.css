@@ -1,0 +1,390 @@
+/* ============================================================
+   CBK DESIGNFOLIO — CINEMATIC SHOWCASE (MOTION STACK)
+   Based on Cinematic showcase(1).txt with 40-slot DBL styling
+   ============================================================ */
+
+.stack {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  outline: none;
+}
+
+.stack:focus-visible .stack-card[data-top] .stack-card-face {
+  outline: 2px solid var(--accent, #FF3038);
+  outline-offset: 4px;
+}
+
+.stack-card {
+  position: absolute;
+  inset: 0;
+  will-change: transform;
+  user-select: none;
+  -webkit-user-select: none;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.stack-card-face {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  will-change: transform;
+  transition: box-shadow 0.25s ease;
+  background-color: var(--card-bg, #0D0E12);
+  border: 1px solid var(--card-border, rgba(255, 255, 255, 0.12));
+}
+
+[data-theme="light"] .stack-card-face {
+  background-color: #F8F7F4;
+  border-color: rgba(0, 0, 0, 0.12);
+}
+
+.stack-card-content {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+
+.stack-card-content img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  pointer-events: none;
+  -webkit-user-drag: none;
+}
+
+.stack-card-shade {
+  position: absolute;
+  inset: 0;
+  background: #000;
+  pointer-events: none;
+}
+
+[data-theme="light"] .stack-card-shade {
+  background: #111;
+}
+
+/* ============================================================
+   SHOWCASE CARD PRESENTATION (POPULATED VS EMPTY PLACEHOLDERS)
+   ============================================================ */
+
+.showcase-card-inner {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Populated Card */
+.showcase-card-populated {
+  position: relative;
+  background: #0a0a0c;
+}
+
+.showcase-card-populated img.showcase-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.showcase-card-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.85) 0%, rgba(0, 0, 0, 0.35) 28%, transparent 60%);
+  pointer-events: none;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding: 20px;
+  box-sizing: border-box;
+}
+
+.showcase-card-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 12px;
+  background: rgba(10, 10, 14, 0.82);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  border-radius: 999px;
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  width: fit-content;
+  max-width: 90%;
+}
+
+.showcase-badge-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--accent, #FF3038);
+  box-shadow: 0 0 8px var(--accent, #FF3038);
+  flex-shrink: 0;
+}
+
+.showcase-badge-text {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  color: #FFFFFF;
+  text-transform: uppercase;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* Empty Numbered Placeholder Tile (Intentional, minimal, technical DBL aesthetic) */
+.showcase-card-empty {
+  background: radial-gradient(circle at 50% 25%, rgba(26, 28, 36, 0.98), rgba(10, 11, 14, 0.99));
+  background-image: 
+    linear-gradient(rgba(255, 255, 255, 0.035) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.035) 1px, transparent 1px);
+  background-size: 24px 24px;
+  border: 1px dashed rgba(255, 255, 255, 0.16);
+  box-sizing: border-box;
+}
+
+[data-theme="light"] .showcase-card-empty {
+  background: radial-gradient(circle at 50% 25%, rgba(250, 249, 246, 0.98), rgba(235, 233, 227, 0.99));
+  background-image: 
+    linear-gradient(rgba(0, 0, 0, 0.035) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0, 0, 0, 0.035) 1px, transparent 1px);
+  border: 1px dashed rgba(0, 0, 0, 0.18);
+}
+
+.showcase-empty-tile {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 24px;
+  box-sizing: border-box;
+}
+
+.showcase-empty-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.showcase-empty-pill {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  color: rgba(255, 255, 255, 0.65);
+  padding: 4px 10px;
+  border-radius: 4px;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+[data-theme="light"] .showcase-empty-pill {
+  color: rgba(0, 0, 0, 0.65);
+  background: rgba(0, 0, 0, 0.04);
+  border-color: rgba(0, 0, 0, 0.08);
+}
+
+.showcase-empty-corner {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+  color: rgba(255, 48, 56, 0.7);
+}
+
+.showcase-empty-center {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  text-align: center;
+}
+
+.showcase-empty-big-num {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: clamp(48px, 9vw, 76px);
+  font-weight: 800;
+  line-height: 1;
+  letter-spacing: -0.04em;
+  color: rgba(255, 255, 255, 0.22);
+  transition: color 0.2s ease;
+}
+
+[data-theme="light"] .showcase-empty-big-num {
+  color: rgba(0, 0, 0, 0.18);
+}
+
+.showcase-empty-sub {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.16em;
+  color: rgba(255, 255, 255, 0.45);
+  text-transform: uppercase;
+}
+
+[data-theme="light"] .showcase-empty-sub {
+  color: rgba(0, 0, 0, 0.45);
+}
+
+.showcase-empty-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  padding-top: 12px;
+  border-top: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+[data-theme="light"] .showcase-empty-footer {
+  border-top-color: rgba(0, 0, 0, 0.06);
+}
+
+.showcase-empty-tech {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 9px;
+  letter-spacing: 0.14em;
+  color: rgba(255, 255, 255, 0.35);
+}
+
+[data-theme="light"] .showcase-empty-tech {
+  color: rgba(0, 0, 0, 0.35);
+}
+
+/* ============================================================
+   STAGE & HUD CONTROLS (WRAPPER FOR THE CINEMATIC DECK)
+   ============================================================ */
+
+.cinematic-showcase-stage {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  position: relative;
+  box-sizing: border-box;
+  padding: 40px 16px 24px 16px;
+}
+
+.cinematic-deck-mount {
+  position: relative;
+  width: min(440px, 86vw);
+  height: min(460px, 58vh);
+  min-height: 380px;
+  margin: 32px auto 28px auto;
+}
+
+@media (max-width: 640px) {
+  .cinematic-deck-mount {
+    width: 90vw;
+    height: 380px;
+    margin: 24px auto 20px auto;
+  }
+}
+
+/* HUD Control Strip beneath deck */
+.cinematic-hud-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  width: min(560px, 92vw);
+  padding: 12px 18px;
+  background: rgba(15, 16, 20, 0.85);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 999px;
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  box-sizing: border-box;
+  margin-top: 14px;
+}
+
+[data-theme="light"] .cinematic-hud-bar {
+  background: rgba(245, 244, 240, 0.85);
+  border-color: rgba(0, 0, 0, 0.1);
+}
+
+.cinematic-hud-left {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.cinematic-hud-status-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--accent, #FF3038);
+  box-shadow: 0 0 6px var(--accent, #FF3038);
+  animation: hudPulse 2s infinite ease-in-out;
+}
+
+@keyframes hudPulse {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.55; transform: scale(0.85); }
+}
+
+.cinematic-hud-slot-text {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  color: #FFFFFF;
+}
+
+[data-theme="light"] .cinematic-hud-slot-text {
+  color: #111111;
+}
+
+.cinematic-hud-hint {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 0.08em;
+  color: rgba(255, 255, 255, 0.45);
+}
+
+[data-theme="light"] .cinematic-hud-hint {
+  color: rgba(0, 0, 0, 0.45);
+}
+
+.cinematic-hud-nav {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.cinematic-hud-btn {
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  color: #FFFFFF;
+  padding: 5px 12px;
+  border-radius: 999px;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+}
+
+[data-theme="light"] .cinematic-hud-btn {
+  background: rgba(0, 0, 0, 0.05);
+  border-color: rgba(0, 0, 0, 0.12);
+  color: #111111;
+}
+
+.cinematic-hud-btn:hover {
+  background: rgba(255, 48, 56, 0.18);
+  border-color: rgba(255, 48, 56, 0.45);
+  color: var(--accent, #FF3038);
+}

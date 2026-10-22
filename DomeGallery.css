@@ -1,0 +1,382 @@
+/* ==============================================================================
+   DOME GALLERY — 3D SPHERICAL DOME CAROUSEL & LIGHTBOX STYLES
+   Clean surface, zero backing panels, zero vignette, UHD sharp image presentation
+   ============================================================================== */
+
+.sphere-root {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  min-height: 520px;
+  overflow: visible;
+  isolation: isolate;
+  --radius: 720px;
+  --viewer-pad: 48px;
+  --segments-x: 12;
+  --segments-y: 12;
+  --circ: calc(var(--radius) * 3.141592653589793);
+  --item-width: var(--item-width, 365px);
+  --item-height: var(--item-height, 184px);
+  --tile-radius: 12px;
+  --enlarge-radius: 20px;
+  --image-filter: none;
+  background: transparent !important;
+  border: none !important;
+  box-shadow: none !important;
+  outline: none !important;
+  color: var(--gallery-text, #f4f4f5);
+}
+
+.sphere-root[data-theme='dark'] {
+  color-scheme: dark;
+  --gallery-tile-bg: rgba(22, 22, 26, 0.75);
+  --gallery-text: #f4f4f5;
+  --gallery-muted: #a5a5ad;
+  --gallery-scrim: rgba(0, 0, 0, 0.85);
+  --gallery-shadow: 0 24px 70px rgba(0, 0, 0, 0.65);
+}
+
+.sphere-root[data-theme='light'] {
+  color-scheme: light;
+  --gallery-tile-bg: rgba(230, 230, 226, 0.85);
+  --gallery-text: #171719;
+  --gallery-muted: #6c6c72;
+  --gallery-scrim: rgba(18, 18, 22, 0.72);
+  --gallery-shadow: 0 24px 70px rgba(20, 20, 22, 0.35);
+}
+
+.sphere-root *,
+.sphere-root *::before,
+.sphere-root *::after {
+  box-sizing: border-box;
+}
+
+/* Sphere main container: purely transparent, zero backing cards or panels */
+.sphere-main {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  overflow: visible;
+  touch-action: none;
+  user-select: none;
+  -webkit-user-select: none;
+  background: transparent !important;
+  border: none !important;
+  box-shadow: none !important;
+  outline: none !important;
+}
+
+.stage {
+  width: 100%;
+  height: 100%;
+  display: grid;
+  place-items: center;
+  perspective: calc(var(--radius) * 2.4);
+  perspective-origin: 50% 50%;
+  contain: layout;
+  overflow: visible;
+  background: transparent !important;
+  border: none !important;
+  box-shadow: none !important;
+  outline: none !important;
+}
+
+.sphere,
+.item,
+.item__image {
+  transform-style: preserve-3d;
+}
+
+.sphere {
+  position: relative;
+  transform: translateZ(calc(var(--radius) * -1));
+  will-change: transform;
+}
+
+.item {
+  position: absolute;
+  inset: -999px;
+  width: var(--item-width, 365px);
+  height: var(--item-height, 184px);
+  margin: auto;
+  transform-origin: 50% 50%;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+  pointer-events: none;
+  transition: transform 260ms ease;
+  transform:
+    rotateY(var(--rot-y, 0deg))
+    rotateX(var(--rot-x, 0deg))
+    translateZ(var(--radius, 720px));
+}
+
+.item__image {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  border-radius: var(--tile-radius, 12px);
+  background: var(--gallery-tile-bg);
+  box-shadow: 0 4px 18px rgba(0, 0, 0, 0.45);
+  cursor: pointer;
+  outline: none;
+  -webkit-tap-highlight-color: transparent;
+  touch-action: manipulation;
+  pointer-events: auto;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+  transform: translateZ(0) scale(1);
+  transition: border 200ms ease, box-shadow 200ms ease, border-radius 200ms ease, transform 220ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.item__image--empty {
+  cursor: default !important;
+  background: rgba(255, 255, 255, 0.02) !important;
+  border: 1px solid rgba(255, 255, 255, 0.04) !important;
+  box-shadow: none !important;
+  pointer-events: none !important;
+}
+
+.sphere-root[data-theme='light'] .item__image--empty {
+  background: rgba(0, 0, 0, 0.02) !important;
+  border: 1px solid rgba(0, 0, 0, 0.04) !important;
+}
+
+/* Stacking level on hover so adjacent tiles do not clip the outline */
+.item:has(.item__image:hover),
+.item:has(.item__image:focus),
+.item:has(.item__image:focus-visible),
+.item:has(.item__image.is-hovered) {
+  z-index: 150 !important;
+}
+
+/* Pop forward on populated image hover: 3D forward emergence, scale, depth, crisp thin white outline in BOTH themes */
+.item .item__image:hover,
+.item .item__image:focus,
+.item .item__image:focus-visible,
+.item .item__image.is-hovered {
+  border: 1.5px solid #ffffff !important;
+  box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.6), 0 20px 48px rgba(0, 0, 0, 0.7) !important;
+  transform: translateZ(32px) scale(1.06) !important;
+}
+
+.sphere-root[data-theme='light'] .item .item__image:hover,
+.sphere-root[data-theme='light'] .item .item__image:focus,
+.sphere-root[data-theme='light'] .item .item__image:focus-visible,
+.sphere-root[data-theme='light'] .item .item__image.is-hovered {
+  border: 1.5px solid #ffffff !important;
+  box-shadow: 0 0 0 1.5px rgba(255, 255, 255, 0.95), 0 20px 48px rgba(0, 0, 0, 0.35) !important;
+  transform: translateZ(32px) scale(1.06) !important;
+}
+
+/* Full-bleed edge-to-edge image presentation — ZERO SIDE BANDS OR LETTERBOXING (object-fit: cover) */
+.item__image img {
+  display: block;
+  width: 100% !important;
+  height: 100% !important;
+  max-width: none !important;
+  max-height: none !important;
+  object-fit: cover !important;
+  object-position: center center;
+  image-rendering: -webkit-optimize-contrast;
+  image-rendering: auto;
+  pointer-events: none;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+  transform: translateZ(0);
+}
+
+/* ==============================================================================
+   FULLSCREEN LIGHTBOX IMAGE VIEWER
+   ============================================================================== */
+
+.dg-lightbox-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 99999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  isolation: isolate;
+  background: #000000 !important;
+  cursor: auto !important;
+  animation: dgFadeIn 200ms ease;
+}
+
+.dg-lightbox-overlay,
+.dg-lightbox-overlay * {
+  cursor: auto !important;
+}
+
+@keyframes dgFadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+.dg-lightbox-scrim {
+  position: absolute;
+  inset: 0;
+  background: #000000 !important;
+  cursor: pointer !important;
+}
+
+.dg-lightbox-content {
+  position: relative;
+  z-index: 10;
+  max-width: 90vw;
+  max-height: 86vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  pointer-events: auto;
+  animation: dgScaleIn 240ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@keyframes dgScaleIn {
+  from {
+    transform: scale(0.94);
+    opacity: 0;
+  }
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+.dg-lightbox-image {
+  max-width: 90vw;
+  max-height: 80vh;
+  width: auto;
+  height: auto;
+  object-fit: contain;
+  image-rendering: -webkit-optimize-contrast;
+  image-rendering: auto;
+  border-radius: 14px;
+  box-shadow: 0 25px 70px rgba(0, 0, 0, 0.7);
+  user-select: none;
+  -webkit-user-drag: none;
+}
+
+.dg-lightbox-caption {
+  margin-top: 14px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.dg-lightbox-title {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 14px;
+  font-weight: 600;
+  color: #f4f4f5;
+  letter-spacing: 0.04em;
+  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.6);
+}
+
+.dg-lightbox-btn {
+  position: fixed;
+  z-index: 30;
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background: rgba(20, 20, 24, 0.75);
+  border: 1px solid rgba(255, 255, 255, 0.22);
+  color: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  transition: background-color 180ms ease, color 180ms ease, transform 180ms ease, border-color 180ms ease;
+  outline: none;
+}
+
+.dg-lightbox-btn:hover,
+.dg-lightbox-btn:focus-visible {
+  background: #ffffff;
+  color: #0a0a0c;
+  border-color: #ffffff;
+  transform: scale(1.08);
+}
+
+.dg-lightbox-btn--prev {
+  left: 28px;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.dg-lightbox-btn--prev:hover,
+.dg-lightbox-btn--prev:focus-visible {
+  transform: translateY(-50%) scale(1.08);
+}
+
+.dg-lightbox-btn--next {
+  right: 28px;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.dg-lightbox-btn--next:hover,
+.dg-lightbox-btn--next:focus-visible {
+  transform: translateY(-50%) scale(1.08);
+}
+
+.dg-lightbox-btn--close {
+  top: 24px;
+  right: 28px;
+}
+
+body.dg-scroll-lock {
+  overflow: hidden !important;
+}
+
+body.dg-scroll-lock #section-cursor {
+  display: none !important;
+  opacity: 0 !important;
+  visibility: hidden !important;
+  pointer-events: none !important;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .sphere-root *,
+  .sphere-root *::before,
+  .sphere-root *::after {
+    scroll-behavior: auto !important;
+    transition-duration: 1ms !important;
+    animation-duration: 1ms !important;
+    animation-iteration-count: 1 !important;
+  }
+}
+
+@media (max-width: 640px) {
+  .sphere-root {
+    min-height: 420px;
+  }
+
+  .item__image {
+    inset: 10px 6px;
+    border-radius: 12px;
+  }
+
+  .dg-lightbox-btn {
+    width: 40px;
+    height: 40px;
+  }
+
+  .dg-lightbox-btn--prev {
+    left: 14px;
+  }
+
+  .dg-lightbox-btn--next {
+    right: 14px;
+  }
+
+  .dg-lightbox-btn--close {
+    top: 16px;
+    right: 16px;
+  }
+}

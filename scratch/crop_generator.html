@@ -1,0 +1,26 @@
+
+<!DOCTYPE html>
+<html>
+<head><style>body { margin: 0; background: #000; overflow: hidden; }</style></head>
+<body>
+<canvas id="cvs"></canvas>
+<script>
+window.renderCrop = function(idx) {
+  return new Promise((resolve) => {
+    const item = [{"filename":"landscape-08.jpg","w":1280,"h":720,"source":"dune-dneg.jpg","crop":{"sx":100,"sy":50,"sw":1200,"sh":675}},{"filename":"landscape-09.jpg","w":1280,"h":720,"source":"ramayana-output.jpg","crop":{"sx":50,"sy":200,"sw":1100,"sh":618}},{"filename":"landscape-10.jpg","w":1280,"h":720,"source":"veerabhadra-output.jpg","crop":{"sx":200,"sy":150,"sw":950,"sh":534}},{"filename":"portrait-03.jpg","w":720,"h":1080,"source":"VeerBhadra.png","crop":{"sx":280,"sy":80,"sw":500,"sh":750}},{"filename":"portrait-04.jpg","w":720,"h":1080,"source":"Ramayana.png","crop":{"sx":260,"sy":60,"sw":460,"sh":690}},{"filename":"portrait-05.jpg","w":720,"h":1080,"source":"landscape-06.jpg","crop":{"sx":850,"sy":40,"sw":420,"sh":630}},{"filename":"portrait-06.jpg","w":720,"h":1080,"source":"dune-dneg.jpg","crop":{"sx":460,"sy":260,"sw":360,"sh":540}},{"filename":"portrait-07.jpg","w":720,"h":1080,"source":"landscape-05.jpg","crop":{"sx":380,"sy":60,"sw":480,"sh":720}},{"filename":"portrait-08.jpg","w":720,"h":1080,"source":"landscape-07.jpg","crop":{"sx":480,"sy":40,"sw":460,"sh":690}},{"filename":"portrait-09.jpg","w":720,"h":1080,"source":"test_frame_1.jpg","crop":{"sx":180,"sy":50,"sw":420,"sh":630}},{"filename":"portrait-10.jpg","w":720,"h":1080,"source":"ramayana-output.jpg","crop":{"sx":380,"sy":80,"sw":480,"sh":720}}][idx];
+    const cvs = document.getElementById('cvs');
+    cvs.width = item.w;
+    cvs.height = item.h;
+    const ctx = cvs.getContext('2d');
+    
+    const img = new Image();
+    img.onload = () => {
+      ctx.drawImage(img, item.crop.sx, item.crop.sy, item.crop.sw, item.crop.sh, 0, 0, item.w, item.h);
+      resolve(true);
+    };
+    img.src = '/' + item.source;
+  });
+};
+</script>
+</body>
+</html>

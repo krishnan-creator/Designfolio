@@ -1,0 +1,3079 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Chithambaram Bala Krishnan — Creative Director & Visual Artist</title>
+
+  <!-- Google Fonts: Anton (Display Headline) + Space Grotesk (Editorial Sans) + JetBrains Mono (Technical) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Anton&family=JetBrains+Mono:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --dbl-dark-bg: #0c0c0e;
+      --dbl-dark-surface: #121216;
+      --dbl-dark-surface-elevated: #18181e;
+      --dbl-dark-border: rgba(255, 255, 255, 0.08);
+      --dbl-dark-text: #f5f5f7;
+      --dbl-dark-muted: rgba(255, 255, 255, 0.55);
+
+      --dbl-light-bg: #f5f5f7;
+      --dbl-light-surface: #ffffff;
+      --dbl-light-surface-subtle: #eeeff2;
+      --dbl-light-border: rgba(0, 0, 0, 0.08);
+      --dbl-light-text: #111114;
+      --dbl-light-muted: #6b6d76;
+
+      --dbl-crimson: #ff3b30;
+      --dbl-crimson-glow: rgba(255, 59, 48, 0.24);
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      background: #000;
+    }
+
+    body {
+      width: 100%;
+      min-height: 100%;
+      background: #000;
+      color: #fff;
+      font-family: 'Space Grotesk', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      overflow-x: hidden;
+      user-select: none;
+      -webkit-user-select: none;
+    }
+
+    /* Accessibility screen-reader only class */
+    .sr-only {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      padding: 0;
+      margin: -1px;
+      overflow: hidden;
+      clip: rect(0, 0, 0, 0);
+      white-space: nowrap;
+      border: 0;
+    }
+
+    /* =========================================
+       0. OPENING CENTER SPLASH (0.5s HOLD + BURST)
+       ========================================= */
+    .center-splash {
+      position: fixed;
+      inset: 0;
+      width: 100vw;
+      height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: #000;
+      z-index: 9999;
+      pointer-events: none;
+      transition: opacity 0.4s cubic-bezier(0.16, 1, 0.3, 1), transform 0.4s ease;
+    }
+
+    #splash-particle-canvas {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: 1;
+    }
+
+    .splash-content {
+      position: relative;
+      z-index: 2;
+      display: flex;
+      align-items: baseline;
+      gap: 16px;
+      user-select: none;
+    }
+
+    .splash-cbk {
+      font-family: 'Anton', sans-serif;
+      font-size: clamp(2.4rem, 5.2vw, 4.4rem);
+      letter-spacing: 0.08em;
+      color: #ffffff;
+      text-transform: uppercase;
+      text-shadow: 0 0 20px rgba(255, 255, 255, 0.6);
+    }
+
+    .splash-df {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: clamp(1.4rem, 3.2vw, 2.6rem);
+      font-weight: 700;
+      letter-spacing: 0.28em;
+      color: rgba(255, 255, 255, 0.9);
+      text-transform: uppercase;
+    }
+
+    .splash-glitching {
+      animation: splashGlitchAnim 0.35s steps(2) infinite;
+    }
+
+    @keyframes splashGlitchAnim {
+      0% { transform: translate(0, 0); filter: drop-shadow(-2px 0 #ff3b30); }
+      33% { transform: translate(-3px, 1px) skewX(-2deg); filter: drop-shadow(2px 0 #00f0ff); }
+      66% { transform: translate(2px, -1px); filter: drop-shadow(-1px 0 #ff3b30); }
+      100% { transform: translate(0, 0); filter: none; }
+    }
+
+    /* =========================================
+       1. FIXED DBL HEADER (RESTYLED TO DBL MINIMALIST)
+       ========================================= */
+    .hero-header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 62px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 clamp(20px, 4.2vw, 52px);
+      z-index: 100;
+      background: rgba(14, 14, 17, 0.82);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.07);
+      transition: background 0.4s ease, border-color 0.4s ease, color 0.4s ease;
+      pointer-events: auto;
+    }
+
+    /* Light state when scrolled into off-white sections */
+    .hero-header.is-light-mode {
+      background: rgba(245, 245, 247, 0.88);
+      border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+      color: #111114;
+    }
+
+    .hero-header.is-light-mode .brand-cbk {
+      color: #111114;
+      text-shadow: none;
+    }
+
+    .hero-header.is-light-mode .brand-designfolio {
+      color: #55555c;
+    }
+
+    .hero-header.is-light-mode .header-edit-tag {
+      background: rgba(0, 0, 0, 0.04);
+      border-color: rgba(0, 0, 0, 0.1);
+      color: #44444a;
+    }
+
+    .hero-header.is-light-mode .time-digits {
+      color: #111114;
+      text-shadow: none;
+    }
+
+    .hero-header.is-light-mode .time-prefix {
+      color: #777780;
+    }
+
+    .hero-header.is-light-mode .gmail-btn {
+      background: rgba(0, 0, 0, 0.04);
+      border-color: rgba(0, 0, 0, 0.1);
+      color: #333338;
+    }
+
+    .hero-header.is-light-mode .gmail-btn:hover {
+      background: rgba(255, 59, 48, 0.15);
+      border-color: rgba(255, 59, 48, 0.4);
+      color: #ff3b30;
+    }
+
+    .header-left {
+      display: flex;
+      align-items: center;
+      gap: clamp(16px, 2.5vw, 32px);
+    }
+
+    .brand-group {
+      display: inline-flex;
+      align-items: baseline;
+      gap: 10px;
+      user-select: none;
+    }
+
+    /* CBK: Personal monogram */
+    .brand-cbk {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 14.5px;
+      font-weight: 800;
+      letter-spacing: 0.16em;
+      color: #ffffff;
+      text-transform: uppercase;
+      text-shadow: 0 1px 8px rgba(0, 0, 0, 0.8);
+      transition: color 0.3s ease;
+    }
+
+    /* DESIGNFOLIO: ONE SINGLE, CONTINUOUS WORD ALWAYS (Never split) */
+    .brand-designfolio {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.22em;
+      color: rgba(255, 255, 255, 0.72);
+      text-transform: uppercase;
+      display: inline-flex;
+      position: relative;
+      white-space: nowrap;
+      transition: color 0.3s ease;
+    }
+
+    .df-char {
+      display: inline-block;
+      position: relative;
+      transition: opacity 0.18s ease, transform 0.22s cubic-bezier(0.16, 1, 0.3, 1), color 0.2s ease;
+      will-change: transform, opacity;
+    }
+
+    /* Precision rectangular mechanical slot indicator */
+    .df-slot-indicator {
+      position: absolute;
+      width: 8px;
+      height: 12px;
+      border: 1px solid rgba(255, 59, 48, 0.75);
+      background: rgba(255, 59, 48, 0.12);
+      border-radius: 1px;
+      pointer-events: none;
+      opacity: 0;
+      transform: translate(0, 0);
+      transition: opacity 0.2s ease, transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    /* DBL Minimal Tag */
+    .header-edit-tag {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 9px;
+      font-weight: 600;
+      letter-spacing: 0.14em;
+      color: rgba(255, 255, 255, 0.48);
+      padding: 3px 8px;
+      background: rgba(255, 255, 255, 0.035);
+      border: 1px solid rgba(255, 255, 255, 0.09);
+      border-radius: 3px;
+      text-transform: uppercase;
+      user-select: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      transition: background 0.3s, border-color 0.3s, color 0.3s;
+    }
+
+    .header-edit-tag::before {
+      content: '';
+      width: 4px;
+      height: 4px;
+      border-radius: 50%;
+      background: #ff3b30;
+    }
+
+    .header-right {
+      display: flex;
+      align-items: center;
+      gap: clamp(14px, 2vw, 22px);
+    }
+
+    .time-block {
+      display: flex;
+      align-items: center;
+      gap: 7px;
+      user-select: none;
+    }
+
+    .time-prefix {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 9.5px;
+      font-weight: 500;
+      letter-spacing: 0.16em;
+      color: rgba(255, 255, 255, 0.4);
+      transition: color 0.3s ease;
+    }
+
+    .time-digits {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 11.5px;
+      font-weight: 600;
+      letter-spacing: 0.06em;
+      color: #f2f2f6;
+      text-shadow: 0 1px 8px rgba(0, 0, 0, 0.8);
+      transition: color 0.3s ease;
+    }
+
+    .time-period {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 8.5px;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      padding: 2px 5px;
+      border-radius: 2px;
+      background: rgba(255, 59, 48, 0.14);
+      border: 1px solid rgba(255, 59, 48, 0.38);
+      color: #ff5b50;
+      line-height: 1.2;
+    }
+
+    /* HEADER GMAIL BUTTON (DBL PRODUCT UTILITY) */
+    .gmail-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 32px;
+      height: 32px;
+      border-radius: 3px;
+      color: rgba(255, 255, 255, 0.72);
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      text-decoration: none;
+      transition: color 0.2s, border-color 0.2s, background 0.2s, transform 0.2s;
+      cursor: pointer;
+    }
+
+    .gmail-btn:hover {
+      color: #ffffff;
+      background: rgba(255, 59, 48, 0.22);
+      border-color: rgba(255, 59, 48, 0.55);
+      transform: translateY(-1px);
+    }
+
+    /* =========================================
+       2. HERO SECTION CONTAINER
+       ========================================= */
+    #hero-section {
+      position: relative;
+      width: 100vw;
+      height: 100vh;
+      overflow: hidden;
+      background: #000;
+      z-index: 10;
+    }
+
+    /* Fixed Stage Canvas Layer (100% native unadulterated exposure & rim light) */
+    canvas#canvas {
+      position: fixed;
+      inset: 0;
+      width: 100vw;
+      height: 100vh;
+      display: block;
+      background: #000;
+      pointer-events: none;
+      z-index: 1;
+    }
+
+    /* Strictly left-only subtle gradient behind left stage text: ZERO bleed over portrait */
+    .left-stage-backdrop {
+      position: absolute;
+      left: 0;
+      top: 0;
+      width: min(540px, 46vw);
+      height: 100vh;
+      background: linear-gradient(90deg, rgba(0, 0, 0, 0.75) 0%, rgba(0, 0, 0, 0.42) 65%, transparent 100%);
+      pointer-events: none;
+      z-index: 2;
+    }
+
+    /* SCROLL DOWN WIDGET (UPPER RIGHT BELOW HEADER) */
+    .scroll-down-widget {
+      position: fixed;
+      top: 80px;
+      right: clamp(20px, 4.2vw, 52px);
+      z-index: 90;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      opacity: 0;
+      transform: translateY(-10px);
+      transition: opacity 0.5s cubic-bezier(0.16, 1, 0.3, 1), transform 0.5s ease;
+      cursor: pointer;
+      user-select: none;
+      pointer-events: auto;
+    }
+
+    .scroll-down-widget.is-visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .scroll-down-widget.is-hidden {
+      opacity: 0;
+      transform: translateY(10px);
+      pointer-events: none;
+    }
+
+    .sd-visual {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      color: rgba(255, 255, 255, 0.7);
+    }
+
+    .sd-mouse-icon {
+      width: 14px;
+      height: 22px;
+      border: 1px solid rgba(255, 255, 255, 0.38);
+      border-radius: 7px;
+      position: relative;
+      display: flex;
+      justify-content: center;
+      padding-top: 3px;
+    }
+
+    .sd-wheel-dot {
+      width: 2px;
+      height: 4px;
+      background: #ff3b30;
+      border-radius: 1px;
+      animation: wheelScrollAnim 1.6s cubic-bezier(0.65, 0, 0.35, 1) infinite;
+    }
+
+    @keyframes wheelScrollAnim {
+      0% { transform: translateY(0); opacity: 1; }
+      60% { transform: translateY(5px); opacity: 0; }
+      61% { transform: translateY(0); opacity: 0; }
+      100% { transform: translateY(0); opacity: 1; }
+    }
+
+    .sd-arrow-icon {
+      animation: arrowDipAnim 1.6s ease-in-out infinite;
+      color: rgba(255, 255, 255, 0.6);
+    }
+
+    @keyframes arrowDipAnim {
+      0%, 100% { transform: translateY(0); opacity: 0.5; }
+      50% { transform: translateY(3px); opacity: 1; color: #ff3b30; }
+    }
+
+    .sd-label-wrap {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .sd-label {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 9.5px;
+      font-weight: 600;
+      letter-spacing: 0.18em;
+      color: rgba(255, 255, 255, 0.85);
+      text-transform: uppercase;
+    }
+
+    .sd-sub {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 7.5px;
+      letter-spacing: 0.14em;
+      color: rgba(255, 255, 255, 0.35);
+      text-transform: uppercase;
+    }
+
+    /* HERO LEFT IDENTITY STAGE (Z-INDEX: 20) */
+    .hero-left-stage {
+      position: absolute;
+      left: clamp(30px, 6.5vw, 92px);
+      top: calc(50% - 14px);
+      transform: translateY(-50%);
+      width: min(520px, 45vw);
+      z-index: 20;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      text-align: left;
+      pointer-events: auto;
+      user-select: none;
+    }
+
+    .hero-meta-coord {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 8.5px;
+      letter-spacing: 0.16em;
+      color: rgba(255, 255, 255, 0.3);
+      margin-bottom: 8px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .hero-meta-dot {
+      width: 4px;
+      height: 4px;
+      background: #ff3b30;
+      border-radius: 50%;
+      opacity: 0.85;
+    }
+
+    /* MAIN NAME CONTAINER: PREVIOUS LARGER SCALE */
+    .hero-name-wrap {
+      position: relative;
+      width: 100%;
+      min-height: 135px;
+      margin-bottom: clamp(12px, 1.8vh, 18px);
+      cursor: crosshair;
+      overflow: visible;
+    }
+
+    #name-particle-canvas {
+      display: block;
+      width: 100%;
+      height: 100%;
+      cursor: crosshair;
+      pointer-events: auto;
+      filter: drop-shadow(0 4px 28px rgba(0, 0, 0, 0.95));
+    }
+
+    /* QUOTE: TURNING IDEAS INTO VISUALS */
+    .hero-quote-wrap {
+      font-family: 'Space Grotesk', -apple-system, sans-serif;
+      font-weight: 700;
+      font-size: clamp(0.85rem, 1.15vw, 1.05rem);
+      letter-spacing: 0.14em;
+      color: rgba(255, 255, 255, 0.92);
+      text-transform: uppercase;
+      margin-bottom: clamp(18px, 2.6vh, 24px);
+      display: flex;
+      flex-direction: column;
+      gap: 5px;
+      overflow: hidden;
+      text-shadow: 0 2px 14px rgba(0, 0, 0, 0.9);
+    }
+
+    .quote-mask-track {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .quote-bracket {
+      font-family: 'JetBrains Mono', monospace;
+      color: #ff3b30;
+      font-size: 11px;
+      opacity: 0;
+      transform: scale(0.6);
+      transition: opacity 0.4s ease, transform 0.4s ease;
+    }
+
+    .quote-bracket.is-revealed {
+      opacity: 1;
+      transform: scale(1);
+    }
+
+    .quote-text-reveal {
+      opacity: 0;
+      clip-path: inset(0 100% 0 0);
+      transform: translateX(-12px);
+      letter-spacing: 0.04em;
+      transition: clip-path 0.75s cubic-bezier(0.16, 1, 0.3, 1),
+                  letter-spacing 0.75s cubic-bezier(0.16, 1, 0.3, 1),
+                  transform 0.65s cubic-bezier(0.16, 1, 0.3, 1),
+                  opacity 0.45s ease;
+    }
+
+    .quote-text-reveal.is-revealed {
+      opacity: 1;
+      clip-path: inset(0 0% 0 0);
+      transform: translateX(0);
+      letter-spacing: 0.14em;
+    }
+
+    .quote-guide-bar {
+      width: 0%;
+      height: 1px;
+      background: linear-gradient(90deg, #ff3b30 0%, rgba(255, 255, 255, 0.25) 50%, transparent 100%);
+      transition: width 0.75s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .quote-guide-bar.is-expanded {
+      width: 100%;
+    }
+
+    /* PHYSICAL STICKY NOTE: MUTED WARM PAPER, RED PIN, CURLED CORNER */
+    .sticky-note {
+      position: relative;
+      width: min(325px, 38vw);
+      background: linear-gradient(155deg, #fdf8e1 0%, #fbf5d5 65%, #f4ebbe 100%);
+      color: #1a1915;
+      padding: 20px 22px 22px 22px;
+      border-radius: 1px;
+      transform: rotate(-1.5deg);
+      box-shadow: 2px 8px 24px rgba(0, 0, 0, 0.45), 
+                  0 2px 6px rgba(0, 0, 0, 0.32),
+                  inset 0 1px 0 rgba(255, 255, 255, 0.55);
+      cursor: default;
+      opacity: 0;
+      transform-origin: 10% 0%;
+      transition: transform 0.32s cubic-bezier(0.16, 1, 0.3, 1),
+                  box-shadow 0.32s ease,
+                  opacity 0.5s ease;
+      user-select: text;
+      -webkit-user-select: text;
+    }
+
+    .sticky-note.is-revealed {
+      opacity: 1;
+      transform: translateX(0) rotate(-1.5deg);
+    }
+
+    .sticky-adhesive-strip {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 14px;
+      background: rgba(0, 0, 0, 0.02);
+      border-bottom: 1px solid rgba(0, 0, 0, 0.035);
+      pointer-events: none;
+    }
+
+    .sticky-pin-fold {
+      position: absolute;
+      top: 8px;
+      right: 14px;
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: #dc2626;
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.45), inset 0 1px 1px rgba(255, 255, 255, 0.4);
+    }
+
+    .sticky-corner-curl {
+      position: absolute;
+      right: 0;
+      bottom: 0;
+      width: 20px;
+      height: 20px;
+      background: linear-gradient(135deg, transparent 50%, rgba(0, 0, 0, 0.09) 50%, rgba(0, 0, 0, 0.18) 100%),
+                  linear-gradient(135deg, transparent 50%, #eae0af 50%);
+      box-shadow: -2px -2px 4px rgba(0, 0, 0, 0.12);
+      pointer-events: none;
+    }
+
+    .sticky-header {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 13px;
+      font-weight: 800;
+      letter-spacing: 0.09em;
+      color: #1c1917;
+      text-transform: uppercase;
+      margin-bottom: 11px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .sticky-body {
+      font-family: 'Space Grotesk', -apple-system, sans-serif;
+      font-size: 12.5px;
+      line-height: 1.58;
+      color: #292524;
+      font-weight: 500;
+      letter-spacing: -0.01em;
+      min-height: 68px;
+    }
+
+    .sticky-body strong {
+      font-weight: 800;
+      color: #0c0a09;
+      background: rgba(255, 255, 255, 0.35);
+      padding: 0 2px;
+      border-radius: 1px;
+    }
+
+    .sticky-note:hover {
+      transform: translateY(-4px) rotate(-0.5deg);
+      box-shadow: 4px 14px 32px rgba(0, 0, 0, 0.55), 
+                  0 4px 10px rgba(0, 0, 0, 0.38),
+                  inset 0 1px 0 rgba(255, 255, 255, 0.7);
+    }
+
+    /* CONTACT LINKS ROW (LINKEDIN + WHATSAPP) */
+    .contact-links-row {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-top: 14px;
+      opacity: 0;
+      transform: translateY(6px);
+      transition: opacity 0.45s ease, transform 0.45s ease;
+    }
+
+    .contact-links-row.is-revealed {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .contact-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 32px;
+      height: 32px;
+      border-radius: 3px;
+      color: rgba(255, 255, 255, 0.72);
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      text-decoration: none;
+      transition: color 0.2s, border-color 0.2s, background 0.2s, transform 0.2s;
+      cursor: pointer;
+    }
+
+    .contact-btn-in:hover {
+      color: #ffffff;
+      background: rgba(10, 102, 194, 0.24);
+      border-color: rgba(10, 102, 194, 0.6);
+      transform: translateY(-2px);
+    }
+
+    .contact-btn-wa:hover {
+      color: #ffffff;
+      background: rgba(37, 211, 102, 0.24);
+      border-color: rgba(37, 211, 102, 0.6);
+      transform: translateY(-2px);
+    }
+
+    /* BOTTOM HERO TICKER (WAITS FOR USER ACTION TRIGGER) */
+    .hero-ticker-wrap {
+      position: absolute;
+      bottom: clamp(14px, 2.5vh, 26px);
+      left: 0;
+      width: 100vw;
+      z-index: 30;
+      display: flex;
+      flex-direction: column;
+      pointer-events: none;
+      opacity: 0;
+      transform: translateY(14px);
+      transition: opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1), transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .hero-ticker-wrap.is-visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .ticker-rule {
+      width: 100%;
+      height: 1px;
+      background: linear-gradient(90deg, transparent 0%, rgba(255, 255, 255, 0.2) 10%, rgba(255, 255, 255, 0.2) 90%, transparent 100%);
+    }
+
+    .ticker-viewport {
+      width: 100%;
+      overflow: hidden;
+      padding: 13px 0;
+      mask-image: linear-gradient(90deg, transparent 0%, black 50px, black calc(100% - 50px), transparent 100%);
+      -webkit-mask-image: linear-gradient(90deg, transparent 0%, black 50px, black calc(100% - 50px), transparent 100%);
+    }
+
+    .ticker-track {
+      display: flex;
+      white-space: nowrap;
+      width: max-content;
+      animation: tickerLeftToRight 34s linear infinite;
+      will-change: transform;
+    }
+
+    @keyframes tickerLeftToRight {
+      0% { transform: translateX(-50%); }
+      100% { transform: translateX(0%); }
+    }
+
+    .ticker-sequence {
+      display: inline-flex;
+      align-items: center;
+      gap: clamp(32px, 3.8vw, 56px);
+      padding-right: clamp(32px, 3.8vw, 56px);
+      font-family: 'Space Grotesk', 'JetBrains Mono', monospace;
+      font-size: clamp(13px, 1.35vw, 15.5px);
+      font-weight: 700;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: rgba(255, 255, 255, 0.78);
+    }
+
+    .ticker-dot {
+      color: #ff3b30;
+      font-size: 13px;
+      line-height: 1;
+      opacity: 0.9;
+    }
+
+    /* =========================================
+       3. SECTION TRANSITIONS & DBL CONTAINER
+       ========================================= */
+    .dbl-section-wrap {
+      position: relative;
+      background: var(--dbl-light-bg);
+      color: var(--dbl-light-text);
+      z-index: 20;
+      box-shadow: 0 -20px 50px rgba(0, 0, 0, 0.7);
+    }
+
+    .dbl-content-container {
+      max-width: 1380px;
+      margin: 0 auto;
+      padding: clamp(70px, 9vh, 120px) clamp(24px, 4.5vw, 64px);
+    }
+
+    .dbl-section-header {
+      margin-bottom: clamp(36px, 5vh, 56px);
+    }
+
+    .dbl-meta-label {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--dbl-light-muted);
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      margin-bottom: 8px;
+    }
+
+    .dbl-meta-dot {
+      width: 5px;
+      height: 5px;
+      border-radius: 50%;
+      background: var(--dbl-crimson);
+    }
+
+    .dbl-title-main {
+      font-family: 'Anton', sans-serif;
+      font-size: clamp(2.8rem, 5.5vw, 4.8rem);
+      letter-spacing: 0.03em;
+      line-height: 0.95;
+      text-transform: uppercase;
+      color: #111114;
+    }
+
+    .dbl-subtitle-desc {
+      font-size: clamp(14px, 1.2vw, 17px);
+      color: #55555e;
+      margin-top: 10px;
+      font-weight: 500;
+      max-width: 600px;
+      line-height: 1.5;
+    }
+
+    /* =========================================
+       4. IMPACT METRICS SECTION (DBL MODULAR ASYMMETRIC)
+       ========================================= */
+    .metrics-asym-grid {
+      display: grid;
+      grid-template-columns: 1.35fr 1fr 1fr;
+      gap: 20px;
+    }
+
+    .dbl-card {
+      background: #ffffff;
+      border: 1px solid var(--dbl-light-border);
+      border-radius: 8px;
+      padding: 28px;
+      position: relative;
+      transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1),
+                  box-shadow 0.3s cubic-bezier(0.16, 1, 0.3, 1),
+                  border-color 0.3s ease;
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+    }
+
+    .dbl-card:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 16px 36px -10px rgba(0, 0, 0, 0.09);
+      border-color: rgba(0, 0, 0, 0.16);
+    }
+
+    .dbl-card-tag {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 9px;
+      font-weight: 600;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: #888892;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 12px;
+    }
+
+    .card-signal {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: #d0d0d6;
+      transition: background 0.3s ease;
+    }
+
+    .dbl-card:hover .card-signal {
+      background: var(--dbl-crimson);
+      box-shadow: 0 0 8px var(--dbl-crimson-glow);
+    }
+
+    /* PRIMARY MODULE: AI ARTIST (SPANS 2 ROWS) */
+    .module-primary {
+      grid-row: span 2;
+      background: #0f0f13;
+      color: #ffffff;
+      border-color: rgba(255, 255, 255, 0.08);
+      padding: 32px;
+    }
+
+    .module-primary:hover {
+      border-color: rgba(255, 255, 255, 0.18);
+      box-shadow: 0 20px 48px -12px rgba(0, 0, 0, 0.45);
+    }
+
+    .module-primary .dbl-card-tag {
+      color: rgba(255, 255, 255, 0.48);
+    }
+
+    .primary-headline {
+      font-family: 'Anton', sans-serif;
+      font-size: clamp(2rem, 3.2vw, 2.9rem);
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      color: #ffffff;
+      margin-bottom: 8px;
+    }
+
+    .primary-desc {
+      font-size: 13px;
+      line-height: 1.6;
+      color: rgba(255, 255, 255, 0.65);
+      margin-bottom: 24px;
+    }
+
+    /* SELECTED OUTPUT VISUAL EVIDENCE */
+    .visual-evidence-zone {
+      margin-top: auto;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .evidence-label {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 9.5px;
+      font-weight: 600;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: rgba(255, 255, 255, 0.45);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .evidence-item-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+    }
+
+    .evidence-card {
+      position: relative;
+      border-radius: 6px;
+      overflow: hidden;
+      aspect-ratio: 16 / 10;
+      background: #1a1a22;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      cursor: pointer;
+      transition: transform 0.3s ease, border-color 0.3s ease;
+    }
+
+    .evidence-card:hover {
+      transform: scale(1.02);
+      border-color: var(--dbl-crimson);
+    }
+
+    .evidence-card img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      transition: filter 0.3s ease, transform 0.4s ease;
+      filter: brightness(0.9);
+    }
+
+    .evidence-card:hover img {
+      filter: brightness(1.05);
+      transform: scale(1.04);
+    }
+
+    .evidence-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(180deg, transparent 40%, rgba(0, 0, 0, 0.88) 100%);
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      padding: 10px 12px;
+      pointer-events: none;
+    }
+
+    .evidence-title {
+      font-family: 'Anton', sans-serif;
+      font-size: 13.5px;
+      letter-spacing: 0.06em;
+      color: #ffffff;
+      text-transform: uppercase;
+    }
+
+    .evidence-sub {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 8px;
+      letter-spacing: 0.12em;
+      color: rgba(255, 255, 255, 0.6);
+      text-transform: uppercase;
+    }
+
+    /* METRICS NUMBERS & CARDS */
+    .metric-val {
+      font-family: 'Anton', sans-serif;
+      font-size: clamp(2.4rem, 3.8vw, 3.4rem);
+      letter-spacing: 0.02em;
+      line-height: 0.95;
+      color: #111114;
+      display: flex;
+      align-items: baseline;
+      gap: 2px;
+    }
+
+    .metric-val .plus-symbol {
+      color: var(--dbl-crimson);
+      font-size: 0.8em;
+    }
+
+    .metric-label {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: #1a1a20;
+      margin-top: 10px;
+    }
+
+    .metric-desc {
+      font-size: 12px;
+      color: #6c6e77;
+      margin-top: 4px;
+      line-height: 1.45;
+    }
+
+    /* SPECIFIC ACCENTS FOR ASYMMETRIC METRICS */
+    .card-accent-dark {
+      background: #15151a;
+      color: #fff;
+      border-color: rgba(255, 255, 255, 0.08);
+    }
+    .card-accent-dark .metric-val { color: #fff; }
+    .card-accent-dark .metric-label { color: #fff; }
+    .card-accent-dark .metric-desc { color: rgba(255, 255, 255, 0.6); }
+
+    /* =========================================
+       5. MY JOURNEY SECTION (DBL CAREER ARCHIVE)
+       ========================================= */
+    .journey-section {
+      border-top: 1px solid var(--dbl-light-border);
+      padding-top: clamp(60px, 8vh, 100px);
+      margin-top: clamp(60px, 8vh, 100px);
+    }
+
+    /* CAREER EVOLUTION PROGRESSION INDICATOR */
+    .career-evolution-strip {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      padding: 14px 20px;
+      background: #ffffff;
+      border: 1px solid var(--dbl-light-border);
+      border-radius: 6px;
+      margin-bottom: 36px;
+      width: fit-content;
+      user-select: none;
+    }
+
+    .evo-step {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: #111114;
+    }
+
+    .evo-step.is-cinema {
+      color: var(--dbl-crimson);
+    }
+
+    .evo-dot {
+      width: 5px;
+      height: 5px;
+      border-radius: 50%;
+      background: #d0d0d6;
+    }
+
+    .evo-step.is-cinema .evo-dot {
+      background: var(--dbl-crimson);
+    }
+
+    .evo-arrow {
+      color: #b0b0b8;
+      font-size: 12px;
+    }
+
+    /* JOURNEY ASYMMETRIC SPLIT: LEFT SPINE + RIGHT WORKSPACE */
+    .journey-layout {
+      display: grid;
+      grid-template-columns: 1fr 1.55fr;
+      gap: 28px;
+      align-items: start;
+    }
+
+    /* LEFT CAREER SPINE */
+    .company-spine-list {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .company-row-item {
+      background: #ffffff;
+      border: 1px solid var(--dbl-light-border);
+      border-radius: 8px;
+      padding: 22px 24px;
+      cursor: pointer;
+      position: relative;
+      transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1),
+                  border-color 0.25s ease,
+                  background 0.25s ease,
+                  box-shadow 0.25s ease;
+      outline: none;
+    }
+
+    .company-row-item:hover,
+    .company-row-item.is-selected {
+      border-color: rgba(0, 0, 0, 0.3);
+      box-shadow: 0 10px 28px -6px rgba(0, 0, 0, 0.08);
+      transform: translateX(4px);
+    }
+
+    .company-row-item.is-selected {
+      border-color: var(--dbl-crimson);
+      background: #fafafc;
+    }
+
+    .company-row-item.is-selected::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 0;
+      bottom: 0;
+      width: 4px;
+      background: var(--dbl-crimson);
+      border-radius: 8px 0 0 8px;
+    }
+
+    .company-row-item.is-dneg {
+      border-left: 3px solid #202028;
+    }
+
+    .company-row-item.is-dneg.is-selected {
+      border-left: 4px solid var(--dbl-crimson);
+    }
+
+    .comp-item-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 6px;
+    }
+
+    .comp-index {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 11px;
+      font-weight: 700;
+      color: #90909a;
+    }
+
+    .comp-dates {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 9.5px;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      color: #6e707b;
+      text-transform: uppercase;
+    }
+
+    .comp-name {
+      font-family: 'Anton', sans-serif;
+      font-size: 22px;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      color: #111114;
+      line-height: 1.1;
+    }
+
+    .comp-role {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 13px;
+      font-weight: 600;
+      color: #4b4d56;
+      margin-top: 3px;
+    }
+
+    .comp-loc {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 9px;
+      color: #92949e;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      margin-top: 6px;
+    }
+
+    /* RIGHT FLUID CONTEXTUAL WORKSPACE */
+    .journey-workspace-panel {
+      background: #0f0f13;
+      color: #ffffff;
+      border: 1px solid rgba(255, 255, 255, 0.09);
+      border-radius: 10px;
+      padding: clamp(28px, 4vw, 44px);
+      min-height: 540px;
+      position: sticky;
+      top: 86px;
+      box-shadow: 0 24px 60px -12px rgba(0, 0, 0, 0.35);
+      transition: opacity 0.3s cubic-bezier(0.16, 1, 0.3, 1), transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .ws-header {
+      border-bottom: 1px solid rgba(255, 255, 255, 0.09);
+      padding-bottom: 22px;
+      margin-bottom: 24px;
+    }
+
+    .ws-meta-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: 0.18em;
+      color: rgba(255, 255, 255, 0.45);
+      text-transform: uppercase;
+      margin-bottom: 8px;
+    }
+
+    .ws-badge-live {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      color: #ffffff;
+      background: rgba(255, 59, 48, 0.16);
+      border: 1px solid rgba(255, 59, 48, 0.4);
+      padding: 3px 8px;
+      border-radius: 3px;
+    }
+
+    .ws-badge-live::before {
+      content: '';
+      width: 5px;
+      height: 5px;
+      border-radius: 50%;
+      background: var(--dbl-crimson);
+      box-shadow: 0 0 6px var(--dbl-crimson);
+    }
+
+    .ws-company-name {
+      font-family: 'Anton', sans-serif;
+      font-size: clamp(2.4rem, 4vw, 3.8rem);
+      letter-spacing: 0.04em;
+      line-height: 0.95;
+      text-transform: uppercase;
+      color: #ffffff;
+      margin-top: 4px;
+    }
+
+    .ws-role-title {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 16px;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      color: #ff5b50;
+      margin-top: 8px;
+      text-transform: uppercase;
+    }
+
+    /* DNEG PROMINENT PROJECT REFERENCES */
+    .dneg-projects-strip {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin: 18px 0;
+      flex-wrap: wrap;
+    }
+
+    .dneg-proj-pill {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 10.5px;
+      font-weight: 700;
+      letter-spacing: 0.16em;
+      padding: 5px 12px;
+      background: rgba(255, 255, 255, 0.06);
+      border: 1px solid rgba(255, 255, 255, 0.16);
+      border-radius: 4px;
+      color: #ffffff;
+      text-transform: uppercase;
+    }
+
+    .dneg-proj-pill.featured {
+      background: rgba(255, 59, 48, 0.18);
+      border-color: rgba(255, 59, 48, 0.5);
+      color: #ff6e63;
+    }
+
+    /* CINEMATIC DNEG VISUAL AREA */
+    .dneg-visual-box {
+      width: 100%;
+      height: 180px;
+      border-radius: 6px;
+      overflow: hidden;
+      margin-bottom: 22px;
+      position: relative;
+      border: 1px solid rgba(255, 255, 255, 0.12);
+    }
+
+    .dneg-visual-box img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      filter: brightness(0.95);
+    }
+
+    .dneg-visual-caption {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      padding: 8px 14px;
+      background: linear-gradient(180deg, transparent 0%, rgba(0, 0, 0, 0.85) 100%);
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 9px;
+      letter-spacing: 0.16em;
+      color: rgba(255, 255, 255, 0.75);
+      text-transform: uppercase;
+    }
+
+    /* MODULAR TAG GRID */
+    .ws-modular-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+      margin-top: 14px;
+    }
+
+    .ws-mod-tag {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      padding: 8px 12px;
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 4px;
+      color: rgba(255, 255, 255, 0.85);
+      text-transform: uppercase;
+      display: flex;
+      align-items: center;
+      gap: 7px;
+    }
+
+    .ws-mod-tag::before {
+      content: '';
+      width: 4px;
+      height: 4px;
+      background: var(--dbl-crimson);
+      border-radius: 50%;
+    }
+
+    .ws-tech-stack-row {
+      margin-top: 22px;
+      padding-top: 18px;
+      border-top: 1px solid rgba(255, 255, 255, 0.08);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+
+    .ws-tech-label {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 9.5px;
+      letter-spacing: 0.16em;
+      color: rgba(255, 255, 255, 0.4);
+      text-transform: uppercase;
+      margin-right: 4px;
+    }
+
+    .ws-tech-pill {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 9px;
+      padding: 3px 8px;
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 3px;
+      color: rgba(255, 255, 255, 0.8);
+    }
+
+    /* FOOTER STRIP */
+    .site-footer-strip {
+      border-top: 1px solid var(--dbl-light-border);
+      padding: 36px 0;
+      margin-top: 80px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 10px;
+      letter-spacing: 0.14em;
+      color: #888894;
+      text-transform: uppercase;
+    }
+
+    /* =========================================
+       6. RESPONSIVE BREAKPOINTS
+       ========================================= */
+    @media (max-width: 1050px) {
+      .metrics-asym-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+      .module-primary {
+        grid-column: span 2;
+        grid-row: auto;
+      }
+      .journey-layout {
+        grid-template-columns: 1fr;
+      }
+      .journey-workspace-panel {
+        position: relative;
+        top: 0;
+      }
+    }
+
+    @media (max-width: 650px) {
+      .metrics-asym-grid {
+        grid-template-columns: 1fr;
+      }
+      .module-primary {
+        grid-column: span 1;
+      }
+      .evidence-item-row {
+        grid-template-columns: 1fr;
+      }
+      .ws-modular-grid {
+        grid-template-columns: 1fr;
+      }
+      .career-evolution-strip {
+        flex-wrap: wrap;
+      }
+      .hero-header {
+        height: 56px;
+        padding: 0 16px;
+      }
+      .brand-designfolio,
+      .header-edit-tag {
+        display: none;
+      }
+      .hero-left-stage {
+        left: 16px;
+        top: 48%;
+        width: calc(100vw - 32px);
+      }
+      .hero-name-wrap {
+        min-height: 105px;
+      }
+      .sticky-note {
+        width: calc(100vw - 44px);
+        padding: 16px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- =========================================
+       0. OPENING CENTER SPLASH (0.5s HOLD + BURST)
+       ========================================= -->
+  <div class="center-splash" id="center-splash">
+    <canvas id="splash-particle-canvas"></canvas>
+    <div class="splash-content splash-glitching" id="splash-content">
+      <span class="splash-cbk">CBK</span>
+      <span class="splash-df">DESIGNFOLIO</span>
+    </div>
+  </div>
+
+  <!-- =========================================
+       1. FIXED DBL HEADER (HERO ONLY DBL RULE)
+       ========================================= -->
+  <header class="hero-header" id="hero-header">
+    <div class="header-left">
+      <div class="brand-group">
+        <span class="brand-cbk">CBK</span>
+        
+        <!-- DESIGNFOLIO: ONE SINGLE, CONTINUOUS WORD ALWAYS -->
+        <span class="brand-designfolio" id="brand-df">
+          <span class="df-char" data-orig="D" data-idx="0">D</span>
+          <span class="df-char" data-orig="E" data-idx="1">E</span>
+          <span class="df-char" data-orig="S" data-idx="2">S</span>
+          <span class="df-char" data-orig="I" data-idx="3">I</span>
+          <span class="df-char" data-orig="G" data-idx="4">G</span>
+          <span class="df-char" data-orig="N" data-idx="5">N</span>
+          <span class="df-char" data-orig="F" data-idx="6">F</span>
+          <span class="df-char" data-orig="O" data-idx="7">O</span>
+          <span class="df-char" data-orig="L" data-idx="8">L</span>
+          <span class="df-char" data-orig="I" data-idx="9">I</span>
+          <span class="df-char" data-orig="O" data-idx="10">O</span>
+          <span class="df-slot-indicator" id="df-slot"></span>
+        </span>
+      </div>
+
+      <span class="header-edit-tag">EDIT</span>
+    </div>
+
+    <div class="header-right">
+      <div class="time-block">
+        <span class="time-prefix">LOCAL</span>
+        <span class="time-digits" id="time-digits">--:--:--</span>
+        <span class="time-period" id="time-period">--</span>
+      </div>
+
+      <!-- GMAIL ICON IN HEADER (OPENS COMPOSER) -->
+      <a href="mailto:meet2krishnan@gmail.com" 
+         class="gmail-btn" 
+         id="header-gmail-btn"
+         aria-label="Email — meet2krishnan@gmail.com">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor">
+          <path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/>
+        </svg>
+      </a>
+    </div>
+  </header>
+
+  <!-- =========================================
+       2. CINEMATIC HERO SECTION
+       ========================================= -->
+  <section id="hero-section">
+
+    <!-- CANVAS PORTRAIT VIDEO LAYER (100% UNFILTERED, FULL CONTRAST & RIM-LIGHT) -->
+    <canvas id="canvas"></canvas>
+    <div class="left-stage-backdrop"></div>
+
+    <!-- SCROLL DOWN WIDGET -->
+    <div class="scroll-down-widget" id="scroll-widget">
+      <div class="sd-visual">
+        <div class="sd-mouse-icon">
+          <div class="sd-wheel-dot"></div>
+        </div>
+        <svg class="sd-arrow-icon" width="9" height="11" viewBox="0 0 9 11" fill="none">
+          <path d="M4.5 1V9.5M4.5 9.5L1.5 6.5M4.5 9.5L7.5 6.5" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </div>
+      <div class="sd-label-wrap">
+        <span class="sd-label">SCROLL DOWN</span>
+        <span class="sd-sub">TO CONTINUE</span>
+      </div>
+    </div>
+
+    <!-- HERO LEFT IDENTITY STAGE -->
+    <div class="hero-left-stage" id="hero-left-stage">
+      
+      <!-- Subtle Technical Marker -->
+      <div class="hero-meta-coord">
+        <span class="hero-meta-dot"></span>
+        <span>SYS // 01.PORTFOLIO [CHITHAMBARAM STUDIO]</span>
+      </div>
+
+      <!-- MAIN HERO NAME: FERROFLUID PARTICLE TYPOGRAPHY (PREVIOUS LARGER SCALE RESTORED) -->
+      <div class="hero-name-wrap" id="hero-name-wrap">
+        <h1 class="sr-only">CHITHAMBARAM BALA KRISHNAN</h1>
+        <canvas id="name-particle-canvas"></canvas>
+      </div>
+
+      <!-- QUOTE: TURNING IDEAS INTO VISUALS (REFINED REVEAL) -->
+      <div class="hero-quote-wrap" id="hero-quote-wrap">
+        <div class="quote-mask-track">
+          <span class="quote-bracket" id="q-bracket">//</span>
+          <div class="quote-text-reveal" id="quote-text">TURNING IDEAS INTO VISUALS</div>
+        </div>
+        <div class="quote-guide-bar" id="q-bar"></div>
+      </div>
+
+      <!-- LITERAL STICKY NOTE: [◈] ABOUT ME (TYPEWRITER CONTENT REVEAL + TACTILE SOUND) -->
+      <div class="sticky-note" id="hero-sticky-note">
+        <div class="sticky-adhesive-strip"></div>
+        <div class="sticky-pin-fold"></div>
+        <div class="sticky-corner-curl"></div>
+        <div class="sticky-header">[◈] ABOUT ME</div>
+        <div class="sticky-body" id="sticky-body-typewriter"></div>
+      </div>
+
+      <!-- CONTACT LINKS ROW (LINKEDIN + CORRECTED WHATSAPP +91 9491681703) -->
+      <div class="contact-links-row" id="contact-links">
+        <a href="https://www.linkedin.com/in/c-bala-krishnan/" 
+           target="_blank" 
+           rel="noopener noreferrer" 
+           class="contact-btn contact-btn-in" 
+           aria-label="LinkedIn Profile — C. Bala Krishnan">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/>
+          </svg>
+        </a>
+
+        <!-- Correct WhatsApp link: https://wa.me/919491681703 -->
+        <a href="https://wa.me/919491681703" 
+           target="_blank" 
+           rel="noopener noreferrer" 
+           class="contact-btn contact-btn-wa" 
+           aria-label="WhatsApp Contact — +91 9491681703">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M12.031 0C5.399 0 0 5.398 0 12.031c0 2.12.553 4.184 1.603 6.007L.055 24l6.143-1.611a12.006 12.006 0 0 0 5.833 1.503h.005c6.632 0 12.031-5.399 12.031-12.031 0-3.214-1.252-6.236-3.526-8.51A11.96 11.96 0 0 0 12.031 0zm0 22.029h-.004a9.99 9.99 0 0 1-5.097-1.393l-.365-.217-3.791.994 1.012-3.693-.238-.378a9.972 9.972 0 0 1-1.536-5.31C2.012 6.51 6.51 2.012 12.031 2.012c2.677 0 5.193 1.043 7.086 2.936a10.007 10.007 0 0 1 2.936 7.087c0 5.522-4.498 10.02-10.022 10.02zm5.496-7.502c-.301-.151-1.782-.88-2.058-.98-.276-.101-.476-.151-.677.151-.2.302-.778.98-.954 1.181-.176.201-.351.226-.653.075-.301-.151-1.272-.469-2.423-1.496-.895-.798-1.5-1.785-1.676-2.086-.176-.302-.019-.465.132-.616.136-.135.301-.351.452-.527.151-.176.201-.301.301-.502.101-.201.05-.377-.025-.527-.075-.151-.677-1.632-.928-2.235-.245-.587-.494-.508-.677-.517l-.578-.01c-.201 0-.527.075-.803.376s-1.054 1.03-1.054 2.511c0 1.482 1.079 2.912 1.229 3.113.151.201 2.123 3.242 5.143 4.547.718.311 1.279.497 1.716.636.722.23 1.379.197 1.899.12.58-.087 1.782-.728 2.033-1.431.251-.703.251-1.305.176-1.431-.076-.126-.276-.201-.577-.352z"/>
+          </svg>
+        </a>
+      </div>
+
+    </div>
+
+    <!-- BOTTOM HERO TICKER (WAITS FOR MEANINGFUL ACTION TRIGGER) -->
+    <div class="hero-ticker-wrap" id="hero-ticker">
+      <div class="ticker-rule"></div>
+      <div class="ticker-viewport">
+        <div class="ticker-track">
+          
+          <!-- Repetition 1 (~6 items span view) -->
+          <div class="ticker-sequence">
+            <span>GENERATIVE AI</span><span class="ticker-dot">·</span>
+            <span>CREATIVE DIRECTION</span><span class="ticker-dot">·</span>
+            <span>PIPELINE INTEGRATION</span><span class="ticker-dot">·</span>
+            <span>GRAPHIC DESIGN</span><span class="ticker-dot">·</span>
+            <span>AI MOTION DESIGN</span><span class="ticker-dot">·</span>
+            <span>VISUAL DEVELOPMENT</span><span class="ticker-dot">·</span>
+          </div>
+
+          <!-- Repetition 2 -->
+          <div class="ticker-sequence">
+            <span>GENERATIVE AI</span><span class="ticker-dot">·</span>
+            <span>CREATIVE DIRECTION</span><span class="ticker-dot">·</span>
+            <span>PIPELINE INTEGRATION</span><span class="ticker-dot">·</span>
+            <span>GRAPHIC DESIGN</span><span class="ticker-dot">·</span>
+            <span>AI MOTION DESIGN</span><span class="ticker-dot">·</span>
+            <span>VISUAL DEVELOPMENT</span><span class="ticker-dot">·</span>
+          </div>
+
+          <!-- Repetition 3 -->
+          <div class="ticker-sequence">
+            <span>GENERATIVE AI</span><span class="ticker-dot">·</span>
+            <span>CREATIVE DIRECTION</span><span class="ticker-dot">·</span>
+            <span>PIPELINE INTEGRATION</span><span class="ticker-dot">·</span>
+            <span>GRAPHIC DESIGN</span><span class="ticker-dot">·</span>
+            <span>AI MOTION DESIGN</span><span class="ticker-dot">·</span>
+            <span>VISUAL DEVELOPMENT</span><span class="ticker-dot">·</span>
+          </div>
+
+        </div>
+      </div>
+      <div class="ticker-rule"></div>
+    </div>
+
+  </section>
+
+  <!-- =========================================
+       3. DBL WRAPPER: IMPACT METRICS & MY JOURNEY
+       (SPACIOUS OFF-WHITE PRODUCT INTERFACE)
+       ========================================= -->
+  <main class="dbl-section-wrap" id="main-content">
+    <div class="dbl-content-container">
+
+      <!-- =========================================
+           A. IMPACT METRICS SECTION
+           ========================================= -->
+      <section id="impact-metrics">
+        <div class="dbl-section-header">
+          <div class="dbl-meta-label">
+            <span class="dbl-meta-dot"></span>
+            <span>OUTPUT / PRODUCTION / SCALE · THE OUTPUT, COUNTED</span>
+          </div>
+          <h2 class="dbl-title-main">IMPACT METRICS</h2>
+          <p class="dbl-subtitle-desc">Quantitative evidence of generative AI workflows, high-velocity creative direction, and cinematic pipeline outputs.</p>
+        </div>
+
+        <!-- MODULAR ASYMMETRIC GRID -->
+        <div class="metrics-asym-grid">
+
+          <!-- 1. PRIMARY MODULE: AI ARTIST (WITH VISUAL EVIDENCE) -->
+          <div class="dbl-card module-primary">
+            <div class="dbl-card-tag">
+              <span>PRIMARY PIPELINE</span>
+              <span class="card-signal"></span>
+            </div>
+            <h3 class="primary-headline">AI ARTIST</h3>
+            <p class="primary-desc">Generative production across cinematic, commercial and visual-development work — one pipeline, many outputs.</p>
+
+            <!-- SELECTED OUTPUT: RAMAYANA & VEERABHADRA -->
+            <div class="visual-evidence-zone">
+              <div class="evidence-label">
+                <span>[◈] SELECTED OUTPUT / PRODUCTION PROOFS</span>
+              </div>
+              <div class="evidence-item-row">
+                
+                <!-- EVIDENCE 1: RAMAYANA -->
+                <div class="evidence-card" tabindex="0" aria-label="Ramayana Cinematic Visual Output">
+                  <img src="ramayana-output.jpg" alt="Ramayana Cinematic Production Artwork">
+                  <div class="evidence-overlay">
+                    <div class="evidence-title">RAMAYANA</div>
+                    <div class="evidence-sub">CINEMATIC / GEN AI</div>
+                  </div>
+                </div>
+
+                <!-- EVIDENCE 2: VEERABHADRA -->
+                <div class="evidence-card" tabindex="0" aria-label="Veerabhadra Character World Visual Output">
+                  <img src="veerabhadra-output.jpg" alt="Veerabhadra Character and World Design">
+                  <div class="evidence-overlay">
+                    <div class="evidence-title">VEERABHADRA</div>
+                    <div class="evidence-sub">CHARACTER / WORLD</div>
+                  </div>
+                </div>
+
+              </div>
+            </div>
+          </div>
+
+          <!-- 2. METRIC: 25K+ AI IMAGES -->
+          <div class="dbl-card" tabindex="0">
+            <div class="dbl-card-tag">
+              <span>PRODUCTION VOL.</span>
+              <span class="card-signal"></span>
+            </div>
+            <div class="metric-val">25K<span class="plus-symbol">+</span></div>
+            <div class="metric-label">AI IMAGES</div>
+            <div class="metric-desc">Curated, upscaled and composite-ready frames across Midjourney, SDXL, and custom LoRA models.</div>
+          </div>
+
+          <!-- 3. METRIC: 50+ PROJECTS -->
+          <div class="dbl-card" tabindex="0">
+            <div class="dbl-card-tag">
+              <span>DELIVERIES</span>
+              <span class="card-signal"></span>
+            </div>
+            <div class="metric-val">50<span class="plus-symbol">+</span></div>
+            <div class="metric-label">PROJECTS</div>
+            <div class="metric-desc">End-to-end commercial campaigns, feature look-dev, and IP character concept decks.</div>
+          </div>
+
+          <!-- 4. METRIC: 150+ AI VIDEOS -->
+          <div class="dbl-card card-accent-dark" tabindex="0">
+            <div class="dbl-card-tag">
+              <span>MOTION PIPELINE</span>
+              <span class="card-signal"></span>
+            </div>
+            <div class="metric-val">150<span class="plus-symbol">+</span></div>
+            <div class="metric-label">AI VIDEOS</div>
+            <div class="metric-desc">Cinematic video sequences generated and animated with runway, luma, and AnimateDiff systems.</div>
+          </div>
+
+          <!-- 5. METRIC: 10K+ DESIGN ASSETS -->
+          <div class="dbl-card" tabindex="0">
+            <div class="dbl-card-tag">
+              <span>COMMERCIAL ASSETS</span>
+              <span class="card-signal"></span>
+            </div>
+            <div class="metric-val">10K<span class="plus-symbol">+</span></div>
+            <div class="metric-label">DESIGN ASSETS</div>
+            <div class="metric-desc">High-fidelity brand systems, marketing collateral, UI modules, and digital creatives.</div>
+          </div>
+
+          <!-- 6. METRIC: 15+ AI WORKFLOWS -->
+          <div class="dbl-card" tabindex="0">
+            <div class="dbl-card-tag">
+              <span>SYSTEM ARCHITECTURE</span>
+              <span class="card-signal"></span>
+            </div>
+            <div class="metric-val">15<span class="plus-symbol">+</span></div>
+            <div class="metric-label">AI WORKFLOWS</div>
+            <div class="metric-desc">Custom ComfyUI node networks built from scratch for face-swap, style consistency, and prompt caching.</div>
+          </div>
+
+          <!-- 7. METRIC: 50+ FILM SHOTS -->
+          <div class="dbl-card" tabindex="0">
+            <div class="dbl-card-tag">
+              <span>VFX INTEGRATION</span>
+              <span class="card-signal"></span>
+            </div>
+            <div class="metric-val">50<span class="plus-symbol">+</span></div>
+            <div class="metric-label">FILM SHOTS</div>
+            <div class="metric-desc">VFX shot look-dev, digital double face-tracking, and background visual extensions for studio film pipelines.</div>
+          </div>
+
+          <!-- 8. METRIC: 140+ CLIENTS -->
+          <div class="dbl-card" tabindex="0">
+            <div class="dbl-card-tag">
+              <span>GLOBAL TRUST</span>
+              <span class="card-signal"></span>
+            </div>
+            <div class="metric-val">140<span class="plus-symbol">+</span></div>
+            <div class="metric-label">CLIENTS</div>
+            <div class="metric-desc">Production houses, advertising agencies, indie directors, and tech enterprises served worldwide.</div>
+          </div>
+
+          <!-- 9. METRIC: 60% FASTER CONCEPT GENERATION -->
+          <div class="dbl-card" tabindex="0">
+            <div class="dbl-card-tag">
+              <span>VELOCITY METRIC</span>
+              <span class="card-signal"></span>
+            </div>
+            <div class="metric-val">60<span class="plus-symbol">%</span></div>
+            <div class="metric-label">FASTER CONCEPT GEN</div>
+            <div class="metric-desc">Measured efficiency improvement from initial creative brief to validated high-fidelity visual direction.</div>
+          </div>
+
+        </div>
+      </section>
+
+      <!-- =========================================
+           B. MY JOURNEY SECTION (DBL CAREER ARCHIVE)
+           ========================================= -->
+      <section class="journey-section" id="my-journey">
+        <div class="dbl-section-header">
+          <div class="dbl-meta-label">
+            <span class="dbl-meta-dot"></span>
+            <span>EXPERIENCE / PRODUCTION ARCHIVE</span>
+          </div>
+          <h2 class="dbl-title-main">MY JOURNEY</h2>
+          <p class="dbl-subtitle-desc">From foundational graphic design to enterprise AI systems and Hollywood-grade VFX studio production.</p>
+        </div>
+
+        <!-- CAREER EVOLUTION INDICATOR STRIP -->
+        <div class="career-evolution-strip">
+          <div class="evo-step">
+            <span class="evo-dot"></span>
+            <span>DESIGN</span>
+          </div>
+          <span class="evo-arrow">→</span>
+          <div class="evo-step">
+            <span class="evo-dot"></span>
+            <span>AI</span>
+          </div>
+          <span class="evo-arrow">→</span>
+          <div class="evo-step">
+            <span class="evo-dot"></span>
+            <span>SYSTEMS</span>
+          </div>
+          <span class="evo-arrow">→</span>
+          <div class="evo-step is-cinema">
+            <span class="evo-dot"></span>
+            <span>CINEMA</span>
+          </div>
+        </div>
+
+        <!-- ASYMMETRIC JOURNEY LAYOUT: LEFT SPINE + RIGHT WORKSPACE -->
+        <div class="journey-layout">
+          
+          <!-- LEFT: 4-COMPANY CAREER SPINE -->
+          <div class="company-spine-list" id="company-spine-list" role="tablist">
+
+            <!-- 04: DNEG (MAJOR CREDENTIAL, STRONGEST WEIGHT) -->
+            <div class="company-row-item is-dneg is-selected" 
+                 id="comp-tab-0" 
+                 tabindex="0" 
+                 role="tab" 
+                 aria-selected="true" 
+                 data-target="dneg">
+              <div class="comp-item-header">
+                <span class="comp-index">04 // PRODUCTION CHAPTER</span>
+                <span class="comp-dates">JAN 2026 — APR 2026</span>
+              </div>
+              <div class="comp-name">DNEG</div>
+              <div class="comp-role">Generative AI Artist</div>
+              <div class="comp-loc">REMOTE · VFX STUDIO</div>
+            </div>
+
+            <!-- 03: IMPROMP2LABS -->
+            <div class="company-row-item" 
+                 id="comp-tab-1" 
+                 tabindex="0" 
+                 role="tab" 
+                 aria-selected="false" 
+                 data-target="impromp2">
+              <div class="comp-item-header">
+                <span class="comp-index">03 // SYSTEMS CHAPTER</span>
+                <span class="comp-dates">NOV 2025 — PRESENT</span>
+              </div>
+              <div class="comp-name">IMPROMP2LABS</div>
+              <div class="comp-role">Gen AI Creative Lead</div>
+              <div class="comp-loc">HYDERABAD · HYBRID</div>
+            </div>
+
+            <!-- 02: CYBEREDGE -->
+            <div class="company-row-item" 
+                 id="comp-tab-2" 
+                 tabindex="0" 
+                 role="tab" 
+                 aria-selected="false" 
+                 data-target="cyberedge">
+              <div class="comp-item-header">
+                <span class="comp-index">02 // SCALE CHAPTER</span>
+                <span class="comp-dates">NOV 2024 — NOV 2025</span>
+              </div>
+              <div class="comp-name">CYBEREDGE</div>
+              <div class="comp-role">AI Design Engineer</div>
+              <div class="comp-loc">HYDERABAD · HYBRID</div>
+            </div>
+
+            <!-- 01: PREMA SAI DESIGNERS -->
+            <div class="company-row-item" 
+                 id="comp-tab-3" 
+                 tabindex="0" 
+                 role="tab" 
+                 aria-selected="false" 
+                 data-target="premasai">
+              <div class="comp-item-header">
+                <span class="comp-index">01 // FOUNDATION CHAPTER</span>
+                <span class="comp-dates">AUG 2018 — OCT 2024</span>
+              </div>
+              <div class="comp-name">PREMA SAI DESIGNERS</div>
+              <div class="comp-role">Graphic Designer</div>
+              <div class="comp-loc">HYDERABAD · ONSITE</div>
+            </div>
+
+          </div>
+
+          <!-- RIGHT: FLUID CONTEXTUAL WORKSPACE PANEL -->
+          <div class="journey-workspace-panel" id="journey-workspace" role="tabpanel">
+            <!-- Dynamically populated via JS for seamless fluid state transitions -->
+          </div>
+
+        </div>
+
+      </section>
+
+      <!-- FOOTER STRIP -->
+      <footer class="site-footer-strip">
+        <div>CHITHAMBARAM BALA KRISHNAN // PORTFOLIO ARCHIVE</div>
+        <div>DBL PRODUCT INTERFACE · 2026</div>
+      </footer>
+
+    </div>
+  </main>
+
+  <script>
+    (() => {
+      "use strict";
+
+      // =========================================
+      // 1. LIVE TIME (BROWSER / DEVICE TIMEZONE)
+      // =========================================
+      function updateLiveTime() {
+        try {
+          const now = new Date();
+          const userTimeZone = Intl.DateTimeFormat().resolvedOptions().timeZone;
+
+          const formatter = new Intl.DateTimeFormat('en-US', {
+            timeZone: userTimeZone,
+            hour: '2-digit',
+            minute: '2-digit',
+            second: '2-digit',
+            hour12: true
+          });
+
+          const parts = formatter.formatToParts(now);
+          let hour = '12', minute = '00', second = '00', dayPeriod = 'AM';
+
+          for (const part of parts) {
+            if (part.type === 'hour') hour = part.value;
+            else if (part.type === 'minute') minute = part.value;
+            else if (part.type === 'second') second = part.value;
+            else if (part.type === 'dayPeriod') dayPeriod = part.value.toUpperCase();
+          }
+
+          const timeDigitsEl = document.getElementById('time-digits');
+          const timePeriodEl = document.getElementById('time-period');
+
+          if (timeDigitsEl) timeDigitsEl.textContent = `${hour}:${minute}:${second}`;
+          if (timePeriodEl) timePeriodEl.textContent = dayPeriod;
+        } catch (e) {
+          console.error("Live time error:", e);
+        }
+      }
+
+      updateLiveTime();
+      setInterval(updateLiveTime, 1000);
+
+      // =========================================
+      // 2. DESIGNFOLIO TELEPORT LOOP (5.6s SEAMLESS)
+      //    (ONE WORD ALWAYS, LETTERS TELEPORT, MECHANICAL SLOTS)
+      // =========================================
+      const brandDf = document.getElementById('brand-df');
+      const dfAllChars = document.querySelectorAll('.df-char');
+      const dfSlot = document.getElementById('df-slot');
+
+      function runDesignfolioTeleportLoop() {
+        const loopDuration = 5600;
+
+        // 0.0s – 2.0s: Clean Default DESIGNFOLIO
+        dfAllChars.forEach((ch) => {
+          ch.style.opacity = '1';
+          ch.style.transform = 'translate(0, 0)';
+          ch.style.color = 'inherit';
+          ch.style.filter = 'none';
+        });
+        if (dfSlot) {
+          dfSlot.style.opacity = '0';
+          dfSlot.style.transform = 'translate(0, 0)';
+        }
+
+        // 2.0s – 2.5s: Letters 'E' and 'N' briefly disappear
+        setTimeout(() => {
+          const charE = dfAllChars[1];
+          const charN = dfAllChars[5];
+
+          if (charE) {
+            charE.style.opacity = '0';
+            charE.style.transform = 'translateY(-2px)';
+          }
+          if (charN) {
+            charN.style.opacity = '0';
+            charN.style.transform = 'translateY(2px)';
+          }
+
+          if (dfSlot && charE) {
+            const rect = charE.getBoundingClientRect();
+            const parentRect = brandDf.getBoundingClientRect();
+            dfSlot.style.left = `${rect.left - parentRect.left - 1}px`;
+            dfSlot.style.top = `${rect.top - parentRect.top - 1}px`;
+            dfSlot.style.opacity = '1';
+          }
+        }, 2000);
+
+        // 2.5s – 3.2s: Mechanical slot shifts
+        setTimeout(() => {
+          if (dfSlot) {
+            dfSlot.style.transform = 'translate(3px, -1px)';
+            dfSlot.style.borderColor = '#ff3b30';
+          }
+        }, 2500);
+
+        // 3.2s – 3.8s: Letters teleport back from nearby position
+        setTimeout(() => {
+          const charE = dfAllChars[1];
+          const charN = dfAllChars[5];
+
+          if (charE) {
+            charE.style.transform = 'translate(0, 0)';
+            charE.style.opacity = '1';
+            charE.style.color = '#ff5b50';
+          }
+          if (charN) {
+            charN.style.transform = 'translate(0, 0)';
+            charN.style.opacity = '1';
+            charN.style.color = '#ff5b50';
+          }
+          if (dfSlot) {
+            dfSlot.style.opacity = '0';
+          }
+        }, 3200);
+
+        // 3.8s – 4.5s: Subtle micro-alignment restoration
+        setTimeout(() => {
+          brandDf.style.transform = 'translateX(-1px)';
+          setTimeout(() => {
+            brandDf.style.transform = 'none';
+          }, 80);
+
+          dfAllChars.forEach((ch) => {
+            ch.style.color = 'inherit';
+          });
+        }, 3800);
+
+        // 4.5s – 5.6s: Stable clean hold
+        setTimeout(runDesignfolioTeleportLoop, loopDuration);
+      }
+
+      runDesignfolioTeleportLoop();
+
+      // =========================================
+      // 3. 240-FRAME SEQUENTIAL PLAYER
+      //    (CONTINUOUS 130 -> 240 ALIVE LOOP)
+      // =========================================
+      const TOTAL_FRAMES = 240;
+      const FRAME_PATH = "./";
+      const FRAME_PREFIX = "ezgif-frame-";
+      const FRAME_EXTENSION = ".jpg";
+
+      const canvas = document.getElementById("canvas");
+      const ctx = canvas.getContext("2d", {
+        alpha: false,
+        desynchronized: true
+      });
+
+      const images = new Array(TOTAL_FRAMES);
+      let canvasWidth = 0;
+      let canvasHeight = 0;
+      let currentFrameIndex = -1;
+
+      let heroState = 'initial';
+      let playbackStartTime = 0;
+      const FORWARD_PLAYBACK_DURATION = 3800;
+
+      const LOOP_START_FRAME = 129; // Frame 130
+      const LOOP_END_FRAME = 239;   // Frame 240
+      let loopCurrentFrame = 239;
+      let loopDirection = -1;       // Ping-pong for seamless alive portrait
+      let lastLoopTickTime = 0;
+      const LOOP_FRAME_INTERVAL = 36;
+
+      let upScrollCount = 0;
+      let lastUpScrollTime = 0;
+
+      function pad(num) {
+        return String(num).padStart(3, "0");
+      }
+
+      function frameURL(index) {
+        return FRAME_PATH + FRAME_PREFIX + pad(index + 1) + FRAME_EXTENSION;
+      }
+
+      function resizeCanvas() {
+        const dpr = Math.min(window.devicePixelRatio || 1, 2);
+        canvasWidth = window.innerWidth;
+        canvasHeight = window.innerHeight;
+
+        canvas.width = Math.round(canvasWidth * dpr);
+        canvas.height = Math.round(canvasHeight * dpr);
+        canvas.style.width = canvasWidth + "px";
+        canvas.style.height = canvasHeight + "px";
+
+        ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+
+        if (currentFrameIndex >= 0) {
+          drawFrame(currentFrameIndex);
+        }
+      }
+
+      window.addEventListener("resize", resizeCanvas, { passive: true });
+      resizeCanvas();
+
+      function getNearestLoadedFrame(index) {
+        if (images[index] && images[index].complete && images[index].naturalWidth > 0) {
+          return index;
+        }
+        for (let i = index - 1; i >= 0; i--) {
+          if (images[i] && images[i].complete && images[i].naturalWidth > 0) return i;
+        }
+        for (let i = index + 1; i < TOTAL_FRAMES; i++) {
+          if (images[i] && images[i].complete && images[i].naturalWidth > 0) return i;
+        }
+        return -1;
+      }
+
+      function drawFrame(index) {
+        const actualIndex = getNearestLoadedFrame(index);
+        if (actualIndex === -1) {
+          ctx.fillStyle = "#000";
+          ctx.fillRect(0, 0, canvasWidth, canvasHeight);
+          return;
+        }
+
+        const img = images[actualIndex];
+        const sourceWidth = img.naturalWidth;
+        const sourceHeight = img.naturalHeight;
+        if (!sourceWidth || !sourceHeight) return;
+
+        const scale = Math.max(
+          canvasWidth / sourceWidth,
+          canvasHeight / sourceHeight
+        );
+
+        const drawWidth = sourceWidth * scale;
+        const drawHeight = sourceHeight * scale;
+
+        const isDesktop = canvasWidth > 900;
+        const alignRatioX = isDesktop ? 0.40 : 0.5;
+
+        const x = (canvasWidth - drawWidth) * alignRatioX;
+        const y = (canvasHeight - drawHeight) * 0.5;
+
+        ctx.fillStyle = "#000";
+        ctx.fillRect(0, 0, canvasWidth, canvasHeight);
+        ctx.drawImage(img, x, y, drawWidth, drawHeight);
+
+        currentFrameIndex = actualIndex;
+      }
+
+      function loadFrame(index) {
+        return new Promise((resolve) => {
+          const img = new Image();
+          img.decoding = "async";
+          img.onload = () => { images[index] = img; resolve(true); };
+          img.onerror = () => { resolve(false); };
+          img.src = frameURL(index);
+        });
+      }
+
+      async function preloadAllFrames() {
+        const batchSize = 16;
+        for (let start = 0; start < TOTAL_FRAMES; start += batchSize) {
+          const batch = [];
+          for (let i = start; i < Math.min(start + batchSize, TOTAL_FRAMES); i++) {
+            if (i === 0 && images[0]) continue;
+            batch.push(loadFrame(i));
+          }
+          await Promise.all(batch);
+        }
+      }
+
+      // =========================================
+      // 4. MULTI-TRIGGER CINEMATIC PROGRESSION
+      //    (HERO LOCKED DURING PROGRESSION)
+      // =========================================
+      const scrollWidget = document.getElementById('scroll-widget');
+      const tickerWrap = document.getElementById('hero-ticker');
+      let tickerTriggered = false;
+
+      function triggerHeroTicker() {
+        if (tickerTriggered) return;
+        tickerTriggered = true;
+        if (tickerWrap) {
+          tickerWrap.classList.add('is-visible');
+        }
+      }
+
+      function activateHeroSequence(triggerSource) {
+        triggerHeroTicker();
+
+        if (heroState !== 'ready') return;
+        heroState = 'transitioning_forward';
+
+        if (scrollWidget) {
+          scrollWidget.classList.remove('is-visible');
+          scrollWidget.classList.add('is-hidden');
+        }
+
+        playbackStartTime = performance.now();
+        playForwardFrameLoop();
+      }
+
+      function playForwardFrameLoop() {
+        if (heroState !== 'transitioning_forward') return;
+
+        const elapsed = performance.now() - playbackStartTime;
+        let progress = Math.min(1, elapsed / FORWARD_PLAYBACK_DURATION);
+
+        const frameIndex = Math.min(
+          TOTAL_FRAMES - 1,
+          Math.floor(progress * (TOTAL_FRAMES - 1))
+        );
+
+        drawFrame(frameIndex);
+
+        if (progress < 1) {
+          requestAnimationFrame(playForwardFrameLoop);
+        } else {
+          heroState = 'looping_end';
+          loopCurrentFrame = 239;
+          loopDirection = -1;
+          lastLoopTickTime = performance.now();
+          upScrollCount = 0;
+          requestAnimationFrame(runEndStateLoop);
+        }
+      }
+
+      function runEndStateLoop(now) {
+        if (heroState !== 'looping_end') return;
+
+        if (now - lastLoopTickTime >= LOOP_FRAME_INTERVAL) {
+          lastLoopTickTime = now;
+          loopCurrentFrame += loopDirection;
+
+          if (loopCurrentFrame <= LOOP_START_FRAME) {
+            loopCurrentFrame = LOOP_START_FRAME;
+            loopDirection = 1;
+          } else if (loopCurrentFrame >= LOOP_END_FRAME) {
+            loopCurrentFrame = LOOP_END_FRAME;
+            loopDirection = -1;
+          }
+
+          drawFrame(loopCurrentFrame);
+        }
+
+        requestAnimationFrame(runEndStateLoop);
+      }
+
+      // =========================================
+      // 5. TWO-UP-SCROLL RESET & SCROLL TRANSITION
+      // =========================================
+      let reverseStartTime = 0;
+      let reverseStartFrame = 0;
+      let reverseDuration = 2600;
+
+      function triggerReverseSequence() {
+        if (heroState !== 'looping_end') return;
+        heroState = 'transitioning_reverse';
+
+        reverseStartFrame = currentFrameIndex;
+        reverseStartTime = performance.now();
+        reverseDuration = Math.max(1600, (reverseStartFrame / 239) * 2800);
+
+        playReverseFrameLoop();
+      }
+
+      function playReverseFrameLoop() {
+        if (heroState !== 'transitioning_reverse') return;
+
+        const elapsed = performance.now() - reverseStartTime;
+        let p = Math.min(1, elapsed / reverseDuration);
+
+        const frameIndex = Math.max(0, Math.round(reverseStartFrame * (1 - p)));
+        drawFrame(frameIndex);
+
+        if (p < 1) {
+          requestAnimationFrame(playReverseFrameLoop);
+        } else {
+          drawFrame(0);
+          heroState = 'ready';
+          upScrollCount = 0;
+
+          if (scrollWidget) {
+            scrollWidget.classList.remove('is-hidden');
+            scrollWidget.classList.add('is-visible');
+          }
+        }
+      }
+
+      // WHEEL EVENT HANDLING:
+      // While in Hero view at the top of document, scroll acts as interaction trigger.
+      // Once portrait reaches Frame 240, subsequent scroll down smoothly scrolls page into Impact Metrics.
+      window.addEventListener('wheel', (e) => {
+        triggerHeroTicker();
+
+        const isAtHeroTop = window.scrollY <= 10;
+
+        if (isAtHeroTop) {
+          if (e.deltaY > 0) {
+            if (heroState === 'ready') {
+              e.preventDefault();
+              activateHeroSequence('scroll');
+            } else if (heroState === 'transitioning_forward') {
+              e.preventDefault();
+            }
+            // If heroState === 'looping_end', let the page naturally scroll down to Impact Metrics!
+          } else if (e.deltaY < -15) {
+            if (heroState === 'looping_end') {
+              const now = performance.now();
+              if (now - lastUpScrollTime > 1600) {
+                upScrollCount = 0;
+              }
+              lastUpScrollTime = now;
+              upScrollCount++;
+
+              if (upScrollCount >= 2) {
+                upScrollCount = 0;
+                e.preventDefault();
+                triggerReverseSequence();
+              }
+            }
+          }
+        }
+      }, { passive: false });
+
+      // CLICK ON SCROLL DOWN WIDGET
+      if (scrollWidget) {
+        scrollWidget.addEventListener('click', () => {
+          triggerHeroTicker();
+          if (heroState === 'ready') activateHeroSequence('click');
+        });
+      }
+
+      // KEYBOARD TRIGGERS
+      window.addEventListener('keydown', (e) => {
+        triggerHeroTicker();
+
+        if (window.scrollY <= 10) {
+          if (e.key === 'ArrowDown' || e.key === ' ' || e.key === 'PageDown' || e.key === 'Enter') {
+            if (heroState === 'ready') {
+              e.preventDefault();
+              activateHeroSequence('key');
+            }
+          } else if (e.key === 'ArrowUp' || e.key === 'PageUp') {
+            if (heroState === 'looping_end') {
+              upScrollCount++;
+              if (upScrollCount >= 2) {
+                upScrollCount = 0;
+                e.preventDefault();
+                triggerReverseSequence();
+              }
+            }
+          }
+        }
+      });
+
+      // MEANINGFUL MOUSE MOVEMENT TRIGGER
+      let accumulatedDistance = 0;
+      let prevMouseX = null, prevMouseY = null;
+      const MOUSE_ACTIVATION_THRESHOLD = 320;
+
+      window.addEventListener('mousemove', (e) => {
+        if (prevMouseX !== null && prevMouseY !== null) {
+          const dx = Math.abs(e.clientX - prevMouseX);
+          const dy = Math.abs(e.clientY - prevMouseY);
+          accumulatedDistance += Math.sqrt(dx * dx + dy * dy);
+          if (accumulatedDistance > MOUSE_ACTIVATION_THRESHOLD) {
+            triggerHeroTicker();
+            if (heroState === 'ready') {
+              activateHeroSequence('mouse_movement');
+            }
+          }
+        }
+        prevMouseX = e.clientX;
+        prevMouseY = e.clientY;
+      }, { passive: true });
+
+      // HEADER ADAPTIVE THEME ON SCROLL
+      const heroHeader = document.getElementById('hero-header');
+      window.addEventListener('scroll', () => {
+        if (!heroHeader) return;
+        const triggerThreshold = window.innerHeight * 0.65;
+        if (window.scrollY > triggerThreshold) {
+          heroHeader.classList.add('is-light-mode');
+        } else {
+          heroHeader.classList.remove('is-light-mode');
+        }
+      }, { passive: true });
+
+      // =========================================
+      // 6. FERROFLUID PARTICLE TYPOGRAPHY
+      //    (PREVIOUS LARGER SCALE, EXACT ANTON FONT, MAGNETIC REPULSION)
+      // =========================================
+      const nameWrap = document.getElementById('hero-name-wrap');
+      const pCanvas = document.getElementById('name-particle-canvas');
+      const pCtx = pCanvas ? pCanvas.getContext('2d') : null;
+
+      let nameParticles = [];
+      let isMouseOverName = false;
+      let nameMouseX = -10000;
+      let nameMouseY = -10000;
+      let nameCanvasWidth = 0;
+      let nameCanvasHeight = 0;
+      let particleEngineInitialized = false;
+
+      const LINE1_TEXT = "CHITHAMBARAM";
+      const LINE2_TEXT = "BALA KRISHNAN";
+
+      function initParticleTypography() {
+        if (!pCanvas || !pCtx) return;
+
+        const dpr = Math.min(window.devicePixelRatio || 1, 2);
+        const rect = nameWrap.getBoundingClientRect();
+        nameCanvasWidth = rect.width || 480;
+        
+        // Exact previous larger Anton scale
+        const fs1 = Math.round(Math.min(nameCanvasWidth * 0.098, 48));
+        const fs2 = Math.round(Math.min(nameCanvasWidth * 0.138, 66));
+        const totalHeight = Math.round(fs1 + fs2 + 20);
+
+        nameCanvasHeight = totalHeight;
+        nameWrap.style.height = `${nameCanvasHeight}px`;
+
+        pCanvas.width = Math.round(nameCanvasWidth * dpr);
+        pCanvas.height = Math.round(nameCanvasHeight * dpr);
+        pCanvas.style.width = `${nameCanvasWidth}px`;
+        pCanvas.style.height = `${nameCanvasHeight}px`;
+
+        pCtx.setTransform(dpr, 0, 0, dpr, 0, 0);
+
+        // Offscreen canvas for typography pixel sampling
+        const off = document.createElement('canvas');
+        off.width = Math.round(nameCanvasWidth * dpr);
+        off.height = Math.round(nameCanvasHeight * dpr);
+        const offCtx = off.getContext('2d');
+        offCtx.setTransform(dpr, 0, 0, dpr, 0, 0);
+
+        offCtx.fillStyle = '#ffffff';
+        offCtx.textBaseline = 'top';
+
+        // 1. Draw Line 1 (CHITHAMBARAM)
+        offCtx.font = `400 ${fs1}px 'Anton', -apple-system, sans-serif`;
+        const l1Y = 0;
+        offCtx.fillText(LINE1_TEXT, 0, l1Y);
+
+        const l1CharBounds = [];
+        let currX1 = 0;
+        for (let i = 0; i < LINE1_TEXT.length; i++) {
+          const ch = LINE1_TEXT[i];
+          const w = offCtx.measureText(ch).width;
+          l1CharBounds.push({ ch, minX: currX1, maxX: currX1 + w, line: 1, idx: i });
+          currX1 += w;
+        }
+
+        // 2. Draw Line 2 (BALA KRISHNAN)
+        offCtx.font = `400 ${fs2}px 'Anton', -apple-system, sans-serif`;
+        const l2Y = fs1 + 6;
+        offCtx.fillText(LINE2_TEXT, 0, l2Y);
+
+        const l2CharBounds = [];
+        let currX2 = 0;
+        for (let i = 0; i < LINE2_TEXT.length; i++) {
+          const ch = LINE2_TEXT[i];
+          const w = offCtx.measureText(ch).width;
+          l2CharBounds.push({ ch, minX: currX2, maxX: currX2 + w, line: 2, idx: i });
+          currX2 += w;
+        }
+
+        // 3. Scan pixels at fine step to generate dense particle coordinates
+        const imgData = offCtx.getImageData(0, 0, off.width, off.height).data;
+        nameParticles = [];
+
+        const sampleStep = 2.4;
+        const pSize = 1.95;
+
+        for (let y = 0; y < nameCanvasHeight; y += sampleStep) {
+          for (let x = 0; x < nameCanvasWidth; x += sampleStep) {
+            const pxX = Math.round(x * dpr);
+            const pxY = Math.round(y * dpr);
+            const idx = (pxY * off.width + pxX) * 4;
+
+            if (idx < imgData.length && imgData[idx + 3] > 110) {
+              let charInfo = null;
+              if (y < l2Y) {
+                for (const b of l1CharBounds) {
+                  if (x >= b.minX - 0.5 && x <= b.maxX + 0.5) {
+                    charInfo = b;
+                    break;
+                  }
+                }
+              } else {
+                for (const b of l2CharBounds) {
+                  if (x >= b.minX - 0.5 && x <= b.maxX + 0.5) {
+                    charInfo = b;
+                    break;
+                  }
+                }
+              }
+
+              nameParticles.push({
+                originX: x,
+                originY: y,
+                x: x,
+                y: y + 24,
+                vx: 0,
+                vy: 0,
+                size: pSize,
+                line: charInfo ? charInfo.line : (y < l2Y ? 1 : 2),
+                charIdx: charInfo ? charInfo.idx : 0,
+                assembled: false
+              });
+            }
+          }
+        }
+
+        particleEngineInitialized = true;
+      }
+
+      function triggerParticleNameEntrance() {
+        if (!nameParticles.length) return;
+
+        for (let i = 0; i < LINE1_TEXT.length; i++) {
+          setTimeout(() => {
+            for (let j = 0; j < nameParticles.length; j++) {
+              const p = nameParticles[j];
+              if (p.line === 1 && p.charIdx === i) {
+                p.assembled = true;
+              }
+            }
+          }, 80 + i * 32);
+        }
+
+        for (let i = 0; i < LINE2_TEXT.length; i++) {
+          setTimeout(() => {
+            for (let j = 0; j < nameParticles.length; j++) {
+              const p = nameParticles[j];
+              if (p.line === 2 && p.charIdx === i) {
+                p.assembled = true;
+              }
+            }
+          }, 460 + i * 28);
+        }
+      }
+
+      if (nameWrap) {
+        nameWrap.addEventListener('mouseenter', (e) => {
+          isMouseOverName = true;
+          const rect = nameWrap.getBoundingClientRect();
+          nameMouseX = e.clientX - rect.left;
+          nameMouseY = e.clientY - rect.top;
+        });
+
+        nameWrap.addEventListener('mousemove', (e) => {
+          isMouseOverName = true;
+          const rect = nameWrap.getBoundingClientRect();
+          nameMouseX = e.clientX - rect.left;
+          nameMouseY = e.clientY - rect.top;
+        });
+
+        nameWrap.addEventListener('mouseleave', () => {
+          isMouseOverName = false;
+          nameMouseX = -10000;
+          nameMouseY = -10000;
+        });
+      }
+
+      function renderParticleTypography() {
+        if (!particleEngineInitialized || !pCtx) {
+          requestAnimationFrame(renderParticleTypography);
+          return;
+        }
+
+        pCtx.clearRect(0, 0, nameCanvasWidth, nameCanvasHeight);
+
+        const REPULSION_RADIUS = 68;
+        const SPRING_K = 0.082;
+        const DAMPING = 0.81;
+
+        for (let i = 0; i < nameParticles.length; i++) {
+          const p = nameParticles[i];
+          if (!p.assembled) continue;
+
+          // Ferrofluid magnetic repulsion on individual local region
+          if (isMouseOverName) {
+            const dx = p.x - nameMouseX;
+            const dy = p.y - nameMouseY;
+            const dist = Math.sqrt(dx * dx + dy * dy);
+
+            if (dist < REPULSION_RADIUS && dist > 0.01) {
+              const norm = (REPULSION_RADIUS - dist) / REPULSION_RADIUS;
+              const force = Math.pow(norm, 1.7) * 7.4;
+              const angle = Math.atan2(dy, dx);
+
+              p.vx += Math.cos(angle) * force;
+              p.vy += Math.sin(angle) * force;
+            }
+          }
+
+          // Spring return toward home position
+          const homeDx = p.originX - p.x;
+          const homeDy = p.originY - p.y;
+
+          p.vx += homeDx * SPRING_K;
+          p.vy += homeDy * SPRING_K;
+
+          p.vx *= DAMPING;
+          p.vy *= DAMPING;
+
+          p.x += p.vx;
+          p.y += p.vy;
+
+          pCtx.fillStyle = '#ffffff';
+          pCtx.fillRect(p.x, p.y, p.size, p.size);
+        }
+
+        requestAnimationFrame(renderParticleTypography);
+      }
+
+      document.fonts.ready.then(() => {
+        initParticleTypography();
+        requestAnimationFrame(renderParticleTypography);
+      });
+
+      window.addEventListener('resize', () => {
+        if (document.fonts.status === 'loaded') {
+          initParticleTypography();
+          for (let i = 0; i < nameParticles.length; i++) {
+            nameParticles[i].assembled = true;
+            nameParticles[i].y = nameParticles[i].originY;
+          }
+        }
+      }, { passive: true });
+
+      // =========================================
+      // 7. TYPEWRITER CONTENT REVEAL & AUDIO
+      // =========================================
+      let audioCtx = null;
+      function playTypewriterTick() {
+        try {
+          if (!audioCtx) {
+            audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+          }
+          if (audioCtx.state === 'suspended') {
+            audioCtx.resume();
+          }
+          const osc = audioCtx.createOscillator();
+          const gain = audioCtx.createGain();
+          osc.type = 'triangle';
+          osc.frequency.setValueAtTime(750 + Math.random() * 250, audioCtx.currentTime);
+          osc.frequency.exponentialRampToValueAtTime(100, audioCtx.currentTime + 0.012);
+          gain.gain.setValueAtTime(0.018, audioCtx.currentTime);
+          gain.gain.exponentialRampToValueAtTime(0.0001, audioCtx.currentTime + 0.012);
+          osc.connect(gain);
+          gain.connect(audioCtx.destination);
+          osc.start();
+          osc.stop(audioCtx.currentTime + 0.014);
+        } catch(e) {}
+      }
+
+      const stickyTypewriterEl = document.getElementById('sticky-body-typewriter');
+      const FULL_STICKY_TEXT_PART1 = "It started with a simple curiosity to make, break, experiment, and create. Years later, that same instinct has evolved into a fascination with ";
+      const FULL_STICKY_TEXT_BOLD = "art, technology, and the endless possibilities of Generative AI.";
+
+      function startStickyTypewriter() {
+        if (!stickyTypewriterEl) return;
+        stickyTypewriterEl.innerHTML = "";
+
+        let idx = 0;
+        let boldIdx = 0;
+
+        function typeNextChar() {
+          if (idx < FULL_STICKY_TEXT_PART1.length) {
+            stickyTypewriterEl.textContent += FULL_STICKY_TEXT_PART1[idx];
+            if (idx % 2 === 0) playTypewriterTick();
+            idx++;
+            const delay = 18 + Math.random() * 22;
+            setTimeout(typeNextChar, delay);
+          } else if (boldIdx < FULL_STICKY_TEXT_BOLD.length) {
+            if (boldIdx === 0) {
+              const strongEl = document.createElement('strong');
+              strongEl.id = 'sticky-type-bold';
+              stickyTypewriterEl.appendChild(strongEl);
+            }
+            const strongEl = document.getElementById('sticky-type-bold');
+            if (strongEl) {
+              strongEl.textContent += FULL_STICKY_TEXT_BOLD[boldIdx];
+            }
+            if (boldIdx % 2 === 0) playTypewriterTick();
+            boldIdx++;
+            const delay = 18 + Math.random() * 24;
+            setTimeout(typeNextChar, delay);
+          }
+        }
+
+        setTimeout(typeNextChar, 180);
+      }
+
+      // =========================================
+      // 8. OPENING SPLASH & REFINED HERO ENTRANCE
+      // =========================================
+      const centerSplash = document.getElementById('center-splash');
+      const splashCanvas = document.getElementById('splash-particle-canvas');
+      const qBracket = document.getElementById('q-bracket');
+      const qText = document.getElementById('quote-text');
+      const qBar = document.getElementById('q-bar');
+      const stickyNote = document.getElementById('hero-sticky-note');
+      const contactLinks = document.getElementById('contact-links');
+
+      function initSplashParticles() {
+        if (!splashCanvas) return;
+        const sCtx = splashCanvas.getContext('2d');
+        splashCanvas.width = window.innerWidth;
+        splashCanvas.height = window.innerHeight;
+
+        const particles = [];
+        const numParticles = 65;
+
+        for (let i = 0; i < numParticles; i++) {
+          particles.push({
+            x: window.innerWidth * 0.5 + (Math.random() - 0.5) * 260,
+            y: window.innerHeight * 0.5 + (Math.random() - 0.5) * 80,
+            vx: (Math.random() - 0.75) * 8,
+            vy: (Math.random() - 0.5) * 5,
+            size: Math.random() * 3 + 1.5,
+            color: Math.random() > 0.7 ? '#ff3b30' : '#ffffff',
+            alpha: Math.random() * 0.8 + 0.2
+          });
+        }
+
+        let pStart = performance.now();
+        function renderSplash(now) {
+          const elapsed = now - pStart;
+          sCtx.clearRect(0, 0, splashCanvas.width, splashCanvas.height);
+
+          particles.forEach((p) => {
+            if (elapsed > 450) {
+              p.x += p.vx;
+              p.y += p.vy;
+              p.alpha *= 0.96;
+            }
+            sCtx.fillStyle = p.color;
+            sCtx.globalAlpha = Math.max(0, p.alpha);
+            sCtx.fillRect(p.x, p.y, p.size, p.size);
+          });
+
+          if (elapsed < 900) {
+            requestAnimationFrame(renderSplash);
+          } else {
+            sCtx.clearRect(0, 0, splashCanvas.width, splashCanvas.height);
+          }
+        }
+        requestAnimationFrame(renderSplash);
+      }
+
+      async function runMasterSequence() {
+        await loadFrame(0);
+        drawFrame(0);
+        initSplashParticles();
+
+        setTimeout(() => {
+          centerSplash.style.opacity = '0';
+          centerSplash.style.transform = 'scale(1.08)';
+
+          setTimeout(() => {
+            centerSplash.style.display = 'none';
+          }, 350);
+
+          triggerParticleNameEntrance();
+
+          setTimeout(() => {
+            if (qBracket) qBracket.classList.add('is-revealed');
+            if (qText) qText.classList.add('is-revealed');
+            if (qBar) qBar.classList.add('is-expanded');
+          }, 750);
+
+          setTimeout(() => {
+            if (stickyNote) {
+              stickyNote.classList.add('is-revealed');
+              startStickyTypewriter();
+            }
+            if (contactLinks) contactLinks.classList.add('is-revealed');
+          }, 1000);
+
+          setTimeout(() => {
+            if (scrollWidget) scrollWidget.classList.add('is-visible');
+            heroState = 'ready';
+          }, 1250);
+
+          preloadAllFrames();
+
+        }, 500);
+      }
+
+      runMasterSequence();
+
+      // =========================================
+      // 9. MY JOURNEY INTERACTIVE ARCHIVE DATA & WORKSPACE
+      // =========================================
+      const JOURNEY_COMPANIES = {
+        dneg: {
+          index: "04",
+          name: "DNEG",
+          role: "GENERATIVE AI ARTIST",
+          dates: "JAN 2026 — APR 2026",
+          location: "REMOTE · HOLLYWOOD VFX",
+          isDneg: true,
+          liveBadge: "MAJOR CREDENTIAL // CINEMA",
+          projects: ["RAMAYANA", "DUNE 3", "THE ODYSSEY"],
+          image: "dune-dneg.jpg",
+          imageCaption: "DUNE 3 · LOOK-DEV & LARGE-SCALE VFX PIPELINE INTEGRATION",
+          modules: [
+            "PRODUCTION-GRADE GENAI",
+            "CINEMATIC DIGITAL HUMANS",
+            "IDENTITY + PERFORMANCE TRANSFER",
+            "COMFYUI SYSTEMS",
+            "FACE INGEST / FACE SWAP / LIP SYNC",
+            "NUKE INTEGRATION",
+            "VFX PIPELINE INTEGRATION"
+          ],
+          technologies: ["Metaphysic", "Brahma AI ecosystem", "MetaFace", "DGX", "ComfyUI", "Nuke"]
+        },
+        impromp2: {
+          index: "03",
+          name: "IMPROMP2LABS",
+          role: "GEN AI CREATIVE LEAD",
+          dates: "NOV 2025 — PRESENT",
+          location: "HYDERABAD · HYBRID",
+          isDneg: false,
+          liveBadge: "ACTIVE PRODUCTION // SYSTEMS",
+          projects: ["AI-DRIVEN CINEMATIC IP", "VISUAL WORLDS", "CHARACTER SYSTEMS", "MULTI-SHOT SEQUENCES"],
+          image: null,
+          imageCaption: "",
+          modules: [
+            "15+ PRODUCTION/R&D WORKFLOWS",
+            "5 BUILT FROM SCRATCH",
+            "7+ MODIFIED SYSTEMS",
+            "60% FASTER CONCEPT GENERATION",
+            "40% REDUCTION IN PROMPT ITERATION",
+            "10+ ARTISTS MENTORED"
+          ],
+          technologies: ["ComfyUI", "SDXL", "LoRA Architecture", "Runway Gen-3", "Flux.1", "Python Scripting"]
+        },
+        cyberedge: {
+          index: "02",
+          name: "CYBEREDGE",
+          role: "AI DESIGN ENGINEER",
+          dates: "NOV 2024 — NOV 2025",
+          location: "HYDERABAD · HYBRID",
+          isDneg: false,
+          liveBadge: "PRODUCTION SCALE // 450+ CREATIVES",
+          projects: ["450+ AI CREATIVES", "250+ CAMPAIGNS", "80+ CLIENTS"],
+          image: null,
+          imageCaption: "",
+          modules: [
+            "AI CREATIVE WORKFLOWS",
+            "CAMERA / COMPOSITION VARIATIONS",
+            "LIGHTING / ENVIRONMENT VARIATIONS",
+            "POST-PRODUCTION COMPOSITING",
+            "35% PRODUCTION EFFICIENCY"
+          ],
+          technologies: ["Midjourney v6", "Adobe Firefly", "Photoshop Generative Fill", "After Effects", "Magnific AI"]
+        },
+        premasai: {
+          index: "01",
+          name: "PREMA SAI DESIGNERS",
+          role: "GRAPHIC DESIGNER",
+          dates: "AUG 2018 — OCT 2024",
+          location: "HYDERABAD · ONSITE",
+          isDneg: false,
+          liveBadge: "FOUNDATION CHAPTER // 6 YEARS",
+          projects: ["AI-ASSISTED CREATIVE WORKFLOWS", "CANVA + AI PIPELINES", "ENTERPRISE BRAND SYSTEMS"],
+          image: null,
+          imageCaption: "",
+          modules: [
+            "BRAND IDENTITY ARCHITECTURE",
+            "PACKAGING & MARKETING COLLATERAL",
+            "25% TURNAROUND IMPROVEMENT",
+            "35% CLIENT DIGITAL-REACH BOOST"
+          ],
+          technologies: ["Adobe Illustrator", "Photoshop", "InDesign", "CorelDraw", "Early GenAI Adoption"]
+        }
+      };
+
+      const workspacePanelEl = document.getElementById('journey-workspace');
+      const companyTabs = document.querySelectorAll('.company-row-item');
+
+      function renderWorkspace(companyKey) {
+        const data = JOURNEY_COMPANIES[companyKey] || JOURNEY_COMPANIES.dneg;
+        if (!workspacePanelEl) return;
+
+        let projectsHtml = "";
+        data.projects.forEach((p, idx) => {
+          projectsHtml += `<span class="dneg-proj-pill ${idx === 0 ? 'featured' : ''}">${p}</span>`;
+        });
+
+        let imageHtml = "";
+        if (data.image) {
+          imageHtml = `
+            <div class="dneg-visual-box">
+              <img src="${data.image}" alt="${data.name} Project Visual">
+              <div class="dneg-visual-caption">${data.imageCaption}</div>
+            </div>
+          `;
+        }
+
+        let modulesHtml = "";
+        data.modules.forEach(m => {
+          modulesHtml += `<div class="ws-mod-tag">${m}</div>`;
+        });
+
+        let techHtml = "";
+        data.technologies.forEach(t => {
+          techHtml += `<span class="ws-tech-pill">${t}</span>`;
+        });
+
+        workspacePanelEl.style.opacity = '0';
+        workspacePanelEl.style.transform = 'translateY(6px)';
+
+        setTimeout(() => {
+          workspacePanelEl.innerHTML = `
+            <div class="ws-header">
+              <div class="ws-meta-row">
+                <span>CHAPTER // ${data.index} [${data.location}]</span>
+                <span class="ws-badge-live">${data.liveBadge}</span>
+              </div>
+              <h3 class="ws-company-name">${data.name}</h3>
+              <div class="ws-role-title">${data.role}</div>
+            </div>
+
+            ${imageHtml}
+
+            <div class="evidence-label">
+              <span>[◈] CORE PRODUCTION DOMAINS & DIRECT IMPACT</span>
+            </div>
+
+            <div class="dneg-projects-strip">
+              ${projectsHtml}
+            </div>
+
+            <div class="ws-modular-grid">
+              ${modulesHtml}
+            </div>
+
+            <div class="ws-tech-stack-row">
+              <span class="ws-tech-label">STACK //</span>
+              ${techHtml}
+            </div>
+          `;
+
+          workspacePanelEl.style.opacity = '1';
+          workspacePanelEl.style.transform = 'translateY(0)';
+        }, 120);
+      }
+
+      // Initial render with DNEG
+      renderWorkspace('dneg');
+
+      // Company selection listeners (Hover previews, Click locks)
+      companyTabs.forEach(tab => {
+        const target = tab.getAttribute('data-target');
+
+        tab.addEventListener('mouseenter', () => {
+          companyTabs.forEach(t => {
+            t.classList.remove('is-selected');
+            t.setAttribute('aria-selected', 'false');
+          });
+          tab.classList.add('is-selected');
+          tab.setAttribute('aria-selected', 'true');
+          renderWorkspace(target);
+        });
+
+        tab.addEventListener('click', () => {
+          companyTabs.forEach(t => {
+            t.classList.remove('is-selected');
+            t.setAttribute('aria-selected', 'false');
+          });
+          tab.classList.add('is-selected');
+          tab.setAttribute('aria-selected', 'true');
+          renderWorkspace(target);
+        });
+
+        tab.addEventListener('keydown', (e) => {
+          if (e.key === 'Enter' || e.key === ' ') {
+            e.preventDefault();
+            companyTabs.forEach(t => {
+              t.classList.remove('is-selected');
+              t.setAttribute('aria-selected', 'false');
+            });
+            tab.classList.add('is-selected');
+            tab.setAttribute('aria-selected', 'true');
+            renderWorkspace(target);
+          }
+        });
+      });
+
+    })();
+  </script>
+
+</body>
+</html>

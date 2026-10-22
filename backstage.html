@@ -1,0 +1,1934 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>BACKSTAGE // CBK DESIGNFOLIO CONTROL ROOM</title>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>⚡</text></svg>">
+  
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --bg-darkest: #070709;
+      --bg-sidebar: #0C0C0F;
+      --bg-panel: #111116;
+      --bg-surface: #17171E;
+      --bg-input: #1D1D26;
+      --bg-hover: #23232E;
+      
+      --border-subtle: rgba(255, 255, 255, 0.07);
+      --border-base: rgba(255, 255, 255, 0.12);
+      --border-active: rgba(255, 255, 255, 0.28);
+      
+      --text-primary: #F2F2F5;
+      --text-secondary: #9E9EA8;
+      --text-muted: #62626E;
+      
+      --crimson: #FF3038;
+      --crimson-glow: rgba(255, 48, 56, 0.22);
+      --success: #22C55E;
+      --warning: #F59E0B;
+      
+      --header-height: 52px;
+      --sidebar-width: 310px;
+      --props-width: 380px;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      background-color: var(--bg-darkest);
+      color: var(--text-primary);
+      font-family: 'Space Grotesk', -apple-system, sans-serif;
+      font-size: 13px;
+      line-height: 1.5;
+      overflow: hidden;
+      height: 100vh;
+      width: 100vw;
+      user-select: none;
+    }
+
+    input, textarea, select, button {
+      font-family: inherit;
+      color: inherit;
+    }
+
+    /* -------------------------------------------------------------
+       LOGIN OVERLAY
+       ------------------------------------------------------------- */
+    #auth-overlay {
+      position: fixed;
+      inset: 0;
+      background: radial-gradient(circle at 50% 40%, #15151C 0%, #070709 85%);
+      z-index: 9999;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      backdrop-filter: blur(12px);
+    }
+    .auth-card {
+      width: 100%;
+      max-width: 420px;
+      background: var(--bg-panel);
+      border: 1px solid var(--border-base);
+      border-radius: 12px;
+      padding: 32px 28px;
+      box-shadow: 0 24px 60px rgba(0, 0, 0, 0.8), 0 0 40px var(--crimson-glow);
+    }
+    .auth-badge {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.2em;
+      color: var(--crimson);
+      margin-bottom: 8px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .auth-title {
+      font-size: 20px;
+      font-weight: 800;
+      letter-spacing: 0.04em;
+      margin-bottom: 6px;
+    }
+    .auth-desc {
+      color: var(--text-muted);
+      font-size: 12px;
+      margin-bottom: 20px;
+      line-height: 1.5;
+    }
+    .auth-destinations-box {
+      background: var(--bg-surface);
+      border: 1px solid var(--border-base);
+      border-radius: 8px;
+      padding: 12px 14px;
+      margin-bottom: 18px;
+      font-family: 'JetBrains Mono', monospace;
+    }
+    .auth-dest-title {
+      font-size: 9.5px;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      margin-bottom: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .auth-dest-item {
+      font-size: 11.5px;
+      color: var(--text-primary);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-top: 6px;
+    }
+    .auth-dest-tag {
+      font-size: 9px;
+      font-weight: 700;
+      padding: 2px 6px;
+      border-radius: 3px;
+      background: rgba(255, 255, 255, 0.06);
+      color: var(--text-secondary);
+      border: 1px solid var(--border-subtle);
+      letter-spacing: 0.05em;
+    }
+    .auth-countdown-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 11px;
+      color: var(--text-muted);
+      margin-top: 14px;
+      padding-top: 12px;
+      border-top: 1px solid var(--border-subtle);
+    }
+    .auth-timer-digits {
+      font-size: 13.5px;
+      font-weight: 800;
+      color: var(--crimson);
+      letter-spacing: 0.08em;
+    }
+    .auth-otp-input {
+      letter-spacing: 0.38em !important;
+      text-align: center !important;
+      font-size: 22px !important;
+      font-family: 'JetBrains Mono', monospace !important;
+      font-weight: 800 !important;
+      padding: 12px !important;
+    }
+    .auth-resend-btn {
+      background: transparent;
+      border: none;
+      color: var(--text-secondary);
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 10.5px;
+      font-weight: 600;
+      cursor: pointer;
+      text-decoration: underline;
+      transition: color 0.15s;
+      padding: 0;
+    }
+    .auth-resend-btn:hover:not(:disabled) {
+      color: #ffffff;
+    }
+    .auth-resend-btn:disabled {
+      color: var(--text-muted);
+      cursor: not-allowed;
+      text-decoration: none;
+    }
+    .auth-fallback-link {
+      display: block;
+      text-align: center;
+      margin-top: 16px;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 11px;
+      color: var(--text-muted);
+      text-decoration: none;
+      cursor: pointer;
+      transition: color 0.15s;
+    }
+    .auth-fallback-link:hover {
+      color: var(--text-primary);
+    }
+    .auth-gateway-notice {
+      font-size: 10.5px;
+      color: var(--warning);
+      background: rgba(245, 158, 11, 0.08);
+      border: 1px solid rgba(245, 158, 11, 0.22);
+      border-radius: 6px;
+      padding: 8px 12px;
+      margin-bottom: 16px;
+      line-height: 1.45;
+      font-family: 'JetBrains Mono', monospace;
+      display: none;
+    }
+    .auth-input-group {
+      margin-bottom: 18px;
+    }
+    .auth-label {
+      display: block;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 10px;
+      font-weight: 600;
+      color: var(--text-secondary);
+      letter-spacing: 0.1em;
+      margin-bottom: 6px;
+    }
+    .auth-input {
+      width: 100%;
+      padding: 10px 14px;
+      background: var(--bg-input);
+      border: 1px solid var(--border-base);
+      border-radius: 6px;
+      color: var(--text-primary);
+      font-size: 14px;
+      outline: none;
+      transition: border-color 0.2s;
+    }
+    .auth-input:focus {
+      border-color: var(--crimson);
+    }
+    .auth-btn {
+      width: 100%;
+      padding: 11px;
+      background: var(--crimson);
+      color: #FFF;
+      border: none;
+      border-radius: 6px;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 11px;
+      font-weight: 800;
+      letter-spacing: 0.12em;
+      cursor: pointer;
+      transition: opacity 0.2s, transform 0.1s;
+    }
+    .auth-btn:hover {
+      opacity: 0.92;
+    }
+    .auth-btn:active {
+      transform: scale(0.98);
+    }
+    .auth-error {
+      color: #FF5A5F;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 11px;
+      margin-top: 12px;
+      display: none;
+      text-align: center;
+      line-height: 1.4;
+      background: rgba(255, 90, 95, 0.08);
+      border: 1px solid rgba(255, 90, 95, 0.2);
+      padding: 6px 10px;
+      border-radius: 4px;
+    }
+    .auth-tabs {
+      display: flex;
+      gap: 4px;
+      margin-bottom: 20px;
+      background: var(--bg-surface);
+      padding: 4px;
+      border-radius: 8px;
+      border: 1px solid var(--border-subtle);
+    }
+    .auth-tab-btn {
+      flex: 1;
+      padding: 8px 6px;
+      background: transparent;
+      border: 1px solid transparent;
+      border-radius: 6px;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 10px;
+      font-weight: 700;
+      color: var(--text-muted);
+      cursor: pointer;
+      transition: all 0.15s ease;
+      text-align: center;
+      letter-spacing: 0.04em;
+    }
+    .auth-tab-btn:hover {
+      color: var(--text-primary);
+    }
+    .auth-tab-btn.active {
+      background: var(--bg-panel);
+      color: #FFFFFF;
+      border-color: rgba(255, 48, 56, 0.4);
+      box-shadow: 0 0 12px rgba(255, 48, 56, 0.18);
+    }
+    .auth-qr-container {
+      background: #FFFFFF;
+      padding: 12px;
+      border-radius: 8px;
+      display: inline-block;
+      margin: 0 auto 14px auto;
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.5);
+    }
+    .auth-qr-container img {
+      display: block;
+      width: 170px;
+      height: 170px;
+    }
+    .auth-manual-key {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 12px;
+      color: #F2F2F5;
+      background: var(--bg-surface);
+      border: 1px dashed var(--border-base);
+      padding: 8px 12px;
+      border-radius: 6px;
+      letter-spacing: 0.15em;
+      word-break: break-all;
+      display: block;
+      margin-bottom: 16px;
+      text-align: center;
+    }
+    .btn-logout {
+      border-color: rgba(255, 48, 56, 0.35) !important;
+      color: #ff6b6b !important;
+    }
+    .btn-logout:hover {
+      background: rgba(255, 48, 56, 0.15) !important;
+      border-color: var(--crimson) !important;
+      color: #FFF !important;
+    }
+
+    /* -------------------------------------------------------------
+       TOP NAVIGATION BAR
+       ------------------------------------------------------------- */
+    .backstage-header {
+      height: var(--header-height);
+      background: var(--bg-sidebar);
+      border-bottom: 1px solid var(--border-subtle);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 16px;
+      z-index: 100;
+      position: relative;
+    }
+    .header-branding {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .backstage-logo {
+      font-family: 'Space Grotesk', sans-serif;
+      font-weight: 800;
+      font-size: 14px;
+      letter-spacing: 0.1em;
+      color: #FFF;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .backstage-logo-pill {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 9px;
+      font-weight: 700;
+      letter-spacing: 0.16em;
+      background: rgba(255, 48, 56, 0.16);
+      border: 1px solid rgba(255, 48, 56, 0.35);
+      color: var(--crimson);
+      padding: 2px 7px;
+      border-radius: 3px;
+    }
+    .header-status {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 10px;
+      font-weight: 600;
+      color: var(--text-muted);
+      margin-left: 12px;
+      padding-left: 12px;
+      border-left: 1px solid var(--border-subtle);
+    }
+    .status-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--success);
+      box-shadow: 0 0 6px var(--success);
+      transition: background 0.3s;
+    }
+    .status-dot.unsaved {
+      background: var(--warning);
+      box-shadow: 0 0 6px var(--warning);
+    }
+    .status-dot.saving {
+      background: var(--crimson);
+      box-shadow: 0 0 8px var(--crimson);
+      animation: pulse 1s infinite;
+    }
+    @keyframes pulse {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.3; }
+    }
+
+    .header-viewport-controls {
+      display: flex;
+      align-items: center;
+      background: var(--bg-surface);
+      border: 1px solid var(--border-subtle);
+      border-radius: 6px;
+      padding: 2px;
+      gap: 2px;
+    }
+    .vp-btn {
+      background: transparent;
+      border: none;
+      padding: 5px 10px;
+      border-radius: 4px;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 10px;
+      font-weight: 600;
+      color: var(--text-muted);
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      transition: all 0.15s;
+    }
+    .vp-btn:hover {
+      color: var(--text-primary);
+    }
+    .vp-btn.active {
+      background: var(--bg-input);
+      color: var(--text-primary);
+    }
+
+    .header-actions {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .btn-tool {
+      background: var(--bg-surface);
+      border: 1px solid var(--border-base);
+      padding: 6px 12px;
+      border-radius: 5px;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 10.5px;
+      font-weight: 600;
+      color: var(--text-secondary);
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      transition: all 0.15s;
+    }
+    .btn-tool:hover {
+      background: var(--bg-hover);
+      color: var(--text-primary);
+      border-color: var(--border-active);
+    }
+    .btn-discard {
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      color: #C0C0CB;
+      padding: 6px 14px;
+      font-weight: 700;
+    }
+    .btn-discard:hover {
+      background: rgba(255, 255, 255, 0.08);
+      color: #FFF;
+      border-color: rgba(255, 255, 255, 0.3);
+    }
+    .btn-save {
+      background: var(--crimson);
+      border: 1px solid var(--crimson);
+      color: #FFF;
+      padding: 6px 18px;
+      font-weight: 800;
+      letter-spacing: 0.08em;
+      box-shadow: 0 0 16px var(--crimson-glow);
+    }
+    .btn-save:hover {
+      opacity: 0.92;
+      box-shadow: 0 0 22px rgba(255, 48, 56, 0.45);
+    }
+    .btn-exit {
+      background: transparent;
+      border: 1px solid transparent;
+      color: var(--text-muted);
+      padding: 6px 10px;
+    }
+    .btn-exit:hover {
+      color: var(--text-primary);
+      border-color: var(--border-subtle);
+    }
+
+    /* -------------------------------------------------------------
+       EDITOR MAIN THREE-COLUMN WORKSPACE
+       ------------------------------------------------------------- */
+    .editor-layout {
+      display: grid;
+      grid-template-columns: var(--sidebar-width) 1fr var(--props-width);
+      height: calc(100vh - var(--header-height));
+      width: 100vw;
+      overflow: hidden;
+    }
+
+    /* -------------------------------------------------------------
+       LEFT COLUMN: PORTFOLIO STRUCTURE SIDEBAR
+       ------------------------------------------------------------- */
+    .sidebar {
+      background: var(--bg-sidebar);
+      border-right: 1px solid var(--border-subtle);
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+    }
+    .sidebar-header {
+      padding: 14px 16px 10px 16px;
+      border-bottom: 1px solid var(--border-subtle);
+    }
+    .sidebar-title-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 10px;
+    }
+    .sidebar-title {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 10.5px;
+      font-weight: 700;
+      letter-spacing: 0.16em;
+      color: var(--text-secondary);
+      text-transform: uppercase;
+    }
+    .sidebar-search {
+      width: 100%;
+      background: var(--bg-surface);
+      border: 1px solid var(--border-subtle);
+      border-radius: 5px;
+      padding: 6px 10px;
+      font-size: 11.5px;
+      color: var(--text-primary);
+      outline: none;
+    }
+    .sidebar-search:focus {
+      border-color: var(--border-active);
+    }
+    .tree-scroll {
+      flex: 1;
+      overflow-y: auto;
+      padding: 8px 10px;
+    }
+    .tree-item {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 8px 10px;
+      border-radius: 6px;
+      margin-bottom: 3px;
+      background: transparent;
+      border: 1px solid transparent;
+      cursor: pointer;
+      transition: background 0.15s, border-color 0.15s;
+    }
+    .tree-item:hover {
+      background: var(--bg-surface);
+    }
+    .tree-item.active {
+      background: var(--bg-input);
+      border-color: var(--border-active);
+    }
+    .tree-item-left {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      min-width: 0;
+    }
+    .tree-drag-handle {
+      color: var(--text-muted);
+      cursor: grab;
+      font-size: 12px;
+    }
+    .tree-item-title {
+      font-size: 12px;
+      font-weight: 600;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      color: var(--text-primary);
+    }
+    .tree-item-type {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 8.5px;
+      color: var(--text-muted);
+      background: rgba(255, 255, 255, 0.04);
+      padding: 1px 5px;
+      border-radius: 3px;
+      text-transform: uppercase;
+    }
+    .tree-item-actions {
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      opacity: 0.6;
+      transition: opacity 0.15s;
+    }
+    .tree-item:hover .tree-item-actions,
+    .tree-item.active .tree-item-actions {
+      opacity: 1;
+    }
+    .tree-action-btn {
+      background: transparent;
+      border: none;
+      color: var(--text-secondary);
+      padding: 3px 5px;
+      border-radius: 3px;
+      cursor: pointer;
+      font-size: 11px;
+    }
+    .tree-action-btn:hover {
+      background: var(--bg-hover);
+      color: #FFF;
+    }
+    .tree-action-btn.delete:hover {
+      color: var(--crimson);
+    }
+
+    /* Nested child section (STRICT REQUIREMENT: HOBBIES UNDER THE CORE) */
+    .tree-nested-container {
+      margin-left: 18px;
+      border-left: 1px dashed var(--border-base);
+      padding-left: 8px;
+      margin-top: 2px;
+      margin-bottom: 4px;
+    }
+    .tree-item.nested {
+      padding: 6px 8px;
+      background: rgba(255, 255, 255, 0.02);
+    }
+    .tree-item.nested:hover {
+      background: var(--bg-surface);
+    }
+
+    .sidebar-footer {
+      padding: 12px 14px;
+      border-top: 1px solid var(--border-subtle);
+      background: var(--bg-sidebar);
+    }
+    .btn-add-section {
+      width: 100%;
+      padding: 9px;
+      background: var(--bg-surface);
+      border: 1px dashed var(--border-base);
+      border-radius: 6px;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 11px;
+      font-weight: 700;
+      color: var(--text-secondary);
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      transition: all 0.2s;
+    }
+    .btn-add-section:hover {
+      background: var(--bg-hover);
+      color: var(--text-primary);
+      border-color: var(--crimson);
+      border-style: solid;
+    }
+
+    /* -------------------------------------------------------------
+       CENTER COLUMN: WORKSPACE & LIVE RESPONSIVE PREVIEW
+       ------------------------------------------------------------- */
+    .workspace {
+      background: var(--bg-darkest);
+      display: flex;
+      flex-direction: column;
+      position: relative;
+      overflow: hidden;
+    }
+    .workspace-subnav {
+      height: 38px;
+      background: var(--bg-sidebar);
+      border-bottom: 1px solid var(--border-subtle);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 16px;
+    }
+    .subnav-tabs {
+      display: flex;
+      gap: 4px;
+    }
+    .subnav-tab {
+      background: transparent;
+      border: none;
+      padding: 4px 10px;
+      border-radius: 4px;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 10.5px;
+      font-weight: 600;
+      color: var(--text-muted);
+      cursor: pointer;
+    }
+    .subnav-tab.active {
+      background: var(--bg-surface);
+      color: var(--text-primary);
+    }
+    .subnav-info {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 10px;
+      color: var(--text-muted);
+    }
+
+    .preview-canvas-wrap {
+      flex: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 16px;
+      overflow: auto;
+      background: radial-gradient(circle at 50% 50%, #111116 0%, #070709 100%);
+    }
+    .preview-frame-container {
+      background: #000;
+      border-radius: 8px;
+      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.9), 0 0 0 1px var(--border-base);
+      overflow: hidden;
+      transition: width 0.3s cubic-bezier(0.16, 1, 0.3, 1), height 0.3s;
+      height: 100%;
+      max-height: 100%;
+      display: flex;
+      flex-direction: column;
+    }
+    .preview-iframe {
+      width: 100%;
+      height: 100%;
+      border: none;
+      background: #000;
+    }
+
+    /* Visual form view in center workspace */
+    .form-workspace-view {
+      flex: 1;
+      overflow-y: auto;
+      padding: 24px 32px;
+      max-width: 860px;
+      margin: 0 auto;
+      width: 100%;
+    }
+
+    /* -------------------------------------------------------------
+       RIGHT COLUMN: ELEMENT CONFIGURATION & PROPERTIES PANEL
+       ------------------------------------------------------------- */
+    .props-panel {
+      background: var(--bg-panel);
+      border-left: 1px solid var(--border-subtle);
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+    }
+    .props-header {
+      padding: 14px 18px;
+      border-bottom: 1px solid var(--border-subtle);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .props-title-group {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+    }
+    .props-header-badge {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 9px;
+      font-weight: 700;
+      letter-spacing: 0.14em;
+      color: var(--crimson);
+      text-transform: uppercase;
+    }
+    .props-title {
+      font-size: 14px;
+      font-weight: 800;
+      color: var(--text-primary);
+    }
+    .props-scroll {
+      flex: 1;
+      overflow-y: auto;
+      padding: 18px;
+    }
+
+    .form-group {
+      margin-bottom: 16px;
+    }
+    .form-label {
+      display: block;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      color: var(--text-secondary);
+      text-transform: uppercase;
+      margin-bottom: 6px;
+    }
+    .form-hint {
+      font-size: 11px;
+      color: var(--text-muted);
+      margin-top: 4px;
+    }
+    .form-input, .form-textarea, .form-select {
+      width: 100%;
+      background: var(--bg-input);
+      border: 1px solid var(--border-base);
+      border-radius: 6px;
+      padding: 8px 12px;
+      color: var(--text-primary);
+      font-size: 12.5px;
+      outline: none;
+      transition: border-color 0.2s;
+    }
+    .form-input:focus, .form-textarea:focus, .form-select:focus {
+      border-color: var(--border-active);
+    }
+    .form-textarea {
+      min-height: 72px;
+      resize: vertical;
+      line-height: 1.4;
+    }
+    .form-row-2 {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+    }
+
+    /* Media Field with Preview & Picker */
+    .media-picker-container {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      width: 100%;
+    }
+    .media-picker-field {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      background: var(--bg-input);
+      border: 1px solid var(--border-base);
+      border-radius: 6px;
+      padding: 6px 10px;
+      position: relative;
+    }
+    .media-thumb-wrap {
+      position: relative;
+      width: 44px;
+      height: 44px;
+      flex-shrink: 0;
+    }
+    .media-thumb-preview {
+      width: 44px;
+      height: 44px;
+      border-radius: 4px;
+      object-fit: cover;
+      background: #000;
+      border: 1px solid var(--border-subtle);
+      display: block;
+    }
+    .media-video-badge {
+      position: absolute;
+      bottom: 2px;
+      right: 2px;
+      background: rgba(230, 41, 41, 0.9);
+      color: #fff;
+      font-size: 7.5px;
+      font-weight: 700;
+      font-family: 'JetBrains Mono', monospace;
+      padding: 1px 3px;
+      border-radius: 2px;
+      letter-spacing: 0.05em;
+      pointer-events: none;
+    }
+    .media-field-info {
+      flex: 1;
+      min-width: 0;
+    }
+    .media-field-name {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 11px;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      color: var(--text-primary);
+    }
+    .media-field-meta {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 9px;
+      color: var(--text-muted);
+      margin-top: 2px;
+    }
+    .media-btn-pick {
+      background: var(--bg-surface);
+      border: 1px solid var(--border-base);
+      border-radius: 4px;
+      padding: 4px 8px;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 9.5px;
+      font-weight: 700;
+      color: var(--text-secondary);
+      cursor: pointer;
+      transition: all 0.15s ease;
+    }
+    .media-btn-pick:hover {
+      background: var(--bg-hover);
+      color: #FFF;
+    }
+    .media-field-helper {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 9.5px;
+      color: var(--text-muted);
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      padding-left: 2px;
+    }
+    .media-field-helper strong {
+      color: var(--crimson);
+    }
+
+    /* Live Upload Progress Component */
+    .media-upload-progress-box {
+      background: rgba(18, 18, 18, 0.95);
+      border: 1px solid var(--border-base);
+      border-radius: 6px;
+      padding: 8px 10px;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      font-family: 'JetBrains Mono', monospace;
+      margin-top: 4px;
+    }
+    .media-upload-header-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 10px;
+    }
+    .media-upload-status-title {
+      font-weight: 700;
+      color: var(--crimson);
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .media-upload-cancel-btn {
+      background: rgba(230, 41, 41, 0.15);
+      border: 1px solid var(--crimson);
+      color: #ff6b6b;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 9px;
+      padding: 2px 6px;
+      border-radius: 3px;
+      cursor: pointer;
+    }
+    .media-upload-cancel-btn:hover {
+      background: var(--crimson);
+      color: #fff;
+    }
+    .media-progress-track {
+      width: 100%;
+      height: 6px;
+      background: rgba(255, 255, 255, 0.08);
+      border-radius: 3px;
+      overflow: hidden;
+      position: relative;
+    }
+    .media-progress-fill {
+      height: 100%;
+      background: linear-gradient(90deg, var(--crimson), #ff5c5c);
+      width: 0%;
+      transition: width 0.15s ease;
+    }
+    .media-upload-detail-row {
+      display: flex;
+      justify-content: space-between;
+      font-size: 9px;
+      color: var(--text-muted);
+    }
+
+    /* Repeatable Collection Cards */
+    .collection-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-top: 20px;
+      margin-bottom: 10px;
+      padding-bottom: 6px;
+      border-bottom: 1px solid var(--border-subtle);
+    }
+    .collection-title {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      color: var(--crimson);
+      text-transform: uppercase;
+    }
+    .btn-add-item {
+      background: transparent;
+      border: 1px solid var(--border-base);
+      padding: 2px 8px;
+      border-radius: 4px;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 9.5px;
+      font-weight: 700;
+      color: var(--text-secondary);
+      cursor: pointer;
+    }
+    .btn-add-item:hover {
+      background: var(--bg-surface);
+      color: #FFF;
+    }
+    .collection-card {
+      background: var(--bg-surface);
+      border: 1px solid var(--border-subtle);
+      border-radius: 6px;
+      padding: 12px;
+      margin-bottom: 10px;
+      position: relative;
+    }
+    .collection-card-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 10px;
+    }
+    .collection-card-num {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 9.5px;
+      font-weight: 700;
+      color: var(--text-muted);
+    }
+    .btn-card-del {
+      background: transparent;
+      border: none;
+      color: var(--text-muted);
+      cursor: pointer;
+      font-size: 12px;
+    }
+    .btn-card-del:hover {
+      color: var(--crimson);
+    }
+
+    /* -------------------------------------------------------------
+       VISUAL ORBIT 4 HD SOURCE IMAGE MANAGEMENT
+       ------------------------------------------------------------- */
+    .orbit-panel-header {
+      margin-bottom: 18px;
+      padding-bottom: 14px;
+      border-bottom: 1px solid var(--border-subtle);
+    }
+    .orbit-panel-title {
+      font-size: 14px;
+      font-weight: 800;
+      color: #FFF;
+      letter-spacing: 0.04em;
+      margin: 0 0 4px 0;
+    }
+    .orbit-panel-subtitle {
+      font-size: 11.5px;
+      color: var(--text-secondary);
+      line-height: 1.5;
+      margin: 0;
+    }
+    .orbit-sphere-meta {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: rgba(255, 48, 56, 0.08);
+      border: 1px solid rgba(255, 48, 56, 0.25);
+      border-radius: 4px;
+      padding: 4px 8px;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 9.5px;
+      font-weight: 700;
+      color: var(--crimson);
+      margin-top: 10px;
+    }
+    .orbit-slots-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+      gap: 14px;
+      margin-top: 16px;
+      margin-bottom: 24px;
+    }
+    .orbit-slot-card {
+      background: var(--bg-surface);
+      border: 1px solid var(--border-base);
+      border-radius: 8px;
+      padding: 14px;
+      transition: border-color 0.2s, box-shadow 0.2s, background-color 0.2s;
+    }
+    .orbit-slot-card:hover {
+      border-color: var(--border-active);
+    }
+    .orbit-slot-card.empty {
+      background: rgba(255, 255, 255, 0.015);
+      border: 1px dashed rgba(255, 255, 255, 0.12);
+    }
+    .orbit-slot-card.empty:hover {
+      border-color: rgba(255, 48, 56, 0.4);
+      background: rgba(255, 48, 56, 0.02);
+    }
+    .orbit-slot-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 12px;
+    }
+    .orbit-slot-title-group {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      min-width: 0;
+    }
+    .orbit-slot-badge {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 10px;
+      font-weight: 800;
+      letter-spacing: 0.1em;
+      background: rgba(255, 255, 255, 0.08);
+      border: 1px solid var(--border-base);
+      color: #FFF;
+      padding: 2px 7px;
+      border-radius: 3px;
+      white-space: nowrap;
+    }
+    .orbit-slot-filename {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 11px;
+      color: var(--text-secondary);
+      max-width: 140px;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    .orbit-status-tag {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 9px;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      padding: 2px 6px;
+      border-radius: 3px;
+      text-transform: uppercase;
+      white-space: nowrap;
+    }
+    .orbit-status-tag.published {
+      background: rgba(74, 222, 128, 0.12);
+      border: 1px solid rgba(74, 222, 128, 0.35);
+      color: #4ade80;
+    }
+    .orbit-status-tag.draft,
+    .orbit-status-tag.draft-edited,
+    .orbit-status-tag.draft-new {
+      background: rgba(245, 158, 11, 0.14);
+      border: 1px solid rgba(245, 158, 11, 0.35);
+      color: #fbbf24;
+    }
+    .orbit-status-tag.empty {
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      color: var(--text-muted);
+    }
+    .orbit-preview-container {
+      width: 100%;
+      height: 140px;
+      background: #09090D;
+      border: 1px solid var(--border-subtle);
+      border-radius: 6px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+      position: relative;
+      margin-bottom: 12px;
+    }
+    .orbit-preview-container.is-empty {
+      cursor: pointer;
+    }
+    .orbit-preview-container.is-empty:hover {
+      border-color: rgba(255, 48, 56, 0.4);
+      background: rgba(255, 48, 56, 0.04);
+    }
+    .orbit-preview-img {
+      max-width: 100%;
+      max-height: 100%;
+      object-fit: contain;
+      display: block;
+      transition: transform 0.2s;
+    }
+    .orbit-preview-img:hover {
+      transform: scale(1.02);
+    }
+    .orbit-empty-placeholder {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 4px;
+      color: var(--text-muted);
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 10px;
+      user-select: none;
+    }
+    .orbit-empty-placeholder .empty-badge {
+      font-size: 26px;
+      font-weight: 700;
+      color: rgba(255, 255, 255, 0.3);
+      line-height: 1;
+      margin-bottom: 2px;
+    }
+    .orbit-empty-placeholder .empty-status-text {
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      color: rgba(255, 255, 255, 0.5);
+    }
+    .orbit-empty-placeholder .empty-subtext {
+      font-size: 9px;
+      color: var(--text-muted);
+      opacity: 0.7;
+    }
+    .orbit-empty-placeholder span.icon {
+      font-size: 20px;
+      opacity: 0.5;
+    }
+    .orbit-slot-actions {
+      display: flex;
+      gap: 8px;
+      margin-bottom: 12px;
+      flex-wrap: wrap;
+    }
+    .btn-orbit-action {
+      background: var(--bg-input);
+      border: 1px solid var(--border-base);
+      border-radius: 4px;
+      padding: 5px 9px;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 9.5px;
+      font-weight: 700;
+      color: var(--text-primary);
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      transition: all 0.2s;
+    }
+    .btn-orbit-action:hover {
+      background: var(--bg-hover);
+      border-color: var(--border-active);
+      color: #FFF;
+    }
+    .btn-orbit-action.danger {
+      color: #f87171;
+      border-color: rgba(248, 113, 113, 0.3);
+    }
+    .btn-orbit-action.danger:hover {
+      background: rgba(248, 113, 113, 0.15);
+      border-color: rgba(248, 113, 113, 0.6);
+      color: #fca5a5;
+    }
+
+    /* -------------------------------------------------------------
+       MODALS: GLOBAL SETTINGS & MEDIA LIBRARY & CONFIRMATION
+       ------------------------------------------------------------- */
+    .modal-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.78);
+      backdrop-filter: blur(8px);
+      z-index: 1000;
+      display: none;
+      align-items: center;
+      justify-content: center;
+    }
+    .modal-overlay.active {
+      display: flex;
+    }
+    .modal-window {
+      background: var(--bg-panel);
+      border: 1px solid var(--border-base);
+      border-radius: 12px;
+      width: 90%;
+      max-width: 680px;
+      max-height: 85vh;
+      display: flex;
+      flex-direction: column;
+      box-shadow: 0 24px 60px rgba(0, 0, 0, 0.85);
+      overflow: hidden;
+    }
+    .modal-header {
+      padding: 16px 20px;
+      border-bottom: 1px solid var(--border-subtle);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .modal-title {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 15px;
+      font-weight: 800;
+    }
+    .modal-close {
+      background: transparent;
+      border: none;
+      color: var(--text-muted);
+      font-size: 18px;
+      cursor: pointer;
+    }
+    .modal-close:hover {
+      color: #FFF;
+    }
+    .modal-body {
+      padding: 20px;
+      overflow-y: auto;
+      flex: 1;
+    }
+    .modal-footer {
+      padding: 14px 20px;
+      border-top: 1px solid var(--border-subtle);
+      display: flex;
+      justify-content: flex-end;
+      gap: 10px;
+    }
+
+    /* Media Library Grid */
+    .media-dropzone {
+      border: 2px dashed var(--border-base);
+      border-radius: 8px;
+      padding: 24px;
+      text-align: center;
+      margin-bottom: 18px;
+      background: rgba(255, 255, 255, 0.02);
+      cursor: pointer;
+      transition: border-color 0.2s, background 0.2s;
+    }
+    .media-dropzone:hover, .media-dropzone.dragover {
+      border-color: var(--crimson);
+      background: rgba(255, 48, 56, 0.05);
+    }
+    .media-grid-scroll {
+      max-height: 380px;
+      overflow-y: auto;
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 12px;
+    }
+    .media-card-item {
+      background: var(--bg-surface);
+      border: 1px solid var(--border-subtle);
+      border-radius: 6px;
+      overflow: hidden;
+      cursor: pointer;
+      display: flex;
+      flex-direction: column;
+      transition: border-color 0.15s, transform 0.15s;
+    }
+    .media-card-item:hover {
+      border-color: var(--border-active);
+      transform: translateY(-2px);
+    }
+    .media-card-thumb {
+      width: 100%;
+      aspect-ratio: 16 / 10;
+      object-fit: cover;
+      background: #000;
+    }
+    .media-card-name {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 9.5px;
+      padding: 6px 8px;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      color: var(--text-secondary);
+    }
+
+    /* Toast Notification */
+    #toast {
+      position: fixed;
+      bottom: 24px;
+      right: 24px;
+      background: var(--bg-panel);
+      border: 1px solid var(--border-active);
+      border-radius: 8px;
+      padding: 12px 18px;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 11.5px;
+      font-weight: 600;
+      color: #FFF;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6);
+      z-index: 10000;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      transform: translateY(100px);
+      opacity: 0;
+      transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+      pointer-events: none;
+    }
+    #toast.show {
+      transform: translateY(0);
+      opacity: 1;
+    }
+    #toast.error {
+      border-color: var(--crimson);
+      background: #1C0F10;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- -------------------------------------------------------------
+       1. AUTHENTICATION GATE MODAL (THREE-METHOD ARCHITECTURE)
+       ------------------------------------------------------------- -->
+  <div id="auth-overlay">
+    <div class="auth-card">
+      <div class="auth-badge">
+        <span>⚡</span>
+        <span id="auth-badge-text">DBL // CREATIVE CONTROL ROOM</span>
+      </div>
+
+      <!-- THREE-METHOD NAVIGATION TABS -->
+      <div class="auth-tabs" id="auth-tabs-bar">
+        <button type="button" class="auth-tab-btn active" id="tab-btn-otp" onclick="switchAuthTab('otp')">GMAIL OTP</button>
+        <button type="button" class="auth-tab-btn" id="tab-btn-totp" onclick="switchAuthTab('totp')">AUTHENTICATOR</button>
+        <button type="button" class="auth-tab-btn" id="tab-btn-password" onclick="switchAuthTab('password')">PASSPHRASE</button>
+      </div>
+
+      <!-- VIEW 1: GMAIL OTP (DEFAULT) -->
+      <div id="auth-view-otp">
+        <h2 class="auth-title">GMAIL VERIFICATION</h2>
+        <p class="auth-desc">Single-use security code dispatched to your verified administrator email.</p>
+
+        <!-- Unconfigured Gateway Warning -->
+        <div class="auth-gateway-notice" id="auth-gateway-notice" style="display: none;">
+          <strong>GATEWAY NOTICE:</strong> Gmail delivery credentials (GMAIL_USER &amp; GMAIL_APP_PASSWORD) are not configured in .env. Please authenticate using your Authenticator app or administrative passphrase.
+        </div>
+
+        <div class="auth-destinations-box" id="auth-otp-dest-box">
+          <div class="auth-dest-title">
+            <span>VERIFICATION DESTINATION</span>
+            <span class="auth-dest-tag" id="auth-dest-status">CHALLENGE READY</span>
+          </div>
+          <div class="auth-dest-item">
+            <span>ADMIN EMAIL:</span>
+            <strong id="auth-dest-email">pr*******@gmail.com</strong>
+          </div>
+        </div>
+
+        <!-- Active Challenge Form (Shown only when valid challenge exists) -->
+        <div id="auth-otp-challenge-form-wrapper">
+          <form id="otp-form" onsubmit="handleOtpSubmit(event)">
+            <div class="auth-input-group">
+              <label class="auth-label" for="auth-otp">6-DIGIT VERIFICATION CODE</label>
+              <input type="text" id="auth-otp" class="auth-input auth-otp-input" placeholder="------" maxlength="6" pattern="[0-9]{6}" inputmode="numeric" autocomplete="one-time-code" autofocus required>
+            </div>
+
+            <button type="submit" class="auth-btn" id="auth-otp-btn">VERIFY &amp; ENTER</button>
+
+            <div class="auth-countdown-row">
+              <div>
+                <span>CODE VALIDITY: </span>
+                <span class="auth-timer-digits" id="auth-countdown">03:00</span>
+              </div>
+              <button type="button" class="auth-resend-btn" id="auth-resend-btn" onclick="handleResendOtp()" disabled>RESEND CODE (30s)</button>
+            </div>
+
+            <div class="auth-error" id="auth-otp-error"></div>
+          </form>
+        </div>
+
+        <!-- Request OTP Trigger (Shown when no challenge is currently active) -->
+        <div id="auth-otp-request-wrapper" style="display: none; margin-top: 14px;">
+          <button type="button" class="auth-btn" id="auth-request-otp-btn" onclick="requestOtpChallenge()">REQUEST VERIFICATION CODE</button>
+        </div>
+
+        <a href="#" class="auth-fallback-link" onclick="switchAuthTab('password', event)">Use administrative passphrase fallback &rarr;</a>
+      </div>
+
+      <!-- VIEW 2: AUTHENTICATOR APP (TOTP) -->
+      <div id="auth-view-totp" style="display: none;">
+        <h2 class="auth-title">AUTHENTICATOR APP</h2>
+        <p class="auth-desc">Enter the 6-digit rotating time-based code from Google Authenticator, Microsoft Authenticator, or another standard TOTP app.</p>
+
+        <!-- Sub-view A: When Enrolled -->
+        <div id="totp-enrolled-section">
+          <form id="totp-form" onsubmit="handleTotpSubmit(event)">
+            <div class="auth-input-group">
+              <label class="auth-label" for="auth-totp-token">6-DIGIT TOTP CODE</label>
+              <input type="text" id="auth-totp-token" class="auth-input auth-otp-input" placeholder="------" maxlength="6" pattern="[0-9]{6}" inputmode="numeric" autocomplete="one-time-code" required>
+            </div>
+
+            <button type="submit" class="auth-btn" id="auth-totp-btn">VERIFY CODE &amp; ENTER</button>
+            <div class="auth-error" id="auth-totp-error"></div>
+          </form>
+          <div style="margin-top: 12px; text-align: center;">
+            <a href="#" class="auth-fallback-link" onclick="startTotpSetup(event)" style="font-size: 11px;">Need to scan QR code or set up a new device? Click here &rarr;</a>
+          </div>
+        </div>
+
+        <!-- Sub-view B: When Not Yet Enrolled -->
+        <div id="totp-not-enrolled-section" style="display: none; text-align: center;">
+          <div style="background: var(--bg-surface); border: 1px solid var(--border-base); border-radius: 8px; padding: 16px; margin-bottom: 16px; font-size: 12px; color: var(--text-secondary); line-height: 1.5;">
+            <p style="margin-bottom: 8px;"><strong style="color: #FFF;">NO AUTHENTICATOR ENROLLED</strong></p>
+            <p>An authenticator app allows instant login without waiting for email delivery. Set up your device now.</p>
+          </div>
+          <button type="button" class="auth-btn" onclick="startTotpSetup()">SET UP AUTHENTICATOR APP</button>
+        </div>
+
+        <a href="#" class="auth-fallback-link" onclick="switchAuthTab('password', event)">Use administrative passphrase instead &rarr;</a>
+      </div>
+
+      <!-- VIEW 3: AUTHENTICATOR SETUP (QR CODE ENROLLMENT) -->
+      <div id="auth-view-totp-setup" style="display: none;">
+        <h2 class="auth-title">ENROLL AUTHENTICATOR</h2>
+        <p class="auth-desc">1. Scan this QR code with Google Authenticator or Microsoft Authenticator.<br>2. Enter the 6-digit code shown in your app to activate.</p>
+
+        <div style="text-align: center; margin-bottom: 14px;">
+          <div class="auth-qr-container">
+            <img id="totp-setup-qr" alt="Authenticator QR Code">
+          </div>
+          <div style="font-size: 10px; color: var(--text-muted); font-family: 'JetBrains Mono', monospace; margin-bottom: 4px;">OR ENTER SECRET KEY MANUALLY:</div>
+          <code class="auth-manual-key" id="totp-setup-key">------</code>
+        </div>
+
+        <form id="totp-setup-form" onsubmit="handleTotpSetupSubmit(event)">
+          <div class="auth-input-group">
+            <label class="auth-label" for="auth-totp-setup-code">CURRENT 6-DIGIT CODE</label>
+            <input type="text" id="auth-totp-setup-code" class="auth-input auth-otp-input" placeholder="------" maxlength="6" pattern="[0-9]{6}" inputmode="numeric" required>
+          </div>
+
+          <button type="submit" class="auth-btn" id="auth-totp-setup-btn">ACTIVATE AUTHENTICATOR</button>
+          <div class="auth-error" id="auth-totp-setup-error"></div>
+        </form>
+
+        <a href="#" class="auth-fallback-link" onclick="cancelTotpSetup(event)">&larr; Cancel setup</a>
+      </div>
+
+      <!-- VIEW 4: PASSWORD FALLBACK -->
+      <div id="auth-view-password" style="display: none;">
+        <h2 class="auth-title">ADMINISTRATIVE PASSPHRASE</h2>
+        <p class="auth-desc">Authenticate directly using your server-configured administrative passphrase.</p>
+
+        <form id="password-form" onsubmit="handlePasswordSubmit(event)">
+          <div class="auth-input-group">
+            <label class="auth-label" for="auth-fallback-password">PASSPHRASE</label>
+            <input type="password" id="auth-fallback-password" class="auth-input" placeholder="Enter passphrase..." autocomplete="current-password" required>
+          </div>
+
+          <button type="submit" class="auth-btn" id="auth-password-btn">VERIFY PASSPHRASE &amp; ENTER</button>
+          <div class="auth-error" id="auth-password-error"></div>
+        </form>
+
+        <a href="#" class="auth-fallback-link" onclick="switchAuthTab('otp', event)">&larr; Return to Gmail verification</a>
+      </div>
+
+      <!-- VIEW 5: INITIAL SETUP (IF UNCONFIGURED) -->
+      <div id="auth-view-setup" style="display: none;">
+        <h2 class="auth-title">INITIALIZE BACKSTAGE</h2>
+        <p class="auth-desc">First-time initialization: Establish your root administrative passphrase.</p>
+
+        <form id="setup-form" onsubmit="handleSetupSubmit(event)">
+          <div class="auth-input-group">
+            <label class="auth-label" for="auth-setup-password">NEW PASSPHRASE (MIN 6 CHARS)</label>
+            <input type="password" id="auth-setup-password" class="auth-input" placeholder="Enter new passphrase..." autocomplete="new-password" required>
+          </div>
+          <div class="auth-input-group">
+            <label class="auth-label" for="auth-setup-confirm">CONFIRM PASSPHRASE</label>
+            <input type="password" id="auth-setup-confirm" class="auth-input" placeholder="Confirm new passphrase..." autocomplete="new-password" required>
+          </div>
+
+          <button type="submit" class="auth-btn" id="auth-setup-btn">INITIALIZE CREDENTIALS</button>
+          <div class="auth-error" id="auth-setup-error"></div>
+        </form>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- -------------------------------------------------------------
+       2. TOP GLOBAL CONTROLS HEADER
+       ------------------------------------------------------------- -->
+  <header class="backstage-header">
+    <div class="header-branding">
+      <div class="backstage-logo">
+        <span>CBK</span>
+        <span class="backstage-logo-pill">BACKSTAGE CMS</span>
+      </div>
+      <div class="header-status">
+        <span class="status-dot" id="status-dot"></span>
+        <span id="status-text">PUBLISHED</span>
+      </div>
+    </div>
+
+    <!-- Responsive Viewport Switcher -->
+    <div class="header-viewport-controls">
+      <button type="button" class="vp-btn active" data-width="100%" title="Desktop (100% / 1440px)">
+        <span>DESKTOP</span>
+      </button>
+      <button type="button" class="vp-btn" data-width="820px" title="Tablet (820px)">
+        <span>TABLET</span>
+      </button>
+      <button type="button" class="vp-btn" data-width="400px" title="Mobile (400px)">
+        <span>MOBILE</span>
+      </button>
+    </div>
+
+    <div class="header-actions">
+      <button type="button" class="btn-tool" onclick="openMediaModal()">
+        <span>MEDIA LIBRARY</span>
+      </button>
+      <button type="button" class="btn-tool" onclick="openSettingsModal()">
+        <span>GLOBAL SETTINGS</span>
+      </button>
+      <button type="button" class="btn-tool" id="btn-security-modal" onclick="openSecurityModal()" title="Manage Authenticator App (TOTP) and 2FA Security">
+        <span>AUTHENTICATOR // 2FA</span>
+      </button>
+      <button type="button" class="btn-tool btn-discard" onclick="handleDiscardClick()" title="Discard changes and restore published version">
+        <span>DISCARD</span>
+      </button>
+      <button type="button" class="btn-tool btn-save" onclick="handleSaveClick()" title="Publish entire editing session">
+        <span>SAVE</span>
+      </button>
+      <button type="button" class="btn-tool btn-logout" onclick="handleLogoutClick()" title="Explicitly logout of Backstage session">
+        <span>LOGOUT</span>
+      </button>
+      <a href="/" class="btn-tool btn-exit" title="Return to public portfolio without editing">
+        <span>EXIT</span>
+      </a>
+    </div>
+  </header>
+
+  <!-- -------------------------------------------------------------
+       3. THREE-COLUMN EDITOR WORKSPACE
+       ------------------------------------------------------------- -->
+  <div class="editor-layout">
+    
+    <!-- LEFT SIDEBAR: PORTFOLIO STRUCTURE -->
+    <aside class="sidebar">
+      <div class="sidebar-header">
+        <div class="sidebar-title-row">
+          <span class="sidebar-title">PORTFOLIO STRUCTURE</span>
+        </div>
+        <input type="text" class="sidebar-search" id="tree-search" placeholder="Filter sections..." oninput="filterSections(event)">
+      </div>
+
+      <div class="tree-scroll" id="section-tree">
+        <!-- Rendered via JS -->
+      </div>
+
+      <div class="sidebar-footer">
+        <button type="button" class="btn-add-section" onclick="openAddSectionModal()">
+          <span>+</span>
+          <span>ADD SECTION</span>
+        </button>
+      </div>
+    </aside>
+
+    <!-- CENTER WORKSPACE: RESPONSIVE PREVIEW & FORM TABS -->
+    <main class="workspace">
+      <div class="workspace-subnav">
+        <div class="subnav-tabs">
+          <button type="button" class="subnav-tab active" id="tab-btn-preview" onclick="switchWorkspaceTab('preview')">LIVE PREVIEW</button>
+          <button type="button" class="subnav-tab" id="tab-btn-form" onclick="switchWorkspaceTab('form')">VISUAL FORM</button>
+        </div>
+        <div class="subnav-info" id="workspace-selected-info">
+          SECTION: 01 // HERO
+        </div>
+      </div>
+
+      <!-- Live Preview Canvas -->
+      <div class="preview-canvas-wrap" id="preview-tab-view">
+        <div class="preview-frame-container" id="preview-frame-container" style="width: 100%;">
+          <iframe id="preview-iframe" class="preview-iframe" src="/?preview=true"></iframe>
+        </div>
+      </div>
+
+      <!-- Direct Visual Form Editor View -->
+      <div class="form-workspace-view" id="form-tab-view" style="display: none;">
+        <div id="center-form-container">
+          <!-- In-place form rendered via JS -->
+        </div>
+      </div>
+    </main>
+
+    <!-- RIGHT PROPERTIES PANEL: CONTEXTUAL INSPECTOR -->
+    <aside class="props-panel">
+      <div class="props-header">
+        <div class="props-title-group">
+          <span class="props-header-badge" id="props-badge">SECTION SETTINGS</span>
+          <h3 class="props-title" id="props-title">SELECT A SECTION</h3>
+        </div>
+      </div>
+
+      <div class="props-scroll" id="props-container">
+        <!-- Contextual inspector fields rendered via JS -->
+      </div>
+    </aside>
+
+  </div>
+
+  <!-- -------------------------------------------------------------
+       4. MODALS: MEDIA LIBRARY
+       ------------------------------------------------------------- -->
+  <div class="modal-overlay" id="media-modal">
+    <div class="modal-window" style="max-width: 820px;">
+      <div class="modal-header">
+        <h3 class="modal-title">MEDIA LIBRARY</h3>
+        <button type="button" class="modal-close" onclick="closeMediaModal()">&times;</button>
+      </div>
+      <div class="modal-body">
+        <div class="media-dropzone" id="media-dropzone" onclick="if (!window._isModalUploading) document.getElementById('media-file-input').click()">
+          <input type="file" id="media-file-input" style="display: none;" accept="image/png,image/jpeg,image/webp,image/svg+xml,video/mp4,video/webm,application/pdf" onchange="handleFileUpload(event)">
+          <div style="font-family: 'JetBrains Mono', monospace; font-size: 11px; font-weight: 700; color: var(--crimson);">
+            + CLICK OR DRAG ASSET TO UPLOAD
+          </div>
+          <div style="font-size: 11px; color: var(--text-muted); margin-top: 4px;">
+            Supports Images (PNG, JPG, WEBP, SVG up to 50MB) &amp; Cinema Video (MP4, WEBM up to 10 GB / 10,000,000,000 bytes)
+          </div>
+          <div id="modal-upload-progress-container" style="display: none; width: 100%; margin-top: 10px;"></div>
+        </div>
+
+        <div class="media-grid-scroll" id="media-library-grid">
+          <!-- Populated via JS -->
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn-tool" onclick="closeMediaModal()">CLOSE</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- -------------------------------------------------------------
+       5. MODALS: GLOBAL SETTINGS
+       ------------------------------------------------------------- -->
+  <div class="modal-overlay" id="settings-modal">
+    <div class="modal-window">
+      <div class="modal-header">
+        <h3 class="modal-title">GLOBAL PORTFOLIO SETTINGS</h3>
+        <button type="button" class="modal-close" onclick="closeSettingsModal()">&times;</button>
+      </div>
+      <div class="modal-body" id="settings-modal-body">
+        <!-- Rendered via JS -->
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn-tool" onclick="closeSettingsModal()">CANCEL</button>
+        <button type="button" class="btn-tool btn-save" onclick="saveGlobalSettings()">APPLY SETTINGS</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- -------------------------------------------------------------
+       5b. MODALS: SECURITY & AUTHENTICATOR ENROLLMENT
+       ------------------------------------------------------------- -->
+  <div class="modal-overlay" id="security-modal">
+    <div class="modal-window" style="max-width: 520px;">
+      <div class="modal-header">
+        <div style="display: flex; align-items: center; gap: 8px;">
+          <span style="color: var(--crimson); font-size: 14px;">⚡</span>
+          <h3 class="modal-title">SECURITY &amp; AUTHENTICATOR // 2FA</h3>
+        </div>
+        <button type="button" class="modal-close" onclick="closeSecurityModal()">&times;</button>
+      </div>
+      <div class="modal-body" id="security-modal-body">
+        
+        <!-- Status Card -->
+        <div style="background: var(--bg-surface); border: 1px solid var(--border-base); border-radius: 8px; padding: 16px; margin-bottom: 18px;">
+          <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
+            <span style="font-family: 'JetBrains Mono', monospace; font-size: 11px; font-weight: 700; color: var(--text-secondary); letter-spacing: 0.08em;">AUTHENTICATOR STATUS</span>
+            <span id="cms-totp-status-badge" style="font-family: 'JetBrains Mono', monospace; font-size: 10px; font-weight: 700; padding: 3px 8px; border-radius: 4px; background: rgba(255, 48, 56, 0.15); color: var(--crimson);">CHECKING...</span>
+          </div>
+          <p style="font-size: 12px; color: var(--text-muted); line-height: 1.5; margin: 0;" id="cms-totp-status-desc">
+            Time-based One-Time Password (TOTP) standard RFC 6238 for Google Authenticator, Microsoft Authenticator, 1Password, and other apps.
+          </p>
+        </div>
+
+        <!-- Enrolled View -->
+        <div id="cms-totp-enrolled-view" style="display: none;">
+          <div style="background: rgba(34, 197, 94, 0.08); border: 1px solid rgba(34, 197, 94, 0.25); border-radius: 8px; padding: 14px; margin-bottom: 18px; font-size: 12px; color: #86efac; line-height: 1.5;">
+            ✓ Your authenticator app is currently enrolled and active for <strong>project2krishnan@gmail.com</strong>.
+          </div>
+          <div style="display: flex; gap: 10px;">
+            <button type="button" class="btn-tool" onclick="startCmsTotpEnrollment()" style="flex: 1; justify-content: center; padding: 10px;">
+              <span>RE-ENROLL NEW DEVICE</span>
+            </button>
+            <button type="button" class="btn-tool btn-discard" onclick="unlinkCmsTotp()" style="flex: 1; justify-content: center; padding: 10px;">
+              <span>UNLINK DEVICE</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- Not Enrolled / Intro View -->
+        <div id="cms-totp-not-enrolled-view" style="display: none; text-align: center;">
+          <p style="font-size: 12.5px; color: var(--text-secondary); line-height: 1.6; margin-bottom: 18px;">
+            Enrolling an authenticator app allows instant login using rotating 6-digit codes on your phone without waiting for Gmail OTP delivery.
+          </p>
+          <button type="button" class="btn-tool btn-save" onclick="startCmsTotpEnrollment()" style="width: 100%; justify-content: center; padding: 12px;">
+            <span>ENROLL AUTHENTICATOR APP</span>
+          </button>
+        </div>
+
+        <!-- Live Enrollment View (QR Code + Manual Key + Verification Input) -->
+        <div id="cms-totp-enrollment-view" style="display: none;">
+          <div style="text-align: center; margin-bottom: 16px;">
+            <p style="font-size: 12px; color: var(--text-secondary); margin-bottom: 14px; line-height: 1.5;">
+              1. Open <strong>Google Authenticator</strong> or <strong>Microsoft Authenticator</strong> on your phone.<br>
+              2. Tap <strong>+</strong> and scan this QR code:
+            </p>
+            <div style="background: #FFFFFF; padding: 12px; border-radius: 8px; display: inline-block; box-shadow: 0 4px 20px rgba(0,0,0,0.5);">
+              <img id="cms-totp-qr-img" alt="TOTP QR Code" style="width: 180px; height: 180px; display: block;">
+            </div>
+            <div style="margin-top: 12px;">
+              <span style="font-size: 10px; color: var(--text-muted); font-family: 'JetBrains Mono', monospace;">MANUAL SETUP KEY:</span>
+              <code id="cms-totp-manual-key" style="display: block; font-family: 'JetBrains Mono', monospace; font-size: 13px; font-weight: 700; color: #FFF; background: var(--bg-surface); border: 1px solid var(--border-base); padding: 6px 10px; border-radius: 4px; margin-top: 4px; letter-spacing: 0.12em; user-select: all;">------</code>
+            </div>
+          </div>
+
+          <form id="cms-totp-verify-form" onsubmit="handleCmsTotpActivation(event)">
+            <div class="form-group" style="margin-bottom: 14px;">
+              <label class="form-label" for="cms-totp-code-input" style="font-size: 11px;">ENTER 6-DIGIT CODE FROM APP TO ACTIVATE</label>
+              <input type="text" class="form-input" id="cms-totp-code-input" placeholder="000000" maxlength="6" pattern="[0-9]{6}" inputmode="numeric" autocomplete="one-time-code" style="text-align: center; font-family: 'JetBrains Mono', monospace; font-size: 18px; letter-spacing: 0.25em; padding: 10px;" required>
+            </div>
+            <div id="cms-totp-error" class="auth-error" style="display: none; margin-bottom: 12px;"></div>
+            <div style="display: flex; gap: 10px;">
+              <button type="button" class="btn-tool" onclick="cancelCmsTotpEnrollment()" style="flex: 1; justify-content: center; padding: 10px;">
+                <span>CANCEL</span>
+              </button>
+              <button type="submit" class="btn-tool btn-save" id="cms-totp-submit-btn" style="flex: 2; justify-content: center; padding: 10px;">
+                <span>ACTIVATE &amp; SAVE DEVICE</span>
+              </button>
+            </div>
+          </form>
+        </div>
+
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn-tool" onclick="closeSecurityModal()">CLOSE</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- -------------------------------------------------------------
+       6. MODALS: ADD SECTION TEMPLATES
+       ------------------------------------------------------------- -->
+  <div class="modal-overlay" id="add-section-modal">
+    <div class="modal-window">
+      <div class="modal-header">
+        <h3 class="modal-title">+ ADD NEW SECTION</h3>
+        <button type="button" class="modal-close" onclick="closeAddSectionModal()">&times;</button>
+      </div>
+      <div class="modal-body">
+        <div class="form-group">
+          <label class="form-label">SECTION NAME</label>
+          <input type="text" class="form-input" id="new-section-name" placeholder="e.g. 10 // Featured Films">
+        </div>
+        <div class="form-group">
+          <label class="form-label">CHOOSE SECTION TEMPLATE</label>
+          <select class="form-select" id="new-section-template">
+            <option value="card-grid">Card Grid / Project Showcase</option>
+            <option value="text-media">Text / Media Split</option>
+            <option value="metrics">Metrics Counter Grid</option>
+            <option value="ticker">Skills Ticker / Marquee</option>
+            <option value="archive">Archive Collection</option>
+            <option value="video-showcase">Video Showcase</option>
+            <option value="editorial">Editorial Content</option>
+            <option value="timeline">Timeline / Career</option>
+            <option value="cta">Contact / CTA Section</option>
+            <option value="blank">Blank Configurable Section</option>
+          </select>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn-tool" onclick="closeAddSectionModal()">CANCEL</button>
+        <button type="button" class="btn-tool btn-save" onclick="confirmAddSection()">CREATE SECTION</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- -------------------------------------------------------------
+       7. CONFIRMATION DIALOG (FOR DISCARD / DELETION)
+       ------------------------------------------------------------- -->
+  <div class="modal-overlay" id="confirm-modal">
+    <div class="modal-window" style="max-width: 440px;">
+      <div class="modal-header">
+        <h3 class="modal-title" id="confirm-modal-title">CONFIRM ACTION</h3>
+        <button type="button" class="modal-close" onclick="closeConfirmModal()">&times;</button>
+      </div>
+      <div class="modal-body">
+        <p id="confirm-modal-desc" style="font-size: 13px; color: var(--text-secondary); line-height: 1.6;">
+          Are you sure?
+        </p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn-tool" onclick="closeConfirmModal()">CANCEL</button>
+        <button type="button" class="btn-tool btn-save" id="confirm-modal-action-btn">CONFIRM</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Toast Notification Container -->
+  <div id="toast"></div>
+
+  <!-- Backstage Core Application Logic -->
+  <script src="backstage-app.js"></script>
+</body>
+</html>

@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;700;800&family=JetBrains+Mono:wght@500;700&family=Montserrat:wght@800;900&display=swap');
+  
+  body {
+    margin: 0;
+    padding: 20px;
+    background: transparent;
+    display: flex;
+    gap: 30px;
+  }
+
+  /* 3D BADGE CARD FRONT (340x520) */
+  .badge-front {
+    width: 360px;
+    height: 550px;
+    border-radius: 24px;
+    background: #0F1014;
+    border: 2px solid rgba(255, 255, 255, 0.14);
+    box-shadow: 0 20px 40px rgba(0,0,0,0.6);
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    padding: 24px;
+    box-sizing: border-box;
+    color: #FFFFFF;
+    font-family: 'Space Grotesk', sans-serif;
+  }
+
+  .badge-front::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 6px;
+    background: linear-gradient(90deg, #E62929, #FF4D4D, #E62929);
+  }
+
+  /* Clip Slot */
+  .clip-slot {
+    width: 54px;
+    height: 12px;
+    background: #000000;
+    border: 1.5px solid rgba(255, 255, 255, 0.22);
+    border-radius: 6px;
+    margin: 4px auto 16px auto;
+  }
+
+  .badge-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+    padding-bottom: 12px;
+    margin-bottom: 16px;
+  }
+
+  .badge-brand {
+    font-weight: 800;
+    font-size: 16px;
+    letter-spacing: 0.1em;
+  }
+  .badge-tag {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 9px;
+    letter-spacing: 0.18em;
+    color: #E62929;
+    font-weight: 700;
+  }
+
+  .badge-photo-wrap {
+    width: 100%;
+    height: 250px;
+    border-radius: 14px;
+    overflow: hidden;
+    position: relative;
+    border: 1px solid rgba(255, 255, 255, 0.16);
+    background: #18191E;
+  }
+
+  .badge-photo {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .badge-info {
+    margin-top: 18px;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+
+  .badge-name {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 900;
+    font-size: 20px;
+    letter-spacing: 0.02em;
+    line-height: 1.1;
+    color: #FFFFFF;
+    margin: 0 0 4px 0;
+    text-transform: uppercase;
+  }
+
+  .badge-role {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10.5px;
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    color: #8E8E96;
+    text-transform: uppercase;
+  }
+
+  .badge-bottom {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    border-top: 1px solid rgba(255, 255, 255, 0.10);
+    padding-top: 12px;
+  }
+
+  .barcode-strip {
+    display: flex;
+    gap: 2.5px;
+    align-items: flex-end;
+    height: 24px;
+  }
+  .b-bar {
+    background: #FFFFFF;
+    height: 100%;
+  }
+
+  .badge-id {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 8.5px;
+    letter-spacing: 0.12em;
+    color: rgba(255, 255, 255, 0.5);
+  }
+
+  /* 3D BADGE CARD BACK (360x550) */
+  .badge-back {
+    width: 360px;
+    height: 550px;
+    border-radius: 24px;
+    background: #0B0C0E;
+    border: 2px solid rgba(255, 255, 255, 0.14);
+    box-shadow: 0 20px 40px rgba(0,0,0,0.6);
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 24px;
+    box-sizing: border-box;
+    color: #FFFFFF;
+    font-family: 'Space Grotesk', sans-serif;
+  }
+
+  .badge-back::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 6px;
+    background: #E62929;
+  }
+
+  .back-center {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    flex: 1;
+    text-align: center;
+  }
+
+  .back-monogram {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 52px;
+    font-weight: 800;
+    letter-spacing: 0.12em;
+    color: #FFFFFF;
+    margin-bottom: 8px;
+  }
+
+  .back-sub {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.24em;
+    color: #E62929;
+    text-transform: uppercase;
+  }
+
+  .back-disclaimer {
+    font-size: 9.5px;
+    line-height: 1.5;
+    color: rgba(255, 255, 255, 0.45);
+    border-top: 1px solid rgba(255, 255, 255, 0.10);
+    padding-top: 14px;
+    font-family: 'JetBrains Mono', monospace;
+  }
+
+  /* LANYARD STRAP (BAND) */
+  .badge-band {
+    width: 120px;
+    height: 480px;
+    background: repeating-linear-gradient(
+      180deg,
+      #141416 0px,
+      #141416 20px,
+      #1C1D22 20px,
+      #1C1D22 40px
+    );
+    border-left: 2px solid #E62929;
+    border-right: 2px solid #E62929;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+    padding: 10px 0;
+    box-sizing: border-box;
+    font-family: 'Space Grotesk', sans-serif;
+    color: rgba(255, 255, 255, 0.85);
+    font-weight: 700;
+    font-size: 12px;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+  }
+
+  .band-text {
+    writing-mode: vertical-rl;
+    transform: rotate(180deg);
+  }
+</style>
+</head>
+<body>
+
+  <!-- FRONT -->
+  <div class="badge-front" id="card-front">
+    <div class="clip-slot"></div>
+    <div class="badge-header">
+      <span class="badge-brand">CBK</span>
+      <span class="badge-tag">CREATIVE DIRECTOR</span>
+    </div>
+    <div class="badge-photo-wrap">
+      <img src="/test_frame_1.jpg" class="badge-photo" alt="Photo">
+    </div>
+    <div class="badge-info">
+      <div>
+        <h3 class="badge-name">C. BALA KRISHNAN</h3>
+        <div class="badge-role">GEN AI CREATIVE LEAD // DBL V3</div>
+      </div>
+      <div class="badge-bottom">
+        <div class="barcode-strip">
+          <div class="b-bar" style="width: 2px;"></div>
+          <div class="b-bar" style="width: 4px;"></div>
+          <div class="b-bar" style="width: 1px;"></div>
+          <div class="b-bar" style="width: 3px;"></div>
+          <div class="b-bar" style="width: 5px;"></div>
+          <div class="b-bar" style="width: 2px;"></div>
+          <div class="b-bar" style="width: 3px;"></div>
+          <div class="b-bar" style="width: 1px;"></div>
+          <div class="b-bar" style="width: 4px;"></div>
+          <div class="b-bar" style="width: 2px;"></div>
+          <div class="b-bar" style="width: 5px;"></div>
+          <div class="b-bar" style="width: 1px;"></div>
+        </div>
+        <div class="badge-id">ID: 884-CBK-2026</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- BACK -->
+  <div class="badge-back" id="card-back">
+    <div class="clip-slot"></div>
+    <div class="back-center">
+      <div class="back-monogram">CBK</div>
+      <div class="back-sub">DESIGNFOLIO // THE CORE</div>
+    </div>
+    <div class="back-disclaimer">
+      AUTHORISED PRODUCTION ACCESS ONLY.<br>
+      LATENT SPACE ARCHITECTURE & CINEMA.<br>
+      © 2026 C. BALA KRISHNAN. ALL RIGHTS RESERVED.
+    </div>
+  </div>
+
+  <!-- BAND -->
+  <div class="badge-band" id="band">
+    <div class="band-text">CBK // THE CORE</div>
+    <div class="band-text">CREATIVE LEAD</div>
+    <div class="band-text">CBK DESIGNFOLIO</div>
+  </div>
+
+</body>
+</html>
