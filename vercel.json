@@ -1,35 +1,12 @@
 {
-  "version": 2,
-  "builds": [
+  "rewrites": [
     {
-      "src": "server.js",
-      "use": "@vercel/node",
-      "config": {
-        "includeFiles": [
-          "data/**",
-          "index.html",
-          "backstage.html",
-          "backstage-app.js",
-          "storage-adapter.js"
-        ]
-      }
-    }
-  ],
-  "routes": [
-    {
-      "src": "/api/(.*)",
-      "dest": "server.js"
+      "source": "/backstage",
+      "destination": "/backstage.html"
     },
     {
-      "handle": "filesystem"
-    },
-    {
-      "src": "/backstage",
-      "dest": "server.js"
-    },
-    {
-      "src": "/(.*)",
-      "dest": "server.js"
+      "source": "/api/(.*)",
+      "destination": "/api/index.js"
     }
   ]
 }
