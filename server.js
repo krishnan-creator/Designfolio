@@ -754,7 +754,7 @@ const MIME_TYPES = {
   '.m4a': 'audio/mp4'
 };
 
-const server = http.createServer(async (req, res) => {
+async function requestHandler(req, res) {
   // CORS Preflight
   if (req.method === 'OPTIONS') {
     res.writeHead(204, {
@@ -766,16 +766,10 @@ const server = http.createServer(async (req, res) => {
     return res.end();
   }
 
-  const matchedPath = req.headers['x-matched-path'];
-  let rawUrl = req.url;
-  if (matchedPath && matchedPath !== '/api' && matchedPath !== '/api/') {
-    rawUrl = matchedPath;
-  }
-  const parsedUrl = new URL(rawUrl, `http://${req.headers.host || 'localhost:3000'}`);
+  const parsedUrl = new URL(req.url, `http://${req.headers.host || 'localhost:3000'}`);
   let pathname = decodeURI(parsedUrl.pathname);
-  if ((pathname === '/api' || pathname === '/api/') && parsedUrl.searchParams.has('__path')) {
-    const sub = parsedUrl.searchParams.get('__path');
-    pathname = sub.startsWith('/') ? sub : '/' + sub;
+  if (pathname === '/server.js') {
+    pathname = '/';
   }
 
   // -------------------------------------------------------------
@@ -1683,7 +1677,7 @@ const server = http.createServer(async (req, res) => {
   const filePath = path.normalize(path.join(ROOT_DIR, reqPath));
 
   // Security check: ensure path is within ROOT_DIR and blocks hidden/internal folders
-  if (!filePath.startsWith(ROOT_DIR) || reqPath.startsWith('/.temp_uploads') || reqPath.startsWith('/.env') || reqPath.startsWith('/.git')) {
+  if (!filePath.startsWith(ROOT_DIR) || reqPath.startsWith('/.temp_uploads') || reqPath.startsWith('/.env') || reqPath.startsWith('/.git') || reqPath === '/server.js') {
     res.writeHead(403, { 'Content-Type': 'text/plain' });
     return res.end('403 Forbidden');
   }
@@ -1730,7 +1724,9 @@ const server = http.createServer(async (req, res) => {
     res.writeHead(200, headers);
     fs.createReadStream(filePath).pipe(res);
   });
-});
+}
+
+const server = http.createServer(requestHandler);
 
 if (!IS_VERCEL) {
   server.listen(PORT, () => {
@@ -1750,7 +1746,6 @@ if (!IS_VERCEL) {
 }
 
 // Export handler for Vercel Serverless Functions and Node server
-module.exports = (req, res) => {
-  server.emit('request', req, res);
-};
+module.exports = requestHandler;
 module.exports.server = server;
+module.exports.default = requestHandler;
