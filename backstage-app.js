@@ -69,7 +69,7 @@ function renderVisibilityButton(secId, pathStr, isVisible, label = '', onClickFn
 }
 window.renderVisibilityButton = renderVisibilityButton;
 
-function toggleVisibilityByPath(secId, pathStr) {
+async function toggleVisibilityByPath(secId, pathStr) {
   const sec = findSectionOrChild(secId);
   if (!sec) return;
   const parts = pathStr.split('.');
@@ -79,12 +79,91 @@ function toggleVisibilityByPath(secId, pathStr) {
     curr = curr[parts[i]];
   }
   const lastKey = parts[parts.length - 1];
-  curr[lastKey] = (curr[lastKey] === false) ? true : false;
+  const nextVal = (curr[lastKey] === false) ? true : false;
+  curr[lastKey] = nextVal;
   markUnsaved();
   renderSectionTree();
   renderPropertiesPanel(sec);
   notifyPreview();
+
+  // Atomically persist to server so reload/public site immediately reflects change
+  try {
+    const headers = { 'Content-Type': 'application/json' };
+    if (authToken) headers['Authorization'] = `Bearer ${authToken}`;
+    const res = await fetch('/api/content/entry/visibility', {
+      method: 'POST',
+      headers,
+      body: JSON.stringify({ sectionId: secId, pathStr, visible: nextVal })
+    });
+    const json = await res.json();
+    if (json.success && json.data) {
+      publishedData = JSON.parse(JSON.stringify(json.data));
+      hasUnsavedChanges = false;
+      updateStatusIndicator();
+      showToast(`${nextVal ? 'Visible' : 'Hidden'} state saved & published`);
+    }
+  } catch (err) {
+    console.warn('[Backstage] Background visibility sync failed, preserved in draft:', err.message);
+  }
 }
+
+// Universal Permanent Deletion Engine
+function confirmDeleteEntry(sectionId, collectionKey, entryId, displayName) {
+  const modal = document.getElementById('confirm-modal');
+  const title = document.getElementById('confirm-modal-title');
+  const desc = document.getElementById('confirm-modal-desc');
+  const actionBtn = document.getElementById('confirm-modal-action-btn');
+
+  if (!modal || !title || !desc || !actionBtn) return;
+
+  const itemTitle = displayName || entryId;
+  title.textContent = 'PERMANENTLY DELETE ENTRY?';
+  desc.innerHTML = `Are you sure you want to permanently delete <strong>${escapeHtml(itemTitle)}</strong> [ID: ${escapeHtml(entryId)}]?<br><br><span style="color: #ff3038; font-weight: 700;">WARNING:</span> This operation is permanent and will immediately remove the record from both Backstage and the public portfolio.`;
+
+  actionBtn.textContent = 'PERMANENTLY DELETE';
+  actionBtn.className = 'confirm-action-btn danger';
+  actionBtn.disabled = false;
+
+  actionBtn.onclick = async () => {
+    actionBtn.disabled = true;
+    actionBtn.textContent = 'DELETING...';
+
+    try {
+      const headers = { 'Content-Type': 'application/json' };
+      if (authToken) headers['Authorization'] = `Bearer ${authToken}`;
+      const res = await fetch('/api/content/entry/delete', {
+        method: 'POST',
+        headers,
+        body: JSON.stringify({ sectionId, collectionKey, entryId })
+      });
+      const json = await res.json();
+      if (json.success && json.data) {
+        currentDraft = json.data;
+        publishedData = JSON.parse(JSON.stringify(json.data));
+        hasUnsavedChanges = false;
+        updateStatusIndicator();
+        closeConfirmModal();
+        showToast(`Permanently deleted "${itemTitle}"`);
+        const sec = findSectionOrChild(sectionId);
+        renderSectionTree();
+        if (sec) renderPropertiesPanel(sec);
+        notifyPreview();
+      } else {
+        showToast(`Delete failed: ${json.error || 'Server rejected request'}`, true);
+        actionBtn.disabled = false;
+        actionBtn.textContent = 'PERMANENTLY DELETE';
+      }
+    } catch (err) {
+      showToast(`Delete failed: ${err.message}`, true);
+      actionBtn.disabled = false;
+      actionBtn.textContent = 'PERMANENTLY DELETE';
+    }
+  };
+
+  modal.classList.add('active');
+}
+window.confirmDeleteEntry = confirmDeleteEntry;
+
 window.toggleVisibilityByPath = toggleVisibilityByPath;
 
 /**
@@ -1480,7 +1559,7 @@ function renderMetricsProps(sec) {
           <span class="collection-card-num">CARD 0${idx + 1} // ${escapeHtml(m.label || '')}</span>
           <div style="display: flex; align-items: center; gap: 8px;">
             ${renderVisibilityButton(sec.id, `content.items.${idx}.visible`, m.visible !== false)}
-            <button type="button" class="btn-card-del" onclick="removeMetricItem('${sec.id}', ${idx})" title="Delete Metric">✕</button>
+            <button type="button" class="btn-card-del" onclick="confirmDeleteEntry('${sec.id}', 'items', '${m.id}', '${escapeHtml(m.label)}')" title="Delete Metric Permanently">✕</button>
           </div>
         </div>
         <div class="form-row-2">
@@ -1639,11 +1718,11 @@ const DEFAULT_BTF_ENTRIES = [
 
 function ensureBeyondFrameEntries(sec) {
   if (!sec.content) sec.content = {};
-  if (!Array.isArray(sec.content.entries) || sec.content.entries.length === 0) {
+  if (!Array.isArray(sec.content.entries)) {
     sec.content.entries = JSON.parse(JSON.stringify(DEFAULT_BTF_ENTRIES));
     return;
   }
-  // Ensure every entry has stable ID, slot number, and visible flag
+  // Ensure every entry has stable ID, slot number, and visible flag without overriding deletions
   sec.content.entries.forEach((e, idx) => {
     if (!e.id) e.id = `btf-${String(idx + 1).padStart(2, '0')}`;
     if (!e.slotNumber) e.slotNumber = String(idx + 1).padStart(2, '0');
@@ -1705,7 +1784,7 @@ function renderBeyondFrameProps(sec) {
               <button type="button" class="tree-action-btn" onclick="moveBTFEntry('${sec.id}', ${idx}, -1)" title="Move Up">↑</button>
               <button type="button" class="tree-action-btn" onclick="moveBTFEntry('${sec.id}', ${idx}, 1)" title="Move Down">↓</button>
               ${renderVisibilityButton(sec.id, `content.entries.${idx}.visible`, entry.visible !== false)}
-              <button type="button" class="btn-card-del" onclick="removeBTFEntry('${sec.id}', ${idx})" title="Delete Entry">✕</button>
+              <button type="button" class="btn-card-del" onclick="confirmDeleteEntry('${sec.id}', 'entries', '${entry.id}', '${escapeHtml(entry.title)}')" title="Delete Entry Permanently">✕</button>
             </div>
           </div>
           <div class="form-group">
@@ -1769,7 +1848,7 @@ function renderSelectedWorksProps(sec) {
           <span class="collection-card-num">#${idx + 1} ${escapeHtml(p.title)}</span>
           <div style="display: flex; align-items: center; gap: 8px;">
             ${renderVisibilityButton(sec.id, `content.landscapeProjects.${idx}.visible`, p.visible !== false)}
-            <button type="button" class="btn-card-del" onclick="removeLandscapeProject('${sec.id}', ${idx})" title="Delete Project">✕</button>
+            <button type="button" class="btn-card-del" onclick="confirmDeleteEntry('${sec.id}', 'landscapeProjects', '${p.id}', '${escapeHtml(p.title)}')" title="Delete Project Permanently">✕</button>
           </div>
         </div>
         <div class="form-group">
@@ -1913,7 +1992,8 @@ function ensureOrbitImages(sec) {
         image: img,
         src: img,
         alt: raw.alt || (img ? `Visual Orbit Asset ${num}` : `Visual Orbit Slot ${num}`),
-        title: raw.title || (img ? `Asset ${num}` : `Slot ${num}`)
+        title: raw.title || (img ? `Asset ${num}` : `Slot ${num}`),
+        visible: (raw.visible !== undefined) ? (raw.visible !== false) : true
       };
     }
     return {
@@ -1922,7 +2002,8 @@ function ensureOrbitImages(sec) {
       image: '',
       src: '',
       alt: `Visual Orbit Slot ${num}`,
-      title: `Slot ${num}`
+      title: `Slot ${num}`,
+      visible: true
     };
   });
 
@@ -2259,7 +2340,7 @@ function renderExpertiseProps(sec) {
           <span class="collection-card-num">COMPANY 0${idx + 1} // ${escapeHtml(comp.name)}</span>
           <div style="display: flex; align-items: center; gap: 8px;">
             ${renderVisibilityButton(sec.id, `content.companies.${idx}.visible`, comp.visible !== false)}
-            <button type="button" class="btn-card-del" onclick="removeCompany('${sec.id}', ${idx})" title="Delete Company">✕</button>
+            <button type="button" class="btn-card-del" onclick="confirmDeleteEntry('${sec.id}', 'companies', '${comp.id}', '${escapeHtml(comp.name)}')" title="Delete Company Permanently">✕</button>
           </div>
         </div>
         <div class="form-group">
@@ -2461,7 +2542,7 @@ function renderCoreProps(sec) {
           <span class="collection-card-num">TOOL 0${idx + 1} // ${escapeHtml(tool.name)}</span>
           <div style="display: flex; align-items: center; gap: 8px;">
             ${renderVisibilityButton(sec.id, `content.foundations.${idx}.visible`, tool.visible !== false)}
-            <button type="button" class="btn-card-del" onclick="removeFoundationTool('${sec.id}', ${idx})" title="Delete Tool">✕</button>
+            <button type="button" class="btn-card-del" onclick="confirmDeleteEntry('${sec.id}', 'foundations', '${tool.id}', '${escapeHtml(tool.name)}')" title="Delete Tool Permanently">✕</button>
           </div>
         </div>
         <div class="form-group">

@@ -3343,6 +3343,100 @@
       flex-wrap: wrap;
     }
 
+    /* INLINE CONTACT FORM STYLING */
+    .inline-contact-form {
+      margin-top: 22px;
+      width: 100%;
+      max-width: 540px;
+    }
+
+    .contact-field-group {
+      margin-bottom: 14px;
+      text-align: left;
+    }
+
+    .contact-field-label {
+      display: block;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: #121215;
+      margin-bottom: 6px;
+    }
+
+    .contact-field-label .req-star {
+      color: #ff3038;
+      margin-left: 2px;
+    }
+
+    .contact-field-input {
+      width: 100%;
+      box-sizing: border-box;
+      background: rgba(255, 255, 255, 0.78);
+      border: 1px solid rgba(18, 18, 21, 0.22);
+      border-radius: 6px;
+      padding: 11px 14px;
+      font-family: 'Space Grotesk', -apple-system, sans-serif;
+      font-size: 13.5px;
+      color: #121215;
+      outline: none;
+      transition: border-color 0.2s, box-shadow 0.2s, background 0.2s;
+    }
+
+    .contact-field-input:focus {
+      background: #ffffff;
+      border-color: #ff3038;
+      box-shadow: 0 0 0 3px rgba(255, 48, 56, 0.16);
+    }
+
+    .contact-field-textarea {
+      resize: vertical;
+      min-height: 95px;
+      line-height: 1.5;
+    }
+
+    .contact-field-error {
+      color: #c91820;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 11px;
+      font-weight: 600;
+      margin-top: 4px;
+      min-height: 16px;
+    }
+
+    .contact-status-box {
+      padding: 12px 14px;
+      border-radius: 6px;
+      font-size: 12.5px;
+      line-height: 1.5;
+      margin-top: 14px;
+      margin-bottom: 14px;
+      font-family: 'Space Grotesk', sans-serif;
+      text-align: left;
+    }
+
+    .contact-status-box.success {
+      background: rgba(16, 185, 129, 0.14);
+      border: 1px solid #059669;
+      color: #064e3b;
+    }
+
+    .contact-status-box.error {
+      background: rgba(239, 68, 68, 0.12);
+      border: 1px solid #dc2626;
+      color: #991b1b;
+    }
+
+    .build-secondary-actions {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-top: 14px;
+      flex-wrap: wrap;
+    }
+
     .build-action-btn {
       display: inline-flex;
       align-items: center;
@@ -8028,15 +8122,41 @@ console.log('Saved scratch/new_master_styles.css');
 
               <p class="build-statement">Thanks for exploring my work. If something here resonates with you, I’d love to connect, exchange ideas, and explore what comes next.</p>
 
-              <div class="build-contact-actions">
-                <a href="mailto:meet2krishnan@gmail.com?subject=Creative%20Inquiry%20%E2%80%94%20CBK%20Designfolio" class="build-action-btn build-btn-primary" aria-label="Let's Connect — Email meet2krishnan@gmail.com">
-                  <svg class="build-btn-mail-icon" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                    <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
-                    <polyline points="22,6 12,13 2,6"></polyline>
-                  </svg>
-                  <span>LET'S CONNECT</span>
-                </a>
+              <!-- INLINE CONTACT FORM -->
+              <form id="inline-contact-form" class="inline-contact-form" novalidate onsubmit="handleContactSubmit(event)">
+                <div class="contact-field-group">
+                  <label for="contact-name" class="contact-field-label">Name <span class="req-star" aria-hidden="true">*</span></label>
+                  <input type="text" id="contact-name" name="name" class="contact-field-input" placeholder="Your Name or Studio" required autocomplete="name" maxlength="100">
+                  <div id="contact-name-error" class="contact-field-error" role="alert"></div>
+                </div>
 
+                <div class="contact-field-group">
+                  <label for="contact-email" class="contact-field-label">Email <span class="req-star" aria-hidden="true">*</span></label>
+                  <input type="email" id="contact-email" name="email" class="contact-field-input" placeholder="you@company.com" required autocomplete="email" maxlength="150">
+                  <div id="contact-email-error" class="contact-field-error" role="alert"></div>
+                </div>
+
+                <div class="contact-field-group">
+                  <label for="contact-message" class="contact-field-label">Message <span class="req-star" aria-hidden="true">*</span></label>
+                  <textarea id="contact-message" name="message" class="contact-field-input contact-field-textarea" placeholder="Tell me about your project, idea, or timeline..." rows="4" required maxlength="5000"></textarea>
+                  <div id="contact-message-error" class="contact-field-error" role="alert"></div>
+                </div>
+
+                <div id="contact-status-box" class="contact-status-box" style="display: none;" role="status"></div>
+
+                <div class="build-contact-actions" style="margin-top: 18px;">
+                  <button type="submit" id="contact-submit-btn" class="build-action-btn build-btn-primary" aria-label="Submit Let's Connect Contact Form">
+                    <svg class="build-btn-mail-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                      <line x1="22" y1="2" x2="11" y2="13"></line>
+                      <polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>
+                    </svg>
+                    <span id="contact-btn-label">LET'S CONNECT</span>
+                  </button>
+                </div>
+              </form>
+
+              <!-- SECONDARY CONTACT BUTTONS (WhatsApp and LinkedIn) DIRECTLY UNDERNEATH -->
+              <div class="build-secondary-actions">
                 <a href="https://wa.me/919491681703" target="_blank" rel="noopener noreferrer" class="build-action-btn build-btn-whatsapp" aria-label="WhatsApp Contact">
                   <svg class="build-btn-brand-icon" width="15" height="15" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
                     <path d="M12.031 0C5.399 0 0 5.398 0 12.031c0 2.12.553 4.184 1.603 6.007L.055 24l6.143-1.611a12.006 12.006 0 0 0 5.833 1.503h.005c6.632 0 12.031-5.399 12.031-12.031 0-3.214-1.252-6.236-3.526-8.51A11.96 11.96 0 0 0 12.031 0zm0 22.029h-.004a9.99 9.99 0 0 1-5.097-1.393l-.365-.217-3.791.994 1.012-3.693-.238-.378a9.972 9.972 0 0 1-1.536-5.31C2.012 6.51 6.51 2.012 12.031 2.012c2.677 0 5.193 1.043 7.086 2.936a10.007 10.007 0 0 1 2.936 7.087c0 5.522-4.498 10.02-10.022 10.02zm5.496-7.502c-.301-.151-1.782-.88-2.058-.98-.276-.101-.476-.151-.677.151-.2.302-.778.98-.954 1.181-.176.201-.351.226-.653.075-.301-.151-1.272-.469-2.423-1.496-.895-.798-1.5-1.785-1.676-2.086-.176-.302-.019-.465.132-.616.136-.135.301-.351.452-.527.151-.176.201-.301.301-.502.101-.201.05-.377-.025-.527-.075-.151-.677-1.632-.928-2.235-.245-.587-.494-.508-.677-.517l-.578-.01c-.201 0-.527.075-.803.376s-1.054 1.03-1.054 2.511c0 1.482 1.079 2.912 1.229 3.113.151.201 2.123 3.242 5.143 4.547.718.311 1.279.497 1.716.636.722.23 1.379.197 1.899.12.58-.087 1.782-.728 2.033-1.431.251-.703.251-1.305.176-1.431-.076-.126-.276-.201-.577-.352z"/>
@@ -13019,7 +13139,7 @@ window.initMasterThemeAndEffects = function() {
     }
   }
 
-  // 3. Mount BeyondTheFrame (cine.txt Stack component with 5 local cinematic cards)
+  // 3. Mount BeyondTheFrame (cine.txt Stack component with dynamic entries)
   let beyondFrameInstance = null;
   function initBeyondTheFrame() {
     const beyondMount = document.getElementById('beyond-the-frame-mount');
@@ -13027,11 +13147,133 @@ window.initMasterThemeAndEffects = function() {
       const customEntries = window.__beyondFrameCustomEntries;
       beyondFrameInstance = window.mountBeyondTheFrame(beyondMount, {
         theme: getCurrentTheme(),
-        ...(customEntries && customEntries.length ? { entries: customEntries } : {})
+        ...(customEntries !== undefined ? { entries: customEntries } : {})
       });
       window.beyondFrameInstance = beyondFrameInstance;
     }
   }
+
+  window.updateBeyondTheFrame = function(entries) {
+    window.__beyondFrameCustomEntries = entries;
+    if (beyondFrameInstance && typeof beyondFrameInstance.update === 'function') {
+      beyondFrameInstance.update({ entries });
+    } else if (document.getElementById('beyond-the-frame-mount') && window.mountBeyondTheFrame && !beyondFrameInstance) {
+      initBeyondTheFrame();
+    }
+  };
+
+  // INLINE CONTACT FORM SUBMISSION HANDLER
+  async function handleContactSubmit(e) {
+    e.preventDefault();
+    const nameInput = document.getElementById('contact-name');
+    const emailInput = document.getElementById('contact-email');
+    const messageInput = document.getElementById('contact-message');
+    const submitBtn = document.getElementById('contact-submit-btn');
+    const btnLabel = document.getElementById('contact-btn-label');
+    const statusBox = document.getElementById('contact-status-box');
+
+    const nameErr = document.getElementById('contact-name-error');
+    const emailErr = document.getElementById('contact-email-error');
+    const msgErr = document.getElementById('contact-message-error');
+
+    if (!nameInput || !emailInput || !messageInput || !submitBtn) return;
+
+    nameErr.textContent = '';
+    emailErr.textContent = '';
+    msgErr.textContent = '';
+    statusBox.style.display = 'none';
+    statusBox.className = 'contact-status-box';
+    statusBox.innerHTML = '';
+
+    const name = nameInput.value.trim();
+    const email = emailInput.value.trim();
+    const message = messageInput.value.trim();
+
+    let hasError = false;
+    if (!name) {
+      nameErr.textContent = 'Please enter your name.';
+      nameInput.focus();
+      hasError = true;
+    }
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!email) {
+      emailErr.textContent = 'Please enter your email address.';
+      if (!hasError) emailInput.focus();
+      hasError = true;
+    } else if (!emailRegex.test(email)) {
+      emailErr.textContent = 'Please enter a valid email address (e.g. you@domain.com).';
+      if (!hasError) emailInput.focus();
+      hasError = true;
+    }
+    if (!message) {
+      msgErr.textContent = 'Please write a message.';
+      if (!hasError) messageInput.focus();
+      hasError = true;
+    } else if (message.length < 5) {
+      msgErr.textContent = 'Message is too short (min 5 characters).';
+      if (!hasError) messageInput.focus();
+      hasError = true;
+    }
+
+    if (hasError) return;
+
+    submitBtn.disabled = true;
+    const originalLabel = btnLabel ? btnLabel.textContent : "LET'S CONNECT";
+    if (btnLabel) btnLabel.textContent = 'SENDING INQUIRY...';
+
+    try {
+      const res = await fetch('/api/contact', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ name, email, message })
+      });
+      const json = await res.json();
+
+      if (res.ok && json.success) {
+        statusBox.className = 'contact-status-box success';
+        statusBox.innerHTML = `
+          <div style="font-weight: 700; margin-bottom: 4px;">✓ MESSAGE SENT DIRECTLY TO BALA KRISHNAN</div>
+          <div>${json.message || 'Your inquiry was delivered to project2krishnan@gmail.com. We will be in touch shortly.'}</div>
+        `;
+        statusBox.style.display = 'block';
+        nameInput.value = '';
+        emailInput.value = '';
+        messageInput.value = '';
+        if (btnLabel) btnLabel.textContent = 'SENT SUCCESSFULLY ✓';
+        setTimeout(() => {
+          submitBtn.disabled = false;
+          if (btnLabel) btnLabel.textContent = originalLabel;
+        }, 5000);
+      } else {
+        statusBox.className = 'contact-status-box error';
+        const mailtoFallback = `mailto:project2krishnan@gmail.com?subject=Creative%20Inquiry%20from%20${encodeURIComponent(name)}&body=${encodeURIComponent(message + '\n\nFrom: ' + name + ' <' + email + '>')}`;
+        statusBox.innerHTML = `
+          <div style="font-weight: 700; margin-bottom: 4px;">✕ DELIVERY NOTICE</div>
+          <div>${json.error || 'Server could not deliver message.'}</div>
+          <div style="margin-top: 8px;">
+            <a href="${mailtoFallback}" class="contact-fallback-link" style="color: #c91820; font-weight: 700; text-decoration: underline;">Open Pre-filled Draft in Email Client addressed to project2krishnan@gmail.com &rarr;</a>
+          </div>
+        `;
+        statusBox.style.display = 'block';
+        submitBtn.disabled = false;
+        if (btnLabel) btnLabel.textContent = originalLabel;
+      }
+    } catch (err) {
+      statusBox.className = 'contact-status-box error';
+      const mailtoFallback = `mailto:project2krishnan@gmail.com?subject=Creative%20Inquiry%20from%20${encodeURIComponent(name)}&body=${encodeURIComponent(message + '\n\nFrom: ' + name + ' <' + email + '>')}`;
+      statusBox.innerHTML = `
+        <div style="font-weight: 700; margin-bottom: 4px;">✕ NETWORK CONNECTION ERROR</div>
+        <div>Could not reach the server. Please check your connection or send directly:</div>
+        <div style="margin-top: 8px;">
+          <a href="${mailtoFallback}" class="contact-fallback-link" style="color: #c91820; font-weight: 700; text-decoration: underline;">Open Pre-filled Draft in Email Client addressed to project2krishnan@gmail.com &rarr;</a>
+        </div>
+      `;
+      statusBox.style.display = 'block';
+      submitBtn.disabled = false;
+      if (btnLabel) btnLabel.textContent = originalLabel;
+    }
+  }
+  window.handleContactSubmit = handleContactSubmit;
 
   // 4. Mount DomeGallery in VISUAL ORBIT with 40 unique slots
   let domeGalleryInstance = null;

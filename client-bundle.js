@@ -59101,7 +59101,7 @@ void main() {
   }
   function BeyondTheFrame({ theme = "dark", entries }) {
     const isLight = theme === "light";
-    const sourceEntries = Array.isArray(entries) && entries.length > 0 ? entries : CINEMATIC_ENTRIES;
+    const sourceEntries = Array.isArray(entries) ? entries : CINEMATIC_ENTRIES;
     const activeEntries = sourceEntries.filter((entry) => entry && entry.visible !== false);
     return /* @__PURE__ */ import_react9.default.createElement(ScrollStack_default, { showPaddingCues: true, theme }, activeEntries.map((entry, idx) => /* @__PURE__ */ import_react9.default.createElement(ScrollStackItem, { key: entry.id || `btf-0${idx + 1}`, index: idx }, /* @__PURE__ */ import_react9.default.createElement(CinematicBanner, { entry, isLight }))));
   }
@@ -60488,9 +60488,9 @@ ${FOIL_FRAGMENT_HEAD}`).replace("#include <opaque_fragment>", `${FOIL_FRAGMENT_B
     const [, setTick] = (0, import_react12.useState)(0);
     const docTheme = typeof document !== "undefined" ? detectDocumentTheme() : null;
     const activeTheme = docTheme || (theme === "light" || theme === "dark" ? theme : "dark");
-    const careerStagesList = (Array.isArray(customCareerStages) && customCareerStages.length > 0 ? customCareerStages : CAREER_STAGES).filter(s => s && s.visible !== false);
-    const foundationsList = (Array.isArray(customFoundations) && customFoundations.length > 0 ? customFoundations : FOUNDATIONS_TOOLS).filter(f => f && f.visible !== false);
-    const creativeSkillsList = (Array.isArray(customCreativeSkills) && customCreativeSkills.length > 0 ? customCreativeSkills : CREATIVE_SKILLS).filter(s => s && s.visible !== false);
+    const careerStagesList = (Array.isArray(customCareerStages) ? customCareerStages : CAREER_STAGES).filter(s => s && s.visible !== false);
+    const foundationsList = (Array.isArray(customFoundations) ? customFoundations : FOUNDATIONS_TOOLS).filter(f => f && f.visible !== false);
+    const creativeSkillsList = (Array.isArray(customCreativeSkills) ? customCreativeSkills : CREATIVE_SKILLS).filter(s => s && s.visible !== false);
     const [selectedStageId, setSelectedStageId] = (0, import_react12.useState)("CREATIVE DIRECTOR");
     const [hoveredStageId, setHoveredStageId] = (0, import_react12.useState)(null);
     const [activeSkillIndex, setActiveSkillIndex] = (0, import_react12.useState)(null);

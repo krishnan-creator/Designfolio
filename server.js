@@ -773,6 +773,16 @@ function sendJson(res, statusCode, data) {
   res.end(json);
 }
 
+function escapeHtml(str) {
+  if (!str) return '';
+  return String(str)
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;')
+    .replace(/'/g, '&#039;');
+}
+
 function validateContentModel(data) {
   if (!data || typeof data !== 'object') {
     return 'Content must be a valid JSON object';
@@ -1392,6 +1402,265 @@ async function requestHandler(req, res) {
     } catch (err) {
       const status = err.statusCode || 500;
       return sendJson(res, status, { success: false, error: err.message });
+    }
+  }
+
+  // 7.1 CONTENT: Permanent Entry Deletion (Protected, Atomic, Persisted)
+  if (pathname === '/api/content/entry/delete' && req.method === 'POST') {
+    if (!checkAuth(req)) {
+      return sendJson(res, 401, { success: false, error: 'Unauthorized: Admin session required' });
+    }
+
+    try {
+      const body = await parseJsonBody(req);
+      const { sectionId, collectionKey, entryId } = body || {};
+      if (!sectionId || !collectionKey || !entryId) {
+        return sendJson(res, 400, { success: false, error: 'sectionId, collectionKey, and entryId are required' });
+      }
+
+      // Load authoritative content
+      const contentRes = await storageAdapter.getContent(true, true);
+      const content = contentRes.data;
+
+      // Find section (top-level or child)
+      let targetSec = content.sections.find(s => s.id === sectionId);
+      if (!targetSec) {
+        for (const s of content.sections) {
+          if (Array.isArray(s.children)) {
+            const ch = s.children.find(c => c.id === sectionId);
+            if (ch) { targetSec = ch; break; }
+          }
+        }
+      }
+      if (!targetSec) {
+        return sendJson(res, 404, { success: false, error: `Section "${sectionId}" not found` });
+      }
+
+      const collection = targetSec.content?.[collectionKey];
+      if (!Array.isArray(collection)) {
+        return sendJson(res, 404, { success: false, error: `Collection "${collectionKey}" not found in section "${sectionId}"` });
+      }
+
+      const entryIndex = collection.findIndex(item => item && (item.id === entryId || item.slotNumber === entryId || item.slot === entryId));
+      if (entryIndex === -1) {
+        return sendJson(res, 404, { success: false, error: `Entry with ID "${entryId}" not found in collection` });
+      }
+
+      const deletedItem = collection.splice(entryIndex, 1)[0];
+
+      // Save and publish to both content.json and content-draft.json atomically
+      await storageAdapter.publishContent(content);
+
+      return sendJson(res, 200, {
+        success: true,
+        message: `Entry "${deletedItem.title || deletedItem.name || deletedItem.label || entryId}" permanently deleted.`,
+        deletedId: entryId,
+        data: content
+      });
+    } catch (err) {
+      const status = err.statusCode || 500;
+      return sendJson(res, status, { success: false, error: 'Deletion failed: ' + err.message });
+    }
+  }
+
+  // 7.2 CONTENT: Fast Atomic Visibility Toggle (Protected, Atomic, Persisted)
+  if (pathname === '/api/content/entry/visibility' && req.method === 'POST') {
+    if (!checkAuth(req)) {
+      return sendJson(res, 401, { success: false, error: 'Unauthorized: Admin session required' });
+    }
+
+    try {
+      const body = await parseJsonBody(req);
+      const { sectionId, pathStr, visible } = body || {};
+      if (!sectionId || !pathStr) {
+        return sendJson(res, 400, { success: false, error: 'sectionId and pathStr are required' });
+      }
+
+      // Load authoritative content
+      const contentRes = await storageAdapter.getContent(true, true);
+      const content = contentRes.data;
+
+      // Find section
+      let targetSec = content.sections.find(s => s.id === sectionId);
+      if (!targetSec) {
+        for (const s of content.sections) {
+          if (Array.isArray(s.children)) {
+            const ch = s.children.find(c => c.id === sectionId);
+            if (ch) { targetSec = ch; break; }
+          }
+        }
+      }
+      if (!targetSec) {
+        return sendJson(res, 404, { success: false, error: `Section "${sectionId}" not found` });
+      }
+
+      // Traverse path
+      const parts = pathStr.split('.');
+      let curr = targetSec;
+      for (let i = 0; i < parts.length - 1; i++) {
+        if (!curr[parts[i]]) curr[parts[i]] = {};
+        curr = curr[parts[i]];
+      }
+      const lastKey = parts[parts.length - 1];
+      curr[lastKey] = (visible !== undefined) ? visible : (curr[lastKey] === false ? true : false);
+
+      // Save and publish to both content.json and content-draft.json atomically
+      await storageAdapter.publishContent(content);
+
+      return sendJson(res, 200, {
+        success: true,
+        message: `Visibility updated for ${pathStr}`,
+        visible: curr[lastKey],
+        data: content
+      });
+    } catch (err) {
+      const status = err.statusCode || 500;
+      return sendJson(res, status, { success: false, error: 'Visibility update failed: ' + err.message });
+    }
+  }
+
+  // 7.3 INLINE CONTACT FORM: Email Delivery Gateway (Strict Fixed Recipient)
+  if (pathname === '/api/contact' && req.method === 'POST') {
+    // 1. IP rate limiting: max 5 messages per 10 minutes per IP
+    const clientIp = getClientIp(req);
+    const now = Date.now();
+    const windowMs = 10 * 60 * 1000;
+    const maxSubmissions = 5;
+
+    if (!global.__contactRateLimits) global.__contactRateLimits = new Map();
+    const rateLimits = global.__contactRateLimits;
+    let record = rateLimits.get(clientIp);
+    if (!record || now - record.resetTime > windowMs) {
+      record = { count: 0, resetTime: now };
+      rateLimits.set(clientIp, record);
+    }
+    if (record.count >= maxSubmissions) {
+      return sendJson(res, 429, {
+        success: false,
+        error: 'Too many contact requests from your IP. Please try again in a few minutes.'
+      });
+    }
+
+    try {
+      const body = await parseJsonBody(req);
+      const name = (body.name || '').trim();
+      const email = (body.email || '').trim();
+      const message = (body.message || '').trim();
+
+      // 2. Strict validation
+      if (!name) {
+        return sendJson(res, 400, { success: false, error: 'Name is required.', field: 'name' });
+      }
+      if (name.length > 100) {
+        return sendJson(res, 400, { success: false, error: 'Name must be 100 characters or fewer.', field: 'name' });
+      }
+
+      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      if (!email || !emailRegex.test(email)) {
+        return sendJson(res, 400, { success: false, error: 'A valid email address is required.', field: 'email' });
+      }
+      if (email.length > 150) {
+        return sendJson(res, 400, { success: false, error: 'Email must be 150 characters or fewer.', field: 'email' });
+      }
+
+      if (!message || message.length < 5) {
+        return sendJson(res, 400, { success: false, error: 'Message must be at least 5 characters long.', field: 'message' });
+      }
+      if (message.length > 5000) {
+        return sendJson(res, 400, { success: false, error: 'Message must be 5000 characters or fewer.', field: 'message' });
+      }
+
+      // 3. Fixed recipient: strictly hardcoded server-side to project2krishnan@gmail.com
+      const FIXED_RECIPIENT = 'project2krishnan@gmail.com';
+
+      const gmailUser = (process.env.GMAIL_USER || '').trim();
+      const gmailPass = (process.env.GMAIL_APP_PASSWORD || '').trim().replace(/\s+/g, '');
+
+      if (!gmailUser || !gmailPass) {
+        return sendJson(res, 503, {
+          success: false,
+          error: 'Email delivery gateway is not configured on the server. Please reach out via WhatsApp, LinkedIn, or email client.',
+          fallbackRecipient: FIXED_RECIPIENT,
+          configured: false
+        });
+      }
+
+      const transporter = nodemailer.createTransport({
+        host: process.env.SMTP_HOST || 'smtp.gmail.com',
+        port: parseInt(process.env.SMTP_PORT || '587', 10),
+        secure: false, // port 587 uses STARTTLS
+        auth: {
+          user: gmailUser,
+          pass: gmailPass
+        },
+        connectionTimeout: 10000,
+        greetingTimeout: 8000,
+        socketTimeout: 15000
+      });
+
+      const sanitizedName = name.replace(/[\r\n]+/g, ' ');
+      const textBody = `New Creative Inquiry from CBK Designfolio\n` +
+        `-----------------------------------------\n` +
+        `Sender Name:    ${sanitizedName}\n` +
+        `Sender Email:   ${email}\n` +
+        `Date & Time:    ${new Date().toUTCString()}\n` +
+        `-----------------------------------------\n\n` +
+        `Message:\n${message}\n\n` +
+        `-----------------------------------------\n` +
+        `Sent via CBK Designfolio Portfolio Contact Form`;
+
+      const htmlBody = `
+        <div style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; max-width: 600px; margin: 0 auto; padding: 24px; border: 1px solid #e0e0e0; border-radius: 8px; background: #ffffff; color: #111111;">
+          <div style="border-bottom: 2px solid #ff3038; padding-bottom: 12px; margin-bottom: 20px;">
+            <span style="font-size: 11px; font-weight: 700; letter-spacing: 0.15em; color: #ff3038; text-transform: uppercase;">CBK DESIGNFOLIO // CREATIVE INQUIRY</span>
+            <h2 style="margin: 8px 0 0 0; font-size: 20px; color: #111111;">New Inquiry from ${escapeHtml(sanitizedName)}</h2>
+          </div>
+          <table style="width: 100%; border-collapse: collapse; margin-bottom: 20px; font-size: 14px;">
+            <tr>
+              <td style="padding: 8px 0; color: #666666; width: 120px;"><strong>Sender Name:</strong></td>
+              <td style="padding: 8px 0; color: #111111;">${escapeHtml(sanitizedName)}</td>
+            </tr>
+            <tr>
+              <td style="padding: 8px 0; color: #666666;"><strong>Sender Email:</strong></td>
+              <td style="padding: 8px 0; color: #111111;"><a href="mailto:${escapeHtml(email)}" style="color: #ff3038; text-decoration: none;">${escapeHtml(email)}</a></td>
+            </tr>
+            <tr>
+              <td style="padding: 8px 0; color: #666666;"><strong>Sent At:</strong></td>
+              <td style="padding: 8px 0; color: #666666;">${new Date().toUTCString()}</td>
+            </tr>
+          </table>
+          <div style="background: #f7f7f8; border-left: 3px solid #ff3038; padding: 16px; border-radius: 4px; margin-bottom: 24px;">
+            <div style="font-size: 11px; font-weight: 700; letter-spacing: 0.1em; color: #888888; text-transform: uppercase; margin-bottom: 8px;">MESSAGE:</div>
+            <div style="font-size: 15px; line-height: 1.6; color: #222222; white-space: pre-wrap;">${escapeHtml(message)}</div>
+          </div>
+          <div style="font-size: 12px; color: #888888; border-top: 1px solid #eeeeee; padding-top: 12px;">
+            Reply directly to this email to respond to ${escapeHtml(sanitizedName)} (&lt;${escapeHtml(email)}&gt;).
+          </div>
+        </div>
+      `;
+
+      await transporter.sendMail({
+        from: `"CBK Designfolio Contact" <${gmailUser}>`,
+        to: FIXED_RECIPIENT,
+        replyTo: `"${sanitizedName}" <${email}>`,
+        subject: `Creative Inquiry: ${sanitizedName} — CBK Designfolio`,
+        text: textBody,
+        html: htmlBody
+      });
+
+      record.count++;
+      console.log(`[Contact] Inquiry from ${email} successfully delivered to ${FIXED_RECIPIENT}`);
+
+      return sendJson(res, 200, {
+        success: true,
+        message: 'Thank you! Your message has been sent directly to Bala Krishnan (project2krishnan@gmail.com). We will be in touch shortly.'
+      });
+    } catch (err) {
+      console.error('[Contact] Delivery error:', err.message);
+      return sendJson(res, 502, {
+        success: false,
+        error: 'Unable to deliver message through mail gateway. Please try again or use direct email / WhatsApp.'
+      });
     }
   }
 

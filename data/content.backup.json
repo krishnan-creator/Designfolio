@@ -1,7 +1,7 @@
 {
-  "version": 77,
-  "lastUpdated": "2026-10-22T12:00:23.940Z",
-  "publishedAt": "2026-10-22T12:00:23.940Z",
+  "version": 88,
+  "lastUpdated": "2026-10-22T12:54:00.002Z",
+  "publishedAt": "2026-10-22T12:54:00.002Z",
   "settings": {
     "siteTitle": "C. Bala Krishnan — CBK Designfolio | Creative Director & Visual Artist",
     "brandName": "CBK",
@@ -44,7 +44,7 @@
         "quote": "Turning Ideas into Visuals",
         "quoteBracket": "//",
         "stickyNote": {
-          "visible": false,
+          "visible": true,
           "badge": "GEN AI CREATIVE PRODUCER",
           "image": "Gen ai.png",
           "paperImage": "sticky-note-clean.png",
@@ -244,7 +244,7 @@
             "id": "btf-05",
             "slotNumber": "05",
             "title": "HORNS & SKULL",
-            "category": "05 //  Re Imagined COMIC & SHOTS",
+            "category": "05 // REIMAGINED COMIC & SHOTS",
             "desc": "Building a Marvel-inspired universe reimagined in Indian Version.",
             "image": "horns.png",
             "position": "center 36%",
@@ -288,6 +288,15 @@
             "desc": "Original mythological world development and synthetic epic atmosphere.",
             "image": "Ramayana.png",
             "position": "center 40%",
+            "visible": true
+          },
+          {
+            "id": "btf-temp-test-1792673639996",
+            "slotNumber": "10",
+            "title": "TEMPORARY TEST ENTRY FOR DELETION",
+            "category": "TEST // TEMPORARY",
+            "desc": "This item is created solely to prove permanent deletion works.",
+            "image": "",
             "visible": true
           }
         ],

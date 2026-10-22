@@ -139,7 +139,17 @@
   }
 
   function hydrateTicker(section) {
-    if (!section || !section.content) return;
+    if (!section) return;
+    const tickerWrap = document.querySelector('.hero-ticker-wrap');
+    if (tickerWrap) {
+      if (section.visible === false) {
+        tickerWrap.style.display = 'none';
+        return;
+      } else {
+        tickerWrap.style.display = '';
+      }
+    }
+    if (!section.content) return;
     const c = section.content;
     const raw = c.tickerText || c.items;
     if (raw) {
@@ -168,10 +178,13 @@
     if (desc && c.subtitle) desc.textContent = c.subtitle;
 
     const grid = secEl.querySelector('.numbers-editorial-grid');
-    if (grid && Array.isArray(c.items) && c.items.length > 0) {
-      grid.innerHTML = c.items
-        .filter(item => item.visible !== false)
-        .map(item => `
+    if (grid) {
+      const visibleItems = (c.items || []).filter(item => item.visible !== false);
+      if (visibleItems.length === 0) {
+        grid.innerHTML = '';
+      } else {
+        grid.style.gridTemplateColumns = visibleItems.length > 0 ? `repeat(${visibleItems.length}, 1fr)` : '';
+        grid.innerHTML = visibleItems.map(item => `
           <div class="number-tile ${item.featured ? 'number-tile-featured' : ''}" tabindex="0" role="region" aria-label="${escapeHtml(item.value + (item.suffix || '') + ' ' + item.label)}">
             <div class="number-tile-header">
               <span class="number-cat">${escapeHtml(item.category || '')}</span>
@@ -184,6 +197,7 @@
             </div>
           </div>
         `).join('');
+      }
     }
   }
 
@@ -241,11 +255,15 @@
     // Hydrate cinematic entries
     if (Array.isArray(c.entries)) {
       const activeEntries = c.entries.filter(e => e.visible !== false);
-      window.__beyondFrameCustomEntries = activeEntries;
-      if (window.beyondFrameInstance && typeof window.beyondFrameInstance.update === 'function') {
-        window.beyondFrameInstance.update({
-          entries: activeEntries
-        });
+      if (typeof window.updateBeyondTheFrame === 'function') {
+        window.updateBeyondTheFrame(activeEntries);
+      } else {
+        window.__beyondFrameCustomEntries = activeEntries;
+        if (window.beyondFrameInstance && typeof window.beyondFrameInstance.update === 'function') {
+          window.beyondFrameInstance.update({
+            entries: activeEntries
+          });
+        }
       }
     }
   }
@@ -277,7 +295,7 @@
     if (Array.isArray(c.landscapeProjects)) {
       const visibleProjects = c.landscapeProjects.filter(p => p.visible !== false);
 
-      if (row1 && visibleProjects.length > 0) {
+      if (row1) {
         const initial = visibleProjects.slice(0, 2);
         row1.innerHTML = initial.map(renderLandscapeCard).join('');
       }
@@ -520,7 +538,16 @@
     if (desc && c.subtitle) desc.textContent = c.subtitle;
 
     if (Array.isArray(c.companies)) {
-      const rows = secEl.querySelectorAll('.expertise-list .expertise-row');
+      const allDomRows = secEl.querySelectorAll('.expertise-list .expertise-row');
+      // Hide any DOM rows that were permanently deleted from c.companies
+      allDomRows.forEach(row => {
+        const match = c.companies.find(comp => comp.id === row.id || (comp.id === 'exp-impromp2labs' && row.id === 'exp-impromp2'));
+        if (!match || match.visible === false) {
+          row.style.display = 'none';
+        }
+      });
+
+      const rows = allDomRows;
       c.companies.forEach((comp, idx) => {
         let row = document.getElementById(comp.id);
         if (!row && comp.id === 'exp-impromp2labs') {
@@ -783,8 +810,8 @@
       }
     }
 
-    // Primary CTA Button (LET'S CONNECT / Email action)
-    const primaryBtn = secEl.querySelector('.build-btn-primary');
+    // Primary CTA Button (LET'S CONNECT / Form submit button)
+    const primaryBtn = secEl.querySelector('.build-btn-primary') || document.getElementById('contact-submit-btn');
     if (primaryBtn) {
       if (c.primaryButton?.visible === false) {
         primaryBtn.style.display = 'none';
@@ -792,18 +819,8 @@
         primaryBtn.style.display = '';
       }
       if (c.primaryButton?.label) {
-        const span = primaryBtn.querySelector('span');
+        const span = primaryBtn.querySelector('span') || document.getElementById('contact-btn-label');
         if (span) span.textContent = c.primaryButton.label;
-      }
-      let targetUrl = c.primaryButton?.url || 'mailto:meet2krishnan@gmail.com?subject=Creative%20Inquiry%20%E2%80%94%20CBK%20Designfolio';
-      if (typeof targetUrl === 'string' && (targetUrl.startsWith('<ahref=') || !targetUrl.trim() || targetUrl.includes('mail.google.com'))) {
-        targetUrl = 'mailto:meet2krishnan@gmail.com?subject=Creative%20Inquiry%20%E2%80%94%20CBK%20Designfolio';
-      }
-      primaryBtn.setAttribute('href', targetUrl);
-      if (targetUrl.startsWith('mailto:')) {
-        primaryBtn.removeAttribute('target');
-      } else if (c.primaryButton?.target) {
-        primaryBtn.setAttribute('target', c.primaryButton.target);
       }
     }
 
