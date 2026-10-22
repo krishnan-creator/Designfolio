@@ -1747,7 +1747,7 @@ async function requestHandler(req, res) {
 
 const server = http.createServer(requestHandler);
 
-if (!IS_VERCEL) {
+if (require.main === module && !IS_VERCEL) {
   server.listen(PORT, () => {
     console.log(`CBK DESIGNFOLIO Server running at http://localhost:${PORT}`);
     console.log(`BACKSTAGE CMS available at http://localhost:${PORT}/backstage`);
