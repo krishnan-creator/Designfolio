@@ -766,8 +766,17 @@ const server = http.createServer(async (req, res) => {
     return res.end();
   }
 
-  const parsedUrl = new URL(req.url, `http://${req.headers.host || 'localhost:3000'}`);
-  const pathname = decodeURI(parsedUrl.pathname);
+  const matchedPath = req.headers['x-matched-path'];
+  let rawUrl = req.url;
+  if (matchedPath && matchedPath !== '/api' && matchedPath !== '/api/') {
+    rawUrl = matchedPath;
+  }
+  const parsedUrl = new URL(rawUrl, `http://${req.headers.host || 'localhost:3000'}`);
+  let pathname = decodeURI(parsedUrl.pathname);
+  if ((pathname === '/api' || pathname === '/api/') && parsedUrl.searchParams.has('__path')) {
+    const sub = parsedUrl.searchParams.get('__path');
+    pathname = sub.startsWith('/') ? sub : '/' + sub;
+  }
 
   // -------------------------------------------------------------
   // API ROUTING
