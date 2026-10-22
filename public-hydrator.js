@@ -183,7 +183,7 @@
       if (visibleItems.length === 0) {
         grid.innerHTML = '';
       } else {
-        grid.style.gridTemplateColumns = visibleItems.length > 0 ? `repeat(${visibleItems.length}, 1fr)` : '';
+        grid.style.gridTemplateColumns = '';
         grid.innerHTML = visibleItems.map(item => `
           <div class="number-tile ${item.featured ? 'number-tile-featured' : ''}" tabindex="0" role="region" aria-label="${escapeHtml(item.value + (item.suffix || '') + ' ' + item.label)}">
             <div class="number-tile-header">

@@ -72640,22 +72640,18 @@ ${FOIL_FRAGMENT_HEAD}`).replace("#include <opaque_fragment>", `${FOIL_FRAGMENT_B
   // ThrineModel.jsx
   function ThrineModel({ theme = "dark" }) {
     const isLight = theme === "light";
-    const project = isLight ? "e_6cab7e12cb7be5a21c8c" : "e_677e5a3e01da81420ed5";
-    const aspectRatio2 = isLight ? "672 / 638" : "729 / 643";
+    const project = isLight ? "e_85a495ea90c196a38807" : "e_ff6399d0ea6e9b79ba9b";
+    const aspectRatio2 = isLight ? "707 / 770" : "707 / 748";
     const key = `thrine-model-${isLight ? "light" : "dark"}-${project}`;
     return /* @__PURE__ */ import_react35.default.createElement("div", { className: "thrine-model-wrapper", "data-theme": isLight ? "light" : "dark" }, /* @__PURE__ */ import_react35.default.createElement(
       "model-embed",
       {
         key,
         project,
-        restrict: "transparent",
         style: {
           display: "block",
           width: "100%",
-          aspectRatio: aspectRatio2,
-          background: "transparent",
-          maskImage: "radial-gradient(circle at 50% 50%, black 50%, rgba(0, 0, 0, 0) 72%)",
-          WebkitMaskImage: "radial-gradient(circle at 50% 50%, black 50%, rgba(0, 0, 0, 0) 72%)"
+          aspectRatio: aspectRatio2
         }
       }
     ));

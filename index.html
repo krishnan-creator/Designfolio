@@ -1909,7 +1909,7 @@
       font-weight: 800;
       font-size: clamp(2.4rem, 4.8vw, 4.2rem);
       letter-spacing: -0.02em;
-      line-height: 1;
+      line-height: 1.08;
       text-transform: uppercase;
       color: var(--dbl-text-primary);
     }
@@ -1929,6 +1929,8 @@
 .by-the-numbers-section {
   position: relative;
   margin-bottom: 0 !important;
+  scroll-margin-top: 80px;
+  overflow: visible;
 }
 
 .numbers-archive-wrap {
@@ -1937,23 +1939,27 @@
   display: flex;
   flex-direction: column;
   gap: 36px;
+  width: 100%;
 }
 
 .numbers-editorial-grid {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  gap: 16px;
+  gap: 20px 16px;
+  width: 100%;
 }
 
 @media (max-width: 1024px) {
   .numbers-editorial-grid {
     grid-template-columns: repeat(2, 1fr);
+    gap: 16px;
   }
 }
 
 @media (max-width: 600px) {
   .numbers-editorial-grid {
     grid-template-columns: 1fr;
+    gap: 14px;
   }
 }
 
@@ -1966,6 +1972,8 @@
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
+  min-height: 175px;
+  box-sizing: border-box;
   outline: none;
   cursor: pointer;
   transition: border-color 0.28s ease, transform 0.25s ease, box-shadow 0.28s ease, background 0.25s ease;
@@ -3374,7 +3382,7 @@
     .contact-field-input {
       width: 100%;
       box-sizing: border-box;
-      background: rgba(255, 255, 255, 0.78);
+      background: rgba(255, 255, 255, 0.85);
       border: 1px solid rgba(18, 18, 21, 0.22);
       border-radius: 6px;
       padding: 11px 14px;
@@ -3385,10 +3393,64 @@
       transition: border-color 0.2s, box-shadow 0.2s, background 0.2s;
     }
 
+    .contact-field-input::placeholder {
+      color: #767676;
+    }
+
     .contact-field-input:focus {
       background: #ffffff;
       border-color: #ff3038;
       box-shadow: 0 0 0 3px rgba(255, 48, 56, 0.16);
+    }
+
+    /* TASK 2: PURE WHITE SOLID CONTACT FORM FIELDS IN LIGHT THEME */
+    [data-theme="light"] .contact-field-label {
+      color: #F4F4F2 !important;
+    }
+
+    [data-theme="light"] .contact-field-input {
+      background: #FFFFFF !important;
+      background-color: #FFFFFF !important;
+      color: #111114 !important;
+      border: 1px solid #D1D5DB !important;
+      border-radius: 6px !important;
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12) !important;
+      opacity: 1 !important;
+    }
+
+    [data-theme="light"] .contact-field-input::placeholder {
+      color: #767676 !important;
+      opacity: 1 !important;
+    }
+
+    [data-theme="light"] .contact-field-input:hover {
+      background: #FFFFFF !important;
+      background-color: #FFFFFF !important;
+      border-color: #9CA3AF !important;
+    }
+
+    [data-theme="light"] .contact-field-input:focus {
+      background: #FFFFFF !important;
+      background-color: #FFFFFF !important;
+      border-color: #ff3038 !important;
+      box-shadow: 0 0 0 3px rgba(255, 48, 56, 0.18), 0 1px 3px rgba(0, 0, 0, 0.12) !important;
+      outline: none !important;
+    }
+
+    [data-theme="light"] .contact-field-input:disabled,
+    [data-theme="light"] .contact-field-input[readonly] {
+      background: #FFFFFF !important;
+      background-color: #FFFFFF !important;
+      color: #6B7280 !important;
+      border-color: #E5E7EB !important;
+      cursor: not-allowed;
+    }
+
+    [data-theme="light"] .contact-field-input.has-error {
+      background: #FFFFFF !important;
+      background-color: #FFFFFF !important;
+      border-color: #dc2626 !important;
+      box-shadow: 0 0 0 3px rgba(220, 38, 38, 0.15) !important;
     }
 
     .contact-field-textarea {
@@ -6439,8 +6501,6 @@ console.log('Saved scratch/new_master_styles.css');
       box-shadow: none !important;
       outline: none !important;
       pointer-events: auto !important;
-      mask-image: radial-gradient(circle at 50% 50%, black 50%, rgba(0, 0, 0, 0) 72%) !important;
-      -webkit-mask-image: radial-gradient(circle at 50% 50%, black 50%, rgba(0, 0, 0, 0) 72%) !important;
     }
 
     @media (max-width: 900px) {
@@ -13392,6 +13452,8 @@ window.initMasterThemeAndEffects = function() {
     initLanyardProfile(theme);
     if (thrineModelInstance) {
       thrineModelInstance.update({ theme });
+    } else {
+      initThrineModel(theme);
     }
   }
   window.handleThemeChange = handleThemeChange;
