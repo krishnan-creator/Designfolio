@@ -12,7 +12,7 @@ const nodemailer = require('nodemailer');
 
 const storageAdapter = require('./storage-adapter');
 
-const ROOT_DIR = __dirname;
+const ROOT_DIR = process.cwd();
 const IS_VERCEL = !!(process.env.VERCEL || process.env.VERCEL_ENV || process.env.AWS_LAMBDA_FUNCTION_NAME);
 const DATA_DIR = path.join(ROOT_DIR, 'data');
 const CONTENT_FILE = path.join(DATA_DIR, 'content.json');
@@ -290,7 +290,10 @@ function cleanupStaleOtpChallenges() {
     }
   }
 }
-setInterval(cleanupStaleOtpChallenges, 60 * 1000);
+if (!IS_VERCEL) {
+  const otpCleanupTimer = setInterval(cleanupStaleOtpChallenges, 60 * 1000);
+  if (otpCleanupTimer && otpCleanupTimer.unref) otpCleanupTimer.unref();
+}
 
 // -------------------------------------------------------------
 // TOTP (AUTHENTICATOR APP) PERSISTENCE & HELPERS
@@ -755,7 +758,8 @@ const MIME_TYPES = {
 };
 
 async function requestHandler(req, res) {
-  // CORS Preflight
+  try {
+    // CORS Preflight
   if (req.method === 'OPTIONS') {
     res.writeHead(204, {
       'Access-Control-Allow-Origin': '*',
@@ -1722,8 +1726,23 @@ async function requestHandler(req, res) {
     }
 
     res.writeHead(200, headers);
-    fs.createReadStream(filePath).pipe(res);
+    const stream = fs.createReadStream(filePath);
+    stream.on('error', err => {
+      console.error('[File Stream Error]', err);
+      if (!res.headersSent) {
+        res.writeHead(500, { 'Content-Type': 'text/plain' });
+        res.end('500 Read Error');
+      }
+    });
+    stream.pipe(res);
   });
+  } catch (fatalErr) {
+    console.error('[SERVER FATAL ERROR]', fatalErr);
+    if (!res.headersSent) {
+      res.writeHead(500, { 'Content-Type': 'application/json' });
+      res.end(JSON.stringify({ success: false, error: 'Internal server error: ' + fatalErr.message }));
+    }
+  }
 }
 
 const server = http.createServer(requestHandler);

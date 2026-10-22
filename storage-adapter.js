@@ -28,7 +28,7 @@ try {
   // Safely handled if running in minimal environment
 }
 
-const ROOT_DIR = __dirname;
+const ROOT_DIR = process.cwd();
 const IS_VERCEL = !!(process.env.VERCEL || process.env.VERCEL_ENV || process.env.AWS_LAMBDA_FUNCTION_NAME);
 const LOCAL_DATA_DIR = path.join(ROOT_DIR, 'data');
 const LOCAL_TEMP_DIR = path.join(ROOT_DIR, '.temp_uploads');

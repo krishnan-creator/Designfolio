@@ -6,26 +6,27 @@
       "use": "@vercel/node",
       "config": {
         "includeFiles": [
+          "data/**",
           "index.html",
           "backstage.html",
-          "style.css",
-          "script.js",
           "backstage-app.js",
-          "storage-adapter.js",
-          "data/**",
-          "*.png",
-          "*.jpg",
-          "*.jpeg",
-          "*.webp",
-          "*.svg",
-          "*.mp4",
-          "*.mpeg",
-          "*.txt"
+          "storage-adapter.js"
         ]
       }
     }
   ],
   "routes": [
+    {
+      "src": "/api/(.*)",
+      "dest": "server.js"
+    },
+    {
+      "handle": "filesystem"
+    },
+    {
+      "src": "/backstage",
+      "dest": "server.js"
+    },
     {
       "src": "/(.*)",
       "dest": "server.js"
