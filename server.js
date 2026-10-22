@@ -6,7 +6,70 @@ const fs = require('fs');
 const path = require('path');
 const crypto = require('crypto');
 const querystring = require('querystring');
-const { generateSecret, generateURI, verifySync } = require('otplib');
+// Native RFC 6238 TOTP implementation without external ESM module conflicts
+function base32Decode(base32) {
+  const alphabet = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ234567';
+  let clean = String(base32 || '').toUpperCase().replace(/=+$/, '').replace(/\s+/g, '');
+  let bits = '';
+  for (let i = 0; i < clean.length; i++) {
+    const val = alphabet.indexOf(clean[i]);
+    if (val === -1) continue;
+    bits += val.toString(2).padStart(5, '0');
+  }
+  const bytes = [];
+  for (let i = 0; i + 8 <= bits.length; i += 8) {
+    bytes.push(parseInt(bits.substring(i, i + 8), 2));
+  }
+  return Buffer.from(bytes);
+}
+
+function base32Encode(buffer) {
+  const alphabet = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ234567';
+  let bits = '';
+  for (let i = 0; i < buffer.length; i++) {
+    bits += buffer[i].toString(2).padStart(8, '0');
+  }
+  let encoded = '';
+  for (let i = 0; i < bits.length; i += 5) {
+    const chunk = bits.substring(i, i + 5).padEnd(5, '0');
+    encoded += alphabet[parseInt(chunk, 2)];
+  }
+  return encoded;
+}
+
+function generateSecret(bytes = 20) {
+  return base32Encode(crypto.randomBytes(bytes));
+}
+
+function getTotpToken(secret, timeStep) {
+  const key = base32Decode(secret);
+  const timeBuffer = Buffer.alloc(8);
+  timeBuffer.writeBigUInt64BE(BigInt(timeStep), 0);
+  const hmac = crypto.createHmac('sha1', key).update(timeBuffer).digest();
+  const offset = hmac[hmac.length - 1] & 0xf;
+  const binary = ((hmac[offset] & 0x7f) << 24) |
+                 ((hmac[offset + 1] & 0xff) << 16) |
+                 ((hmac[offset + 2] & 0xff) << 8) |
+                 (hmac[offset + 3] & 0xff);
+  return (binary % 1000000).toString().padStart(6, '0');
+}
+
+function verifySync({ token, secret, window = 1 }) {
+  if (!token || !secret) return { valid: false };
+  const currentStep = Math.floor(Date.now() / 1000 / 30);
+  const cleanToken = String(token).trim();
+  for (let i = -window; i <= window; i++) {
+    const expected = getTotpToken(secret, currentStep + i);
+    if (expected === cleanToken) {
+      return { valid: true, step: currentStep + i };
+    }
+  }
+  return { valid: false };
+}
+
+function generateURI({ issuer, label, secret }) {
+  return `otpauth://totp/${encodeURIComponent(issuer)}:${encodeURIComponent(label)}?secret=${secret}&issuer=${encodeURIComponent(issuer)}&algorithm=SHA1&digits=6&period=30`;
+}
 const QRCode = require('qrcode');
 const nodemailer = require('nodemailer');
 
