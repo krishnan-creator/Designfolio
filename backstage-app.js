@@ -3161,6 +3161,50 @@ async function uploadMediaWithProgress({ file, onProgress, onStatusChange, abort
     throw new Error(initData.error || 'Failed to initialize upload session.');
   }
 
+  // Direct Vercel Blob client upload for 10 GB media support
+  if (initData.mode === 'blob') {
+    if (onStatusChange) onStatusChange('Connecting to persistent object storage...');
+    try {
+      const { upload } = await import('https://esm.sh/@vercel/blob@2.8.2/client');
+      const blob = await upload(file.name, file, {
+        access: 'public',
+        handleUploadUrl: initData.handleUploadUrl || '/api/media/upload/blob',
+        clientPayload: JSON.stringify({ isVideo, fileSize: file.size }),
+        headers: authToken ? { 'Authorization': `Bearer ${authToken}` } : {},
+        onUploadProgress: (progress) => {
+          if (onProgress) {
+            onProgress({
+              loaded: progress.loaded,
+              total: progress.total,
+              percentage: progress.percentage,
+              status: `Uploading directly to storage... ${formatBytes(progress.loaded)} / ${formatBytes(progress.total)} (${progress.percentage}%)`
+            });
+          }
+        }
+      });
+
+      if (onProgress) {
+        onProgress({
+          loaded: file.size,
+          total: file.size,
+          percentage: 100,
+          status: 'Direct upload verified!'
+        });
+      }
+      if (onStatusChange) onStatusChange('Upload completed successfully!');
+
+      return {
+        success: true,
+        url: blob.url,
+        filename: blob.pathname,
+        size: file.size,
+        mimeType: file.type || (isVideo ? 'video/mp4' : 'application/octet-stream')
+      };
+    } catch (blobErr) {
+      throw new Error('Direct storage upload failed: ' + blobErr.message);
+    }
+  }
+
   const { sessionId } = initData;
   if (onSessionCreated) onSessionCreated(sessionId);
 

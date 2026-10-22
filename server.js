@@ -10,21 +10,19 @@ const { generateSecret, generateURI, verifySync } = require('otplib');
 const QRCode = require('qrcode');
 const nodemailer = require('nodemailer');
 
+const storageAdapter = require('./storage-adapter');
+
 const ROOT_DIR = __dirname;
+const IS_VERCEL = !!(process.env.VERCEL || process.env.VERCEL_ENV || process.env.AWS_LAMBDA_FUNCTION_NAME);
 const DATA_DIR = path.join(ROOT_DIR, 'data');
 const CONTENT_FILE = path.join(DATA_DIR, 'content.json');
 const DRAFT_FILE = path.join(DATA_DIR, 'content-draft.json');
 const BACKUP_FILE = path.join(DATA_DIR, 'content.backup.json');
 const AUTH_FILE = path.join(DATA_DIR, 'auth.json');
-const TEMP_UPLOADS_DIR = path.join(ROOT_DIR, '.temp_uploads');
+const TEMP_UPLOADS_DIR = storageAdapter.getTempDir();
 
-// Ensure directories exist
-if (!fs.existsSync(DATA_DIR)) {
-  fs.mkdirSync(DATA_DIR, { recursive: true });
-}
-if (!fs.existsSync(TEMP_UPLOADS_DIR)) {
-  fs.mkdirSync(TEMP_UPLOADS_DIR, { recursive: true });
-}
+// Initialize storage safely without writing to /var/task in production
+storageAdapter.init();
 
 // -------------------------------------------------------------
 // LARGE MEDIA UPLOAD ARCHITECTURE (10 GB VIDEO POLICY)
@@ -36,22 +34,7 @@ const ALLOWED_VIDEO_EXTS = new Set(['.mp4', '.webm']);
 const ALLOWED_IMAGE_EXTS = new Set(['.png', '.jpg', '.jpeg', '.webp', '.svg', '.pdf']);
 const ALLOWED_AUDIO_EXTS = new Set(['.mp3', '.mpeg', '.wav', '.ogg', '.m4a']);
 
-const uploadSessions = new Map();
-
-function cleanupStaleUploadSessions() {
-  const now = Date.now();
-  for (const [id, session] of uploadSessions.entries()) {
-    if (now - session.createdAt > 4 * 60 * 60 * 1000) { // 4 hours expiry
-      try {
-        if (fs.existsSync(session.tempDir)) {
-          fs.rmSync(session.tempDir, { recursive: true, force: true });
-        }
-      } catch (e) { }
-      uploadSessions.delete(id);
-    }
-  }
-}
-setInterval(cleanupStaleUploadSessions, 30 * 60 * 1000);
+const uploadSessions = storageAdapter.uploadSessions;
 
 // -------------------------------------------------------------
 // ENVIRONMENT VARIABLES LOADER (.env)
@@ -73,6 +56,7 @@ const MANAGED_ENV_KEYS = new Set([
 
 let lastEnvHash = '';
 function loadEnvFile() {
+  if (IS_VERCEL) return;
   const envFiles = [
     path.join(ROOT_DIR, '.env'),
     path.join(ROOT_DIR, '.env.local')
@@ -311,54 +295,53 @@ setInterval(cleanupStaleOtpChallenges, 60 * 1000);
 // -------------------------------------------------------------
 // TOTP (AUTHENTICATOR APP) PERSISTENCE & HELPERS
 // -------------------------------------------------------------
-function isTotpEnrolled() {
+let inMemoryAuthData = null;
+function getAuthRecord() {
+  if (inMemoryAuthData) return inMemoryAuthData;
   if (fs.existsSync(AUTH_FILE)) {
     try {
-      const data = JSON.parse(fs.readFileSync(AUTH_FILE, 'utf8'));
-      return !!(data.totp && data.totp.enrolled && data.totp.secret);
-    } catch (e) {
-      return false;
-    }
-  }
-  return false;
-}
-
-function getTotpSecret() {
-  if (fs.existsSync(AUTH_FILE)) {
-    try {
-      const data = JSON.parse(fs.readFileSync(AUTH_FILE, 'utf8'));
-      return (data.totp && data.totp.enrolled) ? data.totp.secret : null;
-    } catch (e) {
-      return null;
-    }
+      inMemoryAuthData = JSON.parse(fs.readFileSync(AUTH_FILE, 'utf8'));
+      return inMemoryAuthData;
+    } catch (e) {}
   }
   return null;
 }
 
-function saveTotpEnrollment(secret) {
-  let data = {};
-  if (fs.existsSync(AUTH_FILE)) {
-    try {
-      data = JSON.parse(fs.readFileSync(AUTH_FILE, 'utf8'));
-    } catch (e) { }
-  }
+function isTotpEnrolled() {
+  const data = getAuthRecord();
+  return !!(data && data.totp && data.totp.enrolled && data.totp.secret);
+}
+
+function getTotpSecret() {
+  const data = getAuthRecord();
+  return (data && data.totp && data.totp.enrolled) ? data.totp.secret : null;
+}
+
+async function saveTotpEnrollment(secret) {
+  let data = getAuthRecord() || {};
   data.totp = {
     enrolled: true,
     secret,
     enrolledAt: new Date().toISOString()
   };
-  fs.writeFileSync(AUTH_FILE, JSON.stringify(data, null, 2), 'utf8');
+  inMemoryAuthData = data;
+  if (!IS_VERCEL) {
+    try { fs.writeFileSync(AUTH_FILE, JSON.stringify(data, null, 2), 'utf8'); } catch (e) {}
+  } else {
+    try { await storageAdapter.saveAuthData(data); } catch (e) {}
+  }
 }
 
-function resetTotpEnrollment() {
-  if (fs.existsSync(AUTH_FILE)) {
-    try {
-      const data = JSON.parse(fs.readFileSync(AUTH_FILE, 'utf8'));
-      if (data.totp) {
-        delete data.totp;
-        fs.writeFileSync(AUTH_FILE, JSON.stringify(data, null, 2), 'utf8');
-      }
-    } catch (e) { }
+async function resetTotpEnrollment() {
+  let data = getAuthRecord() || {};
+  if (data.totp) {
+    delete data.totp;
+    inMemoryAuthData = data;
+    if (!IS_VERCEL) {
+      try { fs.writeFileSync(AUTH_FILE, JSON.stringify(data, null, 2), 'utf8'); } catch (e) {}
+    } else {
+      try { await storageAdapter.saveAuthData(data); } catch (e) {}
+    }
   }
 }
 
@@ -553,34 +536,36 @@ function isAuthConfigured() {
   if (process.env.BACKSTAGE_PASSWORD && process.env.BACKSTAGE_PASSWORD.trim() !== '') {
     return true;
   }
-  if (fs.existsSync(AUTH_FILE)) {
-    try {
-      const raw = fs.readFileSync(AUTH_FILE, 'utf8');
-      const data = JSON.parse(raw);
-      return !!(data.salt && data.hash);
-    } catch (e) {
-      return false;
-    }
-  }
-  return false;
+  const data = getAuthRecord();
+  return !!(data && data.salt && data.hash);
 }
 
-function setAdminCredentials(password) {
+async function setAdminCredentials(password) {
   if (!password || typeof password !== 'string' || password.length < 6) {
     throw new Error('Passphrase must be at least 6 characters long.');
   }
   const salt = crypto.randomBytes(16).toString('hex');
   const hash = crypto.scryptSync(password, salt, 64).toString('hex');
-  let authData = {};
-  if (fs.existsSync(AUTH_FILE)) {
-    try { authData = JSON.parse(fs.readFileSync(AUTH_FILE, 'utf8')); } catch (e) { }
-  }
+  let authData = getAuthRecord() || {};
   authData.salt = salt;
   authData.hash = hash;
   authData.createdAt = authData.createdAt || new Date().toISOString();
   authData.updatedAt = new Date().toISOString();
-  fs.writeFileSync(AUTH_FILE, JSON.stringify(authData, null, 2), 'utf8');
-  console.log('[Auth] Administrator credentials saved to data/auth.json');
+  inMemoryAuthData = authData;
+
+  if (!IS_VERCEL) {
+    try {
+      fs.writeFileSync(AUTH_FILE, JSON.stringify(authData, null, 2), 'utf8');
+      console.log('[Auth] Administrator credentials saved to data/auth.json');
+    } catch (e) {}
+  } else {
+    try {
+      await storageAdapter.saveAuthData(authData);
+      console.log('[Auth] Administrator credentials saved to persistent storage');
+    } catch (e) {
+      console.warn('[Auth] Note: on Vercel, set BACKSTAGE_PASSWORD in Project Environment Variables for permanent passphrase authentication.');
+    }
+  }
 }
 
 function verifyAdminPassword(password) {
@@ -595,10 +580,9 @@ function verifyAdminPassword(password) {
   }
 
   // 2. data/auth.json scrypt hash
-  if (fs.existsSync(AUTH_FILE)) {
+  const authData = getAuthRecord();
+  if (authData && authData.salt && authData.hash) {
     try {
-      const authData = JSON.parse(fs.readFileSync(AUTH_FILE, 'utf8'));
-      if (!authData.salt || !authData.hash) return false;
       const computedHash = crypto.scryptSync(password, authData.salt, 64).toString('hex');
       const expectedBuf = Buffer.from(authData.hash);
       const computedBuf = Buffer.from(computedHash);
@@ -1106,7 +1090,7 @@ const server = http.createServer(async (req, res) => {
       }
 
       // Persist enrollment securely
-      saveTotpEnrollment(pending.secret);
+      await saveTotpEnrollment(pending.secret);
       pendingTotpEnrollments.delete(setupId);
 
       // Create session upon successful enrollment verification
@@ -1207,7 +1191,7 @@ const server = http.createServer(async (req, res) => {
     if (!checkAuth(req)) {
       return sendJson(res, 401, { success: false, error: 'Unauthorized: Admin session required to reset authenticator.' });
     }
-    resetTotpEnrollment();
+    await resetTotpEnrollment();
     return sendJson(res, 200, { success: true, message: 'Authenticator app enrollment cleared. You can now enroll a new device.' });
   }
 
@@ -1285,7 +1269,7 @@ const server = http.createServer(async (req, res) => {
       if (password !== confirmPassword) {
         return sendJson(res, 400, { success: false, error: 'Passphrases do not match. Please re-enter.' });
       }
-      setAdminCredentials(password);
+      await setAdminCredentials(password);
       const { token, expiresAt } = createSession();
       res.writeHead(200, {
         'Content-Type': 'application/json; charset=utf-8',
@@ -1373,36 +1357,18 @@ const server = http.createServer(async (req, res) => {
     const isDraftRequested = parsedUrl.searchParams.get('draft') === 'true';
     const isAuthed = checkAuth(req);
 
-    let targetFile = CONTENT_FILE;
-    if (isDraftRequested && isAuthed && fs.existsSync(DRAFT_FILE)) {
-      targetFile = DRAFT_FILE;
-    }
-
     try {
-      if (!fs.existsSync(targetFile)) {
-        // Fallback: if content.json not yet created, seed from backup or return default
-        if (fs.existsSync(CONTENT_FILE)) targetFile = CONTENT_FILE;
-      }
-      const raw = fs.readFileSync(targetFile, 'utf8');
-      const data = JSON.parse(raw);
-
-      // Determine if there are unsaved draft changes
-      let hasUnsavedChanges = false;
-      if (isAuthed && fs.existsSync(DRAFT_FILE) && fs.existsSync(CONTENT_FILE)) {
-        const publishedRaw = fs.readFileSync(CONTENT_FILE, 'utf8');
-        const draftRaw = fs.readFileSync(DRAFT_FILE, 'utf8');
-        hasUnsavedChanges = (publishedRaw !== draftRaw);
-      }
-
+      const contentResult = await storageAdapter.getContent(isDraftRequested, isAuthed);
       return sendJson(res, 200, {
         success: true,
-        data,
-        isDraft: (targetFile === DRAFT_FILE),
-        hasUnsavedChanges,
+        data: contentResult.data,
+        isDraft: contentResult.isDraft,
+        hasUnsavedChanges: contentResult.hasUnsavedChanges,
         authenticated: isAuthed
       });
     } catch (err) {
-      return sendJson(res, 500, { success: false, error: 'Failed to read content model: ' + err.message });
+      const status = err.statusCode || 500;
+      return sendJson(res, status, { success: false, error: 'Failed to read content model: ' + err.message });
     }
   }
 
@@ -1420,11 +1386,11 @@ const server = http.createServer(async (req, res) => {
         return sendJson(res, 400, { success: false, error: validationError });
       }
 
-      payload.lastUpdated = new Date().toISOString();
-      fs.writeFileSync(DRAFT_FILE, JSON.stringify(payload, null, 2), 'utf8');
-      return sendJson(res, 200, { success: true, message: 'Draft saved' });
+      const result = await storageAdapter.saveDraft(payload);
+      return sendJson(res, 200, result);
     } catch (err) {
-      return sendJson(res, 500, { success: false, error: err.message });
+      const status = err.statusCode || 500;
+      return sendJson(res, status, { success: false, error: err.message });
     }
   }
 
@@ -1442,32 +1408,11 @@ const server = http.createServer(async (req, res) => {
         return sendJson(res, 400, { success: false, error: validationError });
       }
 
-      // Create backup of current published content
-      if (fs.existsSync(CONTENT_FILE)) {
-        fs.copyFileSync(CONTENT_FILE, BACKUP_FILE);
-      }
-
-      // Bump version & publish timestamp
-      payload.version = (payload.version || 1) + 1;
-      payload.publishedAt = new Date().toISOString();
-      payload.lastUpdated = payload.publishedAt;
-
-      // Atomically write content file
-      const tempFile = path.join(DATA_DIR, `content.tmp.${Date.now()}`);
-      fs.writeFileSync(tempFile, JSON.stringify(payload, null, 2), 'utf8');
-      fs.renameSync(tempFile, CONTENT_FILE);
-
-      // Sync draft file so no unsaved diff exists
-      fs.writeFileSync(DRAFT_FILE, JSON.stringify(payload, null, 2), 'utf8');
-
-      return sendJson(res, 200, {
-        success: true,
-        version: payload.version,
-        publishedAt: payload.publishedAt,
-        message: 'Published successfully'
-      });
+      const result = await storageAdapter.publishContent(payload);
+      return sendJson(res, 200, result);
     } catch (err) {
-      return sendJson(res, 500, { success: false, error: 'Save failed: ' + err.message });
+      const status = err.statusCode || 500;
+      return sendJson(res, status, { success: false, error: 'Save failed: ' + err.message });
     }
   }
 
@@ -1478,50 +1423,22 @@ const server = http.createServer(async (req, res) => {
     }
 
     try {
-      if (fs.existsSync(CONTENT_FILE)) {
-        fs.copyFileSync(CONTENT_FILE, DRAFT_FILE);
-        const restored = JSON.parse(fs.readFileSync(CONTENT_FILE, 'utf8'));
-        return sendJson(res, 200, { success: true, data: restored, message: 'Draft discarded. Restored published version.' });
-      } else {
-        return sendJson(res, 404, { success: false, error: 'No published content to restore' });
-      }
+      const result = await storageAdapter.discardDraft();
+      return sendJson(res, 200, result);
     } catch (err) {
-      return sendJson(res, 500, { success: false, error: err.message });
+      const status = err.statusCode || 500;
+      return sendJson(res, status, { success: false, error: err.message });
     }
   }
 
   // 8. MEDIA: List Project Assets
   if (pathname === '/api/media/list' && req.method === 'GET') {
     try {
-      const allowedExts = new Set(['.png', '.jpg', '.jpeg', '.webp', '.svg', '.mp4', '.webm', '.pdf', '.mp3', '.mpeg', '.wav', '.ogg', '.m4a']);
-      const files = fs.readdirSync(ROOT_DIR);
-      const mediaList = [];
-
-      for (const file of files) {
-        const ext = path.extname(file).toLowerCase();
-        if (allowedExts.has(ext)) {
-          try {
-            const stats = fs.statSync(path.join(ROOT_DIR, file));
-            if (stats.isFile()) {
-              mediaList.push({
-                filename: file,
-                url: '/' + encodeURI(file),
-                size: stats.size,
-                ext: ext.replace('.', ''),
-                isVideo: ext === '.mp4' || ext === '.webm',
-                isAudio: ALLOWED_AUDIO_EXTS.has(ext),
-                isPdf: ext === '.pdf',
-                modified: stats.mtime
-              });
-            }
-          } catch (e) { }
-        }
-      }
-
-      mediaList.sort((a, b) => b.modified - a.modified);
+      const mediaList = await storageAdapter.listMedia();
       return sendJson(res, 200, { success: true, media: mediaList });
     } catch (err) {
-      return sendJson(res, 500, { success: false, error: err.message });
+      const status = err.statusCode || 500;
+      return sendJson(res, status, { success: false, error: err.message });
     }
   }
 
@@ -1533,76 +1450,18 @@ const server = http.createServer(async (req, res) => {
 
     try {
       const body = await parseJsonBody(req);
-      const filename = body.filename || body.fileName || body.name;
-      if (!filename || typeof filename !== 'string' || !filename.trim()) {
-        return sendJson(res, 400, { success: false, error: 'Missing filename in upload initialization' });
-      }
-
-      const ext = path.extname(filename).toLowerCase();
-      const isVideo = ALLOWED_VIDEO_EXTS.has(ext);
-      const isImage = ALLOWED_IMAGE_EXTS.has(ext);
-      const isAudio = ALLOWED_AUDIO_EXTS.has(ext);
-      if (!isVideo && !isImage && !isAudio) {
-        return sendJson(res, 400, {
-          success: false,
-          error: `Disallowed extension "${ext}". Permitted formats: .mp4, .webm, .png, .jpg, .jpeg, .webp, .svg, .pdf, .mp3, .mpeg, .wav, .ogg`
-        });
-      }
-
-      const fileSize = Number(body.fileSize || body.size);
-      if (typeof fileSize !== 'number' || isNaN(fileSize) || fileSize <= 0) {
-        return sendJson(res, 400, { success: false, error: 'Invalid file size: File is empty or size is invalid (0 bytes)' });
-      }
-
-      if (isVideo && fileSize > MAX_VIDEO_BYTES) {
-        return sendJson(res, 400, {
-          success: false,
-          error: `File size (${fileSize} bytes) exceeds the maximum permitted video limit of 10 GB (${MAX_VIDEO_BYTES} bytes).`
-        });
-      }
-
-      if ((isImage || isAudio) && fileSize > MAX_IMAGE_BYTES) {
-        return sendJson(res, 400, {
-          success: false,
-          error: `File size (${fileSize} bytes) exceeds the limit of 100 MB.`
-        });
-      }
-
-      const safeName = path.basename(filename).replace(/[^a-zA-Z0-9._-]/g, '_');
-      const sessionId = 'upl_' + Date.now() + '_' + crypto.randomBytes(8).toString('hex');
-      const sessionDir = path.join(TEMP_UPLOADS_DIR, sessionId);
-      fs.mkdirSync(sessionDir, { recursive: true });
-
-      const partPath = path.join(sessionDir, safeName + '.part');
-      fs.writeFileSync(partPath, Buffer.alloc(0));
-
-      const sessionObj = {
-        sessionId,
-        filename: safeName,
-        originalName: filename,
-        fileSize,
-        fileType: body.fileType || (isVideo ? 'video/mp4' : 'application/octet-stream'),
-        isVideo,
-        tempDir: sessionDir,
-        partPath,
-        finalPath: path.join(ROOT_DIR, safeName),
-        receivedBytes: 0,
-        chunks: new Set(),
-        createdAt: Date.now()
-      };
-
-      uploadSessions.set(sessionId, sessionObj);
-
-      return sendJson(res, 200, {
-        success: true,
-        sessionId,
-        filename: safeName,
-        chunkSize: 5 * 1024 * 1024, // 5MB default chunk
-        maxFileSize: isVideo ? MAX_VIDEO_BYTES : MAX_IMAGE_BYTES
-      });
+      const result = await storageAdapter.initUploadSession(body);
+      const status = result.statusCode || (result.success ? 200 : 400);
+      return sendJson(res, status, result);
     } catch (err) {
-      return sendJson(res, 500, { success: false, error: 'Upload initialization failed: ' + err.message });
+      const status = err.statusCode || 500;
+      return sendJson(res, status, { success: false, error: 'Upload initialization failed: ' + err.message });
     }
+  }
+
+  // 9b. MEDIA: Vercel Blob Direct Client Upload Token (Protected)
+  if (pathname === '/api/media/upload/blob' && req.method === 'POST') {
+    return await storageAdapter.handleBlobClientUpload(req, res, parseJsonBody, checkAuth);
   }
 
   // 9b. MEDIA: Chunked Upload Chunk (Protected)
@@ -1864,17 +1723,25 @@ const server = http.createServer(async (req, res) => {
   });
 });
 
-server.listen(PORT, () => {
-  console.log(`CBK DESIGNFOLIO Server running at http://localhost:${PORT}`);
-  console.log(`BACKSTAGE CMS available at http://localhost:${PORT}/backstage`);
-});
+if (!IS_VERCEL) {
+  server.listen(PORT, () => {
+    console.log(`CBK DESIGNFOLIO Server running at http://localhost:${PORT}`);
+    console.log(`BACKSTAGE CMS available at http://localhost:${PORT}/backstage`);
+  });
 
-server.on('error', (err) => {
-  if (err.code === 'EADDRINUSE') {
-    const nextPort = Number(PORT) + 1;
-    console.log(`Port ${PORT} in use, trying port ${nextPort}...`);
-    server.listen(nextPort);
-  } else {
-    console.error('Server error:', err);
-  }
-});
+  server.on('error', (err) => {
+    if (err.code === 'EADDRINUSE') {
+      const nextPort = Number(PORT) + 1;
+      console.log(`Port ${PORT} in use, trying port ${nextPort}...`);
+      server.listen(nextPort);
+    } else {
+      console.error('Server error:', err);
+    }
+  });
+}
+
+// Export handler for Vercel Serverless Functions and Node server
+module.exports = (req, res) => {
+  server.emit('request', req, res);
+};
+module.exports.server = server;

@@ -13,6 +13,7 @@
   "type": "commonjs",
   "dependencies": {
     "@use-gesture/react": "^10.3.1",
+    "@vercel/blob": "^2.8.2",
     "gsap": "^3.15.0",
     "motion": "^14.2.0",
     "nodemailer": "^10.2.0",
