@@ -105,8 +105,19 @@
   backface-visibility: hidden;
   -webkit-backface-visibility: hidden;
   pointer-events: none;
-  transition: transform 260ms ease;
-  transform: rotateY(var(--rot-y, 0deg)) rotateX(var(--rot-x, 0deg)) translateZ(var(--radius, 720px));
+  transform: rotateY(calc(var(--rot-y, 0deg) + var(--row-rot-0, 0deg))) rotateX(var(--rot-x, 0deg)) translateZ(var(--radius, 720px));
+}
+.item[data-row="0"] {
+  transform: rotateY(calc(var(--rot-y, 0deg) + var(--row-rot-0, 0deg))) rotateX(var(--rot-x, 0deg)) translateZ(var(--radius, 720px));
+}
+.item[data-row="1"] {
+  transform: rotateY(calc(var(--rot-y, 0deg) + var(--row-rot-1, 0deg))) rotateX(var(--rot-x, 0deg)) translateZ(var(--radius, 720px));
+}
+.item[data-row="2"] {
+  transform: rotateY(calc(var(--rot-y, 0deg) + var(--row-rot-2, 0deg))) rotateX(var(--rot-x, 0deg)) translateZ(var(--radius, 720px));
+}
+.item[data-row="3"] {
+  transform: rotateY(calc(var(--rot-y, 0deg) + var(--row-rot-3, 0deg))) rotateX(var(--rot-x, 0deg)) translateZ(var(--radius, 720px));
 }
 .item__image {
   position: absolute;

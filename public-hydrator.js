@@ -29,6 +29,15 @@
 
   function hydrateHero(section) {
     if (!section || !section.content) return;
+    const heroSec = document.getElementById('hero') || document.querySelector('section.hero');
+    if (heroSec) {
+      if (section.visible === false) {
+        heroSec.style.display = 'none';
+        return;
+      } else {
+        heroSec.style.display = '';
+      }
+    }
     const c = section.content;
 
     // Quote text
@@ -38,6 +47,10 @@
     if (bracketEl && c.quoteBracket) bracketEl.textContent = c.quoteBracket;
 
     // Sticky Note badge / artwork / paper / pin
+    const stickyEl = document.getElementById('hero-sticky-note');
+    if (stickyEl) {
+      stickyEl.style.display = c.stickyNote?.visible === false ? 'none' : '';
+    }
     if (c.stickyNote) {
       const stampEl = document.getElementById('sticky-stamp');
       if (stampEl) {
@@ -58,6 +71,7 @@
     // Resume button
     const resumeBtn = document.getElementById('hero-resume-download');
     if (resumeBtn) {
+      resumeBtn.style.display = c.resumeButton?.visible === false ? 'none' : '';
       if (c.resumeButtonLabel) {
         const span = resumeBtn.querySelector('span');
         if (span) span.textContent = c.resumeButtonLabel;
@@ -70,10 +84,17 @@
     // Scroll Down widget
     const scrollWidget = document.getElementById('scroll-widget');
     if (scrollWidget) {
+      scrollWidget.style.display = c.scrollDownWidget?.visible === false ? 'none' : '';
       const label = scrollWidget.querySelector('.sd-label');
       const sub = scrollWidget.querySelector('.sd-sub');
       if (label && c.scrollDownLabel) label.textContent = c.scrollDownLabel;
       if (sub && c.scrollDownSub) sub.textContent = c.scrollDownSub;
+    }
+
+    // Hero ticker wrap
+    const tickerWrap = document.querySelector('.hero-ticker-wrap');
+    if (tickerWrap) {
+      tickerWrap.style.display = c.ticker?.visible === false ? 'none' : '';
     }
 
     // Hero ticker text (if defined directly on hero)
@@ -444,7 +465,8 @@
         id: item?.id || stableId,
         slotNumber: num,
         src: src,
-        alt: alt
+        alt: alt,
+        visible: item?.visible !== false
       };
     });
 
@@ -459,7 +481,8 @@
             id: item.id || `orbit-${num}`,
             slotNumber: num,
             src: src,
-            alt: item.alt || `Visual Orbit Asset ${num}`
+            alt: item.alt || `Visual Orbit Asset ${num}`,
+            visible: item?.visible !== false
           });
         }
       }
@@ -522,17 +545,22 @@
 
         const logoSlot = row.querySelector('.company-logo-slot');
         if (logoSlot) {
-          if (comp.logo && String(comp.logo).trim()) {
-            logoSlot.innerHTML = `<img src="${escapeHtml(comp.logo)}" alt="${escapeHtml(comp.name)} Logo" class="company-logo-img">`;
-            logoSlot.classList.add('has-logo');
+          if (comp.showLogo === false) {
+            logoSlot.style.display = 'none';
           } else {
-            logoSlot.classList.remove('has-logo');
-            logoSlot.innerHTML = `
-              <div class="logo-slot-inner">
-                <span class="logo-slot-badge">LOGO</span>
-                <span class="logo-slot-name">${escapeHtml(comp.name ? comp.name.split(' ')[0] : '')}</span>
-              </div>
-            `;
+            logoSlot.style.display = '';
+            if (comp.logo && String(comp.logo).trim()) {
+              logoSlot.innerHTML = `<img src="${escapeHtml(comp.logo)}" alt="${escapeHtml(comp.name)} Logo" class="company-logo-img">`;
+              logoSlot.classList.add('has-logo');
+            } else {
+              logoSlot.classList.remove('has-logo');
+              logoSlot.innerHTML = `
+                <div class="logo-slot-inner">
+                  <span class="logo-slot-badge">LOGO</span>
+                  <span class="logo-slot-name">${escapeHtml(comp.name ? comp.name.split(' ')[0] : '')}</span>
+                </div>
+              `;
+            }
           }
         }
 
@@ -631,6 +659,11 @@
     if (title && c.title) title.textContent = c.title;
     const desc = coreEl.querySelector('.dbl-subtitle-desc');
     if (desc && c.subtitle) desc.textContent = c.subtitle;
+
+    const lanyardMount = document.getElementById('lanyard-profile-mount');
+    if (lanyardMount) {
+      lanyardMount.style.display = c.lanyardProfile?.visible === false ? 'none' : '';
+    }
 
     // Update Lanyard instance props if alive
     if (window.lanyardInstance && typeof window.lanyardInstance.update === 'function') {
@@ -750,26 +783,40 @@
       }
     }
 
-    // Primary CTA Button (LET'S CONNECT / Gmail compose)
+    // Primary CTA Button (LET'S CONNECT / Email action)
     const primaryBtn = secEl.querySelector('.build-btn-primary');
     if (primaryBtn) {
+      if (c.primaryButton?.visible === false) {
+        primaryBtn.style.display = 'none';
+      } else {
+        primaryBtn.style.display = '';
+      }
       if (c.primaryButton?.label) {
         const span = primaryBtn.querySelector('span');
         if (span) span.textContent = c.primaryButton.label;
       }
-      let targetUrl = c.primaryButton?.url || 'https://mail.google.com/mail/?view=cm&fs=0&to=meet2krishnan@gmail.com';
-      if (typeof targetUrl === 'string' && (targetUrl.startsWith('<ahref=') || !targetUrl.trim())) {
-        targetUrl = 'https://mail.google.com/mail/?view=cm&fs=0&to=meet2krishnan@gmail.com';
+      let targetUrl = c.primaryButton?.url || 'mailto:meet2krishnan@gmail.com?subject=Creative%20Inquiry%20%E2%80%94%20CBK%20Designfolio';
+      if (typeof targetUrl === 'string' && (targetUrl.startsWith('<ahref=') || !targetUrl.trim() || targetUrl.includes('mail.google.com'))) {
+        targetUrl = 'mailto:meet2krishnan@gmail.com?subject=Creative%20Inquiry%20%E2%80%94%20CBK%20Designfolio';
       }
       primaryBtn.setAttribute('href', targetUrl);
-      primaryBtn.setAttribute('target', c.primaryButton?.target || '_blank');
+      if (targetUrl.startsWith('mailto:')) {
+        primaryBtn.removeAttribute('target');
+      } else if (c.primaryButton?.target) {
+        primaryBtn.setAttribute('target', c.primaryButton.target);
+      }
     }
 
     // WhatsApp Button
     const waBtn = secEl.querySelector('.build-btn-whatsapp');
-    if (waBtn && c.whatsappButton) {
-      if (c.whatsappButton.url) waBtn.setAttribute('href', c.whatsappButton.url);
-      if (c.whatsappButton.label) {
+    if (waBtn) {
+      if (c.whatsappButton?.visible === false) {
+        waBtn.style.display = 'none';
+      } else {
+        waBtn.style.display = '';
+      }
+      if (c.whatsappButton?.url) waBtn.setAttribute('href', c.whatsappButton.url);
+      if (c.whatsappButton?.label) {
         const span = waBtn.querySelector('span');
         if (span) span.textContent = c.whatsappButton.label;
       }
@@ -777,9 +824,14 @@
 
     // LinkedIn Button
     const liBtn = secEl.querySelector('.build-btn-linkedin');
-    if (liBtn && c.linkedinButton) {
-      if (c.linkedinButton.url) liBtn.setAttribute('href', c.linkedinButton.url);
-      if (c.linkedinButton.label) {
+    if (liBtn) {
+      if (c.linkedinButton?.visible === false) {
+        liBtn.style.display = 'none';
+      } else {
+        liBtn.style.display = '';
+      }
+      if (c.linkedinButton?.url) liBtn.setAttribute('href', c.linkedinButton.url);
+      if (c.linkedinButton?.label) {
         const span = liBtn.querySelector('span');
         if (span) span.textContent = c.linkedinButton.label;
       }

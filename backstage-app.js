@@ -1,3 +1,92 @@
+
+// Beyond The Frame Reordering & Addition Handlers
+function moveBTFEntry(secId, idx, dir) {
+  const sec = findSectionOrChild(secId);
+  if (!sec || !sec.content || !Array.isArray(sec.content.entries)) return;
+  const targetIdx = idx + dir;
+  if (targetIdx < 0 || targetIdx >= sec.content.entries.length) return;
+  const temp = sec.content.entries[idx];
+  sec.content.entries[idx] = sec.content.entries[targetIdx];
+  sec.content.entries[targetIdx] = temp;
+  markUnsaved();
+  renderPropertiesPanel(sec);
+  notifyPreview();
+}
+window.moveBTFEntry = moveBTFEntry;
+
+function removeBTFEntry(secId, idx) {
+  const sec = findSectionOrChild(secId);
+  if (!sec || !sec.content || !Array.isArray(sec.content.entries)) return;
+  sec.content.entries.splice(idx, 1);
+  markUnsaved();
+  renderPropertiesPanel(sec);
+  notifyPreview();
+}
+window.removeBTFEntry = removeBTFEntry;
+
+function addBTFEntry(secId) {
+  const sec = findSectionOrChild(secId);
+  if (!sec) return;
+  if (!sec.content) sec.content = {};
+  if (!Array.isArray(sec.content.entries)) sec.content.entries = [];
+  const nextNum = String(sec.content.entries.length + 1).padStart(2, '0');
+  sec.content.entries.push({
+    id: `btf-${Date.now()}`,
+    slotNumber: nextNum,
+    title: 'NEW CINEMATIC ENTRY',
+    category: `${nextNum} // CREATIVE EXPLORATION`,
+    desc: 'Description of the cinematic visual exploration.',
+    image: '',
+    position: 'center center',
+    visible: true
+  });
+  markUnsaved();
+  renderPropertiesPanel(sec);
+  notifyPreview();
+}
+window.addBTFEntry = addBTFEntry;
+
+
+// -------------------------------------------------------------
+// UNIVERSAL VISIBILITY CONTROLS HELPER
+// -------------------------------------------------------------
+function renderVisibilityButton(secId, pathStr, isVisible, label = '', onClickFn = null) {
+  const handler = onClickFn ? onClickFn : `toggleVisibilityByPath('${secId}', '${pathStr}')`;
+  const visibleState = (isVisible !== false);
+  const textLabel = label ? label : (visibleState ? 'Visible' : 'Hidden');
+  const eyeIcon = visibleState
+    ? '<path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path><circle cx="12" cy="12" r="3"></circle>'
+    : '<path d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19m-6.72-1.07a3 3 0 1 1-4.24-4.24"></path><line x1="1" y1="1" x2="23" y2="23"></line>';
+
+  return `
+    <button type="button" class="vis-toggle-btn ${visibleState ? 'is-visible' : 'is-hidden'}" onclick="${handler}" aria-label="${visibleState ? 'Visible on public portfolio — click to hide' : 'Hidden from public portfolio — click to show'}" title="${visibleState ? 'Visible on public portfolio' : 'Hidden from public portfolio'}">
+      <svg class="eye-icon" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        ${eyeIcon}
+      </svg>
+      <span>${textLabel}</span>
+    </button>
+  `;
+}
+window.renderVisibilityButton = renderVisibilityButton;
+
+function toggleVisibilityByPath(secId, pathStr) {
+  const sec = findSectionOrChild(secId);
+  if (!sec) return;
+  const parts = pathStr.split('.');
+  let curr = sec;
+  for (let i = 0; i < parts.length - 1; i++) {
+    if (!curr[parts[i]]) curr[parts[i]] = {};
+    curr = curr[parts[i]];
+  }
+  const lastKey = parts[parts.length - 1];
+  curr[lastKey] = (curr[lastKey] === false) ? true : false;
+  markUnsaved();
+  renderSectionTree();
+  renderPropertiesPanel(sec);
+  notifyPreview();
+}
+window.toggleVisibilityByPath = toggleVisibilityByPath;
+
 /**
  * CBK DESIGNFOLIO — BACKSTAGE CMS CORE ENGINE
  * Full-featured visual content management system with authentication,
@@ -92,46 +181,34 @@ function startResendCooldown(seconds) {
 
 function switchAuthTab(tabName, e) {
   if (e) e.preventDefault();
+  const activeTab = (tabName === 'password') ? 'password' : 'otp';
 
   // Update tab buttons
   const tabOtp = document.getElementById('tab-btn-otp');
-  const tabTotp = document.getElementById('tab-btn-totp');
   const tabPw = document.getElementById('tab-btn-password');
 
-  if (tabOtp) tabOtp.classList.toggle('active', tabName === 'otp');
-  if (tabTotp) tabTotp.classList.toggle('active', tabName === 'totp');
-  if (tabPw) tabPw.classList.toggle('active', tabName === 'password');
+  if (tabOtp) tabOtp.classList.toggle('active', activeTab === 'otp');
+  if (tabPw) tabPw.classList.toggle('active', activeTab === 'password');
 
   // Update views
   const viewOtp = document.getElementById('auth-view-otp');
-  const viewTotp = document.getElementById('auth-view-totp');
-  const viewTotpSetup = document.getElementById('auth-view-totp-setup');
   const viewPw = document.getElementById('auth-view-password');
-  const viewSetup = document.getElementById('auth-view-setup');
 
-  if (viewOtp) viewOtp.style.display = tabName === 'otp' ? 'block' : 'none';
-  if (viewTotp) viewTotp.style.display = tabName === 'totp' ? 'block' : 'none';
-  if (viewTotpSetup) viewTotpSetup.style.display = 'none';
-  if (viewPw) viewPw.style.display = tabName === 'password' ? 'block' : 'none';
-  if (viewSetup) viewSetup.style.display = 'none';
+  if (viewOtp) viewOtp.style.display = activeTab === 'otp' ? 'block' : 'none';
+  if (viewPw) viewPw.style.display = activeTab === 'password' ? 'block' : 'none';
 
   // Clear errors
   const errOtp = document.getElementById('auth-otp-error');
-  const errTotp = document.getElementById('auth-totp-error');
   const errPw = document.getElementById('auth-password-error');
   if (errOtp) errOtp.style.display = 'none';
-  if (errTotp) errTotp.style.display = 'none';
   if (errPw) errPw.style.display = 'none';
 
   // Auto-focus relevant input
   setTimeout(() => {
-    if (tabName === 'otp') {
+    if (activeTab === 'otp') {
       const el = document.getElementById('auth-otp');
       if (el && el.offsetParent) el.focus();
-    } else if (tabName === 'totp') {
-      const el = document.getElementById('auth-totp-token');
-      if (el && el.offsetParent) el.focus();
-    } else if (tabName === 'password') {
+    } else if (activeTab === 'password') {
       const el = document.getElementById('auth-fallback-password');
       if (el) el.focus();
     }
@@ -761,11 +838,6 @@ function applyAuthStatusToUI(status) {
   const statusEl = document.getElementById('auth-dest-status');
 
   const gmailConfigured = !!(status.methods && status.methods.gmail && status.methods.gmail.configured);
-  const totpEnrolled = !!(status.methods && status.methods.totp && status.methods.totp.enrolled);
-
-  // Configure TOTP view state
-  if (enrolledSection) enrolledSection.style.display = totpEnrolled ? 'block' : 'none';
-  if (notEnrolledSection) notEnrolledSection.style.display = totpEnrolled ? 'none' : 'block';
 
   // Configure Gmail OTP view state
   if (!gmailConfigured) {
@@ -773,14 +845,7 @@ function applyAuthStatusToUI(status) {
     if (challengeForm) challengeForm.style.display = 'none';
     if (requestTrigger) requestTrigger.style.display = 'none';
     if (statusEl) statusEl.textContent = 'GATEWAY UNCONFIGURED';
-
-    // When Gmail is unconfigured:
-    // If TOTP is enrolled, default to TOTP; otherwise default to Password fallback
-    if (totpEnrolled) {
-      switchAuthTab('totp');
-    } else {
-      switchAuthTab('password');
-    }
+    switchAuthTab('password');
   } else {
     if (gatewayNotice) gatewayNotice.style.display = 'none';
     if (challengeForm) challengeForm.style.display = 'none';
@@ -801,25 +866,9 @@ async function initBackstage() {
     if (overlay) overlay.style.display = 'none';
     startSessionHeartbeat();
     await loadContent();
-    const urlParams = new URLSearchParams(window.location.search);
-    if (urlParams.get('tab') === 'security' || urlParams.get('enroll') === 'totp' || window.location.hash === '#security') {
-      setTimeout(() => openSecurityModal(), 150);
-    }
   } else {
     if (overlay) overlay.style.display = 'flex';
-    if (!status.configured) {
-      const setupView = document.getElementById('auth-view-setup');
-      if (setupView) setupView.style.display = 'block';
-      const tabsBar = document.getElementById('auth-tabs-bar');
-      if (tabsBar) tabsBar.style.display = 'none';
-    } else {
-      applyAuthStatusToUI(status);
-      const urlParams = new URLSearchParams(window.location.search);
-      if (urlParams.get('enroll') === 'totp' || urlParams.get('tab') === 'totp' || window.location.hash === '#totp') {
-        switchAuthTab('totp');
-        startTotpSetup();
-      }
-    }
+    applyAuthStatusToUI(status);
   }
 
   setupViewportControls();
@@ -1120,12 +1169,12 @@ function renderPropertiesPanel(section) {
       <label class="form-label">SECTION NAME (CMS DISPLAY)</label>
       <input type="text" class="form-input" value="${escapeHtml(section.name || '')}" oninput="updateField('${section.id}', 'name', this.value)">
     </div>
-    <div class="form-group">
-      <label class="form-label">VISIBILITY</label>
-      <select class="form-select" onchange="updateField('${section.id}', 'visible', this.value === 'true')">
-        <option value="true" ${section.visible !== false ? 'selected' : ''}>VISIBLE ON PUBLIC SITE</option>
-        <option value="false" ${section.visible === false ? 'selected' : ''}>HIDDEN (DRAFT ONLY)</option>
-      </select>
+    <div class="form-group" style="display: flex; justify-content: space-between; align-items: center; background: var(--bg-surface); padding: 10px 14px; border-radius: 6px; border: 1px solid var(--border-base); margin-bottom: 16px;">
+      <div>
+        <label class="form-label" style="margin: 0; font-size: 11px;">SECTION VISIBILITY</label>
+        <span class="field-hint" style="font-size: 10px; opacity: 0.7;">Controls section rendering on public portfolio</span>
+      </div>
+      ${renderVisibilityButton(section.id, 'visible', section.visible !== false)}
     </div>
   `;
 
@@ -1229,8 +1278,9 @@ function renderHeroProps(sec) {
       <label class="form-label">QUOTE BRACKET / PREFIX</label>
       <input type="text" class="form-input" value="${escapeHtml(c.quoteBracket || '//')}" oninput="updateContentField('${sec.id}', 'quoteBracket', this.value)">
     </div>
-    <div class="collection-title" style="margin-top: 14px; margin-bottom: 8px;">
-      HERO STICKY NOTE & STAMP
+    <div class="collection-title" style="display: flex; justify-content: space-between; align-items: center; margin-top: 14px; margin-bottom: 8px;">
+      <span>HERO STICKY NOTE & STAMP</span>
+      ${renderVisibilityButton(sec.id, 'content.stickyNote.visible', c.stickyNote?.visible !== false, 'Sticky Note')}
     </div>
     <div class="form-group">
       <label class="form-label">STICKY NOTE BADGE TEXT</label>
@@ -1248,12 +1298,17 @@ function renderHeroProps(sec) {
       <label class="form-label">PUSH PIN ASSET</label>
       ${renderMediaField(sec.id, 'stickyNote.pinImage', c.stickyNote?.pinImage || 'push-pin-clean.png')}
     </div>
-    <div class="collection-title" style="margin-top: 14px; margin-bottom: 8px;">
-      CALL TO ACTION & NAVIGATION
+    <div class="collection-title" style="display: flex; justify-content: space-between; align-items: center; margin-top: 14px; margin-bottom: 8px;">
+      <span>CALL TO ACTION & NAVIGATION</span>
+      ${renderVisibilityButton(sec.id, 'content.resumeButton.visible', c.resumeButton?.visible !== false, 'Resume Btn')}
     </div>
     <div class="form-group">
       <label class="form-label">RESUME BUTTON LABEL</label>
       <input type="text" class="form-input" value="${escapeHtml(c.resumeButtonLabel || '')}" oninput="updateContentField('${sec.id}', 'resumeButtonLabel', this.value)">
+    </div>
+    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px;">
+      <span class="form-label" style="margin: 0;">SCROLL DOWN WIDGET</span>
+      ${renderVisibilityButton(sec.id, 'content.scrollDownWidget.visible', c.scrollDownWidget?.visible !== false, 'Scroll Widget')}
     </div>
     <div class="form-row-2">
       <div class="form-group">
@@ -1265,8 +1320,9 @@ function renderHeroProps(sec) {
         <input type="text" class="form-input" value="${escapeHtml(c.scrollDownSub || 'EXPLORE ARCHIVE')}" oninput="updateContentField('${sec.id}', 'scrollDownSub', this.value)">
       </div>
     </div>
-    <div class="collection-title" style="margin-top: 14px; margin-bottom: 8px;">
-      HERO SKILLS TICKER
+    <div class="collection-title" style="display: flex; justify-content: space-between; align-items: center; margin-top: 14px; margin-bottom: 8px;">
+      <span>HERO SKILLS TICKER</span>
+      ${renderVisibilityButton(sec.id, 'content.ticker.visible', c.ticker?.visible !== false, 'Skills Ticker')}
     </div>
     <div class="form-group">
       <label class="form-label">Hero Ticker Text</label>
@@ -1420,9 +1476,12 @@ function renderMetricsProps(sec) {
     </div>
     ${items.map((m, idx) => `
       <div class="collection-card">
-        <div class="collection-card-header">
+        <div class="collection-card-header" style="display: flex; justify-content: space-between; align-items: center;">
           <span class="collection-card-num">CARD 0${idx + 1} // ${escapeHtml(m.label || '')}</span>
-          <button type="button" class="btn-card-del" onclick="removeMetricItem('${sec.id}', ${idx})">✕</button>
+          <div style="display: flex; align-items: center; gap: 8px;">
+            ${renderVisibilityButton(sec.id, `content.items.${idx}.visible`, m.visible !== false)}
+            <button type="button" class="btn-card-del" onclick="removeMetricItem('${sec.id}', ${idx})" title="Delete Metric">✕</button>
+          </div>
         </div>
         <div class="form-row-2">
           <div class="form-group">
@@ -1580,25 +1639,15 @@ const DEFAULT_BTF_ENTRIES = [
 
 function ensureBeyondFrameEntries(sec) {
   if (!sec.content) sec.content = {};
-  const currentEntries = Array.isArray(sec.content.entries) ? sec.content.entries : [];
-  const targetCount = 9;
-
-  sec.content.entries = Array.from({ length: targetCount }, (_, idx) => {
-    const num = String(idx + 1).padStart(2, '0');
-    const stableId = `btf-${num}`;
-    const fallback = DEFAULT_BTF_ENTRIES[idx];
-    const raw = currentEntries.find(e => e && (e.id === stableId || e.slotNumber === num)) || currentEntries[idx] || fallback;
-
-    return {
-      id: stableId,
-      slotNumber: num,
-      title: (raw && raw.title !== undefined) ? raw.title : fallback.title,
-      category: (raw && raw.category !== undefined) ? raw.category : fallback.category,
-      desc: (raw && raw.desc !== undefined) ? raw.desc : fallback.desc,
-      image: (raw && typeof raw.image === 'string') ? raw.image : fallback.image,
-      position: (raw && raw.position) || fallback.position || 'center center',
-      visible: true
-    };
+  if (!Array.isArray(sec.content.entries) || sec.content.entries.length === 0) {
+    sec.content.entries = JSON.parse(JSON.stringify(DEFAULT_BTF_ENTRIES));
+    return;
+  }
+  // Ensure every entry has stable ID, slot number, and visible flag
+  sec.content.entries.forEach((e, idx) => {
+    if (!e.id) e.id = `btf-${String(idx + 1).padStart(2, '0')}`;
+    if (!e.slotNumber) e.slotNumber = String(idx + 1).padStart(2, '0');
+    if (e.visible === undefined) e.visible = true;
   });
 }
 window.ensureBeyondFrameEntries = ensureBeyondFrameEntries;
@@ -1630,11 +1679,12 @@ function renderBeyondFrameProps(sec) {
 
     <div class="collection-header" style="margin-top: 18px; margin-bottom: 12px; display: flex; justify-content: space-between; align-items: center;">
       <div>
-        <span class="collection-title">CINEMATIC STACK SLOTS (EXACTLY 9 SLOTS · btf-01 — btf-09)</span>
+        <span class="collection-title">CINEMATIC STACK ENTRIES (${entries.length})</span>
         <span class="field-hint" style="font-size: 11px; opacity: 0.65; display: block; margin-top: 2px;">
-          ${populatedCount} of 9 slots populated with assets. Stable identifiers synchronize with public portfolio.
+          ${populatedCount} of ${entries.length} slots populated. Independent visibility, reordering, and deliberate additions.
         </span>
       </div>
+      <button type="button" class="btn-add-item" onclick="addBTFEntry('${sec.id}')">+ ADD ENTRY</button>
     </div>
 
     ${entries.map((entry, idx) => {
@@ -1648,9 +1698,15 @@ function renderBeyondFrameProps(sec) {
               <span style="font-size: 12px; opacity: 0.85; font-family: 'JetBrains Mono', monospace;">[ID: ${entry.id}]</span>
               <span style="font-size: 13px; font-weight: 600;">// ${escapeHtml(entry.title || 'Untitled Slot')}</span>
             </div>
-            <span class="orbit-status-tag ${hasImage ? 'populated' : 'empty'}" style="font-size: 10px; padding: 2px 8px; border-radius: 4px;">
-              ${hasImage ? 'POPULATED' : 'EMPTY'}
-            </span>
+            <div style="display: flex; align-items: center; gap: 6px;">
+              <span class="orbit-status-tag ${hasImage ? 'populated' : 'empty'}" style="font-size: 10px; padding: 2px 8px; border-radius: 4px;">
+                ${hasImage ? 'POPULATED' : 'EMPTY'}
+              </span>
+              <button type="button" class="tree-action-btn" onclick="moveBTFEntry('${sec.id}', ${idx}, -1)" title="Move Up">↑</button>
+              <button type="button" class="tree-action-btn" onclick="moveBTFEntry('${sec.id}', ${idx}, 1)" title="Move Down">↓</button>
+              ${renderVisibilityButton(sec.id, `content.entries.${idx}.visible`, entry.visible !== false)}
+              <button type="button" class="btn-card-del" onclick="removeBTFEntry('${sec.id}', ${idx})" title="Delete Entry">✕</button>
+            </div>
           </div>
           <div class="form-group">
             <label class="form-label">TITLE</label>
@@ -1709,9 +1765,12 @@ function renderSelectedWorksProps(sec) {
     </div>
     ${lands.map((p, idx) => `
       <div class="collection-card">
-        <div class="collection-card-header">
+        <div class="collection-card-header" style="display: flex; justify-content: space-between; align-items: center;">
           <span class="collection-card-num">#${idx + 1} ${escapeHtml(p.title)}</span>
-          <button type="button" class="btn-card-del" onclick="removeLandscapeProject('${sec.id}', ${idx})">✕</button>
+          <div style="display: flex; align-items: center; gap: 8px;">
+            ${renderVisibilityButton(sec.id, `content.landscapeProjects.${idx}.visible`, p.visible !== false)}
+            <button type="button" class="btn-card-del" onclick="removeLandscapeProject('${sec.id}', ${idx})" title="Delete Project">✕</button>
+          </div>
         </div>
         <div class="form-group">
           <label class="form-label">TITLE</label>
@@ -1755,8 +1814,9 @@ function renderSelectedWorksProps(sec) {
     </div>
     ${reels.map((r, idx) => `
       <div class="collection-card">
-        <div class="collection-card-header">
+        <div class="collection-card-header" style="display: flex; justify-content: space-between; align-items: center;">
           <span class="collection-card-num">REEL 0${idx + 1} // ${escapeHtml(r.title)}</span>
+          ${renderVisibilityButton(sec.id, `content.portraitReels.${idx}.visible`, r.visible !== false)}
         </div>
         <div class="form-group">
           <label class="form-label">TITLE</label>
@@ -1960,6 +2020,7 @@ function renderVisualOrbitProps(sec) {
               <button type="button" class="btn-orbit-action" onclick="triggerDirectUploadForOrbit('${sec.id}', ${idx})" title="Upload image directly to Slot ${num}">
                 <span>↑</span> UPLOAD
               </button>
+              ${renderVisibilityButton(sec.id, `content.slots.${idx}.visible`, slot.visible !== false)}
               ${hasImage ? `
                 <button type="button" class="btn-orbit-action danger" onclick="clearOrbitSlot('${sec.id}', ${idx})" title="Clear Slot ${num}">
                   <span>✕</span> CLEAR
@@ -2194,16 +2255,22 @@ function renderExpertiseProps(sec) {
     </div>
     ${comps.map((comp, idx) => `
       <div class="collection-card">
-        <div class="collection-card-header">
+        <div class="collection-card-header" style="display: flex; justify-content: space-between; align-items: center;">
           <span class="collection-card-num">COMPANY 0${idx + 1} // ${escapeHtml(comp.name)}</span>
-          <button type="button" class="btn-card-del" onclick="removeCompany('${sec.id}', ${idx})" title="Delete Company">✕</button>
+          <div style="display: flex; align-items: center; gap: 8px;">
+            ${renderVisibilityButton(sec.id, `content.companies.${idx}.visible`, comp.visible !== false)}
+            <button type="button" class="btn-card-del" onclick="removeCompany('${sec.id}', ${idx})" title="Delete Company">✕</button>
+          </div>
         </div>
         <div class="form-group">
           <label class="form-label">COMPANY NAME</label>
           <input type="text" class="form-input" value="${escapeHtml(comp.name)}" oninput="updateCompanyField('${sec.id}', ${idx}, 'name', this.value)">
         </div>
         <div class="form-group">
-          <label class="form-label">COMPANY LOGO (PNG / SVG / WEBP)</label>
+          <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px;">
+            <label class="form-label" style="margin: 0;">COMPANY LOGO (PNG / SVG / WEBP)</label>
+            ${renderVisibilityButton(sec.id, `content.companies.${idx}.showLogo`, comp.showLogo !== false, 'Logo')}
+          </div>
           ${renderMediaField(sec.id, `companies.${idx}.logo`, comp.logo || '')}
         </div>
         <div class="form-group">
@@ -2363,8 +2430,9 @@ function renderCoreProps(sec) {
       <textarea class="form-textarea" oninput="updateContentField('${sec.id}', 'subtitle', this.value)">${escapeHtml(c.subtitle || '')}</textarea>
     </div>
 
-    <div class="collection-header">
+    <div class="collection-header" style="display: flex; justify-content: space-between; align-items: center;">
       <span class="collection-title">3D HANGING ID CARD ASSETS</span>
+      ${renderVisibilityButton(sec.id, 'content.lanyardProfile.visible', c.lanyardProfile?.visible !== false, 'ID Card')}
     </div>
     <div class="form-group">
       <label class="form-label">ID FRONT IMAGE</label>
@@ -2389,9 +2457,12 @@ function renderCoreProps(sec) {
     </div>
     ${ftools.map((tool, idx) => `
       <div class="collection-card">
-        <div class="collection-card-header">
+        <div class="collection-card-header" style="display: flex; justify-content: space-between; align-items: center;">
           <span class="collection-card-num">TOOL 0${idx + 1} // ${escapeHtml(tool.name)}</span>
-          <button type="button" class="btn-card-del" onclick="removeFoundationTool('${sec.id}', ${idx})">✕</button>
+          <div style="display: flex; align-items: center; gap: 8px;">
+            ${renderVisibilityButton(sec.id, `content.foundations.${idx}.visible`, tool.visible !== false)}
+            <button type="button" class="btn-card-del" onclick="removeFoundationTool('${sec.id}', ${idx})" title="Delete Tool">✕</button>
+          </div>
         </div>
         <div class="form-group">
           <label class="form-label">TOOL NAME</label>
@@ -2899,8 +2970,9 @@ function renderCTAProps(sec) {
       <span class="collection-title">CONTACT ACTIONS</span>
     </div>
     <div class="collection-card">
-      <div class="collection-card-header">
-        <span class="collection-card-num">PRIMARY EMAIL ACTION</span>
+      <div class="collection-card-header" style="display: flex; justify-content: space-between; align-items: center;">
+        <span class="collection-card-num">PRIMARY EMAIL ACTION (LET'S CONNECT)</span>
+        ${renderVisibilityButton(sec.id, 'content.primaryButton.visible', c.primaryButton?.visible !== false, 'Email Btn')}
       </div>
       <div class="form-group">
         <label class="form-label">BUTTON LABEL</label>
@@ -2914,8 +2986,9 @@ function renderCTAProps(sec) {
     </div>
 
     <div class="collection-card">
-      <div class="collection-card-header">
+      <div class="collection-card-header" style="display: flex; justify-content: space-between; align-items: center;">
         <span class="collection-card-num">WHATSAPP ACTION</span>
+        ${renderVisibilityButton(sec.id, 'content.whatsappButton.visible', c.whatsappButton?.visible !== false, 'WhatsApp Btn')}
       </div>
       <div class="form-group">
         <label class="form-label">BUTTON LABEL</label>
@@ -2928,8 +3001,9 @@ function renderCTAProps(sec) {
     </div>
 
     <div class="collection-card">
-      <div class="collection-card-header">
+      <div class="collection-card-header" style="display: flex; justify-content: space-between; align-items: center;">
         <span class="collection-card-num">LINKEDIN ACTION</span>
+        ${renderVisibilityButton(sec.id, 'content.linkedinButton.visible', c.linkedinButton?.visible !== false, 'LinkedIn Btn')}
       </div>
       <div class="form-group">
         <label class="form-label">BUTTON LABEL</label>

@@ -26140,7 +26140,8 @@ Please add \`${key}Action\` when creating your handler.`);
         src,
         alt,
         title,
-        position: raw && raw.position || "center center"
+        position: raw && raw.position || "center center",
+        visible: raw?.visible !== false
       };
     });
   }
@@ -26176,7 +26177,8 @@ Please add \`${key}Action\` when creating your handler.`);
           y: (cfg.row - 1.5) * 2,
           sizeX: 2,
           sizeY: 2,
-          index: slotIdx
+          index: slotIdx,
+          visible: slot.visible !== false
         });
         slotIdx++;
       }
@@ -26187,8 +26189,8 @@ Please add \`${key}Action\` when creating your handler.`);
     images = DEFAULT_ORBIT_IMAGES,
     fit = 0.8,
     fitBasis = "auto",
-    minRadius = 710,
-    maxRadius = 860,
+    minRadius = 800,
+    maxRadius = 970,
     padFactor = 0.18,
     maxVerticalRotationDeg = 0,
     dragSensitivity = 20,
@@ -26212,6 +26214,7 @@ Please add \`${key}Action\` when creating your handler.`);
     const lastDragEndAtRef = (0, import_react3.useRef)(0);
     const animRafRef = (0, import_react3.useRef)(null);
     const isPointerInsideDomeRef = (0, import_react3.useRef)(false);
+    const rowAnglesRef = (0, import_react3.useRef)([0, 0, 0, 0]);
     const [autoTheme, setAutoTheme] = (0, import_react3.useState)("dark");
     const [radius, setRadius] = (0, import_react3.useState)(minRadius);
     const [hoveredSlotId, setHoveredSlotId] = (0, import_react3.useState)(null);
@@ -26221,7 +26224,7 @@ Please add \`${key}Action\` when creating your handler.`);
     const resolvedTheme = theme === "auto" ? autoTheme : theme;
     const items = (0, import_react3.useMemo)(() => buildSphereItems(images), [images]);
     const populatedItems = (0, import_react3.useMemo)(() => {
-      return items.filter((item) => item.src && item.src.trim() !== "");
+      return items.filter((item) => item.visible !== false && item.src && item.src.trim() !== "");
     }, [items]);
     (0, import_react3.useEffect)(() => {
       if (theme !== "auto") return void 0;
@@ -26258,12 +26261,12 @@ Please add \`${key}Action\` when creating your handler.`);
         const width = Math.max(1, rect.width);
         const height = Math.max(1, rect.height);
         const minDimension = Math.min(width, height);
-        let targetR = Math.round(height * 0.88);
+        let targetR = Math.round(height * 0.95);
         if (width >= 1100) {
           targetR = Math.max(minRadius, targetR);
         }
-        const responsiveMax = Math.min(maxRadius, Math.max(440, width * 0.68));
-        const nextRadius = Math.round(clamp2(targetR, Math.min(440, responsiveMax), responsiveMax));
+        const responsiveMax = Math.min(maxRadius, Math.max(500, width * 0.74));
+        const nextRadius = Math.round(clamp2(targetR, Math.min(500, responsiveMax), responsiveMax));
         const circ = nextRadius * 2 * Math.PI;
         const itemWidth = Math.round(circ / 12 * 0.94);
         const rowPitchChord = Math.round(2 * nextRadius * Math.sin(7.5 * (Math.PI / 180)));
@@ -26348,6 +26351,22 @@ Please add \`${key}Action\` when creating your handler.`);
           animRafRef.current = requestAnimationFrame(loop);
           return;
         }
+        // Continuous Harmonious Alternating Row Horizontal Animation:
+        // Row 1 (row: 0): Right to left (-speed)
+        // Row 2 (row: 1): Left to right (+speed)
+        // Row 3 (row: 2): Right to left (-speed)
+        // Row 4 (row: 3): Left to right (+speed)
+        const rowSpeed = 3.2; // degrees per second
+        const rowDirs = [-1, 1, -1, 1];
+        for (let r = 0; r < 4; r++) {
+          rowAnglesRef.current[r] = (rowAnglesRef.current[r] + rowDirs[r] * rowSpeed * dt);
+        }
+        if (rootRef.current) {
+          rootRef.current.style.setProperty("--row-rot-0", `${rowAnglesRef.current[0]}deg`);
+          rootRef.current.style.setProperty("--row-rot-1", `${rowAnglesRef.current[1]}deg`);
+          rootRef.current.style.setProperty("--row-rot-2", `${rowAnglesRef.current[2]}deg`);
+          rootRef.current.style.setProperty("--row-rot-3", `${rowAnglesRef.current[3]}deg`);
+        }
         if (isDraggingRef.current) {
           animRafRef.current = requestAnimationFrame(loop);
           return;
@@ -26361,15 +26380,6 @@ Please add \`${key}Action\` when creating your handler.`);
           inertiaVelocityRef.current *= Math.exp(-frictionDecay * dt);
           if (Math.abs(inertiaVelocityRef.current) <= 0.3) {
             inertiaVelocityRef.current = 0;
-          }
-        } else {
-          inertiaVelocityRef.current = 0;
-          if (!isPointerInsideDomeRef.current) {
-            const deltaY = autoSpeed * dt;
-            const currentRot = rotationRef.current;
-            const nextY = wrapAngleSigned(currentRot.y + deltaY);
-            rotationRef.current = { x: 0, y: nextY };
-            applyTransform(0, nextY);
           }
         }
         animRafRef.current = requestAnimationFrame(loop);
@@ -26541,6 +26551,7 @@ Please add \`${key}Action\` when creating your handler.`);
           "aria-label": "Interactive 3D Visual Orbit Dome Gallery"
         },
         /* @__PURE__ */ import_react3.default.createElement("div", { className: "stage" }, /* @__PURE__ */ import_react3.default.createElement("div", { ref: sphereRef, className: "sphere" }, items.map((item) => {
+          if (item.visible === false) return null;
           const hasImage = Boolean(item.src && item.src.trim() !== "");
           return /* @__PURE__ */ import_react3.default.createElement(
             "div",
@@ -59090,16 +59101,8 @@ void main() {
   }
   function BeyondTheFrame({ theme = "dark", entries }) {
     const isLight = theme === "light";
-    const activeEntries = Array.isArray(entries) && entries.length === 9 ? entries : Array.from({ length: 9 }, (_, idx) => {
-      const fallback = CINEMATIC_ENTRIES[idx];
-      const raw = (Array.isArray(entries) ? entries[idx] : null) || fallback;
-      return {
-        ...fallback,
-        ...raw,
-        id: fallback.id,
-        slotNumber: fallback.slotNumber
-      };
-    });
+    const sourceEntries = Array.isArray(entries) && entries.length > 0 ? entries : CINEMATIC_ENTRIES;
+    const activeEntries = sourceEntries.filter((entry) => entry && entry.visible !== false);
     return /* @__PURE__ */ import_react9.default.createElement(ScrollStack_default, { showPaddingCues: true, theme }, activeEntries.map((entry, idx) => /* @__PURE__ */ import_react9.default.createElement(ScrollStackItem, { key: entry.id || `btf-0${idx + 1}`, index: idx }, /* @__PURE__ */ import_react9.default.createElement(CinematicBanner, { entry, isLight }))));
   }
   var import_react9, CINEMATIC_ENTRIES;
@@ -60485,9 +60488,9 @@ ${FOIL_FRAGMENT_HEAD}`).replace("#include <opaque_fragment>", `${FOIL_FRAGMENT_B
     const [, setTick] = (0, import_react12.useState)(0);
     const docTheme = typeof document !== "undefined" ? detectDocumentTheme() : null;
     const activeTheme = docTheme || (theme === "light" || theme === "dark" ? theme : "dark");
-    const careerStagesList = Array.isArray(customCareerStages) && customCareerStages.length > 0 ? customCareerStages : CAREER_STAGES;
-    const foundationsList = Array.isArray(customFoundations) && customFoundations.length > 0 ? customFoundations : FOUNDATIONS_TOOLS;
-    const creativeSkillsList = Array.isArray(customCreativeSkills) && customCreativeSkills.length > 0 ? customCreativeSkills : CREATIVE_SKILLS;
+    const careerStagesList = (Array.isArray(customCareerStages) && customCareerStages.length > 0 ? customCareerStages : CAREER_STAGES).filter(s => s && s.visible !== false);
+    const foundationsList = (Array.isArray(customFoundations) && customFoundations.length > 0 ? customFoundations : FOUNDATIONS_TOOLS).filter(f => f && f.visible !== false);
+    const creativeSkillsList = (Array.isArray(customCreativeSkills) && customCreativeSkills.length > 0 ? customCreativeSkills : CREATIVE_SKILLS).filter(s => s && s.visible !== false);
     const [selectedStageId, setSelectedStageId] = (0, import_react12.useState)("CREATIVE DIRECTOR");
     const [hoveredStageId, setHoveredStageId] = (0, import_react12.useState)(null);
     const [activeSkillIndex, setActiveSkillIndex] = (0, import_react12.useState)(null);
@@ -72848,8 +72851,8 @@ ${FOIL_FRAGMENT_HEAD}`).replace("#include <opaque_fragment>", `${FOIL_FRAGMENT_B
         const defaultProps = {
           images: DEFAULT_ORBIT_SLOTS,
           fit: 0.8,
-          minRadius: 710,
-          maxRadius: 860,
+          minRadius: 800,
+          maxRadius: 970,
           maxVerticalRotationDeg: 0,
           segments: 10,
           dragDampening: 4.6,

@@ -343,6 +343,54 @@
       color: #FFF !important;
     }
 
+    /* Visibility Toggle Buttons */
+    .vis-toggle-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 4px 9px;
+      border-radius: 4px;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.05em;
+      cursor: pointer;
+      transition: all 0.15s ease;
+      border: 1px solid var(--border-base);
+      background: var(--bg-surface);
+      color: var(--text-secondary);
+      user-select: none;
+    }
+    .vis-toggle-btn:hover {
+      border-color: var(--border-active);
+      color: var(--text-primary);
+    }
+    .vis-toggle-btn.is-visible {
+      background: rgba(34, 197, 94, 0.12);
+      border-color: rgba(34, 197, 94, 0.35);
+      color: #4ade80;
+    }
+    .vis-toggle-btn.is-visible:hover {
+      background: rgba(34, 197, 94, 0.2);
+      border-color: #22c55e;
+      color: #86efac;
+    }
+    .vis-toggle-btn.is-hidden {
+      background: rgba(255, 48, 56, 0.1);
+      border-color: rgba(255, 48, 56, 0.3);
+      color: #ff6b6b;
+    }
+    .vis-toggle-btn.is-hidden:hover {
+      background: rgba(255, 48, 56, 0.18);
+      border-color: var(--crimson);
+      color: #ffa3a3;
+    }
+    .vis-toggle-btn svg {
+      flex-shrink: 0;
+      width: 13px;
+      height: 13px;
+    }
+
     /* -------------------------------------------------------------
        TOP NAVIGATION BAR
        ------------------------------------------------------------- */
@@ -1447,10 +1495,9 @@
         <span id="auth-badge-text">DBL // CREATIVE CONTROL ROOM</span>
       </div>
 
-      <!-- THREE-METHOD NAVIGATION TABS -->
+      <!-- TWO ALLOWED AUTHENTICATION METHODS: GMAIL OTP & EXISTING PASSPHRASE -->
       <div class="auth-tabs" id="auth-tabs-bar">
         <button type="button" class="auth-tab-btn active" id="tab-btn-otp" onclick="switchAuthTab('otp')">GMAIL OTP</button>
-        <button type="button" class="auth-tab-btn" id="tab-btn-totp" onclick="switchAuthTab('totp')">AUTHENTICATOR</button>
         <button type="button" class="auth-tab-btn" id="tab-btn-password" onclick="switchAuthTab('password')">PASSPHRASE</button>
       </div>
 
@@ -1461,7 +1508,7 @@
 
         <!-- Unconfigured Gateway Warning -->
         <div class="auth-gateway-notice" id="auth-gateway-notice" style="display: none;">
-          <strong>GATEWAY NOTICE:</strong> Gmail delivery credentials (GMAIL_USER &amp; GMAIL_APP_PASSWORD) are not configured in .env. Please authenticate using your Authenticator app or administrative passphrase.
+          <strong>GATEWAY NOTICE:</strong> Gmail delivery credentials (GMAIL_USER &amp; GMAIL_APP_PASSWORD) are not configured in .env. Please authenticate using your administrative passphrase.
         </div>
 
         <div class="auth-destinations-box" id="auth-otp-dest-box">
@@ -1502,72 +1549,13 @@
           <button type="button" class="auth-btn" id="auth-request-otp-btn" onclick="requestOtpChallenge()">REQUEST VERIFICATION CODE</button>
         </div>
 
-        <a href="#" class="auth-fallback-link" onclick="switchAuthTab('password', event)">Use administrative passphrase fallback &rarr;</a>
+        <a href="#" class="auth-fallback-link" onclick="switchAuthTab('password', event)">Use existing administrative passphrase fallback &rarr;</a>
       </div>
 
-      <!-- VIEW 2: AUTHENTICATOR APP (TOTP) -->
-      <div id="auth-view-totp" style="display: none;">
-        <h2 class="auth-title">AUTHENTICATOR APP</h2>
-        <p class="auth-desc">Enter the 6-digit rotating time-based code from Google Authenticator, Microsoft Authenticator, or another standard TOTP app.</p>
-
-        <!-- Sub-view A: When Enrolled -->
-        <div id="totp-enrolled-section">
-          <form id="totp-form" onsubmit="handleTotpSubmit(event)">
-            <div class="auth-input-group">
-              <label class="auth-label" for="auth-totp-token">6-DIGIT TOTP CODE</label>
-              <input type="text" id="auth-totp-token" class="auth-input auth-otp-input" placeholder="------" maxlength="6" pattern="[0-9]{6}" inputmode="numeric" autocomplete="one-time-code" required>
-            </div>
-
-            <button type="submit" class="auth-btn" id="auth-totp-btn">VERIFY CODE &amp; ENTER</button>
-            <div class="auth-error" id="auth-totp-error"></div>
-          </form>
-          <div style="margin-top: 12px; text-align: center;">
-            <a href="#" class="auth-fallback-link" onclick="startTotpSetup(event)" style="font-size: 11px;">Need to scan QR code or set up a new device? Click here &rarr;</a>
-          </div>
-        </div>
-
-        <!-- Sub-view B: When Not Yet Enrolled -->
-        <div id="totp-not-enrolled-section" style="display: none; text-align: center;">
-          <div style="background: var(--bg-surface); border: 1px solid var(--border-base); border-radius: 8px; padding: 16px; margin-bottom: 16px; font-size: 12px; color: var(--text-secondary); line-height: 1.5;">
-            <p style="margin-bottom: 8px;"><strong style="color: #FFF;">NO AUTHENTICATOR ENROLLED</strong></p>
-            <p>An authenticator app allows instant login without waiting for email delivery. Set up your device now.</p>
-          </div>
-          <button type="button" class="auth-btn" onclick="startTotpSetup()">SET UP AUTHENTICATOR APP</button>
-        </div>
-
-        <a href="#" class="auth-fallback-link" onclick="switchAuthTab('password', event)">Use administrative passphrase instead &rarr;</a>
-      </div>
-
-      <!-- VIEW 3: AUTHENTICATOR SETUP (QR CODE ENROLLMENT) -->
-      <div id="auth-view-totp-setup" style="display: none;">
-        <h2 class="auth-title">ENROLL AUTHENTICATOR</h2>
-        <p class="auth-desc">1. Scan this QR code with Google Authenticator or Microsoft Authenticator.<br>2. Enter the 6-digit code shown in your app to activate.</p>
-
-        <div style="text-align: center; margin-bottom: 14px;">
-          <div class="auth-qr-container">
-            <img id="totp-setup-qr" alt="Authenticator QR Code">
-          </div>
-          <div style="font-size: 10px; color: var(--text-muted); font-family: 'JetBrains Mono', monospace; margin-bottom: 4px;">OR ENTER SECRET KEY MANUALLY:</div>
-          <code class="auth-manual-key" id="totp-setup-key">------</code>
-        </div>
-
-        <form id="totp-setup-form" onsubmit="handleTotpSetupSubmit(event)">
-          <div class="auth-input-group">
-            <label class="auth-label" for="auth-totp-setup-code">CURRENT 6-DIGIT CODE</label>
-            <input type="text" id="auth-totp-setup-code" class="auth-input auth-otp-input" placeholder="------" maxlength="6" pattern="[0-9]{6}" inputmode="numeric" required>
-          </div>
-
-          <button type="submit" class="auth-btn" id="auth-totp-setup-btn">ACTIVATE AUTHENTICATOR</button>
-          <div class="auth-error" id="auth-totp-setup-error"></div>
-        </form>
-
-        <a href="#" class="auth-fallback-link" onclick="cancelTotpSetup(event)">&larr; Cancel setup</a>
-      </div>
-
-      <!-- VIEW 4: PASSWORD FALLBACK -->
+      <!-- VIEW 2: EXISTING PASSPHRASE FALLBACK -->
       <div id="auth-view-password" style="display: none;">
         <h2 class="auth-title">ADMINISTRATIVE PASSPHRASE</h2>
-        <p class="auth-desc">Authenticate directly using your server-configured administrative passphrase.</p>
+        <p class="auth-desc">Authenticate directly using your existing server-configured administrative passphrase.</p>
 
         <form id="password-form" onsubmit="handlePasswordSubmit(event)">
           <div class="auth-input-group">
@@ -1579,27 +1567,7 @@
           <div class="auth-error" id="auth-password-error"></div>
         </form>
 
-        <a href="#" class="auth-fallback-link" onclick="switchAuthTab('otp', event)">&larr; Return to Gmail verification</a>
-      </div>
-
-      <!-- VIEW 5: INITIAL SETUP (IF UNCONFIGURED) -->
-      <div id="auth-view-setup" style="display: none;">
-        <h2 class="auth-title">INITIALIZE BACKSTAGE</h2>
-        <p class="auth-desc">First-time initialization: Establish your root administrative passphrase.</p>
-
-        <form id="setup-form" onsubmit="handleSetupSubmit(event)">
-          <div class="auth-input-group">
-            <label class="auth-label" for="auth-setup-password">NEW PASSPHRASE (MIN 6 CHARS)</label>
-            <input type="password" id="auth-setup-password" class="auth-input" placeholder="Enter new passphrase..." autocomplete="new-password" required>
-          </div>
-          <div class="auth-input-group">
-            <label class="auth-label" for="auth-setup-confirm">CONFIRM PASSPHRASE</label>
-            <input type="password" id="auth-setup-confirm" class="auth-input" placeholder="Confirm new passphrase..." autocomplete="new-password" required>
-          </div>
-
-          <button type="submit" class="auth-btn" id="auth-setup-btn">INITIALIZE CREDENTIALS</button>
-          <div class="auth-error" id="auth-setup-error"></div>
-        </form>
+        <a href="#" class="auth-fallback-link" onclick="switchAuthTab('otp', event)">&larr; Return to Gmail OTP verification</a>
       </div>
 
     </div>
@@ -1639,9 +1607,6 @@
       </button>
       <button type="button" class="btn-tool" onclick="openSettingsModal()">
         <span>GLOBAL SETTINGS</span>
-      </button>
-      <button type="button" class="btn-tool" id="btn-security-modal" onclick="openSecurityModal()" title="Manage Authenticator App (TOTP) and 2FA Security">
-        <span>AUTHENTICATOR // 2FA</span>
       </button>
       <button type="button" class="btn-tool btn-discard" onclick="handleDiscardClick()" title="Discard changes and restore published version">
         <span>DISCARD</span>
@@ -1773,96 +1738,6 @@
       <div class="modal-footer">
         <button type="button" class="btn-tool" onclick="closeSettingsModal()">CANCEL</button>
         <button type="button" class="btn-tool btn-save" onclick="saveGlobalSettings()">APPLY SETTINGS</button>
-      </div>
-    </div>
-  </div>
-
-  <!-- -------------------------------------------------------------
-       5b. MODALS: SECURITY & AUTHENTICATOR ENROLLMENT
-       ------------------------------------------------------------- -->
-  <div class="modal-overlay" id="security-modal">
-    <div class="modal-window" style="max-width: 520px;">
-      <div class="modal-header">
-        <div style="display: flex; align-items: center; gap: 8px;">
-          <span style="color: var(--crimson); font-size: 14px;">⚡</span>
-          <h3 class="modal-title">SECURITY &amp; AUTHENTICATOR // 2FA</h3>
-        </div>
-        <button type="button" class="modal-close" onclick="closeSecurityModal()">&times;</button>
-      </div>
-      <div class="modal-body" id="security-modal-body">
-        
-        <!-- Status Card -->
-        <div style="background: var(--bg-surface); border: 1px solid var(--border-base); border-radius: 8px; padding: 16px; margin-bottom: 18px;">
-          <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
-            <span style="font-family: 'JetBrains Mono', monospace; font-size: 11px; font-weight: 700; color: var(--text-secondary); letter-spacing: 0.08em;">AUTHENTICATOR STATUS</span>
-            <span id="cms-totp-status-badge" style="font-family: 'JetBrains Mono', monospace; font-size: 10px; font-weight: 700; padding: 3px 8px; border-radius: 4px; background: rgba(255, 48, 56, 0.15); color: var(--crimson);">CHECKING...</span>
-          </div>
-          <p style="font-size: 12px; color: var(--text-muted); line-height: 1.5; margin: 0;" id="cms-totp-status-desc">
-            Time-based One-Time Password (TOTP) standard RFC 6238 for Google Authenticator, Microsoft Authenticator, 1Password, and other apps.
-          </p>
-        </div>
-
-        <!-- Enrolled View -->
-        <div id="cms-totp-enrolled-view" style="display: none;">
-          <div style="background: rgba(34, 197, 94, 0.08); border: 1px solid rgba(34, 197, 94, 0.25); border-radius: 8px; padding: 14px; margin-bottom: 18px; font-size: 12px; color: #86efac; line-height: 1.5;">
-            ✓ Your authenticator app is currently enrolled and active for <strong>project2krishnan@gmail.com</strong>.
-          </div>
-          <div style="display: flex; gap: 10px;">
-            <button type="button" class="btn-tool" onclick="startCmsTotpEnrollment()" style="flex: 1; justify-content: center; padding: 10px;">
-              <span>RE-ENROLL NEW DEVICE</span>
-            </button>
-            <button type="button" class="btn-tool btn-discard" onclick="unlinkCmsTotp()" style="flex: 1; justify-content: center; padding: 10px;">
-              <span>UNLINK DEVICE</span>
-            </button>
-          </div>
-        </div>
-
-        <!-- Not Enrolled / Intro View -->
-        <div id="cms-totp-not-enrolled-view" style="display: none; text-align: center;">
-          <p style="font-size: 12.5px; color: var(--text-secondary); line-height: 1.6; margin-bottom: 18px;">
-            Enrolling an authenticator app allows instant login using rotating 6-digit codes on your phone without waiting for Gmail OTP delivery.
-          </p>
-          <button type="button" class="btn-tool btn-save" onclick="startCmsTotpEnrollment()" style="width: 100%; justify-content: center; padding: 12px;">
-            <span>ENROLL AUTHENTICATOR APP</span>
-          </button>
-        </div>
-
-        <!-- Live Enrollment View (QR Code + Manual Key + Verification Input) -->
-        <div id="cms-totp-enrollment-view" style="display: none;">
-          <div style="text-align: center; margin-bottom: 16px;">
-            <p style="font-size: 12px; color: var(--text-secondary); margin-bottom: 14px; line-height: 1.5;">
-              1. Open <strong>Google Authenticator</strong> or <strong>Microsoft Authenticator</strong> on your phone.<br>
-              2. Tap <strong>+</strong> and scan this QR code:
-            </p>
-            <div style="background: #FFFFFF; padding: 12px; border-radius: 8px; display: inline-block; box-shadow: 0 4px 20px rgba(0,0,0,0.5);">
-              <img id="cms-totp-qr-img" alt="TOTP QR Code" style="width: 180px; height: 180px; display: block;">
-            </div>
-            <div style="margin-top: 12px;">
-              <span style="font-size: 10px; color: var(--text-muted); font-family: 'JetBrains Mono', monospace;">MANUAL SETUP KEY:</span>
-              <code id="cms-totp-manual-key" style="display: block; font-family: 'JetBrains Mono', monospace; font-size: 13px; font-weight: 700; color: #FFF; background: var(--bg-surface); border: 1px solid var(--border-base); padding: 6px 10px; border-radius: 4px; margin-top: 4px; letter-spacing: 0.12em; user-select: all;">------</code>
-            </div>
-          </div>
-
-          <form id="cms-totp-verify-form" onsubmit="handleCmsTotpActivation(event)">
-            <div class="form-group" style="margin-bottom: 14px;">
-              <label class="form-label" for="cms-totp-code-input" style="font-size: 11px;">ENTER 6-DIGIT CODE FROM APP TO ACTIVATE</label>
-              <input type="text" class="form-input" id="cms-totp-code-input" placeholder="000000" maxlength="6" pattern="[0-9]{6}" inputmode="numeric" autocomplete="one-time-code" style="text-align: center; font-family: 'JetBrains Mono', monospace; font-size: 18px; letter-spacing: 0.25em; padding: 10px;" required>
-            </div>
-            <div id="cms-totp-error" class="auth-error" style="display: none; margin-bottom: 12px;"></div>
-            <div style="display: flex; gap: 10px;">
-              <button type="button" class="btn-tool" onclick="cancelCmsTotpEnrollment()" style="flex: 1; justify-content: center; padding: 10px;">
-                <span>CANCEL</span>
-              </button>
-              <button type="submit" class="btn-tool btn-save" id="cms-totp-submit-btn" style="flex: 2; justify-content: center; padding: 10px;">
-                <span>ACTIVATE &amp; SAVE DEVICE</span>
-              </button>
-            </div>
-          </form>
-        </div>
-
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn-tool" onclick="closeSecurityModal()">CLOSE</button>
       </div>
     </div>
   </div>

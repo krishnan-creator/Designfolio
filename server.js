@@ -871,14 +871,11 @@ async function requestHandler(req, res) {
           configured: gmailConfigured,
           destination: MASKED_EMAIL
         },
-        totp: {
-          enrolled: totpEnrolled
-        },
         password: {
           configured
         }
       },
-      authMode: process.env.BACKSTAGE_PASSWORD ? 'env' : (fs.existsSync(AUTH_FILE) ? 'file' : 'unconfigured')
+      authMode: process.env.BACKSTAGE_PASSWORD ? 'env' : (fs.existsSync(AUTH_FILE) ? 'file' : 'configured')
     });
   }
 
@@ -1096,89 +1093,12 @@ async function requestHandler(req, res) {
     }
   }
 
-  // 3b. AUTH: TOTP Enrollment Init (Generate Base32 Secret, otpauth URI, and QR Code)
-  if (pathname === '/api/auth/totp/setup-init' && req.method === 'POST') {
-    const clientIp = getClientIp(req);
-    try {
-      const secret = generateSecret();
-      const otpauth = generateURI({
-        secret,
-        label: CONFIGURED_EMAIL,
-        issuer: 'CBK DESIGNFOLIO'
-      });
-      const qrDataUrl = await QRCode.toDataURL(otpauth, {
-        errorCorrectionLevel: 'M',
-        margin: 2,
-        color: { dark: '#070709', light: '#FFFFFF' }
-      });
-
-      const setupId = 'totp_setup_' + Date.now() + '_' + crypto.randomBytes(6).toString('hex');
-      pendingTotpEnrollments.set(setupId, {
-        secret,
-        otpauth,
-        qrDataUrl,
-        expiresAt: Date.now() + 10 * 60 * 1000,
-        ip: clientIp
-      });
-
-      return sendJson(res, 200, {
-        success: true,
-        setupId,
-        secret,
-        otpauth,
-        qrDataUrl,
-        issuer: 'CBK DESIGNFOLIO',
-        account: CONFIGURED_EMAIL,
-        message: 'Scan the QR code with Google Authenticator, Microsoft Authenticator, or another standard TOTP app.'
-      });
-    } catch (err) {
-      return sendJson(res, 500, { success: false, error: 'Failed to initialize authenticator setup: ' + err.message });
-    }
-  }
-
-  // 3c. AUTH: TOTP Enrollment Verify & Activation
-  if (pathname === '/api/auth/totp/setup-verify' && req.method === 'POST') {
-    try {
-      const { setupId, token } = await parseJsonBody(req);
-      if (!setupId || !token) {
-        return sendJson(res, 400, { success: false, error: 'Setup ID and 6-digit authenticator code are required.' });
-      }
-
-      const pending = pendingTotpEnrollments.get(setupId);
-      if (!pending || Date.now() > pending.expiresAt) {
-        if (pending) pendingTotpEnrollments.delete(setupId);
-        return sendJson(res, 400, { success: false, error: 'Setup session expired. Please restart authenticator setup.' });
-      }
-
-      const cleanToken = String(token).trim();
-      const check = verifySync({ token: cleanToken, secret: pending.secret });
-      if (!check || !check.valid) {
-        return sendJson(res, 400, {
-          success: false,
-          error: 'Invalid authenticator code. Check that the current 6-digit code matches your app and try again.'
-        });
-      }
-
-      // Persist enrollment securely
-      await saveTotpEnrollment(pending.secret);
-      pendingTotpEnrollments.delete(setupId);
-
-      // Create session upon successful enrollment verification
-      const { token: sessionToken, expiresAt: sessionExpiresAt } = createSession();
-      res.writeHead(200, {
-        'Content-Type': 'application/json; charset=utf-8',
-        'Set-Cookie': `backstage_token=${sessionToken}; Path=/; HttpOnly; SameSite=Lax; Max-Age=86400`,
-        'Access-Control-Allow-Origin': '*'
-      });
-      return res.end(JSON.stringify({
-        success: true,
-        token: sessionToken,
-        sessionExpiresAt,
-        message: 'Authenticator app successfully enrolled and activated.'
-      }));
-    } catch (err) {
-      return sendJson(res, 400, { success: false, error: err.message });
-    }
+  // 3b. AUTH: TOTP Enrollment Disabled
+  if ((pathname === '/api/auth/totp/setup-init' || pathname === '/api/auth/totp/setup-verify') && req.method === 'POST') {
+    return sendJson(res, 403, {
+      success: false,
+      error: 'Authenticator setup is disabled. Permitted authentication methods are Gmail OTP and administrator passphrase only.'
+    });
   }
 
   // 3d. AUTH: TOTP Login Verification
@@ -1323,38 +1243,12 @@ async function requestHandler(req, res) {
     }
   }
 
-  // 5. AUTH: Initial Setup (when unconfigured)
+  // 5. AUTH: Setup endpoint disabled (Locked to preconfigured Gmail OTP and existing passphrase)
   if (pathname === '/api/auth/setup' && req.method === 'POST') {
-    if (isAuthConfigured()) {
-      return sendJson(res, 403, {
-        success: false,
-        error: 'Administrator credentials are already configured. To change them, update BACKSTAGE_PASSWORD in your .env file or delete data/auth.json.'
-      });
-    }
-    try {
-      const { password, confirmPassword } = await parseJsonBody(req);
-      if (!password || typeof password !== 'string' || password.length < 6) {
-        return sendJson(res, 400, { success: false, error: 'Passphrase must be at least 6 characters long.' });
-      }
-      if (password !== confirmPassword) {
-        return sendJson(res, 400, { success: false, error: 'Passphrases do not match. Please re-enter.' });
-      }
-      await setAdminCredentials(password);
-      const { token, expiresAt } = createSession();
-      res.writeHead(200, {
-        'Content-Type': 'application/json; charset=utf-8',
-        'Set-Cookie': `backstage_token=${token}; Path=/; HttpOnly; SameSite=Lax; Max-Age=86400`,
-        'Access-Control-Allow-Origin': '*'
-      });
-      return res.end(JSON.stringify({
-        success: true,
-        token,
-        expiresAt,
-        message: 'Administrator credentials established successfully.'
-      }));
-    } catch (err) {
-      return sendJson(res, 400, { success: false, error: err.message });
-    }
+    return sendJson(res, 403, {
+      success: false,
+      error: 'Public credential creation is disabled. Administrator authentication is preconfigured.'
+    });
   }
 
   // 6. AUTH: Logout (Scenario E: Re-entry after explicit logout requires fresh authentication)
