@@ -58400,10 +58400,15 @@ void main() {
       initFramebuffers();
       let lastUpdateTime = Date.now();
       let colorUpdateTimer = 0;
+      let needsResize = false;
+      window.addEventListener("resize", () => { needsResize = true; }, { passive: true });
       function updateFrame() {
         if (!isActive) return;
         const dt = calcDeltaTime();
-        if (resizeCanvas()) initFramebuffers();
+        if (needsResize) {
+          needsResize = false;
+          if (resizeCanvas()) initFramebuffers();
+        }
         updateColors(dt);
         applyInputs();
         step(dt);
@@ -72640,18 +72645,22 @@ ${FOIL_FRAGMENT_HEAD}`).replace("#include <opaque_fragment>", `${FOIL_FRAGMENT_B
   // ThrineModel.jsx
   function ThrineModel({ theme = "dark" }) {
     const isLight = theme === "light";
-    const project = isLight ? "e_85a495ea90c196a38807" : "e_ff6399d0ea6e9b79ba9b";
-    const aspectRatio2 = isLight ? "707 / 770" : "707 / 748";
-    const key = `thrine-model-${isLight ? "light" : "dark"}-${project}`;
+    const project = "e_d9b05f3677dd12bf8341";
+    const aspectRatio2 = "1259 / 787";
+    const key = "thrine-model-main";
     return /* @__PURE__ */ import_react35.default.createElement("div", { className: "thrine-model-wrapper", "data-theme": isLight ? "light" : "dark" }, /* @__PURE__ */ import_react35.default.createElement(
       "model-embed",
       {
         key,
         project,
+        restrict: "transparent",
         style: {
           display: "block",
           width: "100%",
-          aspectRatio: aspectRatio2
+          aspectRatio: aspectRatio2,
+          transform: "scale(1.05)",
+          transformOrigin: "center center",
+          background: "transparent"
         }
       }
     ));

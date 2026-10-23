@@ -3351,15 +3351,15 @@
       flex-wrap: wrap;
     }
 
-    /* INLINE CONTACT FORM STYLING */
+    /* INLINE CONTACT FORM STYLING - PROFESSIONALLY TIGHTENED */
     .inline-contact-form {
-      margin-top: 22px;
+      margin-top: 14px;
       width: 100%;
       max-width: 540px;
     }
 
     .contact-field-group {
-      margin-bottom: 14px;
+      margin-bottom: 5px;
       text-align: left;
     }
 
@@ -3371,7 +3371,7 @@
       letter-spacing: 0.12em;
       text-transform: uppercase;
       color: #121215;
-      margin-bottom: 6px;
+      margin-bottom: 2px;
     }
 
     .contact-field-label .req-star {
@@ -3381,11 +3381,12 @@
 
     .contact-field-input {
       width: 100%;
+      height: 44px;
       box-sizing: border-box;
       background: rgba(255, 255, 255, 0.85);
       border: 1px solid rgba(18, 18, 21, 0.22);
       border-radius: 6px;
-      padding: 11px 14px;
+      padding: 10px 14px;
       font-family: 'Space Grotesk', -apple-system, sans-serif;
       font-size: 13.5px;
       color: #121215;
@@ -3455,8 +3456,9 @@
 
     .contact-field-textarea {
       resize: vertical;
-      min-height: 95px;
-      line-height: 1.5;
+      min-height: 86px;
+      height: 90px;
+      line-height: 1.45;
     }
 
     .contact-field-error {
@@ -3464,8 +3466,13 @@
       font-family: 'JetBrains Mono', monospace;
       font-size: 11px;
       font-weight: 600;
-      margin-top: 4px;
-      min-height: 16px;
+      margin-top: 2px;
+      min-height: 0;
+      line-height: 1.2;
+    }
+
+    .contact-field-error:empty {
+      display: none;
     }
 
     .contact-status-box {
@@ -5187,7 +5194,7 @@ console.log('Saved scratch/new_master_styles.css');
       display: flex;
       align-items: baseline;
       gap: 12px;
-      margin: 1.1rem 0 1.2rem 0;
+      margin: 0.55rem 0 0.85rem 0;
     }
 
     .build-headline-accent-slash {
@@ -5532,16 +5539,14 @@ console.log('Saved scratch/new_master_styles.css');
     }
 
     .works-tag-row {
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      margin-bottom: 8px;
-      font-family: 'JetBrains Mono', monospace;
-      font-size: 9.5px;
-      font-weight: 700;
-      letter-spacing: 0.14em;
-      color: var(--dbl-crimson);
-      text-transform: uppercase;
+      display: none !important;
+      margin: 0 !important;
+      padding: 0 !important;
+      height: 0 !important;
+      width: 0 !important;
+      visibility: hidden !important;
+      opacity: 0 !important;
+      pointer-events: none !important;
     }
 
     .works-title {
@@ -5705,12 +5710,6 @@ console.log('Saved scratch/new_master_styles.css');
       letter-spacing: 0.06em;
       color: #ffffff;
       text-transform: uppercase;
-    }
-
-    .lightbox-caption-sub {
-      font-family: 'JetBrains Mono', monospace;
-      font-size: 11px;
-      color: #8E8E98;
     }
 
     @media (max-width: 900px) {
@@ -5897,7 +5896,8 @@ console.log('Saved scratch/new_master_styles.css');
     }
 
     /* ============================================================
-       MEDIUM VIDEO PLAYER MODAL (REQUIREMENT 7.3 & 7.4)
+       CINEMATIC VIDEO VIEWER & TRUE FULLSCREEN EXPERIENCE
+       (YOUTUBE-STYLE EDGE-TO-EDGE, AUTO-HIDING CONTROLS, DBL AESTHETICS)
        ============================================================ */
     .medium-player-card {
       position: relative;
@@ -5913,6 +5913,7 @@ console.log('Saved scratch/new_master_styles.css');
       flex-direction: column;
       overflow: hidden;
       animation: modalScaleIn 0.28s cubic-bezier(0.16, 1, 0.3, 1);
+      transition: width 0.25s ease, height 0.25s ease, border-radius 0.25s ease;
     }
 
     @keyframes modalScaleIn {
@@ -5924,8 +5925,12 @@ console.log('Saved scratch/new_master_styles.css');
       position: relative;
       width: 100%;
       aspect-ratio: 16 / 9;
-      background: #000;
+      background: #000000;
       overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      user-select: none;
     }
 
     .medium-player-stage .lightbox-media-container {
@@ -5934,14 +5939,20 @@ console.log('Saved scratch/new_master_styles.css');
       display: flex;
       align-items: center;
       justify-content: center;
+      background: #000000;
+      overflow: hidden;
     }
 
     .medium-player-stage .lightbox-media-container img,
-    .medium-player-stage .lightbox-media-container video {
+    .medium-player-stage .lightbox-media-container video,
+    .lightbox-video-player {
       width: 100%;
       height: 100%;
       object-fit: contain;
       display: block;
+      background: #000000;
+      outline: none;
+      border: none;
     }
 
     /* Player top title overlay */
@@ -5951,13 +5962,13 @@ console.log('Saved scratch/new_master_styles.css');
       left: 0;
       right: 0;
       padding: 16px 20px;
-      background: linear-gradient(to bottom, rgba(0, 0, 0, 0.85) 0%, rgba(0, 0, 0, 0.4) 60%, transparent 100%);
+      background: linear-gradient(to bottom, rgba(0, 0, 0, 0.88) 0%, rgba(0, 0, 0, 0.45) 60%, transparent 100%);
       display: flex;
       flex-direction: column;
-      gap: 3px;
       opacity: 0;
-      transition: opacity 0.25s ease;
-      z-index: 9;
+      visibility: hidden;
+      transition: opacity 0.3s cubic-bezier(0.16, 1, 0.3, 1), visibility 0.3s ease;
+      z-index: 15;
       pointer-events: none;
     }
 
@@ -5970,16 +5981,9 @@ console.log('Saved scratch/new_master_styles.css');
       text-transform: uppercase;
     }
 
-    .player-top-sub {
-      font-family: 'IBM Plex Mono', monospace;
-      font-size: 10px;
-      color: #8E8E98;
-      letter-spacing: 0.04em;
-    }
-
-    .medium-player-stage:hover .player-top-bar,
     .player-top-bar.is-active {
       opacity: 1 !important;
+      visibility: visible !important;
     }
 
     /* Custom video control bar */
@@ -5989,19 +5993,19 @@ console.log('Saved scratch/new_master_styles.css');
       left: 0;
       right: 0;
       padding: 10px 16px;
-      background: linear-gradient(to top, rgba(0, 0, 0, 0.85) 0%, rgba(0, 0, 0, 0.4) 70%, transparent 100%);
+      background: linear-gradient(to top, rgba(0, 0, 0, 0.88) 0%, rgba(0, 0, 0, 0.45) 70%, transparent 100%);
       display: flex;
       align-items: center;
       gap: 12px;
       opacity: 0;
-      transition: opacity 0.25s ease;
-      z-index: 10;
+      visibility: hidden;
+      transition: opacity 0.3s cubic-bezier(0.16, 1, 0.3, 1), visibility 0.3s ease;
+      z-index: 20;
     }
 
-    .medium-player-stage:hover .video-custom-controls,
-    .video-custom-controls:focus-within,
     .video-custom-controls.is-active {
       opacity: 1 !important;
+      visibility: visible !important;
     }
 
     .player-btn {
@@ -6017,10 +6021,17 @@ console.log('Saved scratch/new_master_styles.css');
       cursor: pointer;
       outline: none;
       flex-shrink: 0;
+      transition: background 0.15s ease, transform 0.15s ease, border-color 0.15s ease;
     }
 
     .player-btn:hover {
       background: rgba(255, 255, 255, 0.25);
+      border-color: rgba(255, 255, 255, 0.35);
+      transform: scale(1.04);
+    }
+
+    .player-btn:active {
+      transform: scale(0.96);
     }
 
     .player-seek-wrap {
@@ -6050,7 +6061,7 @@ console.log('Saved scratch/new_master_styles.css');
       top: 0;
       height: 100%;
       width: 0%;
-      background: var(--dbl-crimson);
+      background: var(--dbl-crimson, #E50914);
       border-radius: 3px;
     }
 
@@ -6065,7 +6076,7 @@ console.log('Saved scratch/new_master_styles.css');
     .player-vol-slider {
       width: 65px;
       height: 4px;
-      accent-color: var(--dbl-crimson);
+      accent-color: var(--dbl-crimson, #E50914);
       cursor: pointer;
     }
 
@@ -6085,6 +6096,233 @@ console.log('Saved scratch/new_master_styles.css');
       color: rgba(255, 255, 255, 0.5);
       letter-spacing: 0.03em;
       text-align: right;
+    }
+
+    /* ------------------------------------------------------------
+       TRUE FULLSCREEN VIEWPORT STYLES (NATIVE FULLSCREEN & CLASS)
+       ------------------------------------------------------------ */
+    #medium-player-card:fullscreen,
+    #medium-player-card:-webkit-full-screen,
+    #medium-player-card.is-fullscreen {
+      position: fixed !important;
+      top: 0 !important;
+      left: 0 !important;
+      right: 0 !important;
+      bottom: 0 !important;
+      width: 100vw !important;
+      max-width: 100vw !important;
+      min-width: 100vw !important;
+      height: 100vh !important;
+      max-height: 100vh !important;
+      min-height: 100vh !important;
+      margin: 0 !important;
+      padding: 0 !important;
+      border: none !important;
+      border-radius: 0 !important;
+      background: #000000 !important;
+      box-shadow: none !important;
+      backdrop-filter: none !important;
+      -webkit-backdrop-filter: none !important;
+      animation: none !important;
+      z-index: 2147483647 !important;
+      overflow: hidden !important;
+      display: flex !important;
+      flex-direction: column !important;
+      justify-content: center !important;
+      align-items: center !important;
+    }
+
+    /* 3.1 Completely eliminate top-corner modal close button in fullscreen */
+    #medium-player-card:fullscreen .lightbox-close-btn,
+    #medium-player-card:-webkit-full-screen .lightbox-close-btn,
+    #medium-player-card.is-fullscreen .lightbox-close-btn {
+      display: none !important;
+    }
+
+    /* Eliminate modal footer in fullscreen */
+    #medium-player-card:fullscreen .medium-player-footer,
+    #medium-player-card:-webkit-full-screen .medium-player-footer,
+    #medium-player-card.is-fullscreen .medium-player-footer {
+      display: none !important;
+    }
+
+    /* Fullscreen stage takes entire screen */
+    #medium-player-card:fullscreen .medium-player-stage,
+    #medium-player-card:-webkit-full-screen .medium-player-stage,
+    #medium-player-card.is-fullscreen .medium-player-stage {
+      position: relative !important;
+      width: 100vw !important;
+      height: 100vh !important;
+      max-width: 100vw !important;
+      max-height: 100vh !important;
+      aspect-ratio: auto !important;
+      border-radius: 0 !important;
+      background: #000000 !important;
+      display: flex !important;
+      align-items: center !important;
+      justify-content: center !important;
+      overflow: hidden !important;
+    }
+
+    #medium-player-card:fullscreen .lightbox-media-container,
+    #medium-player-card:-webkit-full-screen .lightbox-media-container,
+    #medium-player-card.is-fullscreen .lightbox-media-container {
+      width: 100vw !important;
+      height: 100vh !important;
+      max-width: 100vw !important;
+      max-height: 100vh !important;
+      border-radius: 0 !important;
+      background: #000000 !important;
+      box-shadow: none !important;
+      display: flex !important;
+      align-items: center !important;
+      justify-content: center !important;
+      margin: 0 !important;
+      padding: 0 !important;
+    }
+
+    #medium-player-card:fullscreen .lightbox-video-player,
+    #medium-player-card:-webkit-full-screen .lightbox-video-player,
+    #medium-player-card.is-fullscreen .lightbox-video-player {
+      width: 100% !important;
+      height: 100% !important;
+      max-width: 100vw !important;
+      max-height: 100vh !important;
+      object-fit: contain !important;
+      background: #000000 !important;
+      display: block !important;
+      outline: none !important;
+      border: none !important;
+      margin: auto !important;
+    }
+
+    /* Auto-hiding cursor in fullscreen */
+    #player-media-stage.hide-cursor,
+    #player-media-stage.hide-cursor *,
+    :fullscreen #player-media-stage.hide-cursor,
+    :fullscreen #player-media-stage.hide-cursor * {
+      cursor: none !important;
+    }
+
+    /* 3.1 Method A: Press ESC to exit fullscreen hint */
+    .player-fs-esc-hint {
+      position: absolute;
+      top: max(24px, calc(16px + env(safe-area-inset-top, 16px)));
+      left: 50%;
+      transform: translateX(-50%) translateY(-6px);
+      background: rgba(14, 14, 18, 0.82);
+      border: 1px solid rgba(255, 255, 255, 0.18);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+      color: #FFFFFF;
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 13px;
+      font-weight: 500;
+      letter-spacing: 0.04em;
+      padding: 8px 20px;
+      border-radius: 999px;
+      pointer-events: none;
+      z-index: 100;
+      opacity: 0;
+      visibility: hidden;
+      transition: opacity 0.35s cubic-bezier(0.16, 1, 0.3, 1), visibility 0.35s ease, transform 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.6);
+      white-space: nowrap;
+    }
+
+    .player-fs-esc-hint.is-active {
+      opacity: 1 !important;
+      visibility: visible !important;
+      transform: translateX(-50%) translateY(0) !important;
+    }
+
+    /* 3.2 Method B: Understated Bottom-Left Exit Fullscreen Button */
+    .player-fs-exit-btn {
+      display: none;
+      position: absolute;
+      bottom: max(24px, calc(16px + env(safe-area-inset-bottom, 16px)));
+      left: max(24px, calc(16px + env(safe-area-inset-left, 16px)));
+      width: 40px;
+      height: 40px;
+      border-radius: 8px;
+      background: rgba(18, 18, 22, 0.76);
+      border: 1px solid rgba(255, 255, 255, 0.22);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      color: #FFFFFF;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      z-index: 60;
+      opacity: 0;
+      visibility: hidden;
+      transition: opacity 0.3s cubic-bezier(0.16, 1, 0.3, 1), visibility 0.3s ease, background 0.2s ease, transform 0.15s ease, border-color 0.2s ease;
+      outline: none;
+    }
+
+    .player-fs-exit-btn:hover {
+      background: rgba(255, 255, 255, 0.22);
+      border-color: rgba(255, 255, 255, 0.45);
+      transform: scale(1.05);
+    }
+
+    .player-fs-exit-btn:active {
+      transform: scale(0.96);
+    }
+
+    #medium-player-card:fullscreen .player-fs-exit-btn,
+    #medium-player-card:-webkit-full-screen .player-fs-exit-btn,
+    #medium-player-card.is-fullscreen .player-fs-exit-btn {
+      display: flex;
+    }
+
+    .player-fs-exit-btn.is-active {
+      opacity: 1 !important;
+      visibility: visible !important;
+    }
+
+    /* Position custom controls bar nicely alongside the bottom-left exit button */
+    #medium-player-card:fullscreen .video-custom-controls,
+    #medium-player-card:-webkit-full-screen .video-custom-controls,
+    #medium-player-card.is-fullscreen .video-custom-controls {
+      position: absolute;
+      bottom: max(24px, calc(16px + env(safe-area-inset-bottom, 16px)));
+      left: max(78px, calc(72px + env(safe-area-inset-left, 16px)));
+      right: max(24px, calc(16px + env(safe-area-inset-right, 16px)));
+      padding: 10px 18px;
+      background: rgba(14, 14, 18, 0.85);
+      border: 1px solid rgba(255, 255, 255, 0.16);
+      border-radius: 12px;
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      box-shadow: 0 16px 36px rgba(0, 0, 0, 0.7);
+      z-index: 55;
+    }
+
+    #medium-player-card:fullscreen .player-top-bar,
+    #medium-player-card:-webkit-full-screen .player-top-bar,
+    #medium-player-card.is-fullscreen .player-top-bar {
+      padding: max(20px, calc(16px + env(safe-area-inset-top, 16px))) 24px;
+      background: linear-gradient(to bottom, rgba(0, 0, 0, 0.88) 0%, rgba(0, 0, 0, 0.4) 65%, transparent 100%);
+      z-index: 50;
+    }
+
+    @media (max-width: 680px) {
+      #medium-player-card:fullscreen .video-custom-controls,
+      #medium-player-card:-webkit-full-screen .video-custom-controls,
+      #medium-player-card.is-fullscreen .video-custom-controls {
+        left: max(12px, env(safe-area-inset-left, 12px));
+        right: max(12px, env(safe-area-inset-right, 12px));
+        bottom: max(12px, env(safe-area-inset-bottom, 12px));
+        gap: 8px;
+        padding: 8px 12px;
+      }
+      #medium-player-card:fullscreen .player-fs-exit-btn,
+      #medium-player-card:-webkit-full-screen .player-fs-exit-btn,
+      #medium-player-card.is-fullscreen .player-fs-exit-btn {
+        bottom: max(74px, calc(64px + env(safe-area-inset-bottom, 12px)));
+        left: max(16px, env(safe-area-inset-left, 16px));
+      }
     }
 
     /* Selected Works breathing room before next section */
@@ -6385,30 +6623,30 @@ console.log('Saved scratch/new_master_styles.css');
       box-shadow: 0 0 8px rgba(230, 41, 41, 0.4) !important;
     }
 
-    /* 10. LET'S BUILD: RESTORED WIDE LANDSCAPE RECTANGULAR CONTACT CARD */
+    /* 10. LET'S BUILD: PROFESSIONALLY TIGHTENED CONTACT CARD */
     .brittle-contact-card {
       width: 100% !important;
       max-width: 1180px !important;
-      margin: 0 auto 3rem auto !important;
-      padding: clamp(2.4rem, 4.5vw, 3.8rem) clamp(2.2rem, 4.5vw, 4rem) !important;
+      margin: 0 auto 2.5rem auto !important;
+      padding: clamp(2rem, 3.2vw, 2.75rem) clamp(2rem, 4vw, 3.25rem) !important;
       box-sizing: border-box !important;
       border-radius: 16px !important;
       position: relative !important;
       overflow: hidden !important;
-      min-height: 400px !important;
       display: block !important;
     }
 
     .contact-card-inner-grid {
       display: grid !important;
-      grid-template-columns: minmax(0, 1.75fr) minmax(0, 0.85fr) !important;
-      gap: clamp(16px, 3vw, 36px) !important;
+      grid-template-columns: minmax(0, 480px) minmax(0, 1fr) !important;
+      gap: clamp(16px, 2.5vw, 32px) !important;
       align-items: center !important;
       width: 100% !important;
     }
 
     .contact-card-content-col {
       min-width: 0 !important;
+      max-width: 500px !important;
       display: flex !important;
       flex-direction: column !important;
       justify-content: center !important;
@@ -6433,32 +6671,43 @@ console.log('Saved scratch/new_master_styles.css');
 
     .build-statement {
       font-size: clamp(0.95rem, 1.15vw, 1.05rem) !important;
-      line-height: 1.6 !important;
-      max-width: 580px !important;
-      margin: 0 0 1.8rem 0 !important;
+      line-height: 1.55 !important;
+      max-width: 500px !important;
+      margin: 0 0 1.25rem 0 !important;
+    }
+
+    .statement-desktop-break {
+      display: block !important;
+    }
+
+    @media (max-width: 680px) {
+      .statement-desktop-break {
+        display: inline !important;
+      }
     }
 
     .build-contact-actions {
       display: flex !important;
       align-items: center !important;
+      flex-direction: row !important;
       flex-wrap: wrap !important;
-      gap: 8px !important;
-      margin-top: 0.5rem !important;
+      gap: 12px !important;
+      margin-top: 14px !important;
       position: relative !important;
       z-index: 5 !important;
     }
 
     .build-action-btn {
-      padding: 10px 15px !important;
-      font-size: 10.5px !important;
-      letter-spacing: 0.05em !important;
+      padding: 11px 18px !important;
+      font-size: 11px !important;
+      letter-spacing: 0.08em !important;
       white-space: nowrap !important;
     }
 
-    /* THRINE 3D SPHERE: SEAMLESS FLOATING EMBED (NO SQUARE CARD / NO RECTANGULAR BACKGROUND) */
+    /* THRINE 3D MODEL: ENLARGED VISUAL REGION (~2/3 CARD AREA) ON SEAMLESS TRANSPARENT BACKGROUND */
     .thrine-model-container {
       width: 100% !important;
-      max-width: 440px !important;
+      max-width: 560px !important;
       position: relative !important;
       display: flex !important;
       align-items: center !important;
@@ -6495,12 +6744,25 @@ console.log('Saved scratch/new_master_styles.css');
       display: block !important;
       width: 100% !important;
       max-width: 100% !important;
+      aspect-ratio: 1259 / 787 !important;
+      transform: scale(1.22) !important;
+      transform-origin: center center !important;
       background: transparent !important;
       background-color: transparent !important;
       border: none !important;
       box-shadow: none !important;
       outline: none !important;
       pointer-events: auto !important;
+    }
+
+    @media (max-width: 1080px) {
+      .contact-card-inner-grid {
+        grid-template-columns: minmax(0, 1fr) minmax(0, 1fr) !important;
+        gap: 20px !important;
+      }
+      model-embed {
+        transform: scale(1.18) !important;
+      }
     }
 
     @media (max-width: 900px) {
@@ -6510,14 +6772,30 @@ console.log('Saved scratch/new_master_styles.css');
       }
       .contact-card-content-col {
         order: 1 !important;
+        max-width: 100% !important;
       }
       .contact-card-sphere-col {
         order: 2 !important;
-        max-width: 320px !important;
+        max-width: 420px !important;
         margin: 0 auto !important;
       }
       .thrine-model-container {
-        max-width: 300px !important;
+        max-width: 400px !important;
+      }
+      model-embed {
+        transform: scale(1.15) !important;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .contact-card-sphere-col {
+        max-width: 100% !important;
+      }
+      .thrine-model-container {
+        max-width: 320px !important;
+      }
+      model-embed {
+        transform: scale(1.1) !important;
       }
     }
 
@@ -7394,8 +7672,7 @@ console.log('Saved scratch/new_master_styles.css');
             <!-- LANDSCAPE 01: RAMAYANA -->
             <div class="works-card works-card-landscape" 
                  data-video-src="Ramayana.png" 
-                 data-video-title="NAMIT MALHOTRA'S RAMAYANA" 
-                 data-video-sub="Feature Cinema // DNEG Generative AI Pipeline"
+                 data-video-title="NAMIT MALHOTRA'S RAMAYANA"
                  onclick="openCinematicLightbox(this)">
               <div class="works-media-wrap">
                 <img src="Ramayana.png" alt="Namit Malhotra's Ramayana Feature Look-Dev">
@@ -7409,11 +7686,6 @@ console.log('Saved scratch/new_master_styles.css');
                 <span class="film-meta-badge">[◈] FEATURE CINEMA // 2026</span>
               </div>
               <div class="works-card-body">
-                <div class="works-tag-row">
-                  <span>DNEG</span>
-                  <span>·</span>
-                  <span>VFX PIPELINE</span>
-                </div>
                 <h3 class="works-title">NAMIT MALHOTRA'S RAMAYANA</h3>
                 <div class="works-summary">Feature Film AI Production & Large-Scale VFX Pipeline Look-Dev</div>
                 <p class="works-desc">Contributed to production-grade Generative AI workflows and high-fidelity identity preservation at DNEG. Developed ComfyUI-based systems and Metaphysic performance transfer across film shots, enabling seamless studio compositing and shot validation in Nuke.</p>
@@ -7423,8 +7695,7 @@ console.log('Saved scratch/new_master_styles.css');
             <!-- LANDSCAPE 02: DUNE 3 -->
             <div class="works-card works-card-landscape" 
                  data-video-src="dune-dneg.jpg" 
-                 data-video-title="DUNE: PART THREE" 
-                 data-video-sub="Cinematic Worldbuilding & Volumetric Look-Dev"
+                 data-video-title="DUNE: PART THREE"
                  onclick="openCinematicLightbox(this)">
               <div class="works-media-wrap">
                 <img src="dune-dneg.jpg" alt="Dune 3 Look-Dev and Cinematic Visual Development">
@@ -7438,11 +7709,6 @@ console.log('Saved scratch/new_master_styles.css');
                 <span class="film-meta-badge">[◈] FEATURE CINEMA // 2026</span>
               </div>
               <div class="works-card-body">
-                <div class="works-tag-row">
-                  <span>DNEG</span>
-                  <span>·</span>
-                  <span>HOLLYWOOD VFX</span>
-                </div>
                 <h3 class="works-title">DUNE: PART THREE</h3>
                 <div class="works-summary">Cinematic Worldbuilding, Volumetric Look-Dev & Digital Humans</div>
                 <p class="works-desc">Studio visual development and atmospheric look-dev for high-concept sci-fi environments. Scaled DGX infrastructure and diffusion pipelines to produce cinematic environment extensions, lighting studies, and production-ready character assets.</p>
@@ -7460,8 +7726,7 @@ console.log('Saved scratch/new_master_styles.css');
               <!-- LANDSCAPE 03: VEERABHADRA -->
               <div class="works-card works-card-landscape" 
                    data-video-src="VeerBhadra.png" 
-                   data-video-title="VEERABHADRA: THE AWAKENING" 
-                   data-video-sub="Original Mythic Action IP Concept Art & Trailer Pipelines"
+                   data-video-title="VEERABHADRA: THE AWAKENING"
                    onclick="openCinematicLightbox(this)">
                 <div class="works-media-wrap">
                   <img src="VeerBhadra.png" alt="Veerabhadra Mythic Action IP Hero Design">
@@ -7475,11 +7740,6 @@ console.log('Saved scratch/new_master_styles.css');
                   <span class="film-meta-badge">[◈] INDEPENDENT IP // 2025</span>
                 </div>
                 <div class="works-card-body">
-                  <div class="works-tag-row">
-                    <span>IMPROMP2LABS</span>
-                    <span>·</span>
-                    <span>ORIGINAL IP</span>
-                  </div>
                   <h3 class="works-title">VEERABHADRA: THE AWAKENING</h3>
                   <div class="works-summary">Original Mythic Action IP Concept Art & Multi-Shot Trailer Pipelines</div>
                   <p class="works-desc">End-to-end creative direction, mythic character design, weapons, and atmospheric environment architecture. Architected multi-model synthetic media workflows that accelerated trailer sequence iteration by 40% while preserving aesthetic coherence.</p>
@@ -7489,8 +7749,7 @@ console.log('Saved scratch/new_master_styles.css');
               <!-- LANDSCAPE 04: THE ODYSSEY -->
               <div class="works-card works-card-landscape" 
                    data-video-src="ramayana-output.jpg" 
-                   data-video-title="THE ODYSSEY: FACIAL RECONSTRUCTION" 
-                   data-video-sub="High-Fidelity Performance Transfer & Neural Doubles"
+                   data-video-title="THE ODYSSEY: FACIAL RECONSTRUCTION"
                    onclick="openCinematicLightbox(this)">
                 <div class="works-media-wrap">
                   <img src="ramayana-output.jpg" alt="The Odyssey Production VFX">
@@ -7504,11 +7763,6 @@ console.log('Saved scratch/new_master_styles.css');
                   <span class="film-meta-badge">[◈] FEATURE CINEMA // 2026</span>
                 </div>
                 <div class="works-card-body">
-                  <div class="works-tag-row">
-                    <span>DNEG</span>
-                    <span>·</span>
-                    <span>DIGITAL DOUBLES</span>
-                  </div>
                   <h3 class="works-title">THE ODYSSEY: FACIAL RECONSTRUCTION</h3>
                   <div class="works-summary">High-Fidelity Performance Transfer & Neural Face Replacement</div>
                   <p class="works-desc">Specialized facial reconstruction pipelines utilizing MetaFace and Metaphysic technologies. Supported identity-preserving digital doubles, lip sync accuracy, and Nuke validation for demanding feature film production shots.</p>
@@ -7523,8 +7777,7 @@ console.log('Saved scratch/new_master_styles.css');
               <!-- LANDSCAPE 05: GLOBAL BRAND CAMPAIGNS -->
               <div class="works-card works-card-landscape" 
                    data-video-src="landscape-05.jpg" 
-                   data-video-title="PORSCHE & AUTOMOTIVE SYNTHETIC VISUALS" 
-                   data-video-sub="Commercial Campaign Direction & Synthetic Media Pipelines"
+                   data-video-title="PORSCHE & AUTOMOTIVE SYNTHETIC VISUALS"
                    onclick="openCinematicLightbox(this)">
                 <div class="works-media-wrap">
                   <img src="landscape-05.jpg" alt="Porsche & Automotive Synthetic Visuals">
@@ -7538,11 +7791,6 @@ console.log('Saved scratch/new_master_styles.css');
                   <span class="film-meta-badge">[◈] COMMERCIAL // 2025</span>
                 </div>
                 <div class="works-card-body">
-                  <div class="works-tag-row">
-                    <span>IMPROMP2LABS</span>
-                    <span>·</span>
-                    <span>BRAND FILM</span>
-                  </div>
                   <h3 class="works-title">PORSCHE & AUTOMOTIVE VISUALS</h3>
                   <div class="works-summary">High-End Commercial Campaign Direction & Synthetic Media Pipelines</div>
                   <p class="works-desc">Directed cinematic short-form campaigns for global enterprise brands at Impromp2Labs including NFL, Porsche, and INDmoney. Built automated GenAI pipelines for rapid video iteration, reducing turnaround times by 35%.</p>
@@ -7552,8 +7800,7 @@ console.log('Saved scratch/new_master_styles.css');
               <!-- LANDSCAPE 06: MASTERS OF THE UNIVERSE -->
               <div class="works-card works-card-landscape" 
                    data-video-src="landscape-06.jpg" 
-                   data-video-title="MASTERS OF THE UNIVERSE: PRODUCTION VFX" 
-                   data-video-sub="Creature Design, Armor Texturing & Studio Shot Integration"
+                   data-video-title="MASTERS OF THE UNIVERSE: PRODUCTION VFX"
                    onclick="openCinematicLightbox(this)">
                 <div class="works-media-wrap">
                   <img src="landscape-06.jpg" alt="Masters of the Universe Look-Dev">
@@ -7567,11 +7814,6 @@ console.log('Saved scratch/new_master_styles.css');
                   <span class="film-meta-badge">[◈] FEATURE CINEMA // 2026</span>
                 </div>
                 <div class="works-card-body">
-                  <div class="works-tag-row">
-                    <span>DNEG</span>
-                    <span>·</span>
-                    <span>CREATURE VFX</span>
-                  </div>
                   <h3 class="works-title">MASTERS OF THE UNIVERSE</h3>
                   <div class="works-summary">Creature Design, Armor Texturing & Studio Shot Integration</div>
                   <p class="works-desc">Exploratory generative concept art and cinematic asset synthesis for studio film production. Integrated custom LoRA models and prompt architectures directly into VFX art department review pipelines.</p>
@@ -7586,8 +7828,7 @@ console.log('Saved scratch/new_master_styles.css');
               <!-- REEL 01 -->
               <div class="works-card works-card-reel" 
                    data-video-src="portrait-01.png" 
-                   data-video-title="SYNTHETIC HUMAN // RUNWAY REEL" 
-                   data-video-sub="Neural character generation & realistic skin-tone fidelity"
+                   data-video-title="SYNTHETIC HUMAN // RUNWAY REEL"
                    onclick="openCinematicLightbox(this)">
                 <div class="works-media-wrap">
                   <img src="portrait-01.png" alt="Synthetic Human Runway Reel">
@@ -7601,11 +7842,6 @@ console.log('Saved scratch/new_master_styles.css');
                   <span class="film-meta-badge">[◈] 9:16 REEL // 01</span>
                 </div>
                 <div class="works-card-body">
-                  <div class="works-tag-row">
-                    <span>PORTRAIT</span>
-                    <span>·</span>
-                    <span>DIGITAL HUMAN</span>
-                  </div>
                   <h3 class="works-title">SYNTHETIC HUMAN</h3>
                   <div class="works-summary">Neural character generation & skin-tone fidelity</div>
                   <p class="works-desc">Micro-expression transfer and realistic skin subsurface scattering studies using custom diffusion checkpoints.</p>
@@ -7615,8 +7851,7 @@ console.log('Saved scratch/new_master_styles.css');
               <!-- REEL 02 -->
               <div class="works-card works-card-reel" 
                    data-video-src="portrait-02.png" 
-                   data-video-title="CYBERPUNK NEON DRIFT // REEL" 
-                   data-video-sub="Dynamic lighting, particle rain & anamorphic lensing"
+                   data-video-title="CYBERPUNK NEON DRIFT // REEL"
                    onclick="openCinematicLightbox(this)">
                 <div class="works-media-wrap">
                   <img src="portrait-02.png" alt="Cyberpunk Neon Drift Reel">
@@ -7630,11 +7865,6 @@ console.log('Saved scratch/new_master_styles.css');
                   <span class="film-meta-badge">[◈] 9:16 REEL // 02</span>
                 </div>
                 <div class="works-card-body">
-                  <div class="works-tag-row">
-                    <span>PORTRAIT</span>
-                    <span>·</span>
-                    <span>CINEMATOGRAPHY</span>
-                  </div>
                   <h3 class="works-title">NEON DRIFT</h3>
                   <div class="works-summary">Dynamic lighting & anamorphic lensing</div>
                   <p class="works-desc">Cinematic vertical lighting studies and atmospheric particulate simulation for short-form mobile storytelling.</p>
@@ -7644,8 +7874,7 @@ console.log('Saved scratch/new_master_styles.css');
               <!-- REEL 03 -->
               <div class="works-card works-card-reel" 
                    data-video-src="portrait-03.jpg" 
-                   data-video-title="MYTHIC WARRIOR // MOTION CONCEPT" 
-                   data-video-sub="Fluid cloth motion & real-time generative camera paths"
+                   data-video-title="MYTHIC WARRIOR // MOTION CONCEPT"
                    onclick="openCinematicLightbox(this)">
                 <div class="works-media-wrap">
                   <img src="portrait-03.jpg" alt="Mythic Warrior Motion Concept">
@@ -7659,11 +7888,6 @@ console.log('Saved scratch/new_master_styles.css');
                   <span class="film-meta-badge">[◈] 9:16 REEL // 03</span>
                 </div>
                 <div class="works-card-body">
-                  <div class="works-tag-row">
-                    <span>PORTRAIT</span>
-                    <span>·</span>
-                    <span>ACTION IP</span>
-                  </div>
                   <h3 class="works-title">MYTHIC WARRIOR</h3>
                   <div class="works-summary">Fluid cloth motion & generative camera paths</div>
                   <p class="works-desc">Physics-informed motion transfer and multi-model cinematic choreography for hero action character sequences.</p>
@@ -7696,7 +7920,6 @@ console.log('Saved scratch/new_master_styles.css');
             <!-- Compact video title at upper-left per Section 3.2 -->
             <div class="player-top-bar" id="player-top-bar">
               <div class="player-top-title" id="player-top-title">PROJECT TITLE</div>
-              <div class="player-top-sub" id="player-top-sub">SUBTITLE</div>
             </div>
 
             <div class="lightbox-media-container" id="lightbox-container">
@@ -7760,7 +7983,6 @@ console.log('Saved scratch/new_master_styles.css');
           <div class="medium-player-footer">
             <div class="player-info-meta">
               <div class="lightbox-caption-title" id="lightbox-title">PROJECT TITLE</div>
-              <div class="lightbox-caption-sub" id="lightbox-sub">SUBTITLE</div>
             </div>
             <div class="player-instruction-note">
               Click outside the video to close, or hover over the player and choose fullscreen.
@@ -8180,7 +8402,7 @@ console.log('Saved scratch/new_master_styles.css');
                 </h2>
               </div>
 
-              <p class="build-statement">Thanks for exploring my work. If something here resonates with you, I’d love to connect, exchange ideas, and explore what comes next.</p>
+              <p class="build-statement">Thanks for exploring my work. If something resonates,<br class="statement-desktop-break"> let’s connect, exchange ideas, and see what comes next.</p>
 
               <!-- INLINE CONTACT FORM -->
               <form id="inline-contact-form" class="inline-contact-form" novalidate onsubmit="handleContactSubmit(event)">
@@ -8204,7 +8426,8 @@ console.log('Saved scratch/new_master_styles.css');
 
                 <div id="contact-status-box" class="contact-status-box" style="display: none;" role="status"></div>
 
-                <div class="build-contact-actions" style="margin-top: 18px;">
+                <!-- ALL THREE CONTACT BUTTONS IN ONE ROW: [ LET'S CONNECT ] [ WHATSAPP ] [ LINKEDIN ] -->
+                <div class="build-contact-actions">
                   <button type="submit" id="contact-submit-btn" class="build-action-btn build-btn-primary" aria-label="Submit Let's Connect Contact Form">
                     <svg class="build-btn-mail-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
                       <line x1="22" y1="2" x2="11" y2="13"></line>
@@ -8212,25 +8435,22 @@ console.log('Saved scratch/new_master_styles.css');
                     </svg>
                     <span id="contact-btn-label">LET'S CONNECT</span>
                   </button>
+
+                  <a href="https://wa.me/919491681703" target="_blank" rel="noopener noreferrer" class="build-action-btn build-btn-whatsapp" aria-label="WhatsApp Contact">
+                    <svg class="build-btn-brand-icon" width="15" height="15" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                      <path d="M12.031 0C5.399 0 0 5.398 0 12.031c0 2.12.553 4.184 1.603 6.007L.055 24l6.143-1.611a12.006 12.006 0 0 0 5.833 1.503h.005c6.632 0 12.031-5.399 12.031-12.031 0-3.214-1.252-6.236-3.526-8.51A11.96 11.96 0 0 0 12.031 0zm0 22.029h-.004a9.99 9.99 0 0 1-5.097-1.393l-.365-.217-3.791.994 1.012-3.693-.238-.378a9.972 9.972 0 0 1-1.536-5.31C2.012 6.51 6.51 2.012 12.031 2.012c2.677 0 5.193 1.043 7.086 2.936a10.007 10.007 0 0 1 2.936 7.087c0 5.522-4.498 10.02-10.022 10.02zm5.496-7.502c-.301-.151-1.782-.88-2.058-.98-.276-.101-.476-.151-.677.151-.2.302-.778.98-.954 1.181-.176.201-.351.226-.653.075-.301-.151-1.272-.469-2.423-1.496-.895-.798-1.5-1.785-1.676-2.086-.176-.302-.019-.465.132-.616.136-.135.301-.351.452-.527.151-.176.201-.301.301-.502.101-.201.05-.377-.025-.527-.075-.151-.677-1.632-.928-2.235-.245-.587-.494-.508-.677-.517l-.578-.01c-.201 0-.527.075-.803.376s-1.054 1.03-1.054 2.511c0 1.482 1.079 2.912 1.229 3.113.151.201 2.123 3.242 5.143 4.547.718.311 1.279.497 1.716.636.722.23 1.379.197 1.899.12.58-.087 1.782-.728 2.033-1.431.251-.703.251-1.305.176-1.431-.076-.126-.276-.201-.577-.352z"/>
+                    </svg>
+                    <span>WHATSAPP</span>
+                  </a>
+
+                  <a href="https://www.linkedin.com/in/c-bala-krishnan/" target="_blank" rel="noopener noreferrer" class="build-action-btn build-btn-linkedin" aria-label="LinkedIn Profile">
+                    <svg class="build-btn-brand-icon" width="15" height="15" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                      <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/>
+                    </svg>
+                    <span>LINKEDIN</span>
+                  </a>
                 </div>
               </form>
-
-              <!-- SECONDARY CONTACT BUTTONS (WhatsApp and LinkedIn) DIRECTLY UNDERNEATH -->
-              <div class="build-secondary-actions">
-                <a href="https://wa.me/919491681703" target="_blank" rel="noopener noreferrer" class="build-action-btn build-btn-whatsapp" aria-label="WhatsApp Contact">
-                  <svg class="build-btn-brand-icon" width="15" height="15" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-                    <path d="M12.031 0C5.399 0 0 5.398 0 12.031c0 2.12.553 4.184 1.603 6.007L.055 24l6.143-1.611a12.006 12.006 0 0 0 5.833 1.503h.005c6.632 0 12.031-5.399 12.031-12.031 0-3.214-1.252-6.236-3.526-8.51A11.96 11.96 0 0 0 12.031 0zm0 22.029h-.004a9.99 9.99 0 0 1-5.097-1.393l-.365-.217-3.791.994 1.012-3.693-.238-.378a9.972 9.972 0 0 1-1.536-5.31C2.012 6.51 6.51 2.012 12.031 2.012c2.677 0 5.193 1.043 7.086 2.936a10.007 10.007 0 0 1 2.936 7.087c0 5.522-4.498 10.02-10.022 10.02zm5.496-7.502c-.301-.151-1.782-.88-2.058-.98-.276-.101-.476-.151-.677.151-.2.302-.778.98-.954 1.181-.176.201-.351.226-.653.075-.301-.151-1.272-.469-2.423-1.496-.895-.798-1.5-1.785-1.676-2.086-.176-.302-.019-.465.132-.616.136-.135.301-.351.452-.527.151-.176.201-.301.301-.502.101-.201.05-.377-.025-.527-.075-.151-.677-1.632-.928-2.235-.245-.587-.494-.508-.677-.517l-.578-.01c-.201 0-.527.075-.803.376s-1.054 1.03-1.054 2.511c0 1.482 1.079 2.912 1.229 3.113.151.201 2.123 3.242 5.143 4.547.718.311 1.279.497 1.716.636.722.23 1.379.197 1.899.12.58-.087 1.782-.728 2.033-1.431.251-.703.251-1.305.176-1.431-.076-.126-.276-.201-.577-.352z"/>
-                  </svg>
-                  <span>WHATSAPP</span>
-                </a>
-
-                <a href="https://www.linkedin.com/in/c-bala-krishnan/" target="_blank" rel="noopener noreferrer" class="build-action-btn build-btn-linkedin" aria-label="LinkedIn Profile">
-                  <svg class="build-btn-brand-icon" width="15" height="15" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-                    <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/>
-                  </svg>
-                  <span>LINKEDIN</span>
-                </a>
-              </div>
             </div>
 
             <div class="contact-card-sphere-col">
@@ -8802,6 +9022,7 @@ console.log('Saved scratch/new_master_styles.css');
         }
       }
 
+      let isHeroVisible = true;
       function runHeroPlayback(now) {
         const delta = Math.min(now - lastTimestamp, 120);
         lastTimestamp = now;
@@ -8844,7 +9065,9 @@ console.log('Saved scratch/new_master_styles.css');
           }
         }
 
-        requestAnimationFrame(runHeroPlayback);
+        if (isHeroVisible) {
+          requestAnimationFrame(runHeroPlayback);
+        }
       }
 
       // Qualifying user interaction in Hero: play (1..38) -> pause (38) -> action -> play (39..291..1 continuous)
@@ -8870,7 +9093,19 @@ console.log('Saved scratch/new_master_styles.css');
       };
 
       const heroSection = document.getElementById('hero-section');
+      const heroObserver = new IntersectionObserver((entries) => {
+        const wasVisible = isHeroVisible;
+        isHeroVisible = entries[0].isIntersecting;
+        if (isHeroVisible && !wasVisible) {
+          lastTimestamp = performance.now();
+          requestAnimationFrame(runHeroPlayback);
+          if (typeof renderDenseFerrofluid === 'function') {
+            requestAnimationFrame(renderDenseFerrofluid);
+          }
+        }
+      }, { threshold: 0.01 });
       if (heroSection) {
+        heroObserver.observe(heroSection);
         heroSection.addEventListener('mousemove', handleHeroExrWakeOnAction, { passive: true });
         heroSection.addEventListener('pointermove', handleHeroExrWakeOnAction, { passive: true });
         heroSection.addEventListener('touchstart', handleHeroExrWakeOnAction, { passive: true });
@@ -9101,7 +9336,7 @@ console.log('Saved scratch/new_master_styles.css');
 
       function renderDenseFerrofluid() {
         if (!particleEngineInitialized || !pCtx) {
-          requestAnimationFrame(renderDenseFerrofluid);
+          if (isHeroVisible) requestAnimationFrame(renderDenseFerrofluid);
           return;
         }
 
@@ -9223,7 +9458,9 @@ console.log('Saved scratch/new_master_styles.css');
           pCtx.fillRect(p.x, p.y, p.size, p.size);
         }
 
-        requestAnimationFrame(renderDenseFerrofluid);
+        if (isHeroVisible) {
+          requestAnimationFrame(renderDenseFerrofluid);
+        }
       }
 
       if (nameWrap) {
@@ -10040,22 +10277,35 @@ console.log('Saved scratch/new_master_styles.css');
         });
       });
 
+      let sphereW = 600;
+      let sphereH = 600;
       function resizeSphereCanvas() {
         if (!sphereCanvas || !sphereContainer) return;
         const dpr = Math.min(window.devicePixelRatio || 1, 2);
         const rect = sphereContainer.getBoundingClientRect();
-        sphereCanvas.width = Math.round(rect.width * dpr);
-        sphereCanvas.height = Math.round(rect.height * dpr);
+        sphereW = rect.width || 600;
+        sphereH = rect.height || 600;
+        sphereCanvas.width = Math.round(sphereW * dpr);
+        sphereCanvas.height = Math.round(sphereH * dpr);
         if (sCtx) sCtx.setTransform(dpr, 0, 0, dpr, 0, 0);
       }
       resizeSphereCanvas();
       window.addEventListener('resize', resizeSphereCanvas, { passive: true });
 
+      let isSphereVisible = false;
+      const sphereObserver = new IntersectionObserver((entries) => {
+        const wasVisible = isSphereVisible;
+        isSphereVisible = entries[0].isIntersecting;
+        if (isSphereVisible && !wasVisible) {
+          requestAnimationFrame(renderPipelineSphere);
+        }
+      }, { threshold: 0.05 });
+      if (sphereContainer) sphereObserver.observe(sphereContainer);
+
       function renderPipelineSphere() {
         if (!sCtx || !sphereCanvas || !sphereContainer) return;
-        const rect = sphereContainer.getBoundingClientRect();
-        const w = rect.width;
-        const h = rect.height;
+        const w = sphereW;
+        const h = sphereH;
         const cx = w * 0.5;
         const cy = h * 0.5;
         const sphereRadius = Math.min(w * 0.38, h * 0.40, 310);
@@ -10182,9 +10432,10 @@ console.log('Saved scratch/new_master_styles.css');
           }
         }
 
-        requestAnimationFrame(renderPipelineSphere);
+        if (isSphereVisible) {
+          requestAnimationFrame(renderPipelineSphere);
+        }
       }
-      requestAnimationFrame(renderPipelineSphere);
 
       function selectPipelineNode(node) {
         if (!node) return;
@@ -11020,11 +11271,16 @@ function pointerPrototype() {
     let lastUpdateTime = Date.now();
     let colorUpdateTimer = 0.0;
     let animationFrameId = null;
+    let needsResize = false;
+    window.addEventListener('resize', () => { needsResize = true; }, { passive: true });
 
     function updateFrame() {
       if (!isActive) return;
       const dt = calcDeltaTime();
-      if (resizeCanvas()) initFramebuffers();
+      if (needsResize) {
+        needsResize = false;
+        if (resizeCanvas()) initFramebuffers();
+      }
       updateColors(dt);
       applyInputs();
       step(dt);
@@ -12301,6 +12557,9 @@ window.initWaterRipple = function(canvas) {
         decay: 0.016 + (speed > 25 ? 0.006 : 0.010),
         lineWidth: 1.6
       });
+      if (!animId) {
+        animId = requestAnimationFrame(loop);
+      }
     }
   }
   window.addEventListener('mousemove', onPointerMove, { passive: true });
@@ -12336,9 +12595,12 @@ window.initWaterRipple = function(canvas) {
       }
     }
 
-    animId = requestAnimationFrame(loop);
+    if (ripples.length > 0) {
+      animId = requestAnimationFrame(loop);
+    } else {
+      animId = null;
+    }
   }
-  animId = requestAnimationFrame(loop);
 
   return {
     destroy: function() {
@@ -12672,9 +12934,7 @@ window.initVelmaxCatalog = function() {
         const modal = document.getElementById('selected-works-lightbox');
         const container = document.getElementById('lightbox-container');
         const titleEl = document.getElementById('lightbox-title');
-        const subEl = document.getElementById('lightbox-sub');
         const topTitle = document.getElementById('player-top-title');
-        const topSub = document.getElementById('player-top-sub');
         if (!modal || !container || !cardEl) return;
 
         savedScrollPosition = window.scrollY;
@@ -12690,12 +12950,9 @@ window.initVelmaxCatalog = function() {
 
         const src = cardEl.getAttribute('data-video-src') || '';
         const title = cardEl.getAttribute('data-video-title') || 'CINEMATIC SHOWCASE';
-        const sub = cardEl.getAttribute('data-video-sub') || 'Studio VFX & GenAI production pipeline';
 
         if (titleEl) titleEl.textContent = title;
-        if (subEl) subEl.textContent = sub;
         if (topTitle) topTitle.textContent = title;
-        if (topSub) topSub.textContent = sub;
 
         // Clean up any existing video
         if (currentActiveVideo) {
@@ -12867,7 +13124,11 @@ window.initVelmaxCatalog = function() {
         }
 
         if (currentActiveVideo) {
-          try { currentActiveVideo.pause(); } catch(e) {}
+          try {
+            currentActiveVideo.pause();
+            currentActiveVideo.removeAttribute('src');
+            currentActiveVideo.load();
+          } catch(e) {}
           currentActiveVideo = null;
         }
         if (container) container.innerHTML = '';
@@ -12974,6 +13235,12 @@ window.initVelmaxCatalog = function() {
             updateCapsule(activeItem);
             resetSpatialElastic();
 
+            isClickScrolling = true;
+            clearTimeout(clickScrollTimer);
+            clickScrollTimer = setTimeout(() => {
+              isClickScrolling = false;
+            }, 1000);
+
             if (targetId === 'hero-section') {
               window.scrollTo({ top: 0, behavior: 'smooth' });
             } else {
@@ -12997,11 +13264,33 @@ window.initVelmaxCatalog = function() {
         setTimeout(() => {
           updateCapsule(activeItem);
         }, 150);
-        window.addEventListener('resize', () => {
-          updateCapsule(activeItem);
+
+        // Click-scroll lock & user interruption release
+        let isClickScrolling = false;
+        let clickScrollTimer = null;
+
+        ['wheel', 'touchmove', 'pointerdown'].forEach(evt => {
+          window.addEventListener(evt, () => {
+            if (isClickScrolling) {
+              isClickScrolling = false;
+              clearTimeout(clickScrollTimer);
+            }
+          }, { passive: true });
+        });
+
+        window.addEventListener('scrollend', () => {
+          isClickScrolling = false;
+          clearTimeout(clickScrollTimer);
+          updateScrollSpy();
         }, { passive: true });
 
-        // Scroll spy
+        // Scroll spy with exact viewport section geometry mapping:
+        // HOME       -> Hero (hero-section)
+        // STACK      -> Beyond the Frame (beyond-the-frame-zone)
+        // PROJECTS   -> Selected Works (selected-works)
+        // EXPERIENCE -> My Expertise (my-expertise)
+        // ABOUT      -> The Core (the-core)
+        // CONTACT    -> Let's Connect (lets-build)
         const sectionMap = [
           { id: 'hero-section', target: 'hero-section' },
           { id: 'beyond-the-frame-zone', target: 'beyond-the-frame-zone' },
@@ -13011,42 +13300,49 @@ window.initVelmaxCatalog = function() {
           { id: 'lets-build', target: 'lets-build' }
         ];
 
+        function setActiveTarget(targetId) {
+          const targetItem = nav.querySelector(`[data-target="${targetId}"]`);
+          if (targetItem && targetItem !== activeItem) {
+            navItems.forEach(ni => ni.classList.remove('active'));
+            targetItem.classList.add('active');
+            activeItem = targetItem;
+            if (!nav.matches(':hover')) {
+              updateCapsule(activeItem);
+            }
+          }
+        }
+
         let scrollSpyTicking = false;
         function updateScrollSpy() {
+          if (isClickScrolling) return;
+
           const scrollY = window.scrollY;
           const headerH = document.getElementById('hero-header')?.offsetHeight || 60;
-          const viewCheckLine = scrollY + headerH + 160;
+          const docScrollHeight = document.documentElement.scrollHeight;
+          const winHeight = window.innerHeight;
 
-          // If near top, HOME is active
-          if (scrollY < 200) {
-            const homeItem = nav.querySelector('[data-target="hero-section"]');
-            if (homeItem && homeItem !== activeItem) {
-              navItems.forEach(ni => ni.classList.remove('active'));
-              homeItem.classList.add('active');
-              activeItem = homeItem;
-              updateCapsule(activeItem);
-            }
+          // 1. If at document top, HOME is active
+          if (scrollY <= 100) {
+            setActiveTarget('hero-section');
             return;
           }
 
-          // If at bottom, CONTACT is active
-          if ((window.innerHeight + scrollY) >= document.documentElement.scrollHeight - 100) {
-            const contactItem = nav.querySelector('[data-target="lets-build"]');
-            if (contactItem && contactItem !== activeItem) {
-              navItems.forEach(ni => ni.classList.remove('active'));
-              contactItem.classList.add('active');
-              activeItem = contactItem;
-              updateCapsule(activeItem);
-            }
+          // 2. If near document bottom, CONTACT is active
+          if ((winHeight + scrollY) >= docScrollHeight - 80) {
+            setActiveTarget('lets-build');
             return;
           }
+
+          // 3. Section detection based on actual viewport coordinates:
+          // The activation reference line is beneath the sticky header
+          const activationLine = headerH + Math.min(140, winHeight * 0.2);
 
           let matched = null;
           for (let i = sectionMap.length - 1; i >= 0; i--) {
             const sec = document.getElementById(sectionMap[i].id);
             if (sec) {
-              const top = sec.offsetTop;
-              if (viewCheckLine >= top) {
+              const rect = sec.getBoundingClientRect();
+              if (rect.top <= activationLine) {
                 matched = sectionMap[i].target;
                 break;
               }
@@ -13054,13 +13350,7 @@ window.initVelmaxCatalog = function() {
           }
 
           if (matched) {
-            const targetItem = nav.querySelector(`[data-target="${matched}"]`);
-            if (targetItem && targetItem !== activeItem) {
-              navItems.forEach(ni => ni.classList.remove('active'));
-              targetItem.classList.add('active');
-              activeItem = targetItem;
-              updateCapsule(activeItem);
-            }
+            setActiveTarget(matched);
           }
         }
 
@@ -13073,6 +13363,15 @@ window.initVelmaxCatalog = function() {
             });
           }
         }, { passive: true });
+
+        window.addEventListener('resize', () => {
+          updateScrollSpy();
+          updateCapsule(activeItem);
+        }, { passive: true });
+
+        updateScrollSpy();
+        setTimeout(updateScrollSpy, 250);
+        setTimeout(updateScrollSpy, 700);
       }
 
       if (document.readyState === 'loading') {
@@ -13381,15 +13680,34 @@ window.initMasterThemeAndEffects = function() {
 
   // 6. Mount Thrine 3D Model for LET'S BUILD contact section
   let thrineModelInstance = null;
+  let thrineObserver = null;
   function initThrineModel(theme) {
     const thrineMount = document.getElementById('thrine-model-mount');
+    if (!thrineMount) return;
     const t = theme || getCurrentTheme();
-    if (thrineMount && window.mountThrineModel && !thrineModelInstance) {
+    if (thrineModelInstance) {
+      thrineModelInstance.update({ theme: t });
+      return;
+    }
+    if (!window.mountThrineModel) return;
+
+    if (!thrineObserver && 'IntersectionObserver' in window) {
+      thrineObserver = new IntersectionObserver((entries) => {
+        if (entries[0].isIntersecting) {
+          thrineObserver.disconnect();
+          thrineObserver = null;
+          if (!thrineModelInstance && window.mountThrineModel) {
+            thrineModelInstance = window.mountThrineModel(thrineMount, {
+              theme: getCurrentTheme()
+            });
+          }
+        }
+      }, { rootMargin: '600px 0px' });
+      thrineObserver.observe(thrineMount);
+    } else if (!thrineObserver) {
       thrineModelInstance = window.mountThrineModel(thrineMount, {
         theme: t
       });
-    } else if (thrineModelInstance) {
-      thrineModelInstance.update({ theme: t });
     }
   }
 
@@ -13468,13 +13786,23 @@ window.initMasterThemeAndEffects = function() {
   themeObserver.observe(document.documentElement, { attributes: true, attributeFilter: ['data-theme'] });
 
   // 6. Hero isolation clipping coordinator
+  let heroClipTicking = false;
+  let lastHeroBottomPx = -1;
   function updateHeroClip() {
-    const hero = document.getElementById('hero-section');
-    if (hero) {
-      const rect = hero.getBoundingClientRect();
-      const bottomPx = Math.max(0, Math.round(rect.bottom));
-      document.documentElement.style.setProperty('--hero-bottom-px', `${bottomPx}px`);
-    }
+    if (heroClipTicking) return;
+    heroClipTicking = true;
+    requestAnimationFrame(() => {
+      heroClipTicking = false;
+      const hero = document.getElementById('hero-section');
+      if (hero) {
+        const rect = hero.getBoundingClientRect();
+        const bottomPx = Math.max(0, Math.round(rect.bottom));
+        if (bottomPx !== lastHeroBottomPx) {
+          lastHeroBottomPx = bottomPx;
+          document.documentElement.style.setProperty('--hero-bottom-px', `${bottomPx}px`);
+        }
+      }
+    });
   }
   window.addEventListener('scroll', updateHeroClip, { passive: true });
   window.addEventListener('resize', updateHeroClip, { passive: true });
@@ -13576,6 +13904,9 @@ window.initMasterThemeAndEffects = function() {
         if (dist < 0.05) {
           currentX = targetX;
           currentY = targetY;
+          cursorEl.style.transform = `translate3d(${currentX.toFixed(2)}px, ${currentY.toFixed(2)}px, 0)`;
+          rafCursor = null;
+          return;
         }
 
         cursorEl.style.transform = `translate3d(${currentX.toFixed(2)}px, ${currentY.toFixed(2)}px, 0)`;
@@ -13594,6 +13925,10 @@ window.initMasterThemeAndEffects = function() {
         cursorEl.classList.add('is-active');
       }
       syncCursorState(e.clientX, e.clientY);
+      if (!rafCursor) {
+        lastTime = performance.now();
+        rafCursor = requestAnimationFrame(renderCursorLoop);
+      }
     };
 
     // Strict boundary listeners on Beyond The Frame container

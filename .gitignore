@@ -9,8 +9,9 @@
 # Auth secrets and state
 data/auth.json
 
-# Temporary uploads and logs
+# Temporary uploads, scratch artifacts, and logs
 .temp_uploads/
+scratch/
 *.log
 
 # Dependencies

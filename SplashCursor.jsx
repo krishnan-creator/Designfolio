@@ -677,11 +677,16 @@ function SplashCursor({
     initFramebuffers();
     let lastUpdateTime = Date.now();
     let colorUpdateTimer = 0.0;
+    let needsResize = false;
+    window.addEventListener('resize', () => { needsResize = true; }, { passive: true });
 
     function updateFrame() {
       if (!isActive) return;
       const dt = calcDeltaTime();
-      if (resizeCanvas()) initFramebuffers();
+      if (needsResize) {
+        needsResize = false;
+        if (resizeCanvas()) initFramebuffers();
+      }
       updateColors(dt);
       applyInputs();
       step(dt);

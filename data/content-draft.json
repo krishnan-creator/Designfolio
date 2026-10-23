@@ -1,7 +1,7 @@
 {
-  "version": 94,
-  "lastUpdated": "2026-10-22T14:00:36.696Z",
-  "publishedAt": "2026-10-22T14:00:36.696Z",
+  "version": 102,
+  "lastUpdated": "2026-10-23T07:19:15.328Z",
+  "publishedAt": "2026-10-23T07:19:15.328Z",
   "settings": {
     "siteTitle": "C. Bala Krishnan — CBK Designfolio | Creative Director & Visual Artist",
     "brandName": "CBK",
@@ -197,7 +197,7 @@
       "content": {
         "metaLabel": "BEYOND THE FRAME //  CINEMATIC ENTRIES",
         "title": "BEYOND THE FRAME",
-        "wordmark": "RAMAYANA    🔸   VEER BHADRA    🔸   FIRMWARE UPDATE     🔸    ASHRA    🔸   HORNS & SKULL    🔸   DUNE LOOK-DEV    🔸   ENVIRONMENT DESIGN    🔸   AI FILMMAKING    🔸   MYTHIC WORLDS",
+        "wordmark": "RAMAYANA    🔸   VEER BHADRA    🔸   FIRMWARE UPDATE     🔸    ASHRA    🔸   HORNS & SKULL ",
         "description": "Visual explorations, cinematic look-development, character studies and worldbuilding.",
         "entries": [
           {
@@ -291,7 +291,7 @@
             "visible": false
           }
         ],
-        "tickerText": "RAMAYANA    🔸   VEER BHADRA    🔸   FIRMWARE UPDATE     🔸    ASHRA    🔸   HORNS & SKULL    🔸   DUNE LOOK-DEV    🔸   ENVIRONMENT DESIGN    🔸   AI FILMMAKING    🔸   MYTHIC WORLDS"
+        "tickerText": "RAMAYANA    🔸   VEER BHADRA    🔸   FIRMWARE UPDATE     🔸    ASHRA    🔸   HORNS & SKULL "
       }
     },
     {
@@ -589,8 +589,8 @@
           {
             "id": "orbit-09",
             "slot": "09",
-            "image": "1__1_.png",
-            "src": "1__1_.png",
+            "image": "7__2_.webp",
+            "src": "7__2_.webp",
             "alt": "Visual Orbit Asset 09",
             "title": "Asset 09",
             "visible": true
@@ -643,8 +643,8 @@
           {
             "id": "orbit-15",
             "slot": "15",
-            "image": "7__2_.webp",
-            "src": "7__2_.webp",
+            "image": "1__1_.png",
+            "src": "1__1_.png",
             "alt": "Visual Orbit Asset 15",
             "title": "Asset 15",
             "visible": true
@@ -1023,8 +1023,8 @@
           {
             "id": "orbit-09",
             "slot": "09",
-            "image": "1__1_.png",
-            "src": "1__1_.png",
+            "image": "7__2_.webp",
+            "src": "7__2_.webp",
             "alt": "Visual Orbit Asset 09",
             "title": "Asset 09",
             "visible": true
@@ -1077,8 +1077,8 @@
           {
             "id": "orbit-15",
             "slot": "15",
-            "image": "7__2_.webp",
-            "src": "7__2_.webp",
+            "image": "1__1_.png",
+            "src": "1__1_.png",
             "alt": "Visual Orbit Asset 15",
             "title": "Asset 15",
             "visible": true
@@ -1457,8 +1457,8 @@
           {
             "id": "orbit-09",
             "slot": "09",
-            "image": "1__1_.png",
-            "src": "1__1_.png",
+            "image": "7__2_.webp",
+            "src": "7__2_.webp",
             "alt": "Visual Orbit Asset 09",
             "title": "Asset 09",
             "visible": true
@@ -1511,8 +1511,8 @@
           {
             "id": "orbit-15",
             "slot": "15",
-            "image": "7__2_.webp",
-            "src": "7__2_.webp",
+            "image": "1__1_.png",
+            "src": "1__1_.png",
             "alt": "Visual Orbit Asset 15",
             "title": "Asset 15",
             "visible": true
@@ -1837,9 +1837,8 @@
             "location": "Remote",
             "intro": "Architecting studio GenAI pipelines and identity transfer for international feature films:",
             "bullets": [
-              "Scaled diffusion and LoRA training across DGX cluster infrastructure, delivering consistent character identity across 50+ film shots.",
-              "Engineered end-to-end generative workflows in ComfyUI, bridging synthetic assets into VFX compositing with Nuke validation.",
-              "Directed facial performance transfer, synthetic look-dev, and environmental extension pipelines across major feature film productions."
+              "Primarily contributed to Ramayana within the Brahma.ai ecosystem, specialising in facial reconstruction, model training, face swapping, and lip-sync using Metaphysic technologies.",
+              "Built and supported ComfyUI-based generative workflows across DGX cluster infrastructure, integrating synthetic assets into studio VFX pipelines with Nuke validation. Also contributed to model training and asset development for Dune 3 and The Odyssey, alongside facial performance transfer, synthetic look development, and environment extension workflows."
             ],
             "skills": [
               "Diffusion Pipelines",
@@ -1884,13 +1883,12 @@
             "id": "exp-impromp2labs",
             "name": "IMPROMP2LABS",
             "role": "Gen AI creative lead",
-            "dates": "NOV 2024 – PRESENT",
+            "dates": "NOV 2025 – PRESENT",
             "location": "Hyderabad · Hybrid",
             "intro": "Leading end-to-end creative direction, IP development, and AI video campaigns for global brands:",
             "bullets": [
-              "Directed original cinematic IP projects from worldbuilding and character development to multi-shot trailer pipelines.",
-              "Spearheaded short-form cinematic campaigns for global enterprise clients including NFL, Porsche, and INDmoney.",
-              "Integrated generative video models and sound synthesis pipelines, accelerating creative turnaround times by 40%."
+              "Leading creative direction, original IP development, and AI filmmaking at Impromp2Labs, a creative venture backed by Prema Sai Designers (PSD).",
+              "Developing cinematic concepts from worldbuilding and character design through multi-shot trailer production, while directing AI-driven campaigns. Integrating generative video and sound-synthesis pipelines to streamline production and accelerate creative turnaround."
             ],
             "skills": [
               "Creative Direction",
@@ -1932,9 +1930,8 @@
             "location": "Hyderabad · Hybrid",
             "intro": "AI-assisted visual production and large-scale creative campaigns:",
             "bullets": [
-              "Engineered generative workflows for high-volume visual variation, composition, and layout exploration.",
-              "Directed virtual camera staging, lighting setups, and visual look-dev across commercial campaigns.",
-              "Implemented post-production pipelines bridging raw generative outputs into client-ready deliverables."
+              "Combined AI-assisted visual production, design engineering, and creative direction to deliver high-volume visual variations and campaign assets.",
+              "Developed generative workflows for composition and layout exploration, directed virtual camera staging, lighting, and visual look development, and integrated raw AI outputs into polished, client-ready deliverables through structured post-production pipelines."
             ],
             "skills": [
               "AI Design",
@@ -1945,9 +1942,10 @@
             ],
             "tools": [
               "Midjourney",
-              "Stable Diffusion",
+              "Sora",
               "Photoshop",
-              "Premiere Pro"
+              "Capcut",
+              "Canva"
             ],
             "mediaSlots": [],
             "visible": true,
@@ -1961,9 +1959,8 @@
             "location": "Hyderabad · Onsite",
             "intro": "Graphic design, brand systems, and marketing creative production:",
             "bullets": [
-              "Designed comprehensive brand systems, identity guidelines, and visual communication frameworks.",
-              "Led high-volume marketing collateral and digital creative production across campaigns.",
-              "Explored AI-assisted workflow experimentation to accelerate ideation and asset generation."
+              "Built brand identities, visual communication systems, and design guidelines across marketing and digital campaigns.",
+              "Led creative production from concept to final deliverables, maintaining brand consistency across assets while exploring AI-assisted ideation and asset generation to improve creative workflows."
             ],
             "skills": [
               "Graphic Design",
@@ -2432,7 +2429,7 @@
         "headlineLine1": "THAT’S HOW I SEE THE WORLD.",
         "headlineLine2": "WHAT’S YOUR PERSPECTIVE?",
         "accentSlash": "//",
-        "statement": "Thanks for exploring my work. If something here resonates with you, I'd love to connect, exchange ideas, and explore what comes next.",
+        "statement": "Thanks for exploring my work. If something resonates, let’s connect, exchange ideas, and see what comes next.",
         "primaryButton": {
           "label": "LET'S CONNECT",
           "url": "mailto:meet2krishnan@gmail.com?subject=Creative%20Inquiry%20%E2%80%94%20CBK%20Designfolio",

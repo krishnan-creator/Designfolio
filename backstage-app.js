@@ -193,14 +193,21 @@ let currentTotpSetupId = null;
 async function checkAuthStatus() {
   try {
     const res = await fetch('/api/auth/status');
+    if (!res.ok) {
+      const errText = await res.text();
+      try {
+        return JSON.parse(errText);
+      } catch (e) {
+        return { serverReachable: false, configured: false, authenticated: false, error: `HTTP ${res.status}` };
+      }
+    }
     return await res.json();
   } catch (e) {
     try {
       const res = await fetch('/api/auth/check');
-      return await res.json();
-    } catch (err) {
-      return { configured: false, authenticated: false, methods: {} };
-    }
+      if (res.ok) return await res.json();
+    } catch (err) {}
+    return { serverReachable: false, configured: false, authenticated: false, error: e.message, methods: {} };
   }
 }
 
@@ -916,11 +923,26 @@ function applyAuthStatusToUI(status) {
   const requestTrigger = document.getElementById('auth-otp-request-wrapper');
   const statusEl = document.getElementById('auth-dest-status');
 
+  if (status && status.serverReachable === false) {
+    if (gatewayNotice) {
+      gatewayNotice.innerHTML = `<strong>SERVER NOTICE:</strong> Unable to connect to Backstage authentication server (${status.error || 'Network error'}). Please verify server connectivity.`;
+      gatewayNotice.style.display = 'block';
+    }
+    if (challengeForm) challengeForm.style.display = 'none';
+    if (requestTrigger) requestTrigger.style.display = 'none';
+    if (statusEl) statusEl.textContent = 'SERVER DISCONNECTED';
+    switchAuthTab('password');
+    return;
+  }
+
   const gmailConfigured = !!(status.methods && status.methods.gmail && status.methods.gmail.configured);
 
   // Configure Gmail OTP view state
   if (!gmailConfigured) {
-    if (gatewayNotice) gatewayNotice.style.display = 'block';
+    if (gatewayNotice) {
+      gatewayNotice.innerHTML = `<strong>GATEWAY NOTICE:</strong> Gmail delivery credentials (GMAIL_USER &amp; GMAIL_APP_PASSWORD) are not configured in the server environment. Please authenticate using your administrative passphrase.`;
+      gatewayNotice.style.display = 'block';
+    }
     if (challengeForm) challengeForm.style.display = 'none';
     if (requestTrigger) requestTrigger.style.display = 'none';
     if (statusEl) statusEl.textContent = 'GATEWAY UNCONFIGURED';

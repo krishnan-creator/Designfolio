@@ -119,11 +119,20 @@ const MANAGED_ENV_KEYS = new Set([
 
 let lastEnvHash = '';
 function loadEnvFile() {
-  if (IS_VERCEL) return;
-  const envFiles = [
-    path.join(ROOT_DIR, '.env'),
-    path.join(ROOT_DIR, '.env.local')
-  ];
+  const candidateDirs = Array.from(new Set([
+    ROOT_DIR,
+    process.cwd(),
+    __dirname
+  ].filter(Boolean)));
+
+  const envFileNames = ['.env', '.env.local', '.env.production'];
+  const envFiles = [];
+  for (const d of candidateDirs) {
+    for (const name of envFileNames) {
+      const p = path.join(d, name);
+      if (!envFiles.includes(p)) envFiles.push(p);
+    }
+  }
 
   let combinedContent = '';
   const newVals = {};
@@ -147,8 +156,6 @@ function loadEnvFile() {
             if (key) {
               if (val) {
                 newVals[key] = val;
-              } else {
-                delete newVals[key];
               }
             }
           }
@@ -159,15 +166,12 @@ function loadEnvFile() {
     }
   }
 
-  // Clear previous managed keys
-  for (const k of MANAGED_ENV_KEYS) {
-    if (!newVals[k]) {
-      delete process.env[k];
-    }
-  }
-  // Apply new keys
+  // Safely assign new keys without nuking host-level environment variables
   for (const [k, v] of Object.entries(newVals)) {
-    process.env[k] = v;
+    // Only apply if not already set or if file provides a non-empty configuration
+    if (!process.env[k] || v) {
+      process.env[k] = v;
+    }
   }
 
   const currentHash = crypto.createHash('md5').update(combinedContent).digest('hex');
@@ -590,7 +594,7 @@ async function sendGmailNotification(otpCode) {
   return {
     configured: false,
     delivered: false,
-    error: 'Gmail delivery credentials (GMAIL_USER & GMAIL_APP_PASSWORD) are not configured in .env. Please authenticate using your Authenticator app or administrative passphrase.'
+    error: 'Gmail delivery credentials (GMAIL_USER & GMAIL_APP_PASSWORD) are not configured in the server environment. Please authenticate using your administrative passphrase.'
   };
 }
 
@@ -845,6 +849,16 @@ async function requestHandler(req, res) {
 
   const parsedUrl = new URL(req.url, `http://${req.headers.host || 'localhost:3000'}`);
   let pathname = decodeURI(parsedUrl.pathname);
+
+  // Normalize Vercel / serverless rewrites (x-matched-path, x-vercel-matched-path, query param 0)
+  if (req.headers && req.headers['x-matched-path']) {
+    pathname = req.headers['x-matched-path'].split('?')[0];
+  } else if (req.headers && req.headers['x-vercel-matched-path']) {
+    pathname = req.headers['x-vercel-matched-path'].split('?')[0];
+  } else if ((pathname === '/api/index.js' || pathname === '/api' || pathname === '/api/') && parsedUrl.searchParams.has('0')) {
+    pathname = '/api/' + parsedUrl.searchParams.get('0').replace(/^\/+/, '');
+  }
+
   if (pathname === '/server.js') {
     pathname = '/';
   }
@@ -922,7 +936,7 @@ async function requestHandler(req, res) {
       return sendJson(res, 200, {
         success: false,
         code: 'GMAIL_UNCONFIGURED',
-        error: 'Gmail delivery credentials (GMAIL_USER & GMAIL_APP_PASSWORD) are not configured in .env. Please authenticate using your Authenticator app or administrative passphrase.',
+        error: 'Gmail delivery credentials (GMAIL_USER & GMAIL_APP_PASSWORD) are not configured in the server environment. Please authenticate using your administrative passphrase.',
         fallbackAvailable: true,
         destinations: {
           email: MASKED_EMAIL
@@ -1944,6 +1958,10 @@ async function requestHandler(req, res) {
       'Content-Length': stats.size,
       'Access-Control-Allow-Origin': '*'
     };
+
+    if (ext === '.mp4' || ext === '.webm') {
+      headers['Accept-Ranges'] = 'bytes';
+    }
 
     if (ext === '.jpg' || ext === '.jpeg' || ext === '.webp' || ext === '.png' || ext === '.svg') {
       headers['Cache-Control'] = 'no-cache, must-revalidate';
