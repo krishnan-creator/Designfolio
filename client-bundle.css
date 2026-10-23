@@ -86,6 +86,7 @@
   outline: none !important;
 }
 .sphere,
+.sphere-row,
 .item,
 .item__image {
   transform-style: preserve-3d;
@@ -93,6 +94,16 @@
 .sphere {
   position: relative;
   transform: translateZ(calc(var(--radius) * -1));
+  will-change: transform;
+}
+.sphere-row {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 0;
+  height: 0;
+  transform-origin: 0 0 0;
+  pointer-events: none;
   will-change: transform;
 }
 .item {
@@ -105,19 +116,8 @@
   backface-visibility: hidden;
   -webkit-backface-visibility: hidden;
   pointer-events: none;
-  transform: rotateY(calc(var(--rot-y, 0deg) + var(--row-rot-0, 0deg))) rotateX(var(--rot-x, 0deg)) translateZ(var(--radius, 720px));
-}
-.item[data-row="0"] {
-  transform: rotateY(calc(var(--rot-y, 0deg) + var(--row-rot-0, 0deg))) rotateX(var(--rot-x, 0deg)) translateZ(var(--radius, 720px));
-}
-.item[data-row="1"] {
-  transform: rotateY(calc(var(--rot-y, 0deg) + var(--row-rot-1, 0deg))) rotateX(var(--rot-x, 0deg)) translateZ(var(--radius, 720px));
-}
-.item[data-row="2"] {
-  transform: rotateY(calc(var(--rot-y, 0deg) + var(--row-rot-2, 0deg))) rotateX(var(--rot-x, 0deg)) translateZ(var(--radius, 720px));
-}
-.item[data-row="3"] {
-  transform: rotateY(calc(var(--rot-y, 0deg) + var(--row-rot-3, 0deg))) rotateX(var(--rot-x, 0deg)) translateZ(var(--radius, 720px));
+  transition: transform 260ms ease;
+  transform: rotateY(var(--rot-y, 0deg)) rotateX(var(--rot-x, 0deg)) translateZ(var(--radius, 720px));
 }
 .item__image {
   position: absolute;

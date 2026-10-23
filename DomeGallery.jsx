@@ -244,6 +244,23 @@ export default function DomeGallery({
   // Pointer hover-pause state: pauses rotation whenever mouse pointer is anywhere within dome
   const isPointerInsideDomeRef = useRef(false);
 
+  // Independent alternating horizontal rotation per row
+  // Row 1 (row 0, odd): Left to right (+1)
+  // Row 2 (row 1, even): Right to left (-1)
+  // Row 3 (row 2, odd): Left to right (+1)
+  // Row 4 (row 3, even): Right to left (-1)
+  const rowAnglesRef = useRef([0, 0, 0, 0]);
+  const rowTrackRefs = useRef([]);
+
+  const applyRowTransforms = useCallback(() => {
+    ROW_CONFIG.forEach((cfg, idx) => {
+      const el = rowTrackRefs.current[idx];
+      if (el) {
+        el.style.transform = `rotateY(${rowAnglesRef.current[idx] || 0}deg)`;
+      }
+    });
+  }, []);
+
   const [autoTheme, setAutoTheme] = useState('dark');
   const [radius, setRadius] = useState(minRadius);
 
@@ -375,7 +392,8 @@ export default function DomeGallery({
 
   useEffect(() => {
     applyTransform(rotationRef.current.x, rotationRef.current.y);
-  }, [applyTransform, radius]);
+    applyRowTransforms();
+  }, [applyTransform, applyRowTransforms, radius]);
 
   // Single authoritative inertia velocity ref (in deg/sec)
   const inertiaVelocityRef = useRef(0);
@@ -414,10 +432,10 @@ export default function DomeGallery({
     };
   }, []);
 
-  // SINGLE UNIFIED ANIMATION SYSTEM: AUTOMATIC ORBIT + DRAG-RELEASE MOMENTUM + HOVER-PAUSE
+  // SINGLE UNIFIED ANIMATION SYSTEM: ALTERNATING ROW ORBIT + DRAG-RELEASE MOMENTUM + HOVER-PAUSE
   useEffect(() => {
     let lastTime = performance.now();
-    const autoSpeed = -4.0; // Steady, cinematic right-to-left orbit speed (deg/sec)
+    const baseOrbitSpeed = 4.0; // Steady cinematic orbit speed (deg/sec)
     const frictionDecay = 2.8; // Smooth physical exponential deceleration factor per second
 
     const loop = (now) => {
@@ -457,14 +475,23 @@ export default function DomeGallery({
         // Momentum has fully settled
         inertiaVelocityRef.current = 0;
 
-        // State F: Automatic orbit resumes IF pointer is outside the dome
-        // If pointer is inside the dome, respect pointer-pause (dome stays stationary)
+        // State F: Alternating horizontal orbit resumes IF pointer is outside the dome
+        // Row 1 (row 0, odd): Left to right (+1)
+        // Row 2 (row 1, even): Right to left (-1)
+        // Row 3 (row 2, odd): Left to right (+1)
+        // Row 4 (row 3, even): Right to left (-1)
+        // (Odd rows: Left to right; Even rows: Right to left)
         if (!isPointerInsideDomeRef.current) {
-          const deltaY = autoSpeed * dt;
-          const currentRot = rotationRef.current;
-          const nextY = wrapAngleSigned(currentRot.y + deltaY);
-          rotationRef.current = { x: 0, y: nextY };
-          applyTransform(0, nextY);
+          ROW_CONFIG.forEach((cfg, idx) => {
+            const dir = (idx % 2 === 0) ? 1 : -1;
+            const delta = dir * baseOrbitSpeed * dt;
+            const nextAngle = wrapAngleSigned((rowAnglesRef.current[idx] || 0) + delta);
+            rowAnglesRef.current[idx] = nextAngle;
+            const el = rowTrackRefs.current[idx];
+            if (el) {
+              el.style.transform = `rotateY(${nextAngle}deg)`;
+            }
+          });
         }
       }
 
@@ -669,62 +696,73 @@ export default function DomeGallery({
       >
         <div className="stage">
           <div ref={sphereRef} className="sphere">
-            {items.map((item) => {
-              const hasImage = Boolean(item.src && item.src.trim() !== '');
+            {ROW_CONFIG.map((cfg, rowIndex) => (
+              <div
+                key={cfg.row}
+                ref={(el) => (rowTrackRefs.current[rowIndex] = el)}
+                className="sphere-row"
+                data-row={cfg.row}
+              >
+                {items
+                  .filter((item) => item.row === cfg.row)
+                  .map((item) => {
+                    const hasImage = Boolean(item.src && item.src.trim() !== '');
 
-              return (
-                <div
-                  key={item.id}
-                  className={`item${hasImage ? '' : ' item--empty'}`}
-                  data-slot-id={item.id}
-                  data-slot-number={item.slotNumber}
-                  data-src={item.src}
-                  data-col={item.col}
-                  data-row={item.row}
-                  data-offset-x={item.x}
-                  data-offset-y={item.y}
-                  data-size-x={item.sizeX}
-                  data-size-y={item.sizeY}
-                  style={{
-                    '--rot-x': `${item.rotX}deg`,
-                    '--rot-y': `${item.rotY}deg`,
-                    '--offset-x': item.x,
-                    '--offset-y': item.y,
-                    '--item-size-x': item.sizeX,
-                    '--item-size-y': item.sizeY,
-                  }}
-                >
-                  <div
-                    className={`item__image${hasImage && hoveredSlotId === item.id ? ' is-hovered' : ''}${hasImage ? '' : ' item__image--empty'}`}
-                    role={hasImage ? 'button' : 'presentation'}
-                    tabIndex={hasImage ? 0 : -1}
-                    aria-label={hasImage ? (item.alt || `Visual Orbit Asset ${item.slotNumber}`) : undefined}
-                    onMouseEnter={() => hasImage && setHoveredSlotId(item.id)}
-                    onMouseLeave={() => hasImage && setHoveredSlotId((curr) => curr === item.id ? null : curr)}
-                    onFocus={() => hasImage && setHoveredSlotId(item.id)}
-                    onBlur={() => hasImage && setHoveredSlotId((curr) => curr === item.id ? null : curr)}
-                    onClick={() => hasImage && handleTileClick(item)}
-                    onKeyDown={(e) => {
-                      if (hasImage && (e.key === 'Enter' || e.key === ' ')) {
-                        e.preventDefault();
-                        handleTileClick(item);
-                      }
-                    }}
-                  >
-                    {hasImage ? (
-                      <img
-                        src={item.src}
-                        alt={item.alt || `Visual Orbit Asset ${item.slotNumber}`}
-                        draggable={false}
-                        loading="eager"
-                        decoding="async"
-                        style={{ objectPosition: item.position || 'center center' }}
-                      />
-                    ) : null}
-                  </div>
-                </div>
-              );
-            })}
+                    return (
+                      <div
+                        key={item.id}
+                        className={`item${hasImage ? '' : ' item--empty'}`}
+                        data-slot-id={item.id}
+                        data-slot-number={item.slotNumber}
+                        data-src={item.src}
+                        data-col={item.col}
+                        data-row={item.row}
+                        data-offset-x={item.x}
+                        data-offset-y={item.y}
+                        data-size-x={item.sizeX}
+                        data-size-y={item.sizeY}
+                        style={{
+                          '--rot-x': `${item.rotX}deg`,
+                          '--rot-y': `${item.rotY}deg`,
+                          '--offset-x': item.x,
+                          '--offset-y': item.y,
+                          '--item-size-x': item.sizeX,
+                          '--item-size-y': item.sizeY,
+                        }}
+                      >
+                        <div
+                          className={`item__image${hasImage && hoveredSlotId === item.id ? ' is-hovered' : ''}${hasImage ? '' : ' item__image--empty'}`}
+                          role={hasImage ? 'button' : 'presentation'}
+                          tabIndex={hasImage ? 0 : -1}
+                          aria-label={hasImage ? (item.alt || `Visual Orbit Asset ${item.slotNumber}`) : undefined}
+                          onMouseEnter={() => hasImage && setHoveredSlotId(item.id)}
+                          onMouseLeave={() => hasImage && setHoveredSlotId((curr) => curr === item.id ? null : curr)}
+                          onFocus={() => hasImage && setHoveredSlotId(item.id)}
+                          onBlur={() => hasImage && setHoveredSlotId((curr) => curr === item.id ? null : curr)}
+                          onClick={() => hasImage && handleTileClick(item)}
+                          onKeyDown={(e) => {
+                            if (hasImage && (e.key === 'Enter' || e.key === ' ')) {
+                              e.preventDefault();
+                              handleTileClick(item);
+                            }
+                          }}
+                        >
+                          {hasImage ? (
+                            <img
+                              src={item.src}
+                              alt={item.alt || `Visual Orbit Asset ${item.slotNumber}`}
+                              draggable={false}
+                              loading="eager"
+                              decoding="async"
+                              style={{ objectPosition: item.position || 'center center' }}
+                            />
+                          ) : null}
+                        </div>
+                      </div>
+                    );
+                  })}
+              </div>
+            ))}
           </div>
         </div>
 

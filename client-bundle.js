@@ -5,20 +5,11 @@
   var __getOwnPropNames = Object.getOwnPropertyNames;
   var __getProtoOf = Object.getPrototypeOf;
   var __hasOwnProp = Object.prototype.hasOwnProperty;
-  var __esm = (fn, res, err) => function __init() {
-    if (err) throw err[0];
-    try {
-      return fn && (res = (0, fn[__getOwnPropNames(fn)[0]])(fn = 0)), res;
-    } catch (e) {
-      throw err = [e], e;
-    }
+  var __esm = (fn, res) => function __init() {
+    return fn && (res = (0, fn[__getOwnPropNames(fn)[0]])(fn = 0)), res;
   };
   var __commonJS = (cb, mod) => function __require() {
-    try {
-      return mod || (0, cb[__getOwnPropNames(cb)[0]])((mod = { exports: {} }).exports, mod), mod.exports;
-    } catch (e) {
-      throw mod = 0, e;
-    }
+    return mod || (0, cb[__getOwnPropNames(cb)[0]])((mod = { exports: {} }).exports, mod), mod.exports;
   };
   var __copyProps = (to, from, except, desc) => {
     if (from && typeof from === "object" || typeof from === "function") {
@@ -545,7 +536,7 @@
           }
         }
         "undefined" !== typeof __REACT_DEVTOOLS_GLOBAL_HOOK__ && "function" === typeof __REACT_DEVTOOLS_GLOBAL_HOOK__.registerInternalModuleStart && __REACT_DEVTOOLS_GLOBAL_HOOK__.registerInternalModuleStart(Error());
-        var REACT_ELEMENT_TYPE = /* @__PURE__ */ Symbol.for("react.transitional.element"), REACT_PORTAL_TYPE = /* @__PURE__ */ Symbol.for("react.portal"), REACT_FRAGMENT_TYPE = /* @__PURE__ */ Symbol.for("react.fragment"), REACT_STRICT_MODE_TYPE = /* @__PURE__ */ Symbol.for("react.strict_mode"), REACT_PROFILER_TYPE = /* @__PURE__ */ Symbol.for("react.profiler"), REACT_CONSUMER_TYPE = /* @__PURE__ */ Symbol.for("react.consumer"), REACT_CONTEXT_TYPE = /* @__PURE__ */ Symbol.for("react.context"), REACT_FORWARD_REF_TYPE = /* @__PURE__ */ Symbol.for("react.forward_ref"), REACT_SUSPENSE_TYPE = /* @__PURE__ */ Symbol.for("react.suspense"), REACT_SUSPENSE_LIST_TYPE = /* @__PURE__ */ Symbol.for("react.suspense_list"), REACT_MEMO_TYPE = /* @__PURE__ */ Symbol.for("react.memo"), REACT_LAZY_TYPE = /* @__PURE__ */ Symbol.for("react.lazy"), REACT_ACTIVITY_TYPE = /* @__PURE__ */ Symbol.for("react.activity"), REACT_VIEW_TRANSITION_TYPE = /* @__PURE__ */ Symbol.for("react.view_transition"), MAYBE_ITERATOR_SYMBOL = Symbol.iterator, didWarnStateUpdateForUnmountedComponent = {}, ReactNoopUpdateQueue = {
+        var REACT_ELEMENT_TYPE = Symbol.for("react.transitional.element"), REACT_PORTAL_TYPE = Symbol.for("react.portal"), REACT_FRAGMENT_TYPE = Symbol.for("react.fragment"), REACT_STRICT_MODE_TYPE = Symbol.for("react.strict_mode"), REACT_PROFILER_TYPE = Symbol.for("react.profiler"), REACT_CONSUMER_TYPE = Symbol.for("react.consumer"), REACT_CONTEXT_TYPE = Symbol.for("react.context"), REACT_FORWARD_REF_TYPE = Symbol.for("react.forward_ref"), REACT_SUSPENSE_TYPE = Symbol.for("react.suspense"), REACT_SUSPENSE_LIST_TYPE = Symbol.for("react.suspense_list"), REACT_MEMO_TYPE = Symbol.for("react.memo"), REACT_LAZY_TYPE = Symbol.for("react.lazy"), REACT_ACTIVITY_TYPE = Symbol.for("react.activity"), REACT_VIEW_TRANSITION_TYPE = Symbol.for("react.view_transition"), MAYBE_ITERATOR_SYMBOL = Symbol.iterator, didWarnStateUpdateForUnmountedComponent = {}, ReactNoopUpdateQueue = {
           isMounted: function() {
             return false;
           },
@@ -588,7 +579,7 @@
         deprecatedAPIs.constructor = PureComponent;
         assign(deprecatedAPIs, Component2.prototype);
         deprecatedAPIs.isPureReactComponent = true;
-        var isArrayImpl = Array.isArray, REACT_CLIENT_REFERENCE = /* @__PURE__ */ Symbol.for("react.client.reference"), ReactSharedInternals = {
+        var isArrayImpl = Array.isArray, REACT_CLIENT_REFERENCE = Symbol.for("react.client.reference"), ReactSharedInternals = {
           H: null,
           A: null,
           T: null,
@@ -1389,7 +1380,7 @@
           },
           p: 0,
           findDOMNode: null
-        }, REACT_PORTAL_TYPE = /* @__PURE__ */ Symbol.for("react.portal"), REACT_RECOVERABLE_TYPE = /* @__PURE__ */ Symbol.for("react.recoverable"), REACT_OPTIMISTIC_KEY = /* @__PURE__ */ Symbol.for("react.optimistic_key"), ReactSharedInternals = React13.__CLIENT_INTERNALS_DO_NOT_USE_OR_WARN_USERS_THEY_CANNOT_UPGRADE;
+        }, REACT_PORTAL_TYPE = Symbol.for("react.portal"), REACT_RECOVERABLE_TYPE = Symbol.for("react.recoverable"), REACT_OPTIMISTIC_KEY = Symbol.for("react.optimistic_key"), ReactSharedInternals = React13.__CLIENT_INTERNALS_DO_NOT_USE_OR_WARN_USERS_THEY_CANNOT_UPGRADE;
         "function" === typeof Map && null != Map.prototype && "function" === typeof Map.prototype.forEach && "function" === typeof Set && null != Set.prototype && "function" === typeof Set.prototype.clear && "function" === typeof Set.prototype.forEach || console.error(
           "React depends on Map and Set built-in types. Make sure that you load a polyfill in older browsers. https://reactjs.org/link/react-polyfills"
         );
@@ -20223,11 +20214,11 @@
           ));
         }
         "undefined" !== typeof __REACT_DEVTOOLS_GLOBAL_HOOK__ && "function" === typeof __REACT_DEVTOOLS_GLOBAL_HOOK__.registerInternalModuleStart && __REACT_DEVTOOLS_GLOBAL_HOOK__.registerInternalModuleStart(Error());
-        var Scheduler = require_scheduler(), React13 = require_react(), ReactDOM = require_react_dom(), searchTarget = null, searchBoundary = null, assign = Object.assign, REACT_LEGACY_ELEMENT_TYPE = /* @__PURE__ */ Symbol.for("react.element"), REACT_ELEMENT_TYPE = /* @__PURE__ */ Symbol.for("react.transitional.element"), REACT_PORTAL_TYPE = /* @__PURE__ */ Symbol.for("react.portal"), REACT_FRAGMENT_TYPE = /* @__PURE__ */ Symbol.for("react.fragment"), REACT_STRICT_MODE_TYPE = /* @__PURE__ */ Symbol.for("react.strict_mode"), REACT_PROFILER_TYPE = /* @__PURE__ */ Symbol.for("react.profiler"), REACT_CONSUMER_TYPE = /* @__PURE__ */ Symbol.for("react.consumer"), REACT_CONTEXT_TYPE = /* @__PURE__ */ Symbol.for("react.context"), REACT_FORWARD_REF_TYPE = /* @__PURE__ */ Symbol.for("react.forward_ref"), REACT_SUSPENSE_TYPE = /* @__PURE__ */ Symbol.for("react.suspense"), REACT_SUSPENSE_LIST_TYPE = /* @__PURE__ */ Symbol.for("react.suspense_list"), REACT_MEMO_TYPE = /* @__PURE__ */ Symbol.for("react.memo"), REACT_LAZY_TYPE = /* @__PURE__ */ Symbol.for("react.lazy");
-        /* @__PURE__ */ Symbol.for("react.scope");
-        var REACT_ACTIVITY_TYPE = /* @__PURE__ */ Symbol.for("react.activity"), REACT_LEGACY_HIDDEN_TYPE = /* @__PURE__ */ Symbol.for("react.legacy_hidden");
-        /* @__PURE__ */ Symbol.for("react.tracing_marker");
-        var REACT_MEMO_CACHE_SENTINEL = /* @__PURE__ */ Symbol.for("react.memo_cache_sentinel"), REACT_VIEW_TRANSITION_TYPE = /* @__PURE__ */ Symbol.for("react.view_transition"), REACT_RECOVERABLE_TYPE = /* @__PURE__ */ Symbol.for("react.recoverable"), MAYBE_ITERATOR_SYMBOL = Symbol.iterator, REACT_CLIENT_REFERENCE = /* @__PURE__ */ Symbol.for("react.client.reference"), isArrayImpl = Array.isArray, ReactSharedInternals = React13.__CLIENT_INTERNALS_DO_NOT_USE_OR_WARN_USERS_THEY_CANNOT_UPGRADE, ReactDOMSharedInternals = ReactDOM.__DOM_INTERNALS_DO_NOT_USE_OR_WARN_USERS_THEY_CANNOT_UPGRADE, NotPending = Object.freeze({
+        var Scheduler = require_scheduler(), React13 = require_react(), ReactDOM = require_react_dom(), searchTarget = null, searchBoundary = null, assign = Object.assign, REACT_LEGACY_ELEMENT_TYPE = Symbol.for("react.element"), REACT_ELEMENT_TYPE = Symbol.for("react.transitional.element"), REACT_PORTAL_TYPE = Symbol.for("react.portal"), REACT_FRAGMENT_TYPE = Symbol.for("react.fragment"), REACT_STRICT_MODE_TYPE = Symbol.for("react.strict_mode"), REACT_PROFILER_TYPE = Symbol.for("react.profiler"), REACT_CONSUMER_TYPE = Symbol.for("react.consumer"), REACT_CONTEXT_TYPE = Symbol.for("react.context"), REACT_FORWARD_REF_TYPE = Symbol.for("react.forward_ref"), REACT_SUSPENSE_TYPE = Symbol.for("react.suspense"), REACT_SUSPENSE_LIST_TYPE = Symbol.for("react.suspense_list"), REACT_MEMO_TYPE = Symbol.for("react.memo"), REACT_LAZY_TYPE = Symbol.for("react.lazy");
+        Symbol.for("react.scope");
+        var REACT_ACTIVITY_TYPE = Symbol.for("react.activity"), REACT_LEGACY_HIDDEN_TYPE = Symbol.for("react.legacy_hidden");
+        Symbol.for("react.tracing_marker");
+        var REACT_MEMO_CACHE_SENTINEL = Symbol.for("react.memo_cache_sentinel"), REACT_VIEW_TRANSITION_TYPE = Symbol.for("react.view_transition"), REACT_RECOVERABLE_TYPE = Symbol.for("react.recoverable"), MAYBE_ITERATOR_SYMBOL = Symbol.iterator, REACT_CLIENT_REFERENCE = Symbol.for("react.client.reference"), isArrayImpl = Array.isArray, ReactSharedInternals = React13.__CLIENT_INTERNALS_DO_NOT_USE_OR_WARN_USERS_THEY_CANNOT_UPGRADE, ReactDOMSharedInternals = ReactDOM.__DOM_INTERNALS_DO_NOT_USE_OR_WARN_USERS_THEY_CANNOT_UPGRADE, NotPending = Object.freeze({
           pending: false,
           data: null,
           method: null,
@@ -26140,8 +26131,7 @@ Please add \`${key}Action\` when creating your handler.`);
         src,
         alt,
         title,
-        position: raw && raw.position || "center center",
-        visible: raw?.visible !== false
+        position: raw && raw.position || "center center"
       };
     });
   }
@@ -26177,8 +26167,7 @@ Please add \`${key}Action\` when creating your handler.`);
           y: (cfg.row - 1.5) * 2,
           sizeX: 2,
           sizeY: 2,
-          index: slotIdx,
-          visible: slot.visible !== false
+          index: slotIdx
         });
         slotIdx++;
       }
@@ -26189,8 +26178,8 @@ Please add \`${key}Action\` when creating your handler.`);
     images = DEFAULT_ORBIT_IMAGES,
     fit = 0.8,
     fitBasis = "auto",
-    minRadius = 800,
-    maxRadius = 970,
+    minRadius = 710,
+    maxRadius = 860,
     padFactor = 0.18,
     maxVerticalRotationDeg = 0,
     dragSensitivity = 20,
@@ -26215,6 +26204,15 @@ Please add \`${key}Action\` when creating your handler.`);
     const animRafRef = (0, import_react3.useRef)(null);
     const isPointerInsideDomeRef = (0, import_react3.useRef)(false);
     const rowAnglesRef = (0, import_react3.useRef)([0, 0, 0, 0]);
+    const rowTrackRefs = (0, import_react3.useRef)([]);
+    const applyRowTransforms = (0, import_react3.useCallback)(() => {
+      ROW_CONFIG.forEach((cfg, idx) => {
+        const el = rowTrackRefs.current[idx];
+        if (el) {
+          el.style.transform = `rotateY(${rowAnglesRef.current[idx] || 0}deg)`;
+        }
+      });
+    }, []);
     const [autoTheme, setAutoTheme] = (0, import_react3.useState)("dark");
     const [radius, setRadius] = (0, import_react3.useState)(minRadius);
     const [hoveredSlotId, setHoveredSlotId] = (0, import_react3.useState)(null);
@@ -26224,7 +26222,7 @@ Please add \`${key}Action\` when creating your handler.`);
     const resolvedTheme = theme === "auto" ? autoTheme : theme;
     const items = (0, import_react3.useMemo)(() => buildSphereItems(images), [images]);
     const populatedItems = (0, import_react3.useMemo)(() => {
-      return items.filter((item) => item.visible !== false && item.src && item.src.trim() !== "");
+      return items.filter((item) => item.src && item.src.trim() !== "");
     }, [items]);
     (0, import_react3.useEffect)(() => {
       if (theme !== "auto") return void 0;
@@ -26261,12 +26259,12 @@ Please add \`${key}Action\` when creating your handler.`);
         const width = Math.max(1, rect.width);
         const height = Math.max(1, rect.height);
         const minDimension = Math.min(width, height);
-        let targetR = Math.round(height * 0.95);
+        let targetR = Math.round(height * 0.88);
         if (width >= 1100) {
           targetR = Math.max(minRadius, targetR);
         }
-        const responsiveMax = Math.min(maxRadius, Math.max(500, width * 0.74));
-        const nextRadius = Math.round(clamp2(targetR, Math.min(500, responsiveMax), responsiveMax));
+        const responsiveMax = Math.min(maxRadius, Math.max(440, width * 0.68));
+        const nextRadius = Math.round(clamp2(targetR, Math.min(440, responsiveMax), responsiveMax));
         const circ = nextRadius * 2 * Math.PI;
         const itemWidth = Math.round(circ / 12 * 0.94);
         const rowPitchChord = Math.round(2 * nextRadius * Math.sin(7.5 * (Math.PI / 180)));
@@ -26311,7 +26309,8 @@ Please add \`${key}Action\` when creating your handler.`);
     ]);
     (0, import_react3.useEffect)(() => {
       applyTransform(rotationRef.current.x, rotationRef.current.y);
-    }, [applyTransform, radius]);
+      applyRowTransforms();
+    }, [applyTransform, applyRowTransforms, radius]);
     const inertiaVelocityRef = (0, import_react3.useRef)(0);
     const recentMoveSamplesRef = (0, import_react3.useRef)([]);
     const stopInertia = (0, import_react3.useCallback)(() => {
@@ -26340,7 +26339,7 @@ Please add \`${key}Action\` when creating your handler.`);
     }, []);
     (0, import_react3.useEffect)(() => {
       let lastTime = performance.now();
-      const autoSpeed = -4;
+      const baseOrbitSpeed = 4;
       const frictionDecay = 2.8;
       const loop = (now2) => {
         const dt = Math.min((now2 - lastTime) / 1e3, 0.1);
@@ -26350,22 +26349,6 @@ Please add \`${key}Action\` when creating your handler.`);
           inertiaVelocityRef.current = 0;
           animRafRef.current = requestAnimationFrame(loop);
           return;
-        }
-        // Continuous Harmonious Alternating Row Horizontal Animation:
-        // Row 1 (row: 0): Right to left (-speed)
-        // Row 2 (row: 1): Left to right (+speed)
-        // Row 3 (row: 2): Right to left (-speed)
-        // Row 4 (row: 3): Left to right (+speed)
-        const rowSpeed = 3.2; // degrees per second
-        const rowDirs = [-1, 1, -1, 1];
-        for (let r = 0; r < 4; r++) {
-          rowAnglesRef.current[r] = (rowAnglesRef.current[r] + rowDirs[r] * rowSpeed * dt);
-        }
-        if (rootRef.current) {
-          rootRef.current.style.setProperty("--row-rot-0", `${rowAnglesRef.current[0]}deg`);
-          rootRef.current.style.setProperty("--row-rot-1", `${rowAnglesRef.current[1]}deg`);
-          rootRef.current.style.setProperty("--row-rot-2", `${rowAnglesRef.current[2]}deg`);
-          rootRef.current.style.setProperty("--row-rot-3", `${rowAnglesRef.current[3]}deg`);
         }
         if (isDraggingRef.current) {
           animRafRef.current = requestAnimationFrame(loop);
@@ -26380,6 +26363,20 @@ Please add \`${key}Action\` when creating your handler.`);
           inertiaVelocityRef.current *= Math.exp(-frictionDecay * dt);
           if (Math.abs(inertiaVelocityRef.current) <= 0.3) {
             inertiaVelocityRef.current = 0;
+          }
+        } else {
+          inertiaVelocityRef.current = 0;
+          if (!isPointerInsideDomeRef.current) {
+            ROW_CONFIG.forEach((cfg, idx) => {
+              const dir = idx % 2 === 0 ? 1 : -1;
+              const delta = dir * baseOrbitSpeed * dt;
+              const nextAngle = wrapAngleSigned((rowAnglesRef.current[idx] || 0) + delta);
+              rowAnglesRef.current[idx] = nextAngle;
+              const el = rowTrackRefs.current[idx];
+              if (el) {
+                el.style.transform = `rotateY(${nextAngle}deg)`;
+              }
+            });
           }
         }
         animRafRef.current = requestAnimationFrame(loop);
@@ -26550,65 +26547,73 @@ Please add \`${key}Action\` when creating your handler.`);
           className: "sphere-main",
           "aria-label": "Interactive 3D Visual Orbit Dome Gallery"
         },
-        /* @__PURE__ */ import_react3.default.createElement("div", { className: "stage" }, /* @__PURE__ */ import_react3.default.createElement("div", { ref: sphereRef, className: "sphere" }, items.map((item) => {
-          if (item.visible === false) return null;
-          const hasImage = Boolean(item.src && item.src.trim() !== "");
-          return /* @__PURE__ */ import_react3.default.createElement(
-            "div",
-            {
-              key: item.id,
-              className: `item${hasImage ? "" : " item--empty"}`,
-              "data-slot-id": item.id,
-              "data-slot-number": item.slotNumber,
-              "data-src": item.src,
-              "data-col": item.col,
-              "data-row": item.row,
-              "data-offset-x": item.x,
-              "data-offset-y": item.y,
-              "data-size-x": item.sizeX,
-              "data-size-y": item.sizeY,
-              style: {
-                "--rot-x": `${item.rotX}deg`,
-                "--rot-y": `${item.rotY}deg`,
-                "--offset-x": item.x,
-                "--offset-y": item.y,
-                "--item-size-x": item.sizeX,
-                "--item-size-y": item.sizeY
-              }
-            },
-            /* @__PURE__ */ import_react3.default.createElement(
+        /* @__PURE__ */ import_react3.default.createElement("div", { className: "stage" }, /* @__PURE__ */ import_react3.default.createElement("div", { ref: sphereRef, className: "sphere" }, ROW_CONFIG.map((cfg, rowIndex) => /* @__PURE__ */ import_react3.default.createElement(
+          "div",
+          {
+            key: cfg.row,
+            ref: (el) => rowTrackRefs.current[rowIndex] = el,
+            className: "sphere-row",
+            "data-row": cfg.row
+          },
+          items.filter((item) => item.row === cfg.row).map((item) => {
+            const hasImage = Boolean(item.src && item.src.trim() !== "");
+            return /* @__PURE__ */ import_react3.default.createElement(
               "div",
               {
-                className: `item__image${hasImage && hoveredSlotId === item.id ? " is-hovered" : ""}${hasImage ? "" : " item__image--empty"}`,
-                role: hasImage ? "button" : "presentation",
-                tabIndex: hasImage ? 0 : -1,
-                "aria-label": hasImage ? item.alt || `Visual Orbit Asset ${item.slotNumber}` : void 0,
-                onMouseEnter: () => hasImage && setHoveredSlotId(item.id),
-                onMouseLeave: () => hasImage && setHoveredSlotId((curr) => curr === item.id ? null : curr),
-                onFocus: () => hasImage && setHoveredSlotId(item.id),
-                onBlur: () => hasImage && setHoveredSlotId((curr) => curr === item.id ? null : curr),
-                onClick: () => hasImage && handleTileClick(item),
-                onKeyDown: (e) => {
-                  if (hasImage && (e.key === "Enter" || e.key === " ")) {
-                    e.preventDefault();
-                    handleTileClick(item);
-                  }
+                key: item.id,
+                className: `item${hasImage ? "" : " item--empty"}`,
+                "data-slot-id": item.id,
+                "data-slot-number": item.slotNumber,
+                "data-src": item.src,
+                "data-col": item.col,
+                "data-row": item.row,
+                "data-offset-x": item.x,
+                "data-offset-y": item.y,
+                "data-size-x": item.sizeX,
+                "data-size-y": item.sizeY,
+                style: {
+                  "--rot-x": `${item.rotX}deg`,
+                  "--rot-y": `${item.rotY}deg`,
+                  "--offset-x": item.x,
+                  "--offset-y": item.y,
+                  "--item-size-x": item.sizeX,
+                  "--item-size-y": item.sizeY
                 }
               },
-              hasImage ? /* @__PURE__ */ import_react3.default.createElement(
-                "img",
+              /* @__PURE__ */ import_react3.default.createElement(
+                "div",
                 {
-                  src: item.src,
-                  alt: item.alt || `Visual Orbit Asset ${item.slotNumber}`,
-                  draggable: false,
-                  loading: "eager",
-                  decoding: "async",
-                  style: { objectPosition: item.position || "center center" }
-                }
-              ) : null
-            )
-          );
-        }))),
+                  className: `item__image${hasImage && hoveredSlotId === item.id ? " is-hovered" : ""}${hasImage ? "" : " item__image--empty"}`,
+                  role: hasImage ? "button" : "presentation",
+                  tabIndex: hasImage ? 0 : -1,
+                  "aria-label": hasImage ? item.alt || `Visual Orbit Asset ${item.slotNumber}` : void 0,
+                  onMouseEnter: () => hasImage && setHoveredSlotId(item.id),
+                  onMouseLeave: () => hasImage && setHoveredSlotId((curr) => curr === item.id ? null : curr),
+                  onFocus: () => hasImage && setHoveredSlotId(item.id),
+                  onBlur: () => hasImage && setHoveredSlotId((curr) => curr === item.id ? null : curr),
+                  onClick: () => hasImage && handleTileClick(item),
+                  onKeyDown: (e) => {
+                    if (hasImage && (e.key === "Enter" || e.key === " ")) {
+                      e.preventDefault();
+                      handleTileClick(item);
+                    }
+                  }
+                },
+                hasImage ? /* @__PURE__ */ import_react3.default.createElement(
+                  "img",
+                  {
+                    src: item.src,
+                    alt: item.alt || `Visual Orbit Asset ${item.slotNumber}`,
+                    draggable: false,
+                    loading: "eager",
+                    decoding: "async",
+                    style: { objectPosition: item.position || "center center" }
+                  }
+                ) : null
+              )
+            );
+          })
+        )))),
         activeViewerSlot && /* @__PURE__ */ import_react3.default.createElement(
           "div",
           {
@@ -57783,16 +57788,79 @@ void main() {
     SPLAT_FORCE = 6e3,
     SHADING = true,
     COLOR_UPDATE_SPEED = 10,
-    BACK_COLOR = { r: 0.5, g: 0, b: 0 },
+    BACK_COLOR = { r: 0, g: 0, b: 0 },
     TRANSPARENT = true,
-    RAINBOW_MODE = true,
-    COLOR = "#ff0000"
+    RAINBOW_MODE = false,
+    COLOR = "#A855F7"
   }) {
     const canvasRef = (0, import_react7.useRef)(null);
+    const containerRef = (0, import_react7.useRef)(null);
     const animationFrameId = (0, import_react7.useRef)(null);
     (0, import_react7.useEffect)(() => {
       const canvas = canvasRef.current;
       if (!canvas) return;
+      if (typeof window !== "undefined") {
+        const prefersReducedMotion2 = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+        const isTouchOnly = window.matchMedia && window.matchMedia("(pointer: coarse) and (hover: none)").matches;
+        if (prefersReducedMotion2 || isTouchOnly) {
+          return;
+        }
+      }
+      let cachedHeaderHeight = 62;
+      let cachedHeroHeight = 900;
+      let cachedHeroDocTop = 0;
+      let lastClipBottom = -1;
+      function measureGeometry() {
+        const headerEl = document.getElementById("hero-header");
+        const heroEl = document.getElementById("hero-section");
+        if (headerEl) {
+          const r = headerEl.getBoundingClientRect();
+          cachedHeaderHeight = r.height || 62;
+        }
+        if (heroEl) {
+          const r = heroEl.getBoundingClientRect();
+          cachedHeroHeight = r.height || 900;
+          cachedHeroDocTop = r.top + (window.scrollY || window.pageYOffset || 0);
+        }
+      }
+      function updateClip() {
+        const scrollY = window.scrollY || window.pageYOffset || 0;
+        const currentHeroBottom = cachedHeroDocTop + cachedHeroHeight - scrollY;
+        const exclusionBottom = Math.max(0, Math.round(Math.max(cachedHeaderHeight, currentHeroBottom)));
+        if (exclusionBottom !== lastClipBottom) {
+          lastClipBottom = exclusionBottom;
+          const clip = exclusionBottom > 0 ? `polygon(0 ${exclusionBottom}px, 100% ${exclusionBottom}px, 100% 100%, 0 100%)` : "";
+          if (containerRef.current) {
+            containerRef.current.style.clipPath = clip;
+            containerRef.current.style.webkitClipPath = clip;
+          }
+          if (canvas) {
+            canvas.style.clipPath = clip;
+            canvas.style.webkitClipPath = clip;
+          }
+        }
+      }
+      function isPointExcluded(clientX, clientY) {
+        if (clientY <= cachedHeaderHeight) return true;
+        const scrollY = window.scrollY || window.pageYOffset || 0;
+        const heroBottom = cachedHeroDocTop + cachedHeroHeight - scrollY;
+        const heroTop = cachedHeroDocTop - scrollY;
+        if (clientY >= heroTop && clientY <= heroBottom) return true;
+        return false;
+      }
+      measureGeometry();
+      updateClip();
+      let resizeObserver = null;
+      if (typeof ResizeObserver !== "undefined") {
+        resizeObserver = new ResizeObserver(() => {
+          measureGeometry();
+          updateClip();
+        });
+        const headerEl = document.getElementById("hero-header");
+        const heroEl = document.getElementById("hero-section");
+        if (headerEl) resizeObserver.observe(headerEl);
+        if (heroEl) resizeObserver.observe(heroEl);
+      }
       let isActive = true;
       function pointerPrototype() {
         this.id = -1;
@@ -57826,11 +57894,6 @@ void main() {
         COLOR
       };
       let pointers = [new pointerPrototype()];
-      const { gl, ext } = getWebGLContext(canvas);
-      if (!ext.supportLinearFiltering) {
-        config.DYE_RESOLUTION = 256;
-        config.SHADING = false;
-      }
       function getWebGLContext(canvas2) {
         const params = {
           alpha: true,
@@ -57842,6 +57905,7 @@ void main() {
         let gl2 = canvas2.getContext("webgl2", params);
         const isWebGL2 = !!gl2;
         if (!isWebGL2) gl2 = canvas2.getContext("webgl", params) || canvas2.getContext("experimental-webgl", params);
+        if (!gl2) return { gl: null, ext: null };
         let halfFloat;
         let supportLinearFiltering;
         if (isWebGL2) {
@@ -57851,7 +57915,7 @@ void main() {
           halfFloat = gl2.getExtension("OES_texture_half_float");
           supportLinearFiltering = gl2.getExtension("OES_texture_half_float_linear");
         }
-        gl2.clearColor(0, 0, 0, 1);
+        gl2.clearColor(0, 0, 0, 0);
         const halfFloatTexType = isWebGL2 ? gl2.HALF_FLOAT : halfFloat && halfFloat.HALF_FLOAT_OES;
         let formatRGBA;
         let formatRG;
@@ -57902,6 +57966,15 @@ void main() {
         gl2.framebufferTexture2D(gl2.FRAMEBUFFER, gl2.COLOR_ATTACHMENT0, gl2.TEXTURE_2D, texture, 0);
         const status = gl2.checkFramebufferStatus(gl2.FRAMEBUFFER);
         return status === gl2.FRAMEBUFFER_COMPLETE;
+      }
+      const { gl, ext } = getWebGLContext(canvas);
+      if (!gl || !ext) {
+        console.warn("SplashCursor: WebGL not supported or context creation failed.");
+        return;
+      }
+      if (!ext.supportLinearFiltering) {
+        config.DYE_RESOLUTION = 256;
+        config.SHADING = false;
       }
       class Material2 {
         constructor(vertexShader, fragmentShaderSource) {
@@ -58271,7 +58344,7 @@ void main() {
             gl.bindFramebuffer(gl.FRAMEBUFFER, target.fbo);
           }
           if (clear) {
-            gl.clearColor(0, 0, 0, 1);
+            gl.clearColor(0, 0, 0, 0);
             gl.clear(gl.COLOR_BUFFER_BIT);
           }
           gl.drawElements(gl.TRIANGLES, 6, gl.UNSIGNED_SHORT, 0);
@@ -58330,6 +58403,7 @@ void main() {
         gl.bindFramebuffer(gl.FRAMEBUFFER, fbo);
         gl.framebufferTexture2D(gl.FRAMEBUFFER, gl.COLOR_ATTACHMENT0, gl.TEXTURE_2D, texture, 0);
         gl.viewport(0, 0, w, h);
+        gl.clearColor(0, 0, 0, 0);
         gl.clear(gl.COLOR_BUFFER_BIT);
         let texelSizeX = 1 / w;
         let texelSizeY = 1 / h;
@@ -58397,15 +58471,22 @@ void main() {
         displayMaterial.setKeywords(displayKeywords);
       }
       updateKeywords();
+      resizeCanvas();
       initFramebuffers();
       let lastUpdateTime = Date.now();
       let colorUpdateTimer = 0;
       let needsResize = false;
-      window.addEventListener("resize", () => { needsResize = true; }, { passive: true });
+      function handleResize() {
+        needsResize = true;
+        measureGeometry();
+        updateClip();
+      }
+      window.addEventListener("resize", handleResize, { passive: true });
+      window.addEventListener("scroll", updateClip, { passive: true });
       function updateFrame() {
         if (!isActive) return;
         const dt = calcDeltaTime();
-        if (needsResize) {
+        if (needsResize || canvas.width !== scaleByPixelRatio(canvas.clientWidth)) {
           needsResize = false;
           if (resizeCanvas()) initFramebuffers();
         }
@@ -58673,36 +58754,39 @@ void main() {
         }
         return hash;
       }
-      function isOverHero(clientY) {
-        const hero = document.getElementById("hero-section");
-        if (hero) {
-          const hRect = hero.getBoundingClientRect();
-          if (clientY <= hRect.bottom) return true;
-        }
-        return false;
-      }
       function handleMouseDown(e) {
-        if (isOverHero(e.clientY)) return;
-        const rect = canvas.getBoundingClientRect();
-        if (e.clientX < rect.left || e.clientX > rect.right || e.clientY < rect.top || e.clientY > rect.bottom) return;
+        if (isPointExcluded(e.clientX, e.clientY)) {
+          return;
+        }
         let pointer = pointers[0];
-        let posX = scaleByPixelRatio(e.clientX - rect.left);
-        let posY = scaleByPixelRatio(e.clientY - rect.top);
+        let posX = scaleByPixelRatio(e.clientX);
+        let posY = scaleByPixelRatio(e.clientY);
         updatePointerDownData(pointer, -1, posX, posY);
         clickSplat(pointer);
       }
       let firstMouseMoveHandled = false;
+      let wasExcluded = false;
       function handleMouseMove(e) {
-        if (isOverHero(e.clientY)) return;
-        const rect = canvas.getBoundingClientRect();
-        if (e.clientX < rect.left || e.clientX > rect.right || e.clientY < rect.top || e.clientY > rect.bottom) return;
+        if (isPointExcluded(e.clientX, e.clientY)) {
+          wasExcluded = true;
+          let pointer2 = pointers[0];
+          pointer2.moved = false;
+          pointer2.down = false;
+          pointer2.deltaX = 0;
+          pointer2.deltaY = 0;
+          return;
+        }
         let pointer = pointers[0];
-        let posX = scaleByPixelRatio(e.clientX - rect.left);
-        let posY = scaleByPixelRatio(e.clientY - rect.top);
-        if (!firstMouseMoveHandled) {
+        let posX = scaleByPixelRatio(e.clientX);
+        let posY = scaleByPixelRatio(e.clientY);
+        if (!firstMouseMoveHandled || wasExcluded) {
           let color2 = generateColor();
           updatePointerMoveData(pointer, posX, posY, color2);
           firstMouseMoveHandled = true;
+          wasExcluded = false;
+          pointer.moved = false;
+          pointer.deltaX = 0;
+          pointer.deltaY = 0;
         } else {
           updatePointerMoveData(pointer, posX, posY, pointer.color);
         }
@@ -58710,22 +58794,20 @@ void main() {
       function handleTouchStart(e) {
         const touches = e.targetTouches;
         let pointer = pointers[0];
-        const rect = canvas.getBoundingClientRect();
         for (let i = 0; i < touches.length; i++) {
-          if (isOverHero(touches[i].clientY)) continue;
-          let posX = scaleByPixelRatio(touches[i].clientX - rect.left);
-          let posY = scaleByPixelRatio(touches[i].clientY - rect.top);
+          if (isPointExcluded(touches[i].clientX, touches[i].clientY)) continue;
+          let posX = scaleByPixelRatio(touches[i].clientX);
+          let posY = scaleByPixelRatio(touches[i].clientY);
           updatePointerDownData(pointer, touches[i].identifier, posX, posY);
         }
       }
       function handleTouchMove(e) {
         const touches = e.targetTouches;
         let pointer = pointers[0];
-        const rect = canvas.getBoundingClientRect();
         for (let i = 0; i < touches.length; i++) {
-          if (isOverHero(touches[i].clientY)) continue;
-          let posX = scaleByPixelRatio(touches[i].clientX - rect.left);
-          let posY = scaleByPixelRatio(touches[i].clientY - rect.top);
+          if (isPointExcluded(touches[i].clientX, touches[i].clientY)) continue;
+          let posX = scaleByPixelRatio(touches[i].clientX);
+          let posY = scaleByPixelRatio(touches[i].clientY);
           updatePointerMoveData(pointer, posX, posY, pointer.color);
         }
       }
@@ -58736,11 +58818,21 @@ void main() {
           updatePointerUpData(pointer);
         }
       }
-      window.addEventListener("mousedown", handleMouseDown);
-      window.addEventListener("mousemove", handleMouseMove);
-      window.addEventListener("touchstart", handleTouchStart);
-      window.addEventListener("touchmove", handleTouchMove, false);
-      window.addEventListener("touchend", handleTouchEnd);
+      function handleContextLost(event) {
+        event.preventDefault();
+        isActive = false;
+        if (animationFrameId.current) {
+          cancelAnimationFrame(animationFrameId.current);
+          animationFrameId.current = null;
+        }
+        console.warn("SplashCursor: WebGL context lost.");
+      }
+      canvas.addEventListener("webglcontextlost", handleContextLost, false);
+      window.addEventListener("mousedown", handleMouseDown, { passive: true });
+      window.addEventListener("mousemove", handleMouseMove, { passive: true });
+      window.addEventListener("touchstart", handleTouchStart, { passive: true });
+      window.addEventListener("touchmove", handleTouchMove, { passive: true });
+      window.addEventListener("touchend", handleTouchEnd, { passive: true });
       updateFrame();
       return () => {
         isActive = false;
@@ -58748,6 +58840,12 @@ void main() {
           cancelAnimationFrame(animationFrameId.current);
           animationFrameId.current = null;
         }
+        if (resizeObserver) {
+          resizeObserver.disconnect();
+        }
+        canvas.removeEventListener("webglcontextlost", handleContextLost);
+        window.removeEventListener("resize", handleResize);
+        window.removeEventListener("scroll", updateClip);
         window.removeEventListener("mousedown", handleMouseDown);
         window.removeEventListener("mousemove", handleMouseMove);
         window.removeEventListener("touchstart", handleTouchStart);
@@ -58758,10 +58856,12 @@ void main() {
     return /* @__PURE__ */ import_react7.default.createElement(
       "div",
       {
+        ref: containerRef,
+        className: "splash-cursor-container",
         style: {
-          position: "absolute",
+          position: "fixed",
           inset: 0,
-          zIndex: 1,
+          zIndex: 999998,
           pointerEvents: "none",
           width: "100%",
           height: "100%",
@@ -58776,7 +58876,8 @@ void main() {
           style: {
             width: "100%",
             height: "100%",
-            display: "block"
+            display: "block",
+            pointerEvents: "none"
           }
         }
       )
@@ -59106,8 +59207,16 @@ void main() {
   }
   function BeyondTheFrame({ theme = "dark", entries }) {
     const isLight = theme === "light";
-    const sourceEntries = Array.isArray(entries) ? entries : CINEMATIC_ENTRIES;
-    const activeEntries = sourceEntries.filter((entry) => entry && entry.visible !== false);
+    const activeEntries = Array.isArray(entries) && entries.length === 5 ? entries : Array.from({ length: 5 }, (_, idx) => {
+      const fallback = CINEMATIC_ENTRIES[idx];
+      const raw = (Array.isArray(entries) ? entries[idx] : null) || fallback;
+      return {
+        ...fallback,
+        ...raw,
+        id: fallback.id,
+        slotNumber: fallback.slotNumber
+      };
+    });
     return /* @__PURE__ */ import_react9.default.createElement(ScrollStack_default, { showPaddingCues: true, theme }, activeEntries.map((entry, idx) => /* @__PURE__ */ import_react9.default.createElement(ScrollStackItem, { key: entry.id || `btf-0${idx + 1}`, index: idx }, /* @__PURE__ */ import_react9.default.createElement(CinematicBanner, { entry, isLight }))));
   }
   var import_react9, CINEMATIC_ENTRIES;
@@ -59161,42 +59270,6 @@ void main() {
           desc: "Building a Marvel-inspired universe reimagined in Indian Version.",
           image: "horns.png",
           position: "center 36%"
-        },
-        {
-          id: "btf-06",
-          slotNumber: "06",
-          title: "DUNE LOOK-DEV",
-          category: "06 // STUDIO PIPELINE & VFX",
-          desc: "Visual exploration for cinematic environments, lighting and atmospheric composition.",
-          image: "dune-dneg.jpg",
-          position: "center 48%"
-        },
-        {
-          id: "btf-07",
-          slotNumber: "07",
-          title: "ENVIRONMENT DESIGN",
-          category: "07 // PLANETARY WORLD BUILDING",
-          desc: "Atmosphere, planetary scale and environment composition for feature film narratives.",
-          image: "media_1791962972986.png",
-          position: "center center"
-        },
-        {
-          id: "btf-08",
-          slotNumber: "08",
-          title: "AI FILMMAKING",
-          category: "08 // GENERATIVE FLOWS",
-          desc: "Generative image-to-video creative workflows and multi-shot synthetic film pipelines.",
-          image: "media_1791977571390.png",
-          position: "center 38%"
-        },
-        {
-          id: "btf-09",
-          slotNumber: "09",
-          title: "MYTHIC WORLDS",
-          category: "09 // CONCEPT & LORE",
-          desc: "Original mythological world development and synthetic epic atmosphere.",
-          image: "Ramayana.png",
-          position: "center 40%"
         }
       ];
     }
@@ -60493,9 +60566,9 @@ ${FOIL_FRAGMENT_HEAD}`).replace("#include <opaque_fragment>", `${FOIL_FRAGMENT_B
     const [, setTick] = (0, import_react12.useState)(0);
     const docTheme = typeof document !== "undefined" ? detectDocumentTheme() : null;
     const activeTheme = docTheme || (theme === "light" || theme === "dark" ? theme : "dark");
-    const careerStagesList = (Array.isArray(customCareerStages) ? customCareerStages : CAREER_STAGES).filter(s => s && s.visible !== false);
-    const foundationsList = (Array.isArray(customFoundations) ? customFoundations : FOUNDATIONS_TOOLS).filter(f => f && f.visible !== false);
-    const creativeSkillsList = (Array.isArray(customCreativeSkills) ? customCreativeSkills : CREATIVE_SKILLS).filter(s => s && s.visible !== false);
+    const careerStagesList = Array.isArray(customCareerStages) && customCareerStages.length > 0 ? customCareerStages : CAREER_STAGES;
+    const foundationsList = Array.isArray(customFoundations) && customFoundations.length > 0 ? customFoundations : FOUNDATIONS_TOOLS;
+    const creativeSkillsList = Array.isArray(customCreativeSkills) && customCreativeSkills.length > 0 ? customCreativeSkills : CREATIVE_SKILLS;
     const [selectedStageId, setSelectedStageId] = (0, import_react12.useState)("CREATIVE DIRECTOR");
     const [hoveredStageId, setHoveredStageId] = (0, import_react12.useState)(null);
     const [activeSkillIndex, setActiveSkillIndex] = (0, import_react12.useState)(null);
@@ -61064,7 +61137,7 @@ ${FOIL_FRAGMENT_HEAD}`).replace("#include <opaque_fragment>", `${FOIL_FRAGMENT_B
         function isValidElement(object) {
           return "object" === typeof object && null !== object && object.$$typeof === REACT_ELEMENT_TYPE;
         }
-        var React13 = require_react(), REACT_ELEMENT_TYPE = /* @__PURE__ */ Symbol.for("react.transitional.element"), REACT_PORTAL_TYPE = /* @__PURE__ */ Symbol.for("react.portal"), REACT_FRAGMENT_TYPE = /* @__PURE__ */ Symbol.for("react.fragment"), REACT_STRICT_MODE_TYPE = /* @__PURE__ */ Symbol.for("react.strict_mode"), REACT_PROFILER_TYPE = /* @__PURE__ */ Symbol.for("react.profiler"), REACT_CONSUMER_TYPE = /* @__PURE__ */ Symbol.for("react.consumer"), REACT_CONTEXT_TYPE = /* @__PURE__ */ Symbol.for("react.context"), REACT_FORWARD_REF_TYPE = /* @__PURE__ */ Symbol.for("react.forward_ref"), REACT_SUSPENSE_TYPE = /* @__PURE__ */ Symbol.for("react.suspense"), REACT_SUSPENSE_LIST_TYPE = /* @__PURE__ */ Symbol.for("react.suspense_list"), REACT_MEMO_TYPE = /* @__PURE__ */ Symbol.for("react.memo"), REACT_LAZY_TYPE = /* @__PURE__ */ Symbol.for("react.lazy"), REACT_ACTIVITY_TYPE = /* @__PURE__ */ Symbol.for("react.activity"), REACT_VIEW_TRANSITION_TYPE = /* @__PURE__ */ Symbol.for("react.view_transition"), REACT_CLIENT_REFERENCE = /* @__PURE__ */ Symbol.for("react.client.reference"), ReactSharedInternals = React13.__CLIENT_INTERNALS_DO_NOT_USE_OR_WARN_USERS_THEY_CANNOT_UPGRADE, hasOwnProperty = Object.prototype.hasOwnProperty, isArrayImpl = Array.isArray, createTask = console.createTask ? console.createTask : function() {
+        var React13 = require_react(), REACT_ELEMENT_TYPE = Symbol.for("react.transitional.element"), REACT_PORTAL_TYPE = Symbol.for("react.portal"), REACT_FRAGMENT_TYPE = Symbol.for("react.fragment"), REACT_STRICT_MODE_TYPE = Symbol.for("react.strict_mode"), REACT_PROFILER_TYPE = Symbol.for("react.profiler"), REACT_CONSUMER_TYPE = Symbol.for("react.consumer"), REACT_CONTEXT_TYPE = Symbol.for("react.context"), REACT_FORWARD_REF_TYPE = Symbol.for("react.forward_ref"), REACT_SUSPENSE_TYPE = Symbol.for("react.suspense"), REACT_SUSPENSE_LIST_TYPE = Symbol.for("react.suspense_list"), REACT_MEMO_TYPE = Symbol.for("react.memo"), REACT_LAZY_TYPE = Symbol.for("react.lazy"), REACT_ACTIVITY_TYPE = Symbol.for("react.activity"), REACT_VIEW_TRANSITION_TYPE = Symbol.for("react.view_transition"), REACT_CLIENT_REFERENCE = Symbol.for("react.client.reference"), ReactSharedInternals = React13.__CLIENT_INTERNALS_DO_NOT_USE_OR_WARN_USERS_THEY_CANNOT_UPGRADE, hasOwnProperty = Object.prototype.hasOwnProperty, isArrayImpl = Array.isArray, createTask = console.createTask ? console.createTask : function() {
           return null;
         };
         React13 = {
@@ -70515,7 +70588,7 @@ ${FOIL_FRAGMENT_HEAD}`).replace("#include <opaque_fragment>", `${FOIL_FRAGMENT_B
   var motionComponentSymbol;
   var init_symbol = __esm({
     "node_modules/framer-motion/dist/es/motion/utils/symbol.mjs"() {
-      motionComponentSymbol = /* @__PURE__ */ Symbol.for("motionComponentSymbol");
+      motionComponentSymbol = Symbol.for("motionComponentSymbol");
     }
   });
 
@@ -72856,8 +72929,8 @@ ${FOIL_FRAGMENT_HEAD}`).replace("#include <opaque_fragment>", `${FOIL_FRAGMENT_B
         const defaultProps = {
           images: DEFAULT_ORBIT_SLOTS,
           fit: 0.8,
-          minRadius: 800,
-          maxRadius: 970,
+          minRadius: 710,
+          maxRadius: 860,
           maxVerticalRotationDeg: 0,
           segments: 10,
           dragDampening: 4.6,

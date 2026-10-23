@@ -14,19 +14,92 @@ function SplashCursor({
   SPLAT_FORCE = 6000,
   SHADING = true,
   COLOR_UPDATE_SPEED = 10,
-  BACK_COLOR = { r: 0.5, g: 0, b: 0 },
+  BACK_COLOR = { r: 0, g: 0, b: 0 },
   TRANSPARENT = true,
-  RAINBOW_MODE = true,
-  COLOR = '#ff0000'
+  RAINBOW_MODE = false,
+  COLOR = '#A855F7'
 }) {
   const canvasRef = useRef(null);
+  const containerRef = useRef(null);
   const animationFrameId = useRef(null);
 
   useEffect(() => {
     const canvas = canvasRef.current;
     if (!canvas) return;
 
-    // Track if the effect is still active for cleanup
+    // Respect reduced-motion and skip running on touch-only devices
+    if (typeof window !== 'undefined') {
+      const prefersReducedMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      const isTouchOnly = window.matchMedia && window.matchMedia('(pointer: coarse) and (hover: none)').matches;
+      if (prefersReducedMotion || isTouchOnly) {
+        return;
+      }
+    }
+
+    // Geometry tracking & exclusion boundaries (Header and Hero isolation)
+    let cachedHeaderHeight = 62;
+    let cachedHeroHeight = 900;
+    let cachedHeroDocTop = 0;
+    let lastClipBottom = -1;
+
+    function measureGeometry() {
+      const headerEl = document.getElementById('hero-header');
+      const heroEl = document.getElementById('hero-section');
+      if (headerEl) {
+        const r = headerEl.getBoundingClientRect();
+        cachedHeaderHeight = r.height || 62;
+      }
+      if (heroEl) {
+        const r = heroEl.getBoundingClientRect();
+        cachedHeroHeight = r.height || 900;
+        cachedHeroDocTop = r.top + (window.scrollY || window.pageYOffset || 0);
+      }
+    }
+
+    function updateClip() {
+      const scrollY = window.scrollY || window.pageYOffset || 0;
+      const currentHeroBottom = cachedHeroDocTop + cachedHeroHeight - scrollY;
+      const exclusionBottom = Math.max(0, Math.round(Math.max(cachedHeaderHeight, currentHeroBottom)));
+      if (exclusionBottom !== lastClipBottom) {
+        lastClipBottom = exclusionBottom;
+        const clip = exclusionBottom > 0
+          ? `polygon(0 ${exclusionBottom}px, 100% ${exclusionBottom}px, 100% 100%, 0 100%)`
+          : '';
+        if (containerRef.current) {
+          containerRef.current.style.clipPath = clip;
+          containerRef.current.style.webkitClipPath = clip;
+        }
+        if (canvas) {
+          canvas.style.clipPath = clip;
+          canvas.style.webkitClipPath = clip;
+        }
+      }
+    }
+
+    function isPointExcluded(clientX, clientY) {
+      if (clientY <= cachedHeaderHeight) return true;
+      const scrollY = window.scrollY || window.pageYOffset || 0;
+      const heroBottom = cachedHeroDocTop + cachedHeroHeight - scrollY;
+      const heroTop = cachedHeroDocTop - scrollY;
+      if (clientY >= heroTop && clientY <= heroBottom) return true;
+      return false;
+    }
+
+    measureGeometry();
+    updateClip();
+
+    let resizeObserver = null;
+    if (typeof ResizeObserver !== 'undefined') {
+      resizeObserver = new ResizeObserver(() => {
+        measureGeometry();
+        updateClip();
+      });
+      const headerEl = document.getElementById('hero-header');
+      const heroEl = document.getElementById('hero-section');
+      if (headerEl) resizeObserver.observe(headerEl);
+      if (heroEl) resizeObserver.observe(heroEl);
+    }
+
     let isActive = true;
 
     function pointerPrototype() {
@@ -64,12 +137,6 @@ function SplashCursor({
 
     let pointers = [new pointerPrototype()];
 
-    const { gl, ext } = getWebGLContext(canvas);
-    if (!ext.supportLinearFiltering) {
-      config.DYE_RESOLUTION = 256;
-      config.SHADING = false;
-    }
-
     function getWebGLContext(canvas) {
       const params = {
         alpha: true,
@@ -81,6 +148,7 @@ function SplashCursor({
       let gl = canvas.getContext('webgl2', params);
       const isWebGL2 = !!gl;
       if (!isWebGL2) gl = canvas.getContext('webgl', params) || canvas.getContext('experimental-webgl', params);
+      if (!gl) return { gl: null, ext: null };
 
       let halfFloat;
       let supportLinearFiltering;
@@ -91,7 +159,7 @@ function SplashCursor({
         halfFloat = gl.getExtension('OES_texture_half_float');
         supportLinearFiltering = gl.getExtension('OES_texture_half_float_linear');
       }
-      gl.clearColor(0.0, 0.0, 0.0, 1.0);
+      gl.clearColor(0.0, 0.0, 0.0, 0.0);
 
       const halfFloatTexType = isWebGL2 ? gl.HALF_FLOAT : halfFloat && halfFloat.HALF_FLOAT_OES;
       let formatRGBA;
@@ -147,6 +215,17 @@ function SplashCursor({
       gl.framebufferTexture2D(gl.FRAMEBUFFER, gl.COLOR_ATTACHMENT0, gl.TEXTURE_2D, texture, 0);
       const status = gl.checkFramebufferStatus(gl.FRAMEBUFFER);
       return status === gl.FRAMEBUFFER_COMPLETE;
+    }
+
+    const { gl, ext } = getWebGLContext(canvas);
+    if (!gl || !ext) {
+      console.warn('SplashCursor: WebGL not supported or context creation failed.');
+      return;
+    }
+
+    if (!ext.supportLinearFiltering) {
+      config.DYE_RESOLUTION = 256;
+      config.SHADING = false;
     }
 
     class Material {
@@ -534,7 +613,7 @@ function SplashCursor({
           gl.bindFramebuffer(gl.FRAMEBUFFER, target.fbo);
         }
         if (clear) {
-          gl.clearColor(0.0, 0.0, 0.0, 1.0);
+          gl.clearColor(0.0, 0.0, 0.0, 0.0);
           gl.clear(gl.COLOR_BUFFER_BIT);
         }
         gl.drawElements(gl.TRIANGLES, 6, gl.UNSIGNED_SHORT, 0);
@@ -601,6 +680,7 @@ function SplashCursor({
       gl.bindFramebuffer(gl.FRAMEBUFFER, fbo);
       gl.framebufferTexture2D(gl.FRAMEBUFFER, gl.COLOR_ATTACHMENT0, gl.TEXTURE_2D, texture, 0);
       gl.viewport(0, 0, w, h);
+      gl.clearColor(0.0, 0.0, 0.0, 0.0);
       gl.clear(gl.COLOR_BUFFER_BIT);
 
       let texelSizeX = 1.0 / w;
@@ -674,16 +754,24 @@ function SplashCursor({
     }
 
     updateKeywords();
+    resizeCanvas();
     initFramebuffers();
     let lastUpdateTime = Date.now();
     let colorUpdateTimer = 0.0;
     let needsResize = false;
-    window.addEventListener('resize', () => { needsResize = true; }, { passive: true });
+
+    function handleResize() {
+      needsResize = true;
+      measureGeometry();
+      updateClip();
+    }
+    window.addEventListener('resize', handleResize, { passive: true });
+    window.addEventListener('scroll', updateClip, { passive: true });
 
     function updateFrame() {
       if (!isActive) return;
       const dt = calcDeltaTime();
-      if (needsResize) {
+      if (needsResize || canvas.width !== scaleByPixelRatio(canvas.clientWidth)) {
         needsResize = false;
         if (resizeCanvas()) initFramebuffers();
       }
@@ -917,38 +1005,13 @@ function SplashCursor({
       q = v * (1 - f * s);
       t = v * (1 - (1 - f) * s);
       switch (i % 6) {
-        case 0:
-          r = v;
-          g = t;
-          b = p;
-          break;
-        case 1:
-          r = q;
-          g = v;
-          b = p;
-          break;
-        case 2:
-          r = p;
-          g = v;
-          b = t;
-          break;
-        case 3:
-          r = p;
-          g = q;
-          b = v;
-          break;
-        case 4:
-          r = t;
-          g = p;
-          b = v;
-          break;
-        case 5:
-          r = v;
-          g = p;
-          b = q;
-          break;
-        default:
-          break;
+        case 0: r = v; g = t; b = p; break;
+        case 1: r = q; g = v; b = p; break;
+        case 2: r = p; g = v; b = t; break;
+        case 3: r = p; g = q; b = v; break;
+        case 4: r = t; g = p; b = v; break;
+        case 5: r = v; g = p; b = q; break;
+        default: break;
       }
       return { r, g, b };
     }
@@ -983,39 +1046,41 @@ function SplashCursor({
       return hash;
     }
 
-    // Named event handlers for proper cleanup with strict Hero isolation
-    function isOverHero(clientY) {
-      const hero = document.getElementById('hero-section');
-      if (hero) {
-        const hRect = hero.getBoundingClientRect();
-        if (clientY <= hRect.bottom) return true;
-      }
-      return false;
-    }
-
     function handleMouseDown(e) {
-      if (isOverHero(e.clientY)) return;
-      const rect = canvas.getBoundingClientRect();
-      if (e.clientX < rect.left || e.clientX > rect.right || e.clientY < rect.top || e.clientY > rect.bottom) return;
+      if (isPointExcluded(e.clientX, e.clientY)) {
+        return;
+      }
       let pointer = pointers[0];
-      let posX = scaleByPixelRatio(e.clientX - rect.left);
-      let posY = scaleByPixelRatio(e.clientY - rect.top);
+      let posX = scaleByPixelRatio(e.clientX);
+      let posY = scaleByPixelRatio(e.clientY);
       updatePointerDownData(pointer, -1, posX, posY);
       clickSplat(pointer);
     }
 
     let firstMouseMoveHandled = false;
+    let wasExcluded = false;
     function handleMouseMove(e) {
-      if (isOverHero(e.clientY)) return;
-      const rect = canvas.getBoundingClientRect();
-      if (e.clientX < rect.left || e.clientX > rect.right || e.clientY < rect.top || e.clientY > rect.bottom) return;
+      if (isPointExcluded(e.clientX, e.clientY)) {
+        wasExcluded = true;
+        let pointer = pointers[0];
+        pointer.moved = false;
+        pointer.down = false;
+        pointer.deltaX = 0;
+        pointer.deltaY = 0;
+        return;
+      }
+
       let pointer = pointers[0];
-      let posX = scaleByPixelRatio(e.clientX - rect.left);
-      let posY = scaleByPixelRatio(e.clientY - rect.top);
-      if (!firstMouseMoveHandled) {
+      let posX = scaleByPixelRatio(e.clientX);
+      let posY = scaleByPixelRatio(e.clientY);
+      if (!firstMouseMoveHandled || wasExcluded) {
         let color = generateColor();
         updatePointerMoveData(pointer, posX, posY, color);
         firstMouseMoveHandled = true;
+        wasExcluded = false;
+        pointer.moved = false;
+        pointer.deltaX = 0;
+        pointer.deltaY = 0;
       } else {
         updatePointerMoveData(pointer, posX, posY, pointer.color);
       }
@@ -1024,11 +1089,10 @@ function SplashCursor({
     function handleTouchStart(e) {
       const touches = e.targetTouches;
       let pointer = pointers[0];
-      const rect = canvas.getBoundingClientRect();
       for (let i = 0; i < touches.length; i++) {
-        if (isOverHero(touches[i].clientY)) continue;
-        let posX = scaleByPixelRatio(touches[i].clientX - rect.left);
-        let posY = scaleByPixelRatio(touches[i].clientY - rect.top);
+        if (isPointExcluded(touches[i].clientX, touches[i].clientY)) continue;
+        let posX = scaleByPixelRatio(touches[i].clientX);
+        let posY = scaleByPixelRatio(touches[i].clientY);
         updatePointerDownData(pointer, touches[i].identifier, posX, posY);
       }
     }
@@ -1036,11 +1100,10 @@ function SplashCursor({
     function handleTouchMove(e) {
       const touches = e.targetTouches;
       let pointer = pointers[0];
-      const rect = canvas.getBoundingClientRect();
       for (let i = 0; i < touches.length; i++) {
-        if (isOverHero(touches[i].clientY)) continue;
-        let posX = scaleByPixelRatio(touches[i].clientX - rect.left);
-        let posY = scaleByPixelRatio(touches[i].clientY - rect.top);
+        if (isPointExcluded(touches[i].clientX, touches[i].clientY)) continue;
+        let posX = scaleByPixelRatio(touches[i].clientX);
+        let posY = scaleByPixelRatio(touches[i].clientY);
         updatePointerMoveData(pointer, posX, posY, pointer.color);
       }
     }
@@ -1053,41 +1116,56 @@ function SplashCursor({
       }
     }
 
-    // Add event listeners
-    window.addEventListener('mousedown', handleMouseDown);
-    window.addEventListener('mousemove', handleMouseMove);
-    window.addEventListener('touchstart', handleTouchStart);
-    window.addEventListener('touchmove', handleTouchMove, false);
-    window.addEventListener('touchend', handleTouchEnd);
+    function handleContextLost(event) {
+      event.preventDefault();
+      isActive = false;
+      if (animationFrameId.current) {
+        cancelAnimationFrame(animationFrameId.current);
+        animationFrameId.current = null;
+      }
+      console.warn('SplashCursor: WebGL context lost.');
+    }
+
+    canvas.addEventListener('webglcontextlost', handleContextLost, false);
+    window.addEventListener('mousedown', handleMouseDown, { passive: true });
+    window.addEventListener('mousemove', handleMouseMove, { passive: true });
+    window.addEventListener('touchstart', handleTouchStart, { passive: true });
+    window.addEventListener('touchmove', handleTouchMove, { passive: true });
+    window.addEventListener('touchend', handleTouchEnd, { passive: true });
 
     updateFrame();
 
-    // Cleanup function
     return () => {
       isActive = false;
 
-      // Cancel animation frame
       if (animationFrameId.current) {
         cancelAnimationFrame(animationFrameId.current);
         animationFrameId.current = null;
       }
 
-      // Remove event listeners
+      if (resizeObserver) {
+        resizeObserver.disconnect();
+      }
+
+      canvas.removeEventListener('webglcontextlost', handleContextLost);
+      window.removeEventListener('resize', handleResize);
+      window.removeEventListener('scroll', updateClip);
       window.removeEventListener('mousedown', handleMouseDown);
       window.removeEventListener('mousemove', handleMouseMove);
       window.removeEventListener('touchstart', handleTouchStart);
       window.removeEventListener('touchmove', handleTouchMove);
       window.removeEventListener('touchend', handleTouchEnd);
     };
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (
     <div
+      ref={containerRef}
+      className="splash-cursor-container"
       style={{
-        position: 'absolute',
+        position: 'fixed',
         inset: 0,
-        zIndex: 1,
+        zIndex: 999998,
         pointerEvents: 'none',
         width: '100%',
         height: '100%',
@@ -1100,7 +1178,8 @@ function SplashCursor({
         style={{
           width: '100%',
           height: '100%',
-          display: 'block'
+          display: 'block',
+          pointerEvents: 'none'
         }}
       />
     </div>

@@ -48,42 +48,6 @@ const CINEMATIC_ENTRIES = [
     desc: 'Building a Marvel-inspired universe reimagined in Indian Version.',
     image: 'horns.png',
     position: 'center 36%'
-  },
-  {
-    id: 'btf-06',
-    slotNumber: '06',
-    title: 'DUNE LOOK-DEV',
-    category: '06 // STUDIO PIPELINE & VFX',
-    desc: 'Visual exploration for cinematic environments, lighting and atmospheric composition.',
-    image: 'dune-dneg.jpg',
-    position: 'center 48%'
-  },
-  {
-    id: 'btf-07',
-    slotNumber: '07',
-    title: 'ENVIRONMENT DESIGN',
-    category: '07 // PLANETARY WORLD BUILDING',
-    desc: 'Atmosphere, planetary scale and environment composition for feature film narratives.',
-    image: 'media_1791962972986.png',
-    position: 'center center'
-  },
-  {
-    id: 'btf-08',
-    slotNumber: '08',
-    title: 'AI FILMMAKING',
-    category: '08 // GENERATIVE FLOWS',
-    desc: 'Generative image-to-video creative workflows and multi-shot synthetic film pipelines.',
-    image: 'media_1791977571390.png',
-    position: 'center 38%'
-  },
-  {
-    id: 'btf-09',
-    slotNumber: '09',
-    title: 'MYTHIC WORLDS',
-    category: '09 // CONCEPT & LORE',
-    desc: 'Original mythological world development and synthetic epic atmosphere.',
-    image: 'Ramayana.png',
-    position: 'center 40%'
   }
 ];
 
@@ -141,10 +105,10 @@ function CinematicBanner({ entry, isLight }) {
 
 export default function BeyondTheFrame({ theme = 'dark', entries }) {
   const isLight = theme === 'light';
-  // Ensure exactly 9 items are rendered with stable IDs
-  const activeEntries = (Array.isArray(entries) && entries.length === 9)
+  // Ensure exactly 5 items are rendered with stable IDs (Items 1-5 ending at HORNS & SKULL)
+  const activeEntries = (Array.isArray(entries) && entries.length === 5)
     ? entries
-    : Array.from({ length: 9 }, (_, idx) => {
+    : Array.from({ length: 5 }, (_, idx) => {
         const fallback = CINEMATIC_ENTRIES[idx];
         const raw = (Array.isArray(entries) ? entries[idx] : null) || fallback;
         return {

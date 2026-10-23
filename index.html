@@ -3825,21 +3825,26 @@
       will-change: clip-path;
     }
 
+    .splash-cursor-global-layer,
     .post-hero-splash-layer {
       position: fixed;
-      top: 0;
-      left: 0;
+      inset: 0;
       width: 100vw;
       height: 100vh;
-      z-index: 1;
+      z-index: 999998;
       pointer-events: none;
       overflow: hidden;
       display: block;
-      /* Guaranteed isolation: strictly below hero boundary */
-      clip-path: polygon(0 calc(var(--hero-bottom-px, 100vh)), 100% calc(var(--hero-bottom-px, 100vh)), 100% 100%, 0 100%);
+      clip-path: polygon(0 var(--fluid-exclusion-bottom-px, 100vh), 100% var(--fluid-exclusion-bottom-px, 100vh), 100% 100%, 0 100%);
+      -webkit-clip-path: polygon(0 var(--fluid-exclusion-bottom-px, 100vh), 100% var(--fluid-exclusion-bottom-px, 100vh), 100% 100%, 0 100%);
       will-change: clip-path;
     }
-    [data-theme="light"] .post-hero-splash-layer {
+    [data-theme="light"] .splash-cursor-global-layer,
+    [data-theme="light"] .post-hero-splash-layer,
+    body.lightbox-active .splash-cursor-global-layer,
+    body.lightbox-active .post-hero-splash-layer,
+    body:has(:fullscreen) .splash-cursor-global-layer,
+    body:has(:fullscreen) .post-hero-splash-layer {
       display: none !important;
     }
 
@@ -7235,6 +7240,9 @@ console.log('Saved scratch/new_master_styles.css');
       </svg>
     </div>
   </div>
+
+  <!-- GLOBAL SPLASH CURSOR FLUID LAYER (DARK THEME ONLY) -->
+  <div id="splash-cursor-mount" class="splash-cursor-global-layer" aria-hidden="true"></div>
 
   <!-- CIRCULAR THEME REVEAL CURTAIN (EXPANDS FROM THEME ICON POSITION IN POST-HERO) -->
   <div id="theme-circle-curtain" aria-hidden="true"></div>
@@ -13431,7 +13439,7 @@ window.initMasterThemeAndEffects = function() {
     const isDark = theme === 'dark';
     const bgMountDark = document.getElementById('post-hero-bg-mount');
     const bgMountLight = document.getElementById('post-hero-bg-mount-light');
-    const splashMount = document.getElementById('post-hero-splash-cursor-mount');
+    const splashMount = document.getElementById('splash-cursor-mount') || document.getElementById('post-hero-splash-cursor-mount');
 
     if (isDark) {
       if (bgMountLight) bgMountLight.style.display = 'none';
@@ -13785,27 +13793,40 @@ window.initMasterThemeAndEffects = function() {
   });
   themeObserver.observe(document.documentElement, { attributes: true, attributeFilter: ['data-theme'] });
 
-  // 6. Hero isolation clipping coordinator
+  // 6. Hero and Header isolation clipping coordinator
   let heroClipTicking = false;
   let lastHeroBottomPx = -1;
+  let lastFluidExclusionBottomPx = -1;
   function updateHeroClip() {
     if (heroClipTicking) return;
     heroClipTicking = true;
     requestAnimationFrame(() => {
       heroClipTicking = false;
+      const header = document.getElementById('hero-header');
+      const headerBottom = header ? Math.round(header.getBoundingClientRect().bottom) : 62;
       const hero = document.getElementById('hero-section');
-      if (hero) {
-        const rect = hero.getBoundingClientRect();
-        const bottomPx = Math.max(0, Math.round(rect.bottom));
-        if (bottomPx !== lastHeroBottomPx) {
-          lastHeroBottomPx = bottomPx;
-          document.documentElement.style.setProperty('--hero-bottom-px', `${bottomPx}px`);
-        }
+      const heroBottom = hero ? Math.round(hero.getBoundingClientRect().bottom) : 0;
+      const exclusionBottomPx = Math.max(headerBottom, heroBottom);
+
+      if (heroBottom !== lastHeroBottomPx) {
+        lastHeroBottomPx = heroBottom;
+        document.documentElement.style.setProperty('--hero-bottom-px', `${Math.max(0, heroBottom)}px`);
+      }
+      if (exclusionBottomPx !== lastFluidExclusionBottomPx) {
+        lastFluidExclusionBottomPx = exclusionBottomPx;
+        document.documentElement.style.setProperty('--fluid-exclusion-bottom-px', `${exclusionBottomPx}px`);
       }
     });
   }
   window.addEventListener('scroll', updateHeroClip, { passive: true });
   window.addEventListener('resize', updateHeroClip, { passive: true });
+  if (typeof ResizeObserver !== 'undefined') {
+    const heroEl = document.getElementById('hero-section');
+    const headerEl = document.getElementById('hero-header');
+    const ro = new ResizeObserver(updateHeroClip);
+    if (heroEl) ro.observe(heroEl);
+    if (headerEl) ro.observe(headerEl);
+  }
   updateHeroClip();
 
   // 7. Universal Custom Cursor tracking: Smooth Interpolation Loop + Strict Beyond The Frame Boundary

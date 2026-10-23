@@ -83,6 +83,7 @@
 }
 
 .sphere,
+.sphere-row,
 .item,
 .item__image {
   transform-style: preserve-3d;
@@ -91,6 +92,17 @@
 .sphere {
   position: relative;
   transform: translateZ(calc(var(--radius) * -1));
+  will-change: transform;
+}
+
+.sphere-row {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 0;
+  height: 0;
+  transform-origin: 0 0 0;
+  pointer-events: none;
   will-change: transform;
 }
 

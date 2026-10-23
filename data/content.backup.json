@@ -1,7 +1,7 @@
 {
-  "version": 101,
-  "lastUpdated": "2026-10-23T06:50:37.701Z",
-  "publishedAt": "2026-10-23T06:50:37.701Z",
+  "version": 103,
+  "lastUpdated": "2026-10-23T13:01:46.558Z",
+  "publishedAt": "2026-10-23T13:01:46.558Z",
   "settings": {
     "siteTitle": "C. Bala Krishnan — CBK Designfolio | Creative Director & Visual Artist",
     "brandName": "CBK",
@@ -197,7 +197,7 @@
       "content": {
         "metaLabel": "BEYOND THE FRAME //  CINEMATIC ENTRIES",
         "title": "BEYOND THE FRAME",
-        "wordmark": "RAMAYANA    🔸   VEER BHADRA    🔸   FIRMWARE UPDATE     🔸    ASHRA    🔸   HORNS & SKULL    🔸",
+        "wordmark": "RAMAYANA    🔸   VEER BHADRA    🔸   FIRMWARE UPDATE     🔸    ASHRA    🔸   HORNS & SKULL ",
         "description": "Visual explorations, cinematic look-development, character studies and worldbuilding.",
         "entries": [
           {
@@ -249,49 +249,9 @@
             "image": "horns.png",
             "position": "center 36%",
             "visible": true
-          },
-          {
-            "id": "btf-06",
-            "slotNumber": "06",
-            "title": "DUNE LOOK-DEV",
-            "category": "06 // STUDIO PIPELINE & VFX",
-            "desc": "Visual exploration for cinematic environments, lighting and atmospheric composition.",
-            "image": "dune-dneg.jpg",
-            "position": "center 48%",
-            "visible": false
-          },
-          {
-            "id": "btf-07",
-            "slotNumber": "07",
-            "title": "ENVIRONMENT DESIGN",
-            "category": "07 // PLANETARY WORLD BUILDING",
-            "desc": "Atmosphere, planetary scale and environment composition for feature film narratives.",
-            "image": "media_1791962972986.png",
-            "position": "center center",
-            "visible": false
-          },
-          {
-            "id": "btf-08",
-            "slotNumber": "08",
-            "title": "AI FILMMAKING",
-            "category": "08 // GENERATIVE FLOWS",
-            "desc": "Generative image-to-video creative workflows and multi-shot synthetic film pipelines.",
-            "image": "media_1791977571390.png",
-            "position": "center 38%",
-            "visible": false
-          },
-          {
-            "id": "btf-09",
-            "slotNumber": "09",
-            "title": "MYTHIC WORLDS",
-            "category": "09 // CONCEPT & LORE",
-            "desc": "Original mythological world development and synthetic epic atmosphere.",
-            "image": "Ramayana.png",
-            "position": "center 40%",
-            "visible": false
           }
         ],
-        "tickerText": "RAMAYANA    🔸   VEER BHADRA    🔸   FIRMWARE UPDATE     🔸    ASHRA    🔸   HORNS & SKULL    🔸"
+        "tickerText": "RAMAYANA    🔸   VEER BHADRA    🔸   FIRMWARE UPDATE     🔸    ASHRA    🔸   HORNS & SKULL "
       }
     },
     {
