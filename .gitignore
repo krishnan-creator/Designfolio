@@ -28,3 +28,7 @@ Thumbs.db
 
 # Private authentication data
 data/auth.json
+
+# Vercel deployment cache
+.vercel
+

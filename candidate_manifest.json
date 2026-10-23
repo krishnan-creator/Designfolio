@@ -1,0 +1,3752 @@
+[
+  {
+    "relPath": "ezgif-frame-001.jpg",
+    "filename": "ezgif-frame-001.jpg",
+    "ext": ".jpg",
+    "sizeBytes": 98468,
+    "sizeKB": "96.16",
+    "sha256": "65d0f44d77c31533dab513c4ead444e52bf2a45cfc8c58b5ff6aa26b2ed123ab",
+    "category": "B",
+    "reason": "Obsolete loose video frame extraction in root; active hero canvas uses frames/frame_*.jpg"
+  },
+  {
+    "relPath": "ezgif-frame-002.jpg",
+    "filename": "ezgif-frame-002.jpg",
+    "ext": ".jpg",
+    "sizeBytes": 116584,
+    "sizeKB": "113.85",
+    "sha256": "b4c3aeed3732330c03ec3b5b3d2e9bcf5340f396436aa36ea85c61889b67feed",
+    "category": "B",
+    "reason": "Obsolete loose video frame extraction in root; active hero canvas uses frames/frame_*.jpg"
+  },
+  {
+    "relPath": "ezgif-frame-003.jpg",
+    "filename": "ezgif-frame-003.jpg",
+    "ext": ".jpg",
+    "sizeBytes": 147079,
+    "sizeKB": "143.63",
+    "sha256": "5ecd6d6893fb17aff6f69062472bde296ae3992f1f7687465e157ccbacf1927e",
+    "category": "B",
+    "reason": "Obsolete loose video frame extraction in root; active hero canvas uses frames/frame_*.jpg"
+  },
+  {
+    "relPath": "ezgif-frame-004.jpg",
+    "filename": "ezgif-frame-004.jpg",
+    "ext": ".jpg",
+    "sizeBytes": 148112,
+    "sizeKB": "144.64",
+    "sha256": "186e83d3c3dfc7d004572afd921ef1faf12fe728ac7c6e6096d2a63f9dc8fbf0",
+    "category": "B",
+    "reason": "Obsolete loose video frame extraction in root; active hero canvas uses frames/frame_*.jpg"
+  },
+  {
+    "relPath": "ezgif-frame-005.jpg",
+    "filename": "ezgif-frame-005.jpg",
+    "ext": ".jpg",
+    "sizeBytes": 117967,
+    "sizeKB": "115.20",
+    "sha256": "6d139ee2bf1bc7042594d97a67df384db49210ed5eef9f93dcef7c7f287a9cc4",
+    "category": "B",
+    "reason": "Obsolete loose video frame extraction in root; active hero canvas uses frames/frame_*.jpg"
+  },
+  {
+    "relPath": "ezgif-frame-006.jpg",
+    "filename": "ezgif-frame-006.jpg",
+    "ext": ".jpg",
+    "sizeBytes": 94143,
+    "sizeKB": "91.94",
+    "sha256": "ede5364bfa52a129d55ca359cfbd10852691e0a87edf1ccc3a2ad58615f6f9e1",
+    "category": "B",
+    "reason": "Obsolete loose video frame extraction in root; active hero canvas uses frames/frame_*.jpg"
+  },
+  {
+    "relPath": "ezgif-frame-007.jpg",
+    "filename": "ezgif-frame-007.jpg",
+    "ext": ".jpg",
+    "sizeBytes": 77497,
+    "sizeKB": "75.68",
+    "sha256": "db9658470a4b1b6ba0479f1c74af0bcda2f3eae15b6dfc461d80a3d4f3f5332d",
+    "category": "B",
+    "reason": "Obsolete loose video frame extraction in root; active hero canvas uses frames/frame_*.jpg"
+  },
+  {
+    "relPath": "ezgif-frame-008.jpg",
+    "filename": "ezgif-frame-008.jpg",
+    "ext": ".jpg",
+    "sizeBytes": 70797,
+    "sizeKB": "69.14",
+    "sha256": "90a9f7af62a981c6ab07a4141b08bdd595e1863ccff2ef0db163c4b705dd0719",
+    "category": "B",
+    "reason": "Obsolete loose video frame extraction in root; active hero canvas uses frames/frame_*.jpg"
+  },
+  {
+    "relPath": "ezgif-frame-009.jpg",
+    "filename": "ezgif-frame-009.jpg",
+    "ext": ".jpg",
+    "sizeBytes": 63032,
+    "sizeKB": "61.55",
+    "sha256": "8b2926db8488fcadb4b9715d8f284dd33e8cfde09676e9e94dd8423cbc85bf3a",
+    "category": "B",
+    "reason": "Obsolete loose video frame extraction in root; active hero canvas uses frames/frame_*.jpg"
+  },
+  {
+    "relPath": "ezgif-frame-010.jpg",
+    "filename": "ezgif-frame-010.jpg",
+    "ext": ".jpg",
+    "sizeBytes": 56376,
+    "sizeKB": "55.05",
+    "sha256": "60e2ecb22d35cee00b261e37476325a63823edfefebf6b9a9260b200b21674b8",
+    "category": "B",
+    "reason": "Obsolete loose video frame extraction in root; active hero canvas uses frames/frame_*.jpg"
+  },
+  {
+    "relPath": "ezgif-frame-011.jpg",
+    "filename": "ezgif-frame-011.jpg",
+    "ext": ".jpg",
+    "sizeBytes": 52226,
+    "sizeKB": "51.00",
+    "sha256": "1a1b31199c42e4c39e1031f911af4c83e8ee50773f304f71dd39c946299917d7",
+    "category": "B",
+    "reason": "Obsolete loose video frame extraction in root; active hero canvas uses frames/frame_*.jpg"
+  },
+  {
+    "relPath": "ezgif-frame-012.jpg",
+    "filename": "ezgif-frame-012.jpg",
+    "ext": ".jpg",
+    "sizeBytes": 49017,
+    "sizeKB": "47.87",
+    "sha256": "0aa847eaa47eefbaf4565a9161378df02861c3ce48fde50f438fdc6c6ea66e55",
+    "category": "B",
+    "reason": "Obsolete loose video frame extraction in root; active hero canvas uses frames/frame_*.jpg"
+  },
+  {
+    "relPath": "ezgif-frame-014.jpg",
+    "filename": "ezgif-frame-014.jpg",
+    "ext": ".jpg",
+    "sizeBytes": 49604,
+    "sizeKB": "48.44",
+    "sha256": "dfaac9ffef32ebd55903c2d84e74388fa89758c032e772a479937e078ea47371",
+    "category": "B",
+    "reason": "Obsolete loose video frame extraction in root; active hero canvas uses frames/frame_*.jpg"
+  },
+  {
+    "relPath": "ezgif-frame-015.jpg",
+    "filename": "ezgif-frame-015.jpg",
+    "ext": ".jpg",
+    "sizeBytes": 49402,
+    "sizeKB": "48.24",
+    "sha256": "360b0258233967001da28fe6549993ded957e8344910c1edec3e38962eb61907",
+    "category": "B",
+    "reason": "Obsolete loose video frame extraction in root; active hero canvas uses frames/frame_*.jpg"
+  },
+  {
+    "relPath": "ezgif-frame-016.jpg",
+    "filename": "ezgif-frame-016.jpg",
+    "ext": ".jpg",
+    "sizeBytes": 50054,
+    "sizeKB": "48.88",
+    "sha256": "21264d7e068c8519972081f0fedf7468ef5afa55f8e37d7e1263350914702667",
+    "category": "B",
+    "reason": "Obsolete loose video frame extraction in root; active hero canvas uses frames/frame_*.jpg"
+  },
+  {
+    "relPath": "ezgif-frame-017.jpg",
+    "filename": "ezgif-frame-017.jpg",
+    "ext": ".jpg",
+    "sizeBytes": 49656,
+    "sizeKB": "48.49",
+    "sha256": "9ba0031f10ec207a69fe7eecb17fee8c2381f7325a2b60627c6855f2e35dc2d7",
+    "category": "B",
+    "reason": "Obsolete loose video frame extraction in root; active hero canvas uses frames/frame_*.jpg"
+  },
+  {
+    "relPath": "ezgif-frame-019.jpg",
+    "filename": "ezgif-frame-019.jpg",
+    "ext": ".jpg",
+    "sizeBytes": 49938,
+    "sizeKB": "48.77",
+    "sha256": "ab47e583edf4abf7a625d8cc8c6ffdb0ae92cbcfadaac78147cc3e69a3f7de52",
+    "category": "B",
+    "reason": "Obsolete loose video frame extraction in root; active hero canvas uses frames/frame_*.jpg"
+  },
+  {
+    "relPath": "ezgif-frame-020.jpg",
+    "filename": "ezgif-frame-020.jpg",
+    "ext": ".jpg",
+    "sizeBytes": 49477,
+    "sizeKB": "48.32",
+    "sha256": "7198b1ad91d4c4bea2b176327e2d7055f239cdb9c496eb5f4f10bc2059c33f5d",
+    "category": "B",
+    "reason": "Obsolete loose video frame extraction in root; active hero canvas uses frames/frame_*.jpg"
+  },
+  {
+    "relPath": "ezgif-frame-021.jpg",
+    "filename": "ezgif-frame-021.jpg",
+    "ext": ".jpg",
+    "sizeBytes": 49206,
+    "sizeKB": "48.05",
+    "sha256": "81aa7f668eb128142514952cf552c09e926d63ada9067b8bfe3dff5d864ab5ca",
+    "category": "B",
+    "reason": "Obsolete loose video frame extraction in root; active hero canvas uses frames/frame_*.jpg"
+  },
+  {
+    "relPath": "ezgif-frame-022.jpg",
+    "filename": "ezgif-frame-022.jpg",
+    "ext": ".jpg",
+    "sizeBytes": 49599,
+    "sizeKB": "48.44",
+    "sha256": "489663c0ce9ffa04c7147910df0755a59e7e6aed240c9068835b174440d95ba0",
+    "category": "B",
+    "reason": "Obsolete loose video frame extraction in root; active hero canvas uses frames/frame_*.jpg"
+  },
+  {
+    "relPath": "ezgif-frame-024.jpg",
+    "filename": "ezgif-frame-024.jpg",
+    "ext": ".jpg",
+    "sizeBytes": 49902,
+    "sizeKB": "48.73",
+    "sha256": "c1eb37952288c798f54c8c20cfd04b1d30dd06427f649c1bab0ae118f06736b2",
+    "category": "B",
+    "reason": "Obsolete loose video frame extraction in root; active hero canvas uses frames/frame_*.jpg"
+  },
+  {
+    "relPath": "ezgif-frame-025.jpg",
+    "filename": "ezgif-frame-025.jpg",
+    "ext": ".jpg",
+    "sizeBytes": 49703,
+    "sizeKB": "48.54",
+    "sha256": "d17c7610c6dac7a5d034768f3725cb52ef83bd143c63ffbe6565f6ce8b4a7f23",
+    "category": "B",
+    "reason": "Obsolete loose video frame extraction in root; active hero canvas uses frames/frame_*.jpg"
+  },
+  {
+    "relPath": "ezgif-frame-026.jpg",
+    "filename": "ezgif-frame-026.jpg",
+    "ext": ".jpg",
+    "sizeBytes": 49868,
+    "sizeKB": "48.70",
+    "sha256": "fd6f934c02f04523bc59e1fe4725bf1062bc57429aa138fd0486360af09e770f",
+    "category": "B",
+    "reason": "Obsolete loose video frame extraction in root; active hero canvas uses frames/frame_*.jpg"
+  },
+  {
+    "relPath": "ezgif-frame-027.jpg",
+    "filename": "ezgif-frame-027.jpg",
+    "ext": ".jpg",
+    "sizeBytes": 49816,
+    "sizeKB": "48.65",
+    "sha256": "5a9c74b1d59cc5c0811684a3ccc514af21ed4ea39ffe674b875113b4ae286176",
+    "category": "B",
+    "reason": "Obsolete loose video frame extraction in root; active hero canvas uses frames/frame_*.jpg"
+  },
+  {
+    "relPath": "ezgif-frame-029.jpg",
+    "filename": "ezgif-frame-029.jpg",
+    "ext": ".jpg",
+    "sizeBytes": 49983,
+    "sizeKB": "48.81",
+    "sha256": "bfb9a0d48432ff7726fb9f935695cfeda2d4be405e420625bd6c9c2816d24c9f",
+    "category": "B",
+    "reason": "Obsolete loose video frame extraction in root; active hero canvas uses frames/frame_*.jpg"
+  },
+  {
+    "relPath": "ezgif-frame-030.jpg",
+    "filename": "ezgif-frame-030.jpg",
+    "ext": ".jpg",
+    "sizeBytes": 49758,
+    "sizeKB": "48.59",
+    "sha256": "712441bd605ed91c2cd3c6a60dad604200d8bb4dd801db84dc4cab28caf75277",
+    "category": "B",
+    "reason": "Obsolete loose video frame extraction in root; active hero canvas uses frames/frame_*.jpg"
+  },
+  {
+    "relPath": "ezgif-frame-031.jpg",
+    "filename": "ezgif-frame-031.jpg",
+    "ext": ".jpg",
+    "sizeBytes": 49427,
+    "sizeKB": "48.27",
+    "sha256": "3ba62a47bd0841a16e6f013b8f7979db14cb7d1c9c42e9fd226304e5a6949539",
+    "category": "B",
+    "reason": "Obsolete loose video frame extraction in root; active hero canvas uses frames/frame_*.jpg"
+  },
+  {
+    "relPath": "ezgif-frame-032.jpg",
+    "filename": "ezgif-frame-032.jpg",
+    "ext": ".jpg",
+    "sizeBytes": 49624,
+    "sizeKB": "48.46",
+    "sha256": "bf6b8b5d23fc45eb2959703c2a04cc7f70c9fdd3342d940a2ed3233359c41b01",
+    "category": "B",
+    "reason": "Obsolete loose video frame extraction in root; active hero canvas uses frames/frame_*.jpg"
+  },
+  {
+    "relPath": "ezgif-frame-034.jpg",
+    "filename": "ezgif-frame-034.jpg",
+    "ext": ".jpg",
+    "sizeBytes": 49997,
+    "sizeKB": "48.83",
+    "sha256": "441b40d784037358f943062d52a0717279ef4eaefb8f53951e9da99bf45b14b9",
+    "category": "B",
+    "reason": "Obsolete loose video frame extraction in root; active hero canvas uses frames/frame_*.jpg"
+  },
+  {
+    "relPath": "ezgif-frame-035.jpg",
+    "filename": "ezgif-frame-035.jpg",
+    "ext": ".jpg",
+    "sizeBytes": 49796,
+    "sizeKB": "48.63",
+    "sha256": "d8707c2b2f32765350a83d2090fc91470d0143643eb60cc51542b5bcfd0845ff",
+    "category": "B",
+    "reason": "Obsolete loose video frame extraction in root; active hero canvas uses frames/frame_*.jpg"
+  },
+  {
+    "relPath": "ezgif-frame-036.jpg",
+    "filename": "ezgif-frame-036.jpg",
+    "ext": ".jpg",
+    "sizeBytes": 49891,
+    "sizeKB": "48.72",
+    "sha256": "c3ed090147afe380223e1179748b062efb0f0cd3d1dac257a508997f0f028fe6",
+    "category": "B",
+    "reason": "Obsolete loose video frame extraction in root; active hero canvas uses frames/frame_*.jpg"
+  },
+  {
+    "relPath": "ezgif-frame-037.jpg",
+    "filename": "ezgif-frame-037.jpg",
+    "ext": ".jpg",
+    "sizeBytes": 49625,
+    "sizeKB": "48.46",
+    "sha256": "f798c4ca75845c1eec0293c5bc11ef5a62cf21a4b5d5cffe8e0269c2100f7fb2",
+    "category": "B",
+    "reason": "Obsolete loose video frame extraction in root; active hero canvas uses frames/frame_*.jpg"
+  },
+  {
+    "relPath": "ezgif-frame-039.jpg",
+    "filename": "ezgif-frame-039.jpg",
+    "ext": ".jpg",
+    "sizeBytes": 49914,
+    "sizeKB": "48.74",
+    "sha256": "63fc1e0eb464d3f92753f502bd7c5e41e9659111c98e6c9aa63e3215b3ee9bcc",
+    "category": "B",
+    "reason": "Obsolete loose video frame extraction in root; active hero canvas uses frames/frame_*.jpg"
+  },
+  {
+    "relPath": "ezgif-frame-040.jpg",
+    "filename": "ezgif-frame-040.jpg",
+    "ext": ".jpg",
+    "sizeBytes": 49344,
+    "sizeKB": "48.19",
+    "sha256": "bd5c0c619cbca9fd4ee3ccaa0e540629211ddf675f92a60c04e0d4c4ab559016",
+    "category": "B",
+    "reason": "Obsolete loose video frame extraction in root; active hero canvas uses frames/frame_*.jpg"
+  },
+  {
+    "relPath": "ezgif-frame-041.jpg",
+    "filename": "ezgif-frame-041.jpg",
+    "ext": ".jpg",
+    "sizeBytes": 49428,
+    "sizeKB": "48.27",
+    "sha256": "57eed5826ad438ac3d2053fc5872ed4197892612efa6954f514f2b6df1a39e3c",
+    "category": "B",
+    "reason": "Obsolete loose video frame extraction in root; active hero canvas uses frames/frame_*.jpg"
+  },
+  {
+    "relPath": "ezgif-frame-042.jpg",
+    "filename": "ezgif-frame-042.jpg",
+    "ext": ".jpg",
+    "sizeBytes": 49539,
+    "sizeKB": "48.38",
+    "sha256": "91b183716aac06254c5448de43b577d5b68b5568c4b68de53d5b9dee6faa4df9",
+    "category": "B",
+    "reason": "Obsolete loose video frame extraction in root; active hero canvas uses frames/frame_*.jpg"
+  },
+  {
+    "relPath": "ezgif-frame-044.jpg",
+    "filename": "ezgif-frame-044.jpg",
+    "ext": ".jpg",
+    "sizeBytes": 49819,
+    "sizeKB": "48.65",
+    "sha256": "6a9c50c934b0e55030dabe4e5b82e75903a451a7a5150d7b52ba0c92c082fb50",
+    "category": "B",
+    "reason": "Obsolete loose video frame extraction in root; active hero canvas uses frames/frame_*.jpg"
+  },
+  {
+    "relPath": "ezgif-frame-045.jpg",
+    "filename": "ezgif-frame-045.jpg",
+    "ext": ".jpg",
+    "sizeBytes": 49673,
+    "sizeKB": "48.51",
+    "sha256": "a16d455245ccd2dc03e63ec8e6449669ceb4b35a26c236acbaedb0bcf1c357c1",
+    "category": "B",
+    "reason": "Obsolete loose video frame extraction in root; active hero canvas uses frames/frame_*.jpg"
+  },
+  {
+    "relPath": "ezgif-frame-046.jpg",
+    "filename": "ezgif-frame-046.jpg",
+    "ext": ".jpg",
+    "sizeBytes": 49887,
+    "sizeKB": "48.72",
+    "sha256": "1ae773913f207b5a960212f80f561703b4a77e4567517c4e54fb47257c48c1e2",
+    "category": "B",
+    "reason": "Obsolete loose video frame extraction in root; active hero canvas uses frames/frame_*.jpg"
+  },
+  {
+    "relPath": "ezgif-frame-047.jpg",
+    "filename": "ezgif-frame-047.jpg",
+    "ext": ".jpg",
+    "sizeBytes": 49746,
+    "sizeKB": "48.58",
+    "sha256": "13edf6e4b886cc98fc3fe56ea628aac93158ea0cb38670765c2a5bd93c5c4105",
+    "category": "B",
+    "reason": "Obsolete loose video frame extraction in root; active hero canvas uses frames/frame_*.jpg"
+  },
+  {
+    "relPath": "ezgif-frame-049.jpg",
+    "filename": "ezgif-frame-049.jpg",
+    "ext": ".jpg",
+    "sizeBytes": 49960,
+    "sizeKB": "48.79",
+    "sha256": "15d30c8dac90d63025afffb3a18fdb9335e5529b3ec498036eff54009b4aee27",
+    "category": "B",
+    "reason": "Obsolete loose video frame extraction in root; active hero canvas uses frames/frame_*.jpg"
+  },
+  {
+    "relPath": "ezgif-frame-050.jpg",
+    "filename": "ezgif-frame-050.jpg",
+    "ext": ".jpg",
+    "sizeBytes": 49435,
+    "sizeKB": "48.28",
+    "sha256": "ca64a1a33a7502f7269e7495cf85c41823dd5eeb5c049cc2d19acbcc4094c459",
+    "category": "B",
+    "reason": "Obsolete loose video frame extraction in root; active hero canvas uses frames/frame_*.jpg"
+  },
+  {
+    "relPath": "ezgif-frame-051.jpg",
+    "filename": "ezgif-frame-051.jpg",
+    "ext": ".jpg",
+    "sizeBytes": 49508,
+    "sizeKB": "48.35",
+    "sha256": "dc1c73fad72fe7930a8e8fe0180ad43e0ddbda2de879e34aabaeac1270c94289",
+    "category": "B",
+    "reason": "Obsolete loose video frame extraction in root; active hero canvas uses frames/frame_*.jpg"
+  },
+  {
+    "relPath": "ezgif-frame-052.jpg",
+    "filename": "ezgif-frame-052.jpg",
+    "ext": ".jpg",
+    "sizeBytes": 49608,
+    "sizeKB": "48.45",
+    "sha256": "20e24e6c075dd45aff9e715a806e5775638c45cc0e36fd9270634223199ee4ec",
+    "category": "B",
+    "reason": "Obsolete loose video frame extraction in root; active hero canvas uses frames/frame_*.jpg"
+  },
+  {
+    "relPath": "ezgif-frame-054.jpg",
+    "filename": "ezgif-frame-054.jpg",
+    "ext": ".jpg",
+    "sizeBytes": 50016,
+    "sizeKB": "48.84",
+    "sha256": "30fd34f3a4b5bb04a65bba28bbff80a1b0f56333355d81d2e204b4e887848786",
+    "category": "B",
+    "reason": "Obsolete loose video frame extraction in root; active hero canvas uses frames/frame_*.jpg"
+  },
+  {
+    "relPath": "ezgif-frame-055.jpg",
+    "filename": "ezgif-frame-055.jpg",
+    "ext": ".jpg",
+    "sizeBytes": 49686,
+    "sizeKB": "48.52",
+    "sha256": "fecb927c5e1e63bba5f88148c5b6d27eddf7567e96c4a5819baf7ae1e3d3b844",
+    "category": "B",
+    "reason": "Obsolete loose video frame extraction in root; active hero canvas uses frames/frame_*.jpg"
+  },
+  {
+    "relPath": "ezgif-frame-056.jpg",
+    "filename": "ezgif-frame-056.jpg",
+    "ext": ".jpg",
+    "sizeBytes": 49953,
+    "sizeKB": "48.78",
+    "sha256": "64848b5917c747db6e26994e4d845cd1cc3fce2ec876607473bff1dd65fa6afe",
+    "category": "B",
+    "reason": "Obsolete loose video frame extraction in root; active hero canvas uses frames/frame_*.jpg"
+  },
+  {
+    "relPath": "ezgif-frame-057.jpg",
+    "filename": "ezgif-frame-057.jpg",
+    "ext": ".jpg",
+    "sizeBytes": 49842,
+    "sizeKB": "48.67",
+    "sha256": "9e7d52cc8a1fa6a39b27999449e9ed4a72e7ccd72bcea19bdb0e989e9bd8e528",
+    "category": "B",
+    "reason": "Obsolete loose video frame extraction in root; active hero canvas uses frames/frame_*.jpg"
+  },
+  {
+    "relPath": "ezgif-frame-059.jpg",
+    "filename": "ezgif-frame-059.jpg",
+    "ext": ".jpg",
+    "sizeBytes": 49913,
+    "sizeKB": "48.74",
+    "sha256": "3e274ed9c420a4e073eb6629bc0239424140d6a36c83b786563b756b03a7b294",
+    "category": "B",
+    "reason": "Obsolete loose video frame extraction in root; active hero canvas uses frames/frame_*.jpg"
+  },
+  {
+    "relPath": "ezgif-frame-060.jpg",
+    "filename": "ezgif-frame-060.jpg",
+    "ext": ".jpg",
+    "sizeBytes": 49218,
+    "sizeKB": "48.06",
+    "sha256": "7714301bcffc8335b0a4787c02e456b568befd305f5c1572e156f628de7d3795",
+    "category": "B",
+    "reason": "Obsolete loose video frame extraction in root; active hero canvas uses frames/frame_*.jpg"
+  },
+  {
+    "relPath": "ezgif-frame-061.jpg",
+    "filename": "ezgif-frame-061.jpg",
+    "ext": ".jpg",
+    "sizeBytes": 48716,
+    "sizeKB": "47.57",
+    "sha256": "cae31e49a9b609dd2f19b542539e977632b93e6cf6ac17556ba501e552e1fee0",
+    "category": "B",
+    "reason": "Obsolete loose video frame extraction in root; active hero canvas uses frames/frame_*.jpg"
+  },
+  {
+    "relPath": "ezgif-frame-062.jpg",
+    "filename": "ezgif-frame-062.jpg",
+    "ext": ".jpg",
+    "sizeBytes": 48638,
+    "sizeKB": "47.50",
+    "sha256": "435ff15b88c0619b3449124561c09bc893bec4dbf10407d4e0d803160661e2fe",
+    "category": "B",
+    "reason": "Obsolete loose video frame extraction in root; active hero canvas uses frames/frame_*.jpg"
+  },
+  {
+    "relPath": "ezgif-frame-064.jpg",
+    "filename": "ezgif-frame-064.jpg",
+    "ext": ".jpg",
+    "sizeBytes": 48966,
+    "sizeKB": "47.82",
+    "sha256": "0d7613190108ebd4d670d490e8d752a1112971eaf6ca5335db2b81154930bec8",
+    "category": "B",
+    "reason": "Obsolete loose video frame extraction in root; active hero canvas uses frames/frame_*.jpg"
+  },
+  {
+    "relPath": "ezgif-frame-065.jpg",
+    "filename": "ezgif-frame-065.jpg",
+    "ext": ".jpg",
+    "sizeBytes": 48578,
+    "sizeKB": "47.44",
+    "sha256": "d747ca485e8a3426b7f547d3bd5aef270f5081fbffb5059a12349190df38b6a3",
+    "category": "B",
+    "reason": "Obsolete loose video frame extraction in root; active hero canvas uses frames/frame_*.jpg"
+  },
+  {
+    "relPath": "ezgif-frame-066.jpg",
+    "filename": "ezgif-frame-066.jpg",
+    "ext": ".jpg",
+    "sizeBytes": 48906,
+    "sizeKB": "47.76",
+    "sha256": "649a9546794112c660781e53b6bc68c15184884380a6230f4c19ae11a8a945b4",
+    "category": "B",
+    "reason": "Obsolete loose video frame extraction in root; active hero canvas uses frames/frame_*.jpg"
+  },
+  {
+    "relPath": "ezgif-frame-067.jpg",
+    "filename": "ezgif-frame-067.jpg",
+    "ext": ".jpg",
+    "sizeBytes": 48362,
+    "sizeKB": "47.23",
+    "sha256": "2d00638244e540d72c983c91cd50e0f19466dedc2767d8f4984dd50aedfe6b90",
+    "category": "B",
+    "reason": "Obsolete loose video frame extraction in root; active hero canvas uses frames/frame_*.jpg"
+  },
+  {
+    "relPath": "ezgif-frame-069.jpg",
+    "filename": "ezgif-frame-069.jpg",
+    "ext": ".jpg",
+    "sizeBytes": 48190,
+    "sizeKB": "47.06",
+    "sha256": "7dd6c5c10221271f62a16540c00e941fec369d1ea567dfdb5e1967d3f1203dd8",
+    "category": "B",
+    "reason": "Obsolete loose video frame extraction in root; active hero canvas uses frames/frame_*.jpg"
+  },
+  {
+    "relPath": "ezgif-frame-070.jpg",
+    "filename": "ezgif-frame-070.jpg",
+    "ext": ".jpg",
+    "sizeBytes": 47107,
+    "sizeKB": "46.00",
+    "sha256": "72259460c7ca4a315986e363f25be23c11c04244a26d6bcc468e52ae3ea17f6b",
+    "category": "B",
+    "reason": "Obsolete loose video frame extraction in root; active hero canvas uses frames/frame_*.jpg"
+  },
+  {
+    "relPath": "ezgif-frame-071.jpg",
+    "filename": "ezgif-frame-071.jpg",
+    "ext": ".jpg",
+    "sizeBytes": 46329,
+    "sizeKB": "45.24",
+    "sha256": "c37022a20bb195a5dca5b98cc2b80ae98b12ef0517b668a8c6aa94df308d5959",
+    "category": "B",
+    "reason": "Obsolete loose video frame extraction in root; active hero canvas uses frames/frame_*.jpg"
+  },
+  {
+    "relPath": "ezgif-frame-072.jpg",
+    "filename": "ezgif-frame-072.jpg",
+    "ext": ".jpg",
+    "sizeBytes": 46265,
+    "sizeKB": "45.18",
+    "sha256": "f1b699699f9fbcec8c0727c5ee99a3ba394cb6f9b3308c76973450b36b3fcda2",
+    "category": "B",
+    "reason": "Obsolete loose video frame extraction in root; active hero canvas uses frames/frame_*.jpg"
+  },
+  {
+    "relPath": "ezgif-frame-074.jpg",
+    "filename": "ezgif-frame-074.jpg",
+    "ext": ".jpg",
+    "sizeBytes": 46961,
+    "sizeKB": "45.86",
+    "sha256": "cbb8252dadbff3aca80ff478cc25fb9df58d6b9983f32b6ac28f019c2e510bf4",
+    "category": "B",
+    "reason": "Obsolete loose video frame extraction in root; active hero canvas uses frames/frame_*.jpg"
+  },
+  {
+    "relPath": "ezgif-frame-075.jpg",
+    "filename": "ezgif-frame-075.jpg",
+    "ext": ".jpg",
+    "sizeBytes": 46669,
+    "sizeKB": "45.58",
+    "sha256": "17630c844fb721f68986641710af5feff6e90711d49b75196d84441fc7983e91",
+    "category": "B",
+    "reason": "Obsolete loose video frame extraction in root; active hero canvas uses frames/frame_*.jpg"
+  },
+  {
+    "relPath": "ezgif-frame-076.jpg",
+    "filename": "ezgif-frame-076.jpg",
+    "ext": ".jpg",
+    "sizeBytes": 47008,
+    "sizeKB": "45.91",
+    "sha256": "d51ecb23c8106ab81ef3a5dd74956e853ce469975212f087ac03695c546b3ae6",
+    "category": "B",
+    "reason": "Obsolete loose video frame extraction in root; active hero canvas uses frames/frame_*.jpg"
+  },
+  {
+    "relPath": "ezgif-frame-077.jpg",
+    "filename": "ezgif-frame-077.jpg",
+    "ext": ".jpg",
+    "sizeBytes": 46174,
+    "sizeKB": "45.09",
+    "sha256": "5a6ffe4dbc17e5253de375212a0204af7ff2e0e4777cc71f436790ac4dc5e24e",
+    "category": "B",
+    "reason": "Obsolete loose video frame extraction in root; active hero canvas uses frames/frame_*.jpg"
+  },
+  {
+    "relPath": "ezgif-frame-079.jpg",
+    "filename": "ezgif-frame-079.jpg",
+    "ext": ".jpg",
+    "sizeBytes": 46049,
+    "sizeKB": "44.97",
+    "sha256": "28f7bd54a9eaa1422ae18c90bd5bba1ff89cfb335986cb882d5d7053a3bf3f1c",
+    "category": "B",
+    "reason": "Obsolete loose video frame extraction in root; active hero canvas uses frames/frame_*.jpg"
+  },
+  {
+    "relPath": "ezgif-frame-080.jpg",
+    "filename": "ezgif-frame-080.jpg",
+    "ext": ".jpg",
+    "sizeBytes": 45019,
+    "sizeKB": "43.96",
+    "sha256": "a34137010a908cb142b4402ccc16aaea749eedec5ef0c412abb073fff929d912",
+    "category": "B",
+    "reason": "Obsolete loose video frame extraction in root; active hero canvas uses frames/frame_*.jpg"
+  },
+  {
+    "relPath": "ezgif-frame-081.jpg",
+    "filename": "ezgif-frame-081.jpg",
+    "ext": ".jpg",
+    "sizeBytes": 44713,
+    "sizeKB": "43.67",
+    "sha256": "a1cd07ef5992a23de401aa920a55ef887ff85409144f583867ecd4e8de045c51",
+    "category": "B",
+    "reason": "Obsolete loose video frame extraction in root; active hero canvas uses frames/frame_*.jpg"
+  },
+  {
+    "relPath": "ezgif-frame-082.jpg",
+    "filename": "ezgif-frame-082.jpg",
+    "ext": ".jpg",
+    "sizeBytes": 44677,
+    "sizeKB": "43.63",
+    "sha256": "bde3137e50b6f918700f3ce0f2287018df12e9f6e2e5af1e0b56a2200b0b6376",
+    "category": "B",
+    "reason": "Obsolete loose video frame extraction in root; active hero canvas uses frames/frame_*.jpg"
+  },
+  {
+    "relPath": "ezgif-frame-084.jpg",
+    "filename": "ezgif-frame-084.jpg",
+    "ext": ".jpg",
+    "sizeBytes": 45300,
+    "sizeKB": "44.24",
+    "sha256": "790750625d17c7868318eddc08a1823f7a047653817f31b3a0134c6733598ed6",
+    "category": "B",
+    "reason": "Obsolete loose video frame extraction in root; active hero canvas uses frames/frame_*.jpg"
+  },
+  {
+    "relPath": "ezgif-frame-085.jpg",
+    "filename": "ezgif-frame-085.jpg",
+    "ext": ".jpg",
+    "sizeBytes": 45383,
+    "sizeKB": "44.32",
+    "sha256": "4b5121ca3d790c34a04d36b9150272475fcbd040b366dda840a5b532671d5828",
+    "category": "B",
+    "reason": "Obsolete loose video frame extraction in root; active hero canvas uses frames/frame_*.jpg"
+  },
+  {
+    "relPath": "ezgif-frame-086.jpg",
+    "filename": "ezgif-frame-086.jpg",
+    "ext": ".jpg",
+    "sizeBytes": 45999,
+    "sizeKB": "44.92",
+    "sha256": "cf38a2848ffcb7ac63cc4395501111e50747c5117de6ad4fd6f07d6263006d80",
+    "category": "B",
+    "reason": "Obsolete loose video frame extraction in root; active hero canvas uses frames/frame_*.jpg"
+  },
+  {
+    "relPath": "ezgif-frame-087.jpg",
+    "filename": "ezgif-frame-087.jpg",
+    "ext": ".jpg",
+    "sizeBytes": 45089,
+    "sizeKB": "44.03",
+    "sha256": "227f0f6fff0bdf7e2fe81d57440eb2f1483dc49be3bdb879878cdb147a3d00a4",
+    "category": "B",
+    "reason": "Obsolete loose video frame extraction in root; active hero canvas uses frames/frame_*.jpg"
+  },
+  {
+    "relPath": "ezgif-frame-089.jpg",
+    "filename": "ezgif-frame-089.jpg",
+    "ext": ".jpg",
+    "sizeBytes": 44585,
+    "sizeKB": "43.54",
+    "sha256": "65546d27ebff681e88bee1c6cd52624c691ad75fd8053fe9c24263eb6ab868f3",
+    "category": "B",
+    "reason": "Obsolete loose video frame extraction in root; active hero canvas uses frames/frame_*.jpg"
+  },
+  {
+    "relPath": "ezgif-frame-090.jpg",
+    "filename": "ezgif-frame-090.jpg",
+    "ext": ".jpg",
+    "sizeBytes": 43483,
+    "sizeKB": "42.46",
+    "sha256": "af214823f53ac867c9f29d1cfa7d555dbd88600f685c853cf20971da049a9bd9",
+    "category": "B",
+    "reason": "Obsolete loose video frame extraction in root; active hero canvas uses frames/frame_*.jpg"
+  },
+  {
+    "relPath": "ezgif-frame-091.jpg",
+    "filename": "ezgif-frame-091.jpg",
+    "ext": ".jpg",
+    "sizeBytes": 43147,
+    "sizeKB": "42.14",
+    "sha256": "c54f8ed66d95611864b4d10a3d4604c63986dda8e9404118c5a9c680dca71122",
+    "category": "B",
+    "reason": "Obsolete loose video frame extraction in root; active hero canvas uses frames/frame_*.jpg"
+  },
+  {
+    "relPath": "ezgif-frame-092.jpg",
+    "filename": "ezgif-frame-092.jpg",
+    "ext": ".jpg",
+    "sizeBytes": 43294,
+    "sizeKB": "42.28",
+    "sha256": "0bd3a141245313d105dc1a3cc552ee33954dbe35ba7e8a73f3cf646bfdf95f73",
+    "category": "B",
+    "reason": "Obsolete loose video frame extraction in root; active hero canvas uses frames/frame_*.jpg"
+  },
+  {
+    "relPath": "ezgif-frame-094.jpg",
+    "filename": "ezgif-frame-094.jpg",
+    "ext": ".jpg",
+    "sizeBytes": 44172,
+    "sizeKB": "43.14",
+    "sha256": "70ae90d6e4367ec52821a26f3dd2ec263628207167495878014446a8da756f8d",
+    "category": "B",
+    "reason": "Obsolete loose video frame extraction in root; active hero canvas uses frames/frame_*.jpg"
+  },
+  {
+    "relPath": "ezgif-frame-095.jpg",
+    "filename": "ezgif-frame-095.jpg",
+    "ext": ".jpg",
+    "sizeBytes": 44497,
+    "sizeKB": "43.45",
+    "sha256": "fe7549956372455b60f15e660d30b2715288e015838f4294557da823a4737ea7",
+    "category": "B",
+    "reason": "Obsolete loose video frame extraction in root; active hero canvas uses frames/frame_*.jpg"
+  },
+  {
+    "relPath": "ezgif-frame-096.jpg",
+    "filename": "ezgif-frame-096.jpg",
+    "ext": ".jpg",
+    "sizeBytes": 45537,
+    "sizeKB": "44.47",
+    "sha256": "28757b126d3635d56081359788145c7e6f98c903de94b710cf3db4ee6d2462ac",
+    "category": "B",
+    "reason": "Obsolete loose video frame extraction in root; active hero canvas uses frames/frame_*.jpg"
+  },
+  {
+    "relPath": "ezgif-frame-097.jpg",
+    "filename": "ezgif-frame-097.jpg",
+    "ext": ".jpg",
+    "sizeBytes": 44630,
+    "sizeKB": "43.58",
+    "sha256": "ca650d0e88dee76f55d79c8119a7b269c80444f9eb494d42dc3886c1e2eabc5f",
+    "category": "B",
+    "reason": "Obsolete loose video frame extraction in root; active hero canvas uses frames/frame_*.jpg"
+  },
+  {
+    "relPath": "ezgif-frame-099.jpg",
+    "filename": "ezgif-frame-099.jpg",
+    "ext": ".jpg",
+    "sizeBytes": 44668,
+    "sizeKB": "43.62",
+    "sha256": "0bf7ece0d93e7e4586b7a81514d6699280b9e5bc5a2a1bf6c69f98febf35a364",
+    "category": "B",
+    "reason": "Obsolete loose video frame extraction in root; active hero canvas uses frames/frame_*.jpg"
+  },
+  {
+    "relPath": "ezgif-frame-100.jpg",
+    "filename": "ezgif-frame-100.jpg",
+    "ext": ".jpg",
+    "sizeBytes": 43724,
+    "sizeKB": "42.70",
+    "sha256": "f43de99251ffac1f78fc7f9a62ca73354881a8c9cd4849bcc9691e6ad6a66ed1",
+    "category": "B",
+    "reason": "Obsolete loose video frame extraction in root; active hero canvas uses frames/frame_*.jpg"
+  },
+  {
+    "relPath": "ezgif-frame-101.jpg",
+    "filename": "ezgif-frame-101.jpg",
+    "ext": ".jpg",
+    "sizeBytes": 43862,
+    "sizeKB": "42.83",
+    "sha256": "448b3f62a3c614e6acf09250d2fa094033911066f259c8b0ea74c4b30ba27c8d",
+    "category": "B",
+    "reason": "Obsolete loose video frame extraction in root; active hero canvas uses frames/frame_*.jpg"
+  },
+  {
+    "relPath": "ezgif-frame-102.jpg",
+    "filename": "ezgif-frame-102.jpg",
+    "ext": ".jpg",
+    "sizeBytes": 44338,
+    "sizeKB": "43.30",
+    "sha256": "f5a703e9fab3e5e69e406a7597de106402be378c2fd7f5b7ef2c553c10507e75",
+    "category": "B",
+    "reason": "Obsolete loose video frame extraction in root; active hero canvas uses frames/frame_*.jpg"
+  },
+  {
+    "relPath": "ezgif-frame-104.jpg",
+    "filename": "ezgif-frame-104.jpg",
+    "ext": ".jpg",
+    "sizeBytes": 45282,
+    "sizeKB": "44.22",
+    "sha256": "c866083d693f6d7b6b1f62640554949e93ee7bf5c82bd889c5d6d807636c64d6",
+    "category": "B",
+    "reason": "Obsolete loose video frame extraction in root; active hero canvas uses frames/frame_*.jpg"
+  },
+  {
+    "relPath": "ezgif-frame-105.jpg",
+    "filename": "ezgif-frame-105.jpg",
+    "ext": ".jpg",
+    "sizeBytes": 45890,
+    "sizeKB": "44.81",
+    "sha256": "3a8eff1369fd2c003fe871ce642c383a8e1c9f97fc158050f3f4eeec2059cb17",
+    "category": "B",
+    "reason": "Obsolete loose video frame extraction in root; active hero canvas uses frames/frame_*.jpg"
+  },
+  {
+    "relPath": "ezgif-frame-106.jpg",
+    "filename": "ezgif-frame-106.jpg",
+    "ext": ".jpg",
+    "sizeBytes": 46646,
+    "sizeKB": "45.55",
+    "sha256": "cbcfb6e7d2d469a98f60abb74f047fec95d7ee944bed118edd2ce6f9c68d71ee",
+    "category": "B",
+    "reason": "Obsolete loose video frame extraction in root; active hero canvas uses frames/frame_*.jpg"
+  },
+  {
+    "relPath": "ezgif-frame-107.jpg",
+    "filename": "ezgif-frame-107.jpg",
+    "ext": ".jpg",
+    "sizeBytes": 46301,
+    "sizeKB": "45.22",
+    "sha256": "0d5cc5bdafed10923875395c0d6697d5eb95645e5aed9c05d36cd418a93250ba",
+    "category": "B",
+    "reason": "Obsolete loose video frame extraction in root; active hero canvas uses frames/frame_*.jpg"
+  },
+  {
+    "relPath": "ezgif-frame-109.jpg",
+    "filename": "ezgif-frame-109.jpg",
+    "ext": ".jpg",
+    "sizeBytes": 46387,
+    "sizeKB": "45.30",
+    "sha256": "d4fa105a27fa90442e330f9d9f1635b698cdd4d2388f11da69c87ee453cc2f05",
+    "category": "B",
+    "reason": "Obsolete loose video frame extraction in root; active hero canvas uses frames/frame_*.jpg"
+  },
+  {
+    "relPath": "ezgif-frame-110.jpg",
+    "filename": "ezgif-frame-110.jpg",
+    "ext": ".jpg",
+    "sizeBytes": 45674,
+    "sizeKB": "44.60",
+    "sha256": "7efb2bd76508dcc196bcf210c23810af7e224ec916d26eb006ea7121c1aca820",
+    "category": "B",
+    "reason": "Obsolete loose video frame extraction in root; active hero canvas uses frames/frame_*.jpg"
+  },
+  {
+    "relPath": "ezgif-frame-111.jpg",
+    "filename": "ezgif-frame-111.jpg",
+    "ext": ".jpg",
+    "sizeBytes": 46027,
+    "sizeKB": "44.95",
+    "sha256": "e23c1aa0df7d7617c21f9be11382f622fd4ebf921f77dec19fb761f2b1e0c4ed",
+    "category": "B",
+    "reason": "Obsolete loose video frame extraction in root; active hero canvas uses frames/frame_*.jpg"
+  },
+  {
+    "relPath": "ezgif-frame-112.jpg",
+    "filename": "ezgif-frame-112.jpg",
+    "ext": ".jpg",
+    "sizeBytes": 46570,
+    "sizeKB": "45.48",
+    "sha256": "a5401f0fbd2532501927103a490c6ac42b218044b20cc3c6d216794e7798497b",
+    "category": "B",
+    "reason": "Obsolete loose video frame extraction in root; active hero canvas uses frames/frame_*.jpg"
+  },
+  {
+    "relPath": "ezgif-frame-114.jpg",
+    "filename": "ezgif-frame-114.jpg",
+    "ext": ".jpg",
+    "sizeBytes": 47634,
+    "sizeKB": "46.52",
+    "sha256": "211cb11e20dc83b32b2a2f823f33f02f1e99ac0da8e53d3eedc99b8243c23234",
+    "category": "B",
+    "reason": "Obsolete loose video frame extraction in root; active hero canvas uses frames/frame_*.jpg"
+  },
+  {
+    "relPath": "ezgif-frame-115.jpg",
+    "filename": "ezgif-frame-115.jpg",
+    "ext": ".jpg",
+    "sizeBytes": 47510,
+    "sizeKB": "46.40",
+    "sha256": "3499c3888eb56fd182b6d895d5d3761727eb262141bf9f5a053a24c2ff5995d4",
+    "category": "B",
+    "reason": "Obsolete loose video frame extraction in root; active hero canvas uses frames/frame_*.jpg"
+  },
+  {
+    "relPath": "ezgif-frame-116.jpg",
+    "filename": "ezgif-frame-116.jpg",
+    "ext": ".jpg",
+    "sizeBytes": 47971,
+    "sizeKB": "46.85",
+    "sha256": "f306d4c8bf75f54f73e56da574c9da6d0f7b0bf8d06e7ba3f0c6a4c1e89153c4",
+    "category": "B",
+    "reason": "Obsolete loose video frame extraction in root; active hero canvas uses frames/frame_*.jpg"
+  },
+  {
+    "relPath": "ezgif-frame-117.jpg",
+    "filename": "ezgif-frame-117.jpg",
+    "ext": ".jpg",
+    "sizeBytes": 47545,
+    "sizeKB": "46.43",
+    "sha256": "661288c884ef997dc0c6de3452f043b625aab778362cfb23954cc796551f4198",
+    "category": "B",
+    "reason": "Obsolete loose video frame extraction in root; active hero canvas uses frames/frame_*.jpg"
+  },
+  {
+    "relPath": "ezgif-frame-119.jpg",
+    "filename": "ezgif-frame-119.jpg",
+    "ext": ".jpg",
+    "sizeBytes": 47910,
+    "sizeKB": "46.79",
+    "sha256": "48bb3ac0244e5cff18d6ff3559fe408ec183f335f34b0e03364c83a3e0aabfb5",
+    "category": "B",
+    "reason": "Obsolete loose video frame extraction in root; active hero canvas uses frames/frame_*.jpg"
+  },
+  {
+    "relPath": "ezgif-frame-120.jpg",
+    "filename": "ezgif-frame-120.jpg",
+    "ext": ".jpg",
+    "sizeBytes": 47054,
+    "sizeKB": "45.95",
+    "sha256": "5b1d7cd8c0a7a181fb6bd486cc934832d118ed1f9792e20bbc9b73ffd806e5bb",
+    "category": "B",
+    "reason": "Obsolete loose video frame extraction in root; active hero canvas uses frames/frame_*.jpg"
+  },
+  {
+    "relPath": "ezgif-frame-121.jpg",
+    "filename": "ezgif-frame-121.jpg",
+    "ext": ".jpg",
+    "sizeBytes": 47233,
+    "sizeKB": "46.13",
+    "sha256": "a0682d3afb240e175e390be257294c9c9e4bbf8746d19abd3b75eab0f52cae92",
+    "category": "B",
+    "reason": "Obsolete loose video frame extraction in root; active hero canvas uses frames/frame_*.jpg"
+  },
+  {
+    "relPath": "ezgif-frame-122.jpg",
+    "filename": "ezgif-frame-122.jpg",
+    "ext": ".jpg",
+    "sizeBytes": 47396,
+    "sizeKB": "46.29",
+    "sha256": "0df9c541259491404ac8072be2b1d3e0524a40b4d7c40272536f98861d3851a1",
+    "category": "B",
+    "reason": "Obsolete loose video frame extraction in root; active hero canvas uses frames/frame_*.jpg"
+  },
+  {
+    "relPath": "ezgif-frame-124.jpg",
+    "filename": "ezgif-frame-124.jpg",
+    "ext": ".jpg",
+    "sizeBytes": 48171,
+    "sizeKB": "47.04",
+    "sha256": "8b7b10743093fb736befa0c31dc323a67cb8ad5af4416b91d5915771e0a0a595",
+    "category": "B",
+    "reason": "Obsolete loose video frame extraction in root; active hero canvas uses frames/frame_*.jpg"
+  },
+  {
+    "relPath": "ezgif-frame-125.jpg",
+    "filename": "ezgif-frame-125.jpg",
+    "ext": ".jpg",
+    "sizeBytes": 48064,
+    "sizeKB": "46.94",
+    "sha256": "bcfc89f766731fe8c802fc25976a70064dd120e146afe5535a2c98352a334a2e",
+    "category": "B",
+    "reason": "Obsolete loose video frame extraction in root; active hero canvas uses frames/frame_*.jpg"
+  },
+  {
+    "relPath": "ezgif-frame-126.jpg",
+    "filename": "ezgif-frame-126.jpg",
+    "ext": ".jpg",
+    "sizeBytes": 48198,
+    "sizeKB": "47.07",
+    "sha256": "296975d990c874a653706d1bdd201274d90b061dcb097eeee5693e1396a46f37",
+    "category": "B",
+    "reason": "Obsolete loose video frame extraction in root; active hero canvas uses frames/frame_*.jpg"
+  },
+  {
+    "relPath": "ezgif-frame-127.jpg",
+    "filename": "ezgif-frame-127.jpg",
+    "ext": ".jpg",
+    "sizeBytes": 48180,
+    "sizeKB": "47.05",
+    "sha256": "fc73d09256c078aa5fd9b6ed9e9c5c6a258ec1064e0954c0aaf7ad99be14e475",
+    "category": "B",
+    "reason": "Obsolete loose video frame extraction in root; active hero canvas uses frames/frame_*.jpg"
+  },
+  {
+    "relPath": "ezgif-frame-129.jpg",
+    "filename": "ezgif-frame-129.jpg",
+    "ext": ".jpg",
+    "sizeBytes": 48231,
+    "sizeKB": "47.10",
+    "sha256": "3e384109e8efa5f12df1dafc8277b68fe464e1d1c99ac3081e61e46f3c195e92",
+    "category": "B",
+    "reason": "Obsolete loose video frame extraction in root; active hero canvas uses frames/frame_*.jpg"
+  },
+  {
+    "relPath": "ezgif-frame-130.jpg",
+    "filename": "ezgif-frame-130.jpg",
+    "ext": ".jpg",
+    "sizeBytes": 47502,
+    "sizeKB": "46.39",
+    "sha256": "faaa8e267cb5a64f1109761246674303325fd0f08342403fea853246fdc3ff02",
+    "category": "B",
+    "reason": "Obsolete loose video frame extraction in root; active hero canvas uses frames/frame_*.jpg"
+  },
+  {
+    "relPath": "ezgif-frame-131.jpg",
+    "filename": "ezgif-frame-131.jpg",
+    "ext": ".jpg",
+    "sizeBytes": 47383,
+    "sizeKB": "46.27",
+    "sha256": "227a40180c9969cb1991d5c9929421d7ec4895d36f85f3705fd07e9930dedf4f",
+    "category": "B",
+    "reason": "Obsolete loose video frame extraction in root; active hero canvas uses frames/frame_*.jpg"
+  },
+  {
+    "relPath": "ezgif-frame-132.jpg",
+    "filename": "ezgif-frame-132.jpg",
+    "ext": ".jpg",
+    "sizeBytes": 47402,
+    "sizeKB": "46.29",
+    "sha256": "5f9d72cfa3778a63c5a5964510b9c9ddf1eb25c723f87a366e1b3e985b1cb94b",
+    "category": "B",
+    "reason": "Obsolete loose video frame extraction in root; active hero canvas uses frames/frame_*.jpg"
+  },
+  {
+    "relPath": "ezgif-frame-134.jpg",
+    "filename": "ezgif-frame-134.jpg",
+    "ext": ".jpg",
+    "sizeBytes": 47859,
+    "sizeKB": "46.74",
+    "sha256": "febcc73b4f8a65608af782eba1f12925c3b9626a76af0aab5c739d0b25d51d11",
+    "category": "B",
+    "reason": "Obsolete loose video frame extraction in root; active hero canvas uses frames/frame_*.jpg"
+  },
+  {
+    "relPath": "ezgif-frame-135.jpg",
+    "filename": "ezgif-frame-135.jpg",
+    "ext": ".jpg",
+    "sizeBytes": 47670,
+    "sizeKB": "46.55",
+    "sha256": "c91a056053f9284b5bc049ee4479578c7fad93c2066478135040a3d60dfdbbcd",
+    "category": "B",
+    "reason": "Obsolete loose video frame extraction in root; active hero canvas uses frames/frame_*.jpg"
+  },
+  {
+    "relPath": "ezgif-frame-136.jpg",
+    "filename": "ezgif-frame-136.jpg",
+    "ext": ".jpg",
+    "sizeBytes": 47866,
+    "sizeKB": "46.74",
+    "sha256": "d983cbc2db8483da282e8cf85e4a3770c5af0eb66d4f27baf72acaeeb891c147",
+    "category": "B",
+    "reason": "Obsolete loose video frame extraction in root; active hero canvas uses frames/frame_*.jpg"
+  },
+  {
+    "relPath": "ezgif-frame-137.jpg",
+    "filename": "ezgif-frame-137.jpg",
+    "ext": ".jpg",
+    "sizeBytes": 47699,
+    "sizeKB": "46.58",
+    "sha256": "395ae8851fb5aa8c6a666f3efc7880827afa8bccb0b821b59300e26a74cc8103",
+    "category": "B",
+    "reason": "Obsolete loose video frame extraction in root; active hero canvas uses frames/frame_*.jpg"
+  },
+  {
+    "relPath": "ezgif-frame-139.jpg",
+    "filename": "ezgif-frame-139.jpg",
+    "ext": ".jpg",
+    "sizeBytes": 48028,
+    "sizeKB": "46.90",
+    "sha256": "6de14fcc2f16399caae6a3817dc63a719f7d7f3f59f33b16d65db5d7256092c6",
+    "category": "B",
+    "reason": "Obsolete loose video frame extraction in root; active hero canvas uses frames/frame_*.jpg"
+  },
+  {
+    "relPath": "ezgif-frame-140.jpg",
+    "filename": "ezgif-frame-140.jpg",
+    "ext": ".jpg",
+    "sizeBytes": 47269,
+    "sizeKB": "46.16",
+    "sha256": "1ce0d1c7e71a92d4487b65cd1d3701e240b19eaaf632287dad9f5444cc73c4e5",
+    "category": "B",
+    "reason": "Obsolete loose video frame extraction in root; active hero canvas uses frames/frame_*.jpg"
+  },
+  {
+    "relPath": "ezgif-frame-141.jpg",
+    "filename": "ezgif-frame-141.jpg",
+    "ext": ".jpg",
+    "sizeBytes": 47125,
+    "sizeKB": "46.02",
+    "sha256": "6ef0dd3a50fa452243f4ef0306d554dd9ed6fae14fe09079bc436468d232965e",
+    "category": "B",
+    "reason": "Obsolete loose video frame extraction in root; active hero canvas uses frames/frame_*.jpg"
+  },
+  {
+    "relPath": "ezgif-frame-142.jpg",
+    "filename": "ezgif-frame-142.jpg",
+    "ext": ".jpg",
+    "sizeBytes": 46963,
+    "sizeKB": "45.86",
+    "sha256": "7d45fc728800bfa85c3823368ace7afa3226f864ac6ac4ebe152a72084c2dc0e",
+    "category": "B",
+    "reason": "Obsolete loose video frame extraction in root; active hero canvas uses frames/frame_*.jpg"
+  },
+  {
+    "relPath": "ezgif-frame-144.jpg",
+    "filename": "ezgif-frame-144.jpg",
+    "ext": ".jpg",
+    "sizeBytes": 47407,
+    "sizeKB": "46.30",
+    "sha256": "a49cfa48b7f9524cc9a3772d2b28b2a409cf4248587b9fe22294b28a44bd6198",
+    "category": "B",
+    "reason": "Obsolete loose video frame extraction in root; active hero canvas uses frames/frame_*.jpg"
+  },
+  {
+    "relPath": "ezgif-frame-145.jpg",
+    "filename": "ezgif-frame-145.jpg",
+    "ext": ".jpg",
+    "sizeBytes": 47060,
+    "sizeKB": "45.96",
+    "sha256": "1872edc1516b93edd4a66f80887c11d79fcb2e2a7039722abd6123396becf4fb",
+    "category": "B",
+    "reason": "Obsolete loose video frame extraction in root; active hero canvas uses frames/frame_*.jpg"
+  },
+  {
+    "relPath": "ezgif-frame-146.jpg",
+    "filename": "ezgif-frame-146.jpg",
+    "ext": ".jpg",
+    "sizeBytes": 47297,
+    "sizeKB": "46.19",
+    "sha256": "e0c8d6fcb6b6c3743fa5a32fbb2369dc4e7120faae503a2e45c7c9da835e86f1",
+    "category": "B",
+    "reason": "Obsolete loose video frame extraction in root; active hero canvas uses frames/frame_*.jpg"
+  },
+  {
+    "relPath": "ezgif-frame-147.jpg",
+    "filename": "ezgif-frame-147.jpg",
+    "ext": ".jpg",
+    "sizeBytes": 47132,
+    "sizeKB": "46.03",
+    "sha256": "9cfc2159cd194d32ab8abf47d4571c933c695d6d76c1f6898e3a8402a5f3df04",
+    "category": "B",
+    "reason": "Obsolete loose video frame extraction in root; active hero canvas uses frames/frame_*.jpg"
+  },
+  {
+    "relPath": "ezgif-frame-149.jpg",
+    "filename": "ezgif-frame-149.jpg",
+    "ext": ".jpg",
+    "sizeBytes": 47388,
+    "sizeKB": "46.28",
+    "sha256": "e0956a4929ea5f8f66d335aec295239b1194d123dd13d2d3b8511ee2820c0274",
+    "category": "B",
+    "reason": "Obsolete loose video frame extraction in root; active hero canvas uses frames/frame_*.jpg"
+  },
+  {
+    "relPath": "ezgif-frame-150.jpg",
+    "filename": "ezgif-frame-150.jpg",
+    "ext": ".jpg",
+    "sizeBytes": 46642,
+    "sizeKB": "45.55",
+    "sha256": "1091ae499f6cfed1a574f706e84f2bb18ca1b2f491ecc54ae44f7b4a5257774c",
+    "category": "B",
+    "reason": "Obsolete loose video frame extraction in root; active hero canvas uses frames/frame_*.jpg"
+  },
+  {
+    "relPath": "ezgif-frame-151.jpg",
+    "filename": "ezgif-frame-151.jpg",
+    "ext": ".jpg",
+    "sizeBytes": 46227,
+    "sizeKB": "45.14",
+    "sha256": "597e653c0b7762dc56715cc3402f6b98cfc52e4b5e29b645f8add7132b067868",
+    "category": "B",
+    "reason": "Obsolete loose video frame extraction in root; active hero canvas uses frames/frame_*.jpg"
+  },
+  {
+    "relPath": "ezgif-frame-152.jpg",
+    "filename": "ezgif-frame-152.jpg",
+    "ext": ".jpg",
+    "sizeBytes": 46270,
+    "sizeKB": "45.19",
+    "sha256": "9254db57d01d2cb8c5a8bce055397f0e3ec6eedd59c8c7a34939ce5c2d4b9776",
+    "category": "B",
+    "reason": "Obsolete loose video frame extraction in root; active hero canvas uses frames/frame_*.jpg"
+  },
+  {
+    "relPath": "ezgif-frame-154.jpg",
+    "filename": "ezgif-frame-154.jpg",
+    "ext": ".jpg",
+    "sizeBytes": 46826,
+    "sizeKB": "45.73",
+    "sha256": "678a4ec7bf56106f7b1b8fc4a8e89b39d61786b934fed5b30262ca3bfe243db0",
+    "category": "B",
+    "reason": "Obsolete loose video frame extraction in root; active hero canvas uses frames/frame_*.jpg"
+  },
+  {
+    "relPath": "ezgif-frame-155.jpg",
+    "filename": "ezgif-frame-155.jpg",
+    "ext": ".jpg",
+    "sizeBytes": 46597,
+    "sizeKB": "45.50",
+    "sha256": "5c2526133ccb5dc06f9fe45b01a5864ff54b2a5fdbf1f410d1cdc7790db8025c",
+    "category": "B",
+    "reason": "Obsolete loose video frame extraction in root; active hero canvas uses frames/frame_*.jpg"
+  },
+  {
+    "relPath": "ezgif-frame-156.jpg",
+    "filename": "ezgif-frame-156.jpg",
+    "ext": ".jpg",
+    "sizeBytes": 46711,
+    "sizeKB": "45.62",
+    "sha256": "a630111a78cc2c0695c7fed0639b6fd8aed54742a0e5b3659cde2a330acf9231",
+    "category": "B",
+    "reason": "Obsolete loose video frame extraction in root; active hero canvas uses frames/frame_*.jpg"
+  },
+  {
+    "relPath": "ezgif-frame-157.jpg",
+    "filename": "ezgif-frame-157.jpg",
+    "ext": ".jpg",
+    "sizeBytes": 46480,
+    "sizeKB": "45.39",
+    "sha256": "41cf5e88743464130f3e5e63adc86589f6ae2b2654865d21cb1c5f9f5a07c2bb",
+    "category": "B",
+    "reason": "Obsolete loose video frame extraction in root; active hero canvas uses frames/frame_*.jpg"
+  },
+  {
+    "relPath": "ezgif-frame-159.jpg",
+    "filename": "ezgif-frame-159.jpg",
+    "ext": ".jpg",
+    "sizeBytes": 46630,
+    "sizeKB": "45.54",
+    "sha256": "481091b9bd302261b55c86739e822603441fdad44324e2bfae902b46bc61c901",
+    "category": "B",
+    "reason": "Obsolete loose video frame extraction in root; active hero canvas uses frames/frame_*.jpg"
+  },
+  {
+    "relPath": "ezgif-frame-160.jpg",
+    "filename": "ezgif-frame-160.jpg",
+    "ext": ".jpg",
+    "sizeBytes": 45869,
+    "sizeKB": "44.79",
+    "sha256": "6f85f51b2d86094ed789854c6bb18bcac717740f0762f49ded6a8b6df4a49566",
+    "category": "B",
+    "reason": "Obsolete loose video frame extraction in root; active hero canvas uses frames/frame_*.jpg"
+  },
+  {
+    "relPath": "ezgif-frame-161.jpg",
+    "filename": "ezgif-frame-161.jpg",
+    "ext": ".jpg",
+    "sizeBytes": 44042,
+    "sizeKB": "43.01",
+    "sha256": "1af12c1dd0666f83275539eeeab62e0ebe5227ee363e4d07d18d50aa08e5d0ac",
+    "category": "B",
+    "reason": "Obsolete loose video frame extraction in root; active hero canvas uses frames/frame_*.jpg"
+  },
+  {
+    "relPath": "ezgif-frame-162.jpg",
+    "filename": "ezgif-frame-162.jpg",
+    "ext": ".jpg",
+    "sizeBytes": 44186,
+    "sizeKB": "43.15",
+    "sha256": "3b8fb1d80c7c8cbe18048aa7de83128960da20318e6b6bc517da951125c13276",
+    "category": "B",
+    "reason": "Obsolete loose video frame extraction in root; active hero canvas uses frames/frame_*.jpg"
+  },
+  {
+    "relPath": "ezgif-frame-164.jpg",
+    "filename": "ezgif-frame-164.jpg",
+    "ext": ".jpg",
+    "sizeBytes": 44628,
+    "sizeKB": "43.58",
+    "sha256": "5cb243c04c750a71dee1a4c7f4fa4a6dd8ce092a3dac88bcfa2b3b202e2a04d8",
+    "category": "B",
+    "reason": "Obsolete loose video frame extraction in root; active hero canvas uses frames/frame_*.jpg"
+  },
+  {
+    "relPath": "ezgif-frame-165.jpg",
+    "filename": "ezgif-frame-165.jpg",
+    "ext": ".jpg",
+    "sizeBytes": 44461,
+    "sizeKB": "43.42",
+    "sha256": "74f8f28ffec182d2505875b76936bc96d7cdb6d4c93dc518dd7f87fe96432683",
+    "category": "B",
+    "reason": "Obsolete loose video frame extraction in root; active hero canvas uses frames/frame_*.jpg"
+  },
+  {
+    "relPath": "ezgif-frame-166.jpg",
+    "filename": "ezgif-frame-166.jpg",
+    "ext": ".jpg",
+    "sizeBytes": 44479,
+    "sizeKB": "43.44",
+    "sha256": "7f0ff5326348aa4dd8a201b3dafd8c497567554ac15843f5705d6485ca53b3d5",
+    "category": "B",
+    "reason": "Obsolete loose video frame extraction in root; active hero canvas uses frames/frame_*.jpg"
+  },
+  {
+    "relPath": "ezgif-frame-167.jpg",
+    "filename": "ezgif-frame-167.jpg",
+    "ext": ".jpg",
+    "sizeBytes": 44543,
+    "sizeKB": "43.50",
+    "sha256": "3740d3b4a0333e2d789abbae664d2ad44330e6eb06e9014aa1bebadaba8e2941",
+    "category": "B",
+    "reason": "Obsolete loose video frame extraction in root; active hero canvas uses frames/frame_*.jpg"
+  },
+  {
+    "relPath": "ezgif-frame-169.jpg",
+    "filename": "ezgif-frame-169.jpg",
+    "ext": ".jpg",
+    "sizeBytes": 44672,
+    "sizeKB": "43.63",
+    "sha256": "d199640845a074a0b757bcdb457fd0dc9187d4269c4748787d4bc5922520cdfc",
+    "category": "B",
+    "reason": "Obsolete loose video frame extraction in root; active hero canvas uses frames/frame_*.jpg"
+  },
+  {
+    "relPath": "ezgif-frame-170.jpg",
+    "filename": "ezgif-frame-170.jpg",
+    "ext": ".jpg",
+    "sizeBytes": 44179,
+    "sizeKB": "43.14",
+    "sha256": "fd1679ae58ea9ba77280abbf694b937ca574ead438a8b02b6f5d79eaadcaea8c",
+    "category": "B",
+    "reason": "Obsolete loose video frame extraction in root; active hero canvas uses frames/frame_*.jpg"
+  },
+  {
+    "relPath": "ezgif-frame-171.jpg",
+    "filename": "ezgif-frame-171.jpg",
+    "ext": ".jpg",
+    "sizeBytes": 44172,
+    "sizeKB": "43.14",
+    "sha256": "b593e344adfd2574426fd163b7b1d34f7b712c078dff1025de5b574e8cd01b11",
+    "category": "B",
+    "reason": "Obsolete loose video frame extraction in root; active hero canvas uses frames/frame_*.jpg"
+  },
+  {
+    "relPath": "ezgif-frame-172.jpg",
+    "filename": "ezgif-frame-172.jpg",
+    "ext": ".jpg",
+    "sizeBytes": 43988,
+    "sizeKB": "42.96",
+    "sha256": "41fb0bad0e039b1e3ec9006d6169499c59986c6547751acf2c4e2606014ea856",
+    "category": "B",
+    "reason": "Obsolete loose video frame extraction in root; active hero canvas uses frames/frame_*.jpg"
+  },
+  {
+    "relPath": "ezgif-frame-174.jpg",
+    "filename": "ezgif-frame-174.jpg",
+    "ext": ".jpg",
+    "sizeBytes": 44345,
+    "sizeKB": "43.31",
+    "sha256": "48df8709ad677229267b6a6d3db71c9d33d12f35db4166dbba563919bf0e5501",
+    "category": "B",
+    "reason": "Obsolete loose video frame extraction in root; active hero canvas uses frames/frame_*.jpg"
+  },
+  {
+    "relPath": "ezgif-frame-175.jpg",
+    "filename": "ezgif-frame-175.jpg",
+    "ext": ".jpg",
+    "sizeBytes": 44090,
+    "sizeKB": "43.06",
+    "sha256": "0c9e8c78975d6e73fbfe43037a1fc491b8ebdc9e4d549fb448cfc15611f14c1c",
+    "category": "B",
+    "reason": "Obsolete loose video frame extraction in root; active hero canvas uses frames/frame_*.jpg"
+  },
+  {
+    "relPath": "ezgif-frame-176.jpg",
+    "filename": "ezgif-frame-176.jpg",
+    "ext": ".jpg",
+    "sizeBytes": 44165,
+    "sizeKB": "43.13",
+    "sha256": "e0c6bd4e443495264d6e4bef62d37a6009cd3a82a8bc552cd465ce8bf1017f75",
+    "category": "B",
+    "reason": "Obsolete loose video frame extraction in root; active hero canvas uses frames/frame_*.jpg"
+  },
+  {
+    "relPath": "ezgif-frame-177.jpg",
+    "filename": "ezgif-frame-177.jpg",
+    "ext": ".jpg",
+    "sizeBytes": 44136,
+    "sizeKB": "43.10",
+    "sha256": "593c8d835fc1accad349ce2eddb22be65b2f583afd47edd21cf81724f6ecc6fb",
+    "category": "B",
+    "reason": "Obsolete loose video frame extraction in root; active hero canvas uses frames/frame_*.jpg"
+  },
+  {
+    "relPath": "ezgif-frame-179.jpg",
+    "filename": "ezgif-frame-179.jpg",
+    "ext": ".jpg",
+    "sizeBytes": 44438,
+    "sizeKB": "43.40",
+    "sha256": "318ab6ec54130d1c4aa64898b97401ebb44a8f17abb99ed3075b83c92f2db82f",
+    "category": "B",
+    "reason": "Obsolete loose video frame extraction in root; active hero canvas uses frames/frame_*.jpg"
+  },
+  {
+    "relPath": "ezgif-frame-180.jpg",
+    "filename": "ezgif-frame-180.jpg",
+    "ext": ".jpg",
+    "sizeBytes": 43882,
+    "sizeKB": "42.85",
+    "sha256": "1ef08f1c0bfaf356326c04eb954cfc2fba79e3760f66c223df87b02aea95472e",
+    "category": "B",
+    "reason": "Obsolete loose video frame extraction in root; active hero canvas uses frames/frame_*.jpg"
+  },
+  {
+    "relPath": "ezgif-frame-181.jpg",
+    "filename": "ezgif-frame-181.jpg",
+    "ext": ".jpg",
+    "sizeBytes": 43983,
+    "sizeKB": "42.95",
+    "sha256": "f7ddff5b4ecf943545cc99aadbec15ec409f7639de00802d2a60488d78975463",
+    "category": "B",
+    "reason": "Obsolete loose video frame extraction in root; active hero canvas uses frames/frame_*.jpg"
+  },
+  {
+    "relPath": "ezgif-frame-182.jpg",
+    "filename": "ezgif-frame-182.jpg",
+    "ext": ".jpg",
+    "sizeBytes": 43833,
+    "sizeKB": "42.81",
+    "sha256": "1384deaccf5b34650c4d2ba5bd001ec6587cae33c97be185ff15bb9d4813fe47",
+    "category": "B",
+    "reason": "Obsolete loose video frame extraction in root; active hero canvas uses frames/frame_*.jpg"
+  },
+  {
+    "relPath": "ezgif-frame-184.jpg",
+    "filename": "ezgif-frame-184.jpg",
+    "ext": ".jpg",
+    "sizeBytes": 44370,
+    "sizeKB": "43.33",
+    "sha256": "dc8905616800b62e605f7c60ebd5038e4b261305232fcc42f577c6fbc0842ef3",
+    "category": "B",
+    "reason": "Obsolete loose video frame extraction in root; active hero canvas uses frames/frame_*.jpg"
+  },
+  {
+    "relPath": "ezgif-frame-185.jpg",
+    "filename": "ezgif-frame-185.jpg",
+    "ext": ".jpg",
+    "sizeBytes": 44166,
+    "sizeKB": "43.13",
+    "sha256": "e37542284f588bf5cb755e1a65b23286d701a8e9436dcf59bca1a5c050e98a0e",
+    "category": "B",
+    "reason": "Obsolete loose video frame extraction in root; active hero canvas uses frames/frame_*.jpg"
+  },
+  {
+    "relPath": "ezgif-frame-186.jpg",
+    "filename": "ezgif-frame-186.jpg",
+    "ext": ".jpg",
+    "sizeBytes": 44329,
+    "sizeKB": "43.29",
+    "sha256": "af20b2ec0a3491ebd6a5256d269e7f5bfdd3a8190895deded426f854c2061a63",
+    "category": "B",
+    "reason": "Obsolete loose video frame extraction in root; active hero canvas uses frames/frame_*.jpg"
+  },
+  {
+    "relPath": "ezgif-frame-187.jpg",
+    "filename": "ezgif-frame-187.jpg",
+    "ext": ".jpg",
+    "sizeBytes": 44199,
+    "sizeKB": "43.16",
+    "sha256": "714eeeec2c25b9949721bc9bc5aff40fa49d1ce44bdb3d728956ed6bccd42da3",
+    "category": "B",
+    "reason": "Obsolete loose video frame extraction in root; active hero canvas uses frames/frame_*.jpg"
+  },
+  {
+    "relPath": "ezgif-frame-189.jpg",
+    "filename": "ezgif-frame-189.jpg",
+    "ext": ".jpg",
+    "sizeBytes": 44533,
+    "sizeKB": "43.49",
+    "sha256": "05b9f7cc49d76b26e735b3987acf67a959544f421cf52b993b2ee510a14c6ae3",
+    "category": "B",
+    "reason": "Obsolete loose video frame extraction in root; active hero canvas uses frames/frame_*.jpg"
+  },
+  {
+    "relPath": "ezgif-frame-190.jpg",
+    "filename": "ezgif-frame-190.jpg",
+    "ext": ".jpg",
+    "sizeBytes": 44101,
+    "sizeKB": "43.07",
+    "sha256": "fe07cc26181b76b9aa1b1d54f33f38dc338cc436aea4e886c7fc4b3b7eb5d69b",
+    "category": "B",
+    "reason": "Obsolete loose video frame extraction in root; active hero canvas uses frames/frame_*.jpg"
+  },
+  {
+    "relPath": "ezgif-frame-191.jpg",
+    "filename": "ezgif-frame-191.jpg",
+    "ext": ".jpg",
+    "sizeBytes": 44182,
+    "sizeKB": "43.15",
+    "sha256": "e1973385d2d3aeee463488a64a8f9ebc9a384f5e30fa93719edab60ce9c13b06",
+    "category": "B",
+    "reason": "Obsolete loose video frame extraction in root; active hero canvas uses frames/frame_*.jpg"
+  },
+  {
+    "relPath": "ezgif-frame-192.jpg",
+    "filename": "ezgif-frame-192.jpg",
+    "ext": ".jpg",
+    "sizeBytes": 44180,
+    "sizeKB": "43.14",
+    "sha256": "eab4a1c805dbb8f59579cc0373e909fab6380e1c6c5b8f6176983a73fe8b73fe",
+    "category": "B",
+    "reason": "Obsolete loose video frame extraction in root; active hero canvas uses frames/frame_*.jpg"
+  },
+  {
+    "relPath": "ezgif-frame-194.jpg",
+    "filename": "ezgif-frame-194.jpg",
+    "ext": ".jpg",
+    "sizeBytes": 44499,
+    "sizeKB": "43.46",
+    "sha256": "7418657652203809c6eb4ffda143832dbfbd7a54f34a30fed91881222258b46d",
+    "category": "B",
+    "reason": "Obsolete loose video frame extraction in root; active hero canvas uses frames/frame_*.jpg"
+  },
+  {
+    "relPath": "ezgif-frame-195.jpg",
+    "filename": "ezgif-frame-195.jpg",
+    "ext": ".jpg",
+    "sizeBytes": 44452,
+    "sizeKB": "43.41",
+    "sha256": "de21c0387bbc4e3167f0d63546d2b4395ab1048e12e47dd1e29ebf615ff737f3",
+    "category": "B",
+    "reason": "Obsolete loose video frame extraction in root; active hero canvas uses frames/frame_*.jpg"
+  },
+  {
+    "relPath": "ezgif-frame-196.jpg",
+    "filename": "ezgif-frame-196.jpg",
+    "ext": ".jpg",
+    "sizeBytes": 44407,
+    "sizeKB": "43.37",
+    "sha256": "cd0f3c21a9186c296841d6973c40505e577ad765976bf53d2111301f4e8cb60b",
+    "category": "B",
+    "reason": "Obsolete loose video frame extraction in root; active hero canvas uses frames/frame_*.jpg"
+  },
+  {
+    "relPath": "ezgif-frame-197.jpg",
+    "filename": "ezgif-frame-197.jpg",
+    "ext": ".jpg",
+    "sizeBytes": 44350,
+    "sizeKB": "43.31",
+    "sha256": "c212203ba19dade107b0ebfd0ad4fa4c9d0e32fdbfd37041ea7baafede8e98ae",
+    "category": "B",
+    "reason": "Obsolete loose video frame extraction in root; active hero canvas uses frames/frame_*.jpg"
+  },
+  {
+    "relPath": "ezgif-frame-199.jpg",
+    "filename": "ezgif-frame-199.jpg",
+    "ext": ".jpg",
+    "sizeBytes": 44541,
+    "sizeKB": "43.50",
+    "sha256": "4ec74f5abeab9bf43bfcded4203c018726f70b355fb689286292d5243260a6cb",
+    "category": "B",
+    "reason": "Obsolete loose video frame extraction in root; active hero canvas uses frames/frame_*.jpg"
+  },
+  {
+    "relPath": "ezgif-frame-200.jpg",
+    "filename": "ezgif-frame-200.jpg",
+    "ext": ".jpg",
+    "sizeBytes": 44367,
+    "sizeKB": "43.33",
+    "sha256": "ba61702688c9e85f89356aaa8ae6676e811052f9a5a5ad280f9b903a65c25e3d",
+    "category": "B",
+    "reason": "Obsolete loose video frame extraction in root; active hero canvas uses frames/frame_*.jpg"
+  },
+  {
+    "relPath": "ezgif-frame-201.jpg",
+    "filename": "ezgif-frame-201.jpg",
+    "ext": ".jpg",
+    "sizeBytes": 44249,
+    "sizeKB": "43.21",
+    "sha256": "87685e7733979ede4e82293009478831e4093e5d2206ed39d6777a95f1224ed6",
+    "category": "B",
+    "reason": "Obsolete loose video frame extraction in root; active hero canvas uses frames/frame_*.jpg"
+  },
+  {
+    "relPath": "ezgif-frame-202.jpg",
+    "filename": "ezgif-frame-202.jpg",
+    "ext": ".jpg",
+    "sizeBytes": 44275,
+    "sizeKB": "43.24",
+    "sha256": "481bf841cc998fcb239d4cb510d13ffc58e4de9ceb83d05d4721bbd9074fd824",
+    "category": "B",
+    "reason": "Obsolete loose video frame extraction in root; active hero canvas uses frames/frame_*.jpg"
+  },
+  {
+    "relPath": "ezgif-frame-204.jpg",
+    "filename": "ezgif-frame-204.jpg",
+    "ext": ".jpg",
+    "sizeBytes": 44577,
+    "sizeKB": "43.53",
+    "sha256": "8bc5de6dcc4f12a062e81da12da0a19a3c9afe2a8a2cf9591df83bb0792761c6",
+    "category": "B",
+    "reason": "Obsolete loose video frame extraction in root; active hero canvas uses frames/frame_*.jpg"
+  },
+  {
+    "relPath": "ezgif-frame-205.jpg",
+    "filename": "ezgif-frame-205.jpg",
+    "ext": ".jpg",
+    "sizeBytes": 44538,
+    "sizeKB": "43.49",
+    "sha256": "afbf2d9ffb44bac2e94e7b177bd54d26b3570e399ecf5d7e0f4843d3a89350dd",
+    "category": "B",
+    "reason": "Obsolete loose video frame extraction in root; active hero canvas uses frames/frame_*.jpg"
+  },
+  {
+    "relPath": "ezgif-frame-206.jpg",
+    "filename": "ezgif-frame-206.jpg",
+    "ext": ".jpg",
+    "sizeBytes": 44354,
+    "sizeKB": "43.31",
+    "sha256": "42ec2a60a3250298585e5f2135890f00fb42b52f8674d2ec1fc57b52b0f13a9e",
+    "category": "B",
+    "reason": "Obsolete loose video frame extraction in root; active hero canvas uses frames/frame_*.jpg"
+  },
+  {
+    "relPath": "ezgif-frame-207.jpg",
+    "filename": "ezgif-frame-207.jpg",
+    "ext": ".jpg",
+    "sizeBytes": 44370,
+    "sizeKB": "43.33",
+    "sha256": "180f07dbd63163d42389c88ddc62709cd5eb81f3dbaf844b703a22e608f110be",
+    "category": "B",
+    "reason": "Obsolete loose video frame extraction in root; active hero canvas uses frames/frame_*.jpg"
+  },
+  {
+    "relPath": "ezgif-frame-209.jpg",
+    "filename": "ezgif-frame-209.jpg",
+    "ext": ".jpg",
+    "sizeBytes": 44516,
+    "sizeKB": "43.47",
+    "sha256": "2976564a82ffc15bf27cf14dd06a47e860af12112c853b4274c58f4635c1e5a8",
+    "category": "B",
+    "reason": "Obsolete loose video frame extraction in root; active hero canvas uses frames/frame_*.jpg"
+  },
+  {
+    "relPath": "ezgif-frame-210.jpg",
+    "filename": "ezgif-frame-210.jpg",
+    "ext": ".jpg",
+    "sizeBytes": 44144,
+    "sizeKB": "43.11",
+    "sha256": "65873f43c70907c5fa0d59498cd9de4f236caff09b17a57dc6d4d05b8e109104",
+    "category": "B",
+    "reason": "Obsolete loose video frame extraction in root; active hero canvas uses frames/frame_*.jpg"
+  },
+  {
+    "relPath": "ezgif-frame-211.jpg",
+    "filename": "ezgif-frame-211.jpg",
+    "ext": ".jpg",
+    "sizeBytes": 44164,
+    "sizeKB": "43.13",
+    "sha256": "00520a1f253243dcf9115a0fee8b55a9133c58c741f20a8e8c87b8f7b7ee6b45",
+    "category": "B",
+    "reason": "Obsolete loose video frame extraction in root; active hero canvas uses frames/frame_*.jpg"
+  },
+  {
+    "relPath": "ezgif-frame-212.jpg",
+    "filename": "ezgif-frame-212.jpg",
+    "ext": ".jpg",
+    "sizeBytes": 44092,
+    "sizeKB": "43.06",
+    "sha256": "10ed287c4f116ad02ec3ace9d714b1a7a80ed43d5459d6d0e0b3c51aca1f1bba",
+    "category": "B",
+    "reason": "Obsolete loose video frame extraction in root; active hero canvas uses frames/frame_*.jpg"
+  },
+  {
+    "relPath": "ezgif-frame-214.jpg",
+    "filename": "ezgif-frame-214.jpg",
+    "ext": ".jpg",
+    "sizeBytes": 44683,
+    "sizeKB": "43.64",
+    "sha256": "697c792d1acc4c3df4264dc56a3df64516e6e6dbcb91671558381a0db21991d0",
+    "category": "B",
+    "reason": "Obsolete loose video frame extraction in root; active hero canvas uses frames/frame_*.jpg"
+  },
+  {
+    "relPath": "ezgif-frame-215.jpg",
+    "filename": "ezgif-frame-215.jpg",
+    "ext": ".jpg",
+    "sizeBytes": 44521,
+    "sizeKB": "43.48",
+    "sha256": "d215b2dd1d123a8e9bbb933e9feb3491b27dde018815ad575c69ea7d43be309d",
+    "category": "B",
+    "reason": "Obsolete loose video frame extraction in root; active hero canvas uses frames/frame_*.jpg"
+  },
+  {
+    "relPath": "ezgif-frame-216.jpg",
+    "filename": "ezgif-frame-216.jpg",
+    "ext": ".jpg",
+    "sizeBytes": 44611,
+    "sizeKB": "43.57",
+    "sha256": "cadea23e1f57671ad23630dc398c716e2d65d11bc60d0d18cc9bfe4d005375dd",
+    "category": "B",
+    "reason": "Obsolete loose video frame extraction in root; active hero canvas uses frames/frame_*.jpg"
+  },
+  {
+    "relPath": "ezgif-frame-217.jpg",
+    "filename": "ezgif-frame-217.jpg",
+    "ext": ".jpg",
+    "sizeBytes": 44431,
+    "sizeKB": "43.39",
+    "sha256": "d61fd4080a076123c0c8f64d745bae0207f2a955fb606af602422e4964ef5d9d",
+    "category": "B",
+    "reason": "Obsolete loose video frame extraction in root; active hero canvas uses frames/frame_*.jpg"
+  },
+  {
+    "relPath": "ezgif-frame-219.jpg",
+    "filename": "ezgif-frame-219.jpg",
+    "ext": ".jpg",
+    "sizeBytes": 44780,
+    "sizeKB": "43.73",
+    "sha256": "d2030ce95a48096ec69aa13d5151ee3cb560ef8466398f1b11d9469375fe1cd7",
+    "category": "B",
+    "reason": "Obsolete loose video frame extraction in root; active hero canvas uses frames/frame_*.jpg"
+  },
+  {
+    "relPath": "ezgif-frame-220.jpg",
+    "filename": "ezgif-frame-220.jpg",
+    "ext": ".jpg",
+    "sizeBytes": 44526,
+    "sizeKB": "43.48",
+    "sha256": "f22625871b99d171303a9c316da17dfd0472a42e6a87ae4783b7017b7a7767c4",
+    "category": "B",
+    "reason": "Obsolete loose video frame extraction in root; active hero canvas uses frames/frame_*.jpg"
+  },
+  {
+    "relPath": "ezgif-frame-221.jpg",
+    "filename": "ezgif-frame-221.jpg",
+    "ext": ".jpg",
+    "sizeBytes": 44287,
+    "sizeKB": "43.25",
+    "sha256": "e9c74d05fde4a62215eebfbef1f12b56c195438118e0b6d52e59887e26527fd2",
+    "category": "B",
+    "reason": "Obsolete loose video frame extraction in root; active hero canvas uses frames/frame_*.jpg"
+  },
+  {
+    "relPath": "ezgif-frame-222.jpg",
+    "filename": "ezgif-frame-222.jpg",
+    "ext": ".jpg",
+    "sizeBytes": 44102,
+    "sizeKB": "43.07",
+    "sha256": "aa670185f9d30e1e5af142274f4fdaaa27798a14574cf378662e6d3ede7d5ce8",
+    "category": "B",
+    "reason": "Obsolete loose video frame extraction in root; active hero canvas uses frames/frame_*.jpg"
+  },
+  {
+    "relPath": "ezgif-frame-224.jpg",
+    "filename": "ezgif-frame-224.jpg",
+    "ext": ".jpg",
+    "sizeBytes": 44528,
+    "sizeKB": "43.48",
+    "sha256": "544c482f11e92d8d5ef7f0d20ed1ceded6322c41a68b66f71cedd3739de7b8b8",
+    "category": "B",
+    "reason": "Obsolete loose video frame extraction in root; active hero canvas uses frames/frame_*.jpg"
+  },
+  {
+    "relPath": "ezgif-frame-225.jpg",
+    "filename": "ezgif-frame-225.jpg",
+    "ext": ".jpg",
+    "sizeBytes": 44470,
+    "sizeKB": "43.43",
+    "sha256": "7e90ea3c037a58c77a404242fd0ea610bce61e63dfb20beef34bcf34f7d959a5",
+    "category": "B",
+    "reason": "Obsolete loose video frame extraction in root; active hero canvas uses frames/frame_*.jpg"
+  },
+  {
+    "relPath": "ezgif-frame-226.jpg",
+    "filename": "ezgif-frame-226.jpg",
+    "ext": ".jpg",
+    "sizeBytes": 44645,
+    "sizeKB": "43.60",
+    "sha256": "26efe18dc254ccc4cfaf2811e89e47e9aa46b2294b1c66f73530f5cfde83aea0",
+    "category": "B",
+    "reason": "Obsolete loose video frame extraction in root; active hero canvas uses frames/frame_*.jpg"
+  },
+  {
+    "relPath": "ezgif-frame-227.jpg",
+    "filename": "ezgif-frame-227.jpg",
+    "ext": ".jpg",
+    "sizeBytes": 44654,
+    "sizeKB": "43.61",
+    "sha256": "5a52beb49a2f3ae0eab253daea43046b83cdc305829d1df4ba1fb3dd1f47915e",
+    "category": "B",
+    "reason": "Obsolete loose video frame extraction in root; active hero canvas uses frames/frame_*.jpg"
+  },
+  {
+    "relPath": "ezgif-frame-229.jpg",
+    "filename": "ezgif-frame-229.jpg",
+    "ext": ".jpg",
+    "sizeBytes": 44722,
+    "sizeKB": "43.67",
+    "sha256": "65bbf68c341c803ed5f07c3f0057d99b8aa68c6b624ef0677afa01ee60b37ae4",
+    "category": "B",
+    "reason": "Obsolete loose video frame extraction in root; active hero canvas uses frames/frame_*.jpg"
+  },
+  {
+    "relPath": "ezgif-frame-230.jpg",
+    "filename": "ezgif-frame-230.jpg",
+    "ext": ".jpg",
+    "sizeBytes": 44634,
+    "sizeKB": "43.59",
+    "sha256": "fc15accbd84b84a6753b0fbfb305a20552281e36d01025fc9c494b501a142c31",
+    "category": "B",
+    "reason": "Obsolete loose video frame extraction in root; active hero canvas uses frames/frame_*.jpg"
+  },
+  {
+    "relPath": "ezgif-frame-231.jpg",
+    "filename": "ezgif-frame-231.jpg",
+    "ext": ".jpg",
+    "sizeBytes": 45311,
+    "sizeKB": "44.25",
+    "sha256": "3bc9581875a1c70f974f5e8733076ad2a45ec8aba58eccdfe4445ee019a34a6b",
+    "category": "B",
+    "reason": "Obsolete loose video frame extraction in root; active hero canvas uses frames/frame_*.jpg"
+  },
+  {
+    "relPath": "ezgif-frame-232.jpg",
+    "filename": "ezgif-frame-232.jpg",
+    "ext": ".jpg",
+    "sizeBytes": 45485,
+    "sizeKB": "44.42",
+    "sha256": "e1a2598a8eb195f33217e64b5bb1b0033f938a1d3a4db0b47f16f7f6daee6e6a",
+    "category": "B",
+    "reason": "Obsolete loose video frame extraction in root; active hero canvas uses frames/frame_*.jpg"
+  },
+  {
+    "relPath": "ezgif-frame-234.jpg",
+    "filename": "ezgif-frame-234.jpg",
+    "ext": ".jpg",
+    "sizeBytes": 45600,
+    "sizeKB": "44.53",
+    "sha256": "f50371820ab452189dfa4ed677a12049f2f7cfbf1ebf60b9e616393e2632d0ad",
+    "category": "B",
+    "reason": "Obsolete loose video frame extraction in root; active hero canvas uses frames/frame_*.jpg"
+  },
+  {
+    "relPath": "ezgif-frame-235.jpg",
+    "filename": "ezgif-frame-235.jpg",
+    "ext": ".jpg",
+    "sizeBytes": 45641,
+    "sizeKB": "44.57",
+    "sha256": "38ca914a392ce44a570ec6162a611d5c4da3bb632540acd4c8951f59ab4412f3",
+    "category": "B",
+    "reason": "Obsolete loose video frame extraction in root; active hero canvas uses frames/frame_*.jpg"
+  },
+  {
+    "relPath": "ezgif-frame-236.jpg",
+    "filename": "ezgif-frame-236.jpg",
+    "ext": ".jpg",
+    "sizeBytes": 45782,
+    "sizeKB": "44.71",
+    "sha256": "21dc693fc4b48d1150ec38f30fcde9fc4b86247b03fba591fff6f7e9a55249fd",
+    "category": "B",
+    "reason": "Obsolete loose video frame extraction in root; active hero canvas uses frames/frame_*.jpg"
+  },
+  {
+    "relPath": "ezgif-frame-237.jpg",
+    "filename": "ezgif-frame-237.jpg",
+    "ext": ".jpg",
+    "sizeBytes": 45543,
+    "sizeKB": "44.48",
+    "sha256": "4f8f405e0dc6c510497bc24033d0e2f3fd534337ca2474e8e0792b50187e9c27",
+    "category": "B",
+    "reason": "Obsolete loose video frame extraction in root; active hero canvas uses frames/frame_*.jpg"
+  },
+  {
+    "relPath": "ezgif-frame-239.jpg",
+    "filename": "ezgif-frame-239.jpg",
+    "ext": ".jpg",
+    "sizeBytes": 45720,
+    "sizeKB": "44.65",
+    "sha256": "10e64775f92090e6f53c8d3ca695634633f732097e3b49cc5c6100e5fc1f15e3",
+    "category": "B",
+    "reason": "Obsolete loose video frame extraction in root; active hero canvas uses frames/frame_*.jpg"
+  },
+  {
+    "relPath": "ezgif-frame-240.jpg",
+    "filename": "ezgif-frame-240.jpg",
+    "ext": ".jpg",
+    "sizeBytes": 45820,
+    "sizeKB": "44.75",
+    "sha256": "68661dbfb824b6dd7b78c00d535844a45777a6ad5e25251c10bbf9c27726c4d4",
+    "category": "B",
+    "reason": "Obsolete loose video frame extraction in root; active hero canvas uses frames/frame_*.jpg"
+  },
+  {
+    "relPath": "new_dark_contact_card.png",
+    "filename": "new_dark_contact_card.png",
+    "ext": ".png",
+    "sizeBytes": 616479,
+    "sizeKB": "602.03",
+    "sha256": "672bb6f83bfac12aa3fff1ee67c79dec65c9b6f037567107df6971c9b6d74884",
+    "category": "B",
+    "reason": "No references found in HTML, JS, JSX, CSS, or CMS data"
+  },
+  {
+    "relPath": "new_light_contact_card.png",
+    "filename": "new_light_contact_card.png",
+    "ext": ".png",
+    "sizeBytes": 825384,
+    "sizeKB": "806.04",
+    "sha256": "c7bc248b54e122b7554bb9f76f8771b5b53fc2d766372724b2c95e309faadf9f",
+    "category": "B",
+    "reason": "No references found in HTML, JS, JSX, CSS, or CMS data"
+  },
+  {
+    "relPath": "reload_hero_start.png",
+    "filename": "reload_hero_start.png",
+    "ext": ".png",
+    "sizeBytes": 858156,
+    "sizeKB": "838.04",
+    "sha256": "7ba03496d359c63171ad083332007e6f2c0971d0a0e8dd01e6985fd12dba3d82",
+    "category": "B",
+    "reason": "No references found in HTML, JS, JSX, CSS, or CMS data"
+  },
+  {
+    "relPath": "scratch/backstage_hobbies.png",
+    "filename": "backstage_hobbies.png",
+    "ext": ".png",
+    "sizeBytes": 587328,
+    "sizeKB": "573.56",
+    "sha256": "54d8cb426fd9b09493a285ec192673a8225434c8a2a37e836063b3293b9b780d",
+    "category": "B",
+    "reason": "Test execution / scratch screenshot not referenced by application"
+  },
+  {
+    "relPath": "scratch/backstage_setup_screen.png",
+    "filename": "backstage_setup_screen.png",
+    "ext": ".png",
+    "sizeBytes": 228685,
+    "sizeKB": "223.33",
+    "sha256": "e50ec624c23841f7577e86cadbee17ec0ebb4c06449cf1c44653ae14d4afbd54",
+    "category": "B",
+    "reason": "Test execution / scratch screenshot not referenced by application"
+  },
+  {
+    "relPath": "scratch/backstage_unlocked.png",
+    "filename": "backstage_unlocked.png",
+    "ext": ".png",
+    "sizeBytes": 533167,
+    "sizeKB": "520.67",
+    "sha256": "fe652360e80f796a98009d5963e37d6e9c2d7caf1eaf26a181f4451cd49d36fa",
+    "category": "B",
+    "reason": "Test execution / scratch screenshot not referenced by application"
+  },
+  {
+    "relPath": "scratch/backstage_visual_orbit.png",
+    "filename": "backstage_visual_orbit.png",
+    "ext": ".png",
+    "sizeBytes": 587259,
+    "sizeKB": "573.50",
+    "sha256": "543208189d8e49e226f3e2159fe8df6c9bcf4f14976dbd34487fc8ce6306f40d",
+    "category": "B",
+    "reason": "Test execution / scratch screenshot not referenced by application"
+  },
+  {
+    "relPath": "scratch/final_cta_dark_verified.png",
+    "filename": "final_cta_dark_verified.png",
+    "ext": ".png",
+    "sizeBytes": 467780,
+    "sizeKB": "456.82",
+    "sha256": "00e53210f10d8e6299af5216f880bfc1e5df61e35753e75f9ea289c99c9d1a56",
+    "category": "B",
+    "reason": "Test execution / scratch screenshot not referenced by application"
+  },
+  {
+    "relPath": "scratch/final_cta_light_verified.png",
+    "filename": "final_cta_light_verified.png",
+    "ext": ".png",
+    "sizeBytes": 645174,
+    "sizeKB": "630.05",
+    "sha256": "c60f8616c2aa6fd6e9fec0a6760fbd357fa3cf7f77ca4ed2462f351aace50e6a",
+    "category": "B",
+    "reason": "Test execution / scratch screenshot not referenced by application"
+  },
+  {
+    "relPath": "scratch/id_card_back.png",
+    "filename": "id_card_back.png",
+    "ext": ".png",
+    "sizeBytes": 68444,
+    "sizeKB": "66.84",
+    "sha256": "7377dd88cf475c32ff34e2253492f56f4a96de71cb2fe0e1a1906470586cd1af",
+    "category": "B",
+    "reason": "Test execution / scratch screenshot not referenced by application"
+  },
+  {
+    "relPath": "scratch/id_card_flipped_back.png",
+    "filename": "id_card_flipped_back.png",
+    "ext": ".png",
+    "sizeBytes": 100228,
+    "sizeKB": "97.88",
+    "sha256": "b0b6927621eb34299ed2728eb06f585facd082e3db855cc3d208ed431fbc5656",
+    "category": "B",
+    "reason": "Test execution / scratch screenshot not referenced by application"
+  },
+  {
+    "relPath": "scratch/id_card_front.png",
+    "filename": "id_card_front.png",
+    "ext": ".png",
+    "sizeBytes": 100593,
+    "sizeKB": "98.24",
+    "sha256": "0c55d15cf4defe7857c47323c943c9a52d992ac7e3ed529326a4cb19159f466b",
+    "category": "B",
+    "reason": "Test execution / scratch screenshot not referenced by application"
+  },
+  {
+    "relPath": "scratch/live_dome_repaired.png",
+    "filename": "live_dome_repaired.png",
+    "ext": ".png",
+    "sizeBytes": 756839,
+    "sizeKB": "739.10",
+    "sha256": "e2d23e025382860fe34ae38ff21b1c2cec4ad1e7407431bdeacee01fa6117e46",
+    "category": "B",
+    "reason": "Test execution / scratch screenshot not referenced by application"
+  },
+  {
+    "relPath": "scratch/logos_preview.png",
+    "filename": "logos_preview.png",
+    "ext": ".png",
+    "sizeBytes": 24700,
+    "sizeKB": "24.12",
+    "sha256": "92d8c21e6685c930c7f3c3c8414fb4f2052420d8ecfa77eae4275e421e37966d",
+    "category": "B",
+    "reason": "Test execution / scratch screenshot not referenced by application"
+  },
+  {
+    "relPath": "scratch/master_verification_success.png",
+    "filename": "master_verification_success.png",
+    "ext": ".png",
+    "sizeBytes": 1028716,
+    "sizeKB": "1004.61",
+    "sha256": "1071eebdcf5ac6d8881bf141e5b0e95a3385e6b5d00859bd3c5d5a027e4decd4",
+    "category": "B",
+    "reason": "Test execution / scratch screenshot not referenced by application"
+  },
+  {
+    "relPath": "scratch/merged_numbers_btf.png",
+    "filename": "merged_numbers_btf.png",
+    "ext": ".png",
+    "sizeBytes": 584535,
+    "sizeKB": "570.83",
+    "sha256": "26d77deed1aede5e99b897dc157520777719460338cc0d17fc4c815edf6888d8",
+    "category": "B",
+    "reason": "Test execution / scratch screenshot not referenced by application"
+  },
+  {
+    "relPath": "scratch/off_the_clock.png",
+    "filename": "off_the_clock.png",
+    "ext": ".png",
+    "sizeBytes": 528459,
+    "sizeKB": "516.07",
+    "sha256": "717fa36fb469a8d53f8dcef10524e76c87a848829ee47d645265533c70e70fe6",
+    "category": "B",
+    "reason": "Test execution / scratch screenshot not referenced by application"
+  },
+  {
+    "relPath": "scratch/orbit_desktop_1440.png",
+    "filename": "orbit_desktop_1440.png",
+    "ext": ".png",
+    "sizeBytes": 765485,
+    "sizeKB": "747.54",
+    "sha256": "d47029fa137d739a79cd45a1b72b8170cbeee9782c1c6f4eecbc7b5b7586a357",
+    "category": "B",
+    "reason": "Test execution / scratch screenshot not referenced by application"
+  },
+  {
+    "relPath": "scratch/orbit_mobile_480.png",
+    "filename": "orbit_mobile_480.png",
+    "ext": ".png",
+    "sizeBytes": 265675,
+    "sizeKB": "259.45",
+    "sha256": "9b053a1f0bd0bb4aad1559335f32c0a80562818a551863c607f70abbf91d0b2d",
+    "category": "B",
+    "reason": "Test execution / scratch screenshot not referenced by application"
+  },
+  {
+    "relPath": "scratch/orbit_tablet_1024.png",
+    "filename": "orbit_tablet_1024.png",
+    "ext": ".png",
+    "sizeBytes": 638224,
+    "sizeKB": "623.27",
+    "sha256": "0b81782f179634f5ce89c45eb4a45bc4e8a00ceef39b8568ad143d91e00eb16d",
+    "category": "B",
+    "reason": "Test execution / scratch screenshot not referenced by application"
+  },
+  {
+    "relPath": "scratch/public_cta.png",
+    "filename": "public_cta.png",
+    "ext": ".png",
+    "sizeBytes": 463622,
+    "sizeKB": "452.76",
+    "sha256": "91d8c2a1d3b3f378ad6aa1c8e74c8bf379d8ec21ae9d38afcde263d072d73160",
+    "category": "B",
+    "reason": "Test execution / scratch screenshot not referenced by application"
+  },
+  {
+    "relPath": "scratch/public_hobbies.png",
+    "filename": "public_hobbies.png",
+    "ext": ".png",
+    "sizeBytes": 143406,
+    "sizeKB": "140.04",
+    "sha256": "04f5cc787e86f62c4b0cc7bd1f7c06782c8dbc4e1209d301d59583a79e77287a",
+    "category": "B",
+    "reason": "Test execution / scratch screenshot not referenced by application"
+  },
+  {
+    "relPath": "scratch/public_visual_orbit.png",
+    "filename": "public_visual_orbit.png",
+    "ext": ".png",
+    "sizeBytes": 217766,
+    "sizeKB": "212.66",
+    "sha256": "8a09907cf04f259301f589b84c0602e9b20c5dcb72783c281fc892bf60bdc45a",
+    "category": "B",
+    "reason": "Test execution / scratch screenshot not referenced by application"
+  },
+  {
+    "relPath": "scratch/rebuilt_48_dome.png",
+    "filename": "rebuilt_48_dome.png",
+    "ext": ".png",
+    "sizeBytes": 787014,
+    "sizeKB": "768.57",
+    "sha256": "4ffeaddb83bbf01b194001e1acbef13418194c831231d68a8c2937870790c177",
+    "category": "B",
+    "reason": "Test execution / scratch screenshot not referenced by application"
+  },
+  {
+    "relPath": "scratch/screenshot_boundary.png",
+    "filename": "screenshot_boundary.png",
+    "ext": ".png",
+    "sizeBytes": 1344867,
+    "sizeKB": "1313.35",
+    "sha256": "b955019987b9d96508fe2dbe21b40a70d63bbf05fd748cafeb1daf5081f77b4c",
+    "category": "B",
+    "reason": "Test execution / scratch screenshot not referenced by application"
+  },
+  {
+    "relPath": "scratch/screenshot_btf.png",
+    "filename": "screenshot_btf.png",
+    "ext": ".png",
+    "sizeBytes": 580258,
+    "sizeKB": "566.66",
+    "sha256": "c0f3a4a78f22fb3500a5c602eabb04826271b1d95740530b364fd1b1c50bb013",
+    "category": "B",
+    "reason": "Test execution / scratch screenshot not referenced by application"
+  },
+  {
+    "relPath": "scratch/screenshot_my_expertise.png",
+    "filename": "screenshot_my_expertise.png",
+    "ext": ".png",
+    "sizeBytes": 645548,
+    "sizeKB": "630.42",
+    "sha256": "df69871a91517c03007a647e4ebfbcfd6e3ae3ace41637faefe7dda0aa09c11f",
+    "category": "B",
+    "reason": "Test execution / scratch screenshot not referenced by application"
+  },
+  {
+    "relPath": "scratch/screenshot_ripple.png",
+    "filename": "screenshot_ripple.png",
+    "ext": ".png",
+    "sizeBytes": 1074343,
+    "sizeKB": "1049.16",
+    "sha256": "1af093ed9bf6efe372fa751b9058f4f13b9b7e14967e8d5ebd9e8fb5c55fc6fa",
+    "category": "B",
+    "reason": "Test execution / scratch screenshot not referenced by application"
+  },
+  {
+    "relPath": "scratch/screenshot_selected_works.png",
+    "filename": "screenshot_selected_works.png",
+    "ext": ".png",
+    "sizeBytes": 421394,
+    "sizeKB": "411.52",
+    "sha256": "f99f6bd3011cb05823ec6b84c773b03a91d7273ec17a8e6b372dd2b596f72d53",
+    "category": "B",
+    "reason": "Test execution / scratch screenshot not referenced by application"
+  },
+  {
+    "relPath": "scratch/screenshot_visual_orbit.png",
+    "filename": "screenshot_visual_orbit.png",
+    "ext": ".png",
+    "sizeBytes": 273835,
+    "sizeKB": "267.42",
+    "sha256": "1cd973e52d4fa67d5c921262ed54f0cde76def7634b22bd2c4cea981207b1761",
+    "category": "B",
+    "reason": "Test execution / scratch screenshot not referenced by application"
+  },
+  {
+    "relPath": "scratch/test_light_waves_scroll.png",
+    "filename": "test_light_waves_scroll.png",
+    "ext": ".png",
+    "sizeBytes": 313840,
+    "sizeKB": "306.48",
+    "sha256": "2fe134fa6eb10168755d5745775dbbf8e0c88a34c678176f2cd681224fa48d35",
+    "category": "B",
+    "reason": "Test execution / scratch screenshot not referenced by application"
+  },
+  {
+    "relPath": "scratch/test_mount.png",
+    "filename": "test_mount.png",
+    "ext": ".png",
+    "sizeBytes": 535023,
+    "sizeKB": "522.48",
+    "sha256": "60818420626639913fbd9f3778f1c54f61e43095aea829ae830d2ec7cee6c4c8",
+    "category": "B",
+    "reason": "Test execution / scratch screenshot not referenced by application"
+  },
+  {
+    "relPath": "scratch/test_scrolled_light.png",
+    "filename": "test_scrolled_light.png",
+    "ext": ".png",
+    "sizeBytes": 750310,
+    "sizeKB": "732.72",
+    "sha256": "72e854fc5622cffd3d20af455f80285437ad982553d6f4ced744aeb4b6e77c8a",
+    "category": "B",
+    "reason": "Test execution / scratch screenshot not referenced by application"
+  },
+  {
+    "relPath": "scratch/test_waves_isolated.png",
+    "filename": "test_waves_isolated.png",
+    "ext": ".png",
+    "sizeBytes": 154561,
+    "sizeKB": "150.94",
+    "sha256": "91792421f1b8189200ff99c8dd7ac9885802da5c0470df76ad2c05c465e56c11",
+    "category": "B",
+    "reason": "Test execution / scratch screenshot not referenced by application"
+  },
+  {
+    "relPath": "scratch/test_waves_tuned.png",
+    "filename": "test_waves_tuned.png",
+    "ext": ".png",
+    "sizeBytes": 17514,
+    "sizeKB": "17.10",
+    "sha256": "dd4127a8cbab711721d25954c44601e151b412d71b17c2edeef7597abe5556e5",
+    "category": "B",
+    "reason": "Test execution / scratch screenshot not referenced by application"
+  },
+  {
+    "relPath": "scratch/verification_pass.png",
+    "filename": "verification_pass.png",
+    "ext": ".png",
+    "sizeBytes": 264512,
+    "sizeKB": "258.31",
+    "sha256": "384844567802f9981a294284eb1c8650aa385b41231c6c6fda54501c0f27db6e",
+    "category": "B",
+    "reason": "Test execution / scratch screenshot not referenced by application"
+  },
+  {
+    "relPath": "scratch/verified_backstage_btf_9slots.png",
+    "filename": "verified_backstage_btf_9slots.png",
+    "ext": ".png",
+    "sizeBytes": 582032,
+    "sizeKB": "568.39",
+    "sha256": "7379c4ee229295c5b55f6beda674eff3c7d509d97057a2d1719c945a20b3d9b2",
+    "category": "B",
+    "reason": "Test execution / scratch screenshot not referenced by application"
+  },
+  {
+    "relPath": "scratch/verified_backstage_hobbies_controls.png",
+    "filename": "verified_backstage_hobbies_controls.png",
+    "ext": ".png",
+    "sizeBytes": 579740,
+    "sizeKB": "566.15",
+    "sha256": "df69161e19190cc10737193e40fedbd90a868c6a93f12a05c80495e65ff5a2e8",
+    "category": "B",
+    "reason": "Test execution / scratch screenshot not referenced by application"
+  },
+  {
+    "relPath": "scratch/verified_beyond_frame_9cards.png",
+    "filename": "verified_beyond_frame_9cards.png",
+    "ext": ".png",
+    "sizeBytes": 685817,
+    "sizeKB": "669.74",
+    "sha256": "242f9421afd9ebfdf0ab10fb531236bcc93d9c6d014aa61dcf556081ba0a2e9b",
+    "category": "B",
+    "reason": "Test execution / scratch screenshot not referenced by application"
+  },
+  {
+    "relPath": "scratch/verified_enlarged_orbit_dark.png",
+    "filename": "verified_enlarged_orbit_dark.png",
+    "ext": ".png",
+    "sizeBytes": 489031,
+    "sizeKB": "477.57",
+    "sha256": "948bb18c9247dc0eb33e72fa7c6ce6a570a5b0e9d069ccde0ba3fd8a8e01e16a",
+    "category": "B",
+    "reason": "Test execution / scratch screenshot not referenced by application"
+  },
+  {
+    "relPath": "scratch/verified_hobbies_01_panel.png",
+    "filename": "verified_hobbies_01_panel.png",
+    "ext": ".png",
+    "sizeBytes": 332839,
+    "sizeKB": "325.04",
+    "sha256": "390f639767dcdaec161675cee673fcf7a6da207735bda56503dac2d6d701fa65",
+    "category": "B",
+    "reason": "Test execution / scratch screenshot not referenced by application"
+  },
+  {
+    "relPath": "scratch/verified_hobbies_02_panels.png",
+    "filename": "verified_hobbies_02_panels.png",
+    "ext": ".png",
+    "sizeBytes": 366477,
+    "sizeKB": "357.89",
+    "sha256": "da1ba9fb9a3dc4a15452ebf5054e40f4643282a23522e7927dff467d5e4b3bb3",
+    "category": "B",
+    "reason": "Test execution / scratch screenshot not referenced by application"
+  },
+  {
+    "relPath": "scratch/verified_hobbies_06_panels.png",
+    "filename": "verified_hobbies_06_panels.png",
+    "ext": ".png",
+    "sizeBytes": 864607,
+    "sizeKB": "844.34",
+    "sha256": "ab74a65d7ac3e7458eeca21d7a30f3b690a89777b896b3f37665a86c12c6d939",
+    "category": "B",
+    "reason": "Test execution / scratch screenshot not referenced by application"
+  },
+  {
+    "relPath": "scratch/verified_hobbies_09_panels.png",
+    "filename": "verified_hobbies_09_panels.png",
+    "ext": ".png",
+    "sizeBytes": 804119,
+    "sizeKB": "785.27",
+    "sha256": "e9aeee721dbbdb314915c5c90313f4e7ffe459e0b488768a692e540fdc66902d",
+    "category": "B",
+    "reason": "Test execution / scratch screenshot not referenced by application"
+  },
+  {
+    "relPath": "scratch/verified_hobbies_12_panels.png",
+    "filename": "verified_hobbies_12_panels.png",
+    "ext": ".png",
+    "sizeBytes": 777219,
+    "sizeKB": "759.00",
+    "sha256": "355dbb4f6dbab91add47f62356de7568881e1e5cb1884400bfc44397a76fc8fc",
+    "category": "B",
+    "reason": "Test execution / scratch screenshot not referenced by application"
+  },
+  {
+    "relPath": "scratch/verified_hobbies_mobile_390.png",
+    "filename": "verified_hobbies_mobile_390.png",
+    "ext": ".png",
+    "sizeBytes": 299600,
+    "sizeKB": "292.58",
+    "sha256": "3effe2d76beb092a51f0d8a45542fb5dce3c556c94e87dad3ba21f19e3eaea87",
+    "category": "B",
+    "reason": "Test execution / scratch screenshot not referenced by application"
+  },
+  {
+    "relPath": "scratch/verified_mobile_390.png",
+    "filename": "verified_mobile_390.png",
+    "ext": ".png",
+    "sizeBytes": 167990,
+    "sizeKB": "164.05",
+    "sha256": "d81a35e040252dc46015f1895eee63b173edb29e541c24582e8f6aff34cb5765",
+    "category": "B",
+    "reason": "Test execution / scratch screenshot not referenced by application"
+  },
+  {
+    "relPath": "scratch/verified_orbit_light.png",
+    "filename": "verified_orbit_light.png",
+    "ext": ".png",
+    "sizeBytes": 165924,
+    "sizeKB": "162.04",
+    "sha256": "1ff1c5e1cb38517741ed994c273d676b3dbd521c37dacd8672c5cbbf3b60785c",
+    "category": "B",
+    "reason": "Test execution / scratch screenshot not referenced by application"
+  },
+  {
+    "relPath": "scratch/verified_portfolio_dark_final.png",
+    "filename": "verified_portfolio_dark_final.png",
+    "ext": ".png",
+    "sizeBytes": 268663,
+    "sizeKB": "262.37",
+    "sha256": "e261b75e432775d74984174f3ddd3d683ab5b724e29a21587d83d10c466bf322",
+    "category": "B",
+    "reason": "Test execution / scratch screenshot not referenced by application"
+  },
+  {
+    "relPath": "scratch/verified_portfolio_dark_scroll.png",
+    "filename": "verified_portfolio_dark_scroll.png",
+    "ext": ".png",
+    "sizeBytes": 729605,
+    "sizeKB": "712.50",
+    "sha256": "52d4a99c43a27c46dfaa6c7db4cae68c23b05c6e9905e0cae080c42817537e28",
+    "category": "B",
+    "reason": "Test execution / scratch screenshot not referenced by application"
+  },
+  {
+    "relPath": "scratch/verified_portfolio_light_final.png",
+    "filename": "verified_portfolio_light_final.png",
+    "ext": ".png",
+    "sizeBytes": 275421,
+    "sizeKB": "268.97",
+    "sha256": "edd12e96cff9c9f5907cd0fefcee79dcdfe4a875fbc1b678472d82a84bc7eec4",
+    "category": "B",
+    "reason": "Test execution / scratch screenshot not referenced by application"
+  },
+  {
+    "relPath": "scratch/verified_portfolio_light_scroll.png",
+    "filename": "verified_portfolio_light_scroll.png",
+    "ext": ".png",
+    "sizeBytes": 749490,
+    "sizeKB": "731.92",
+    "sha256": "c2d7c1335384092170392572834082c61ad7f633baa4eacec00711616b943054",
+    "category": "B",
+    "reason": "Test execution / scratch screenshot not referenced by application"
+  },
+  {
+    "relPath": "scratch/verified_portfolio_state.png",
+    "filename": "verified_portfolio_state.png",
+    "ext": ".png",
+    "sizeBytes": 355075,
+    "sizeKB": "346.75",
+    "sha256": "e4cfa30ce1a3221b3933f37b0f1a1e9b46552424ceeef2e228febf4629c04de7",
+    "category": "B",
+    "reason": "Test execution / scratch screenshot not referenced by application"
+  },
+  {
+    "relPath": "scratch/verify_01_hero_dark.png",
+    "filename": "verify_01_hero_dark.png",
+    "ext": ".png",
+    "sizeBytes": 1841725,
+    "sizeKB": "1798.56",
+    "sha256": "ceacc578e4ca41f92993217d509823ad72c15297765ad9409ae545f842751508",
+    "category": "B",
+    "reason": "Test execution / scratch screenshot not referenced by application"
+  },
+  {
+    "relPath": "scratch/verify_01_hero_typography.png",
+    "filename": "verify_01_hero_typography.png",
+    "ext": ".png",
+    "sizeBytes": 1065729,
+    "sizeKB": "1040.75",
+    "sha256": "871ab1ce8ba33f55535c864345855585b2821a8efe713c4b95185f05ec1c4f0c",
+    "category": "B",
+    "reason": "Test execution / scratch screenshot not referenced by application"
+  },
+  {
+    "relPath": "scratch/verify_02_beyond_the_frame_stack.png",
+    "filename": "verify_02_beyond_the_frame_stack.png",
+    "ext": ".png",
+    "sizeBytes": 365811,
+    "sizeKB": "357.24",
+    "sha256": "37583bf76aeeb3aa02cc846d767cf351810af978371bb1e17ecdaa785880496b",
+    "category": "B",
+    "reason": "Test execution / scratch screenshot not referenced by application"
+  },
+  {
+    "relPath": "scratch/verify_02_hero_boundary.png",
+    "filename": "verify_02_hero_boundary.png",
+    "ext": ".png",
+    "sizeBytes": 1206181,
+    "sizeKB": "1177.91",
+    "sha256": "1bd06a8d16091a2c4a540b2b2bf0cc2d533222c874d8c8165c68b4e9228a2d6f",
+    "category": "B",
+    "reason": "Test execution / scratch screenshot not referenced by application"
+  },
+  {
+    "relPath": "scratch/verify_03_beyond_the_frame_scrolled.png",
+    "filename": "verify_03_beyond_the_frame_scrolled.png",
+    "ext": ".png",
+    "sizeBytes": 702649,
+    "sizeKB": "686.18",
+    "sha256": "ff0bb3b4ebccb6a8d1b9ee85b0ede9706344057c21b79a2d2108efb5da337fca",
+    "category": "B",
+    "reason": "Test execution / scratch screenshot not referenced by application"
+  },
+  {
+    "relPath": "scratch/verify_03_orbit_dark.png",
+    "filename": "verify_03_orbit_dark.png",
+    "ext": ".png",
+    "sizeBytes": 1411403,
+    "sizeKB": "1378.32",
+    "sha256": "39274aa4f3bbe141c99d707abfc20e559c686204b5f80165bf580a27b56dd33f",
+    "category": "B",
+    "reason": "Test execution / scratch screenshot not referenced by application"
+  },
+  {
+    "relPath": "scratch/verify_04_light_theme_cubes_bg.png",
+    "filename": "verify_04_light_theme_cubes_bg.png",
+    "ext": ".png",
+    "sizeBytes": 134668,
+    "sizeKB": "131.51",
+    "sha256": "b8e9521cd558f36712b8f5d606ed42af483347db912b7746ccff48e7a91417e6",
+    "category": "B",
+    "reason": "Test execution / scratch screenshot not referenced by application"
+  },
+  {
+    "relPath": "scratch/verify_04_orbit_enlarged.png",
+    "filename": "verify_04_orbit_enlarged.png",
+    "ext": ".png",
+    "sizeBytes": 1105353,
+    "sizeKB": "1079.45",
+    "sha256": "bbfbcf76e7f55a4ac614b8ae75a08df5a17504ccd4b26e7ca5ffaf1df9a7269a",
+    "category": "B",
+    "reason": "Test execution / scratch screenshot not referenced by application"
+  },
+  {
+    "relPath": "scratch/verify_05_dark_theme_preserved.png",
+    "filename": "verify_05_dark_theme_preserved.png",
+    "ext": ".png",
+    "sizeBytes": 150023,
+    "sizeKB": "146.51",
+    "sha256": "5804d6f75f6503c2ae24bb2c9a4292dadbd042e4dc8d784cb78c12766e066911",
+    "category": "B",
+    "reason": "Test execution / scratch screenshot not referenced by application"
+  },
+  {
+    "relPath": "scratch/verify_05_theme_wave.png",
+    "filename": "verify_05_theme_wave.png",
+    "ext": ".png",
+    "sizeBytes": 1100237,
+    "sizeKB": "1074.45",
+    "sha256": "ff36e078724d8ba9eb5269370525982ce6dc641cce38087bc4cf2d929b8b3cc8",
+    "category": "B",
+    "reason": "Test execution / scratch screenshot not referenced by application"
+  },
+  {
+    "relPath": "scratch/verify_06_hero_light.png",
+    "filename": "verify_06_hero_light.png",
+    "ext": ".png",
+    "sizeBytes": 985864,
+    "sizeKB": "962.76",
+    "sha256": "f622e2e5f71e4af70d4e0593d2763711cbc482602f36b702cef0e69df5edcce0",
+    "category": "B",
+    "reason": "Test execution / scratch screenshot not referenced by application"
+  },
+  {
+    "relPath": "scratch/verify_07_orbit_light.png",
+    "filename": "verify_07_orbit_light.png",
+    "ext": ".png",
+    "sizeBytes": 205190,
+    "sizeKB": "200.38",
+    "sha256": "da5efcd2036902e94d1e75c2470fc7608dbf84d408c6d40f3e39cb2e06480864",
+    "category": "B",
+    "reason": "Test execution / scratch screenshot not referenced by application"
+  },
+  {
+    "relPath": "scratch/verify_anton_hero.png",
+    "filename": "verify_anton_hero.png",
+    "ext": ".png",
+    "sizeBytes": 1484258,
+    "sizeKB": "1449.47",
+    "sha256": "8597dbef7b8fae4e82c013f1744a690762e206a7935a1a33d706bb18d8d5447d",
+    "category": "B",
+    "reason": "Test execution / scratch screenshot not referenced by application"
+  },
+  {
+    "relPath": "scratch/verify_bend_removed.png",
+    "filename": "verify_bend_removed.png",
+    "ext": ".png",
+    "sizeBytes": 656210,
+    "sizeKB": "640.83",
+    "sha256": "878a11288ad9446b24ed180d817910ad26d8922b817c069c69d72476381171aa",
+    "category": "B",
+    "reason": "Test execution / scratch screenshot not referenced by application"
+  },
+  {
+    "relPath": "scratch/verify_beyond_frame_anton.png",
+    "filename": "verify_beyond_frame_anton.png",
+    "ext": ".png",
+    "sizeBytes": 582605,
+    "sizeKB": "568.95",
+    "sha256": "6df01a2f24cac38d79c58a658813fcd8cad32606319376142ffdcb719c3ac2e3",
+    "category": "B",
+    "reason": "Test execution / scratch screenshot not referenced by application"
+  },
+  {
+    "relPath": "scratch/verify_btf_1920_desktop.png",
+    "filename": "verify_btf_1920_desktop.png",
+    "ext": ".png",
+    "sizeBytes": 1431515,
+    "sizeKB": "1397.96",
+    "sha256": "360fd1ee1d10351273276d2f9d6303ec5434a932018ad80464172993a1f37de1",
+    "category": "B",
+    "reason": "Test execution / scratch screenshot not referenced by application"
+  },
+  {
+    "relPath": "scratch/verify_btf_card5.png",
+    "filename": "verify_btf_card5.png",
+    "ext": ".png",
+    "sizeBytes": 1054549,
+    "sizeKB": "1029.83",
+    "sha256": "89e35cf0423389850f900a6aa6d07289ec919816e6907b2c55263478027898b1",
+    "category": "B",
+    "reason": "Test execution / scratch screenshot not referenced by application"
+  },
+  {
+    "relPath": "scratch/verify_btf_initial.png",
+    "filename": "verify_btf_initial.png",
+    "ext": ".png",
+    "sizeBytes": 774527,
+    "sizeKB": "756.37",
+    "sha256": "415a643b331f03675d872162cd53226ae76f39dec9bb81ef65aa69c79c5c3289",
+    "category": "B",
+    "reason": "Test execution / scratch screenshot not referenced by application"
+  },
+  {
+    "relPath": "scratch/verify_btf_light_theme.png",
+    "filename": "verify_btf_light_theme.png",
+    "ext": ".png",
+    "sizeBytes": 524012,
+    "sizeKB": "511.73",
+    "sha256": "b084671e07c2739782aeace87e67ca9edf32779741b0864e4269c52cac6e23fa",
+    "category": "B",
+    "reason": "Test execution / scratch screenshot not referenced by application"
+  },
+  {
+    "relPath": "scratch/verify_btf_mobile_390.png",
+    "filename": "verify_btf_mobile_390.png",
+    "ext": ".png",
+    "sizeBytes": 128237,
+    "sizeKB": "125.23",
+    "sha256": "21c47808bd70b853f9de4b951f88e4e8119fe33549867add04dae634854abd2c",
+    "category": "B",
+    "reason": "Test execution / scratch screenshot not referenced by application"
+  },
+  {
+    "relPath": "scratch/verify_btf_scrolled.png",
+    "filename": "verify_btf_scrolled.png",
+    "ext": ".png",
+    "sizeBytes": 520314,
+    "sizeKB": "508.12",
+    "sha256": "4a0f8486873633a6677dadeb584c5bc1234fff78a2d1e802288e9690b5cdc55d",
+    "category": "B",
+    "reason": "Test execution / scratch screenshot not referenced by application"
+  },
+  {
+    "relPath": "scratch/verify_core_dark_dominant.png",
+    "filename": "verify_core_dark_dominant.png",
+    "ext": ".png",
+    "sizeBytes": 181510,
+    "sizeKB": "177.26",
+    "sha256": "74ab853f3deb748de26f55c420f1a96164e2a0ea76d9ef1255a99018562624fa",
+    "category": "B",
+    "reason": "Test execution / scratch screenshot not referenced by application"
+  },
+  {
+    "relPath": "scratch/verify_core_id_front5_dark.png",
+    "filename": "verify_core_id_front5_dark.png",
+    "ext": ".png",
+    "sizeBytes": 313738,
+    "sizeKB": "306.38",
+    "sha256": "9eb50d596910ad982aa28526a6c9743abeaa03fd6a039e02d6f8a2ad2b883fdc",
+    "category": "B",
+    "reason": "Test execution / scratch screenshot not referenced by application"
+  },
+  {
+    "relPath": "scratch/verify_core_id_front5_light.png",
+    "filename": "verify_core_id_front5_light.png",
+    "ext": ".png",
+    "sizeBytes": 304453,
+    "sizeKB": "297.32",
+    "sha256": "2988986fca375b40ae897c6eed66a7f7fb791a9b562baf403dbfd31f232fdf83",
+    "category": "B",
+    "reason": "Test execution / scratch screenshot not referenced by application"
+  },
+  {
+    "relPath": "scratch/verify_core_light_contrast.png",
+    "filename": "verify_core_light_contrast.png",
+    "ext": ".png",
+    "sizeBytes": 225682,
+    "sizeKB": "220.39",
+    "sha256": "ca35f28a8800867fa47e981b04f20dac81f645b03086edbdea4917faecf77f5e",
+    "category": "B",
+    "reason": "Test execution / scratch screenshot not referenced by application"
+  },
+  {
+    "relPath": "scratch/verify_core_mobile.png",
+    "filename": "verify_core_mobile.png",
+    "ext": ".png",
+    "sizeBytes": 43981,
+    "sizeKB": "42.95",
+    "sha256": "725d8bf301da789ed90f19e622f831132fa46ae73bd6a0b042b9d0ccf9cf814b",
+    "category": "B",
+    "reason": "Test execution / scratch screenshot not referenced by application"
+  },
+  {
+    "relPath": "scratch/verify_core_mobile_exact.png",
+    "filename": "verify_core_mobile_exact.png",
+    "ext": ".png",
+    "sizeBytes": 105499,
+    "sizeKB": "103.03",
+    "sha256": "1ae45d690e733fb2ee4f04a4309b92cdea69ce95cbc6496d793f723bde1e9f0b",
+    "category": "B",
+    "reason": "Test execution / scratch screenshot not referenced by application"
+  },
+  {
+    "relPath": "scratch/verify_core_refined_dark.png",
+    "filename": "verify_core_refined_dark.png",
+    "ext": ".png",
+    "sizeBytes": 293306,
+    "sizeKB": "286.43",
+    "sha256": "a3e64c696d6489bf69a5295acc744153ab1df634b6ab5f09113fe86cd1c32a1a",
+    "category": "B",
+    "reason": "Test execution / scratch screenshot not referenced by application"
+  },
+  {
+    "relPath": "scratch/verify_core_refined_light.png",
+    "filename": "verify_core_refined_light.png",
+    "ext": ".png",
+    "sizeBytes": 244585,
+    "sizeKB": "238.85",
+    "sha256": "706cf0f730d57476d724f3c1182e8c3e50c4d850726d868f743ee122a11a88cd",
+    "category": "B",
+    "reason": "Test execution / scratch screenshot not referenced by application"
+  },
+  {
+    "relPath": "scratch/verify_cta_dark.png",
+    "filename": "verify_cta_dark.png",
+    "ext": ".png",
+    "sizeBytes": 170032,
+    "sizeKB": "166.05",
+    "sha256": "568aa2f2f2035bddc9777ec30ce3d735d4888e9e71a2f17a09fce2f1c37db59f",
+    "category": "B",
+    "reason": "Test execution / scratch screenshot not referenced by application"
+  },
+  {
+    "relPath": "scratch/verify_cta_dark_1row.png",
+    "filename": "verify_cta_dark_1row.png",
+    "ext": ".png",
+    "sizeBytes": 853191,
+    "sizeKB": "833.19",
+    "sha256": "43f12a1d8659c44d8a460629db86dc5a94047facc31be4941070bf5f5bfd33ba",
+    "category": "B",
+    "reason": "Test execution / scratch screenshot not referenced by application"
+  },
+  {
+    "relPath": "scratch/verify_cta_dark_1row_scrolled.png",
+    "filename": "verify_cta_dark_1row_scrolled.png",
+    "ext": ".png",
+    "sizeBytes": 444606,
+    "sizeKB": "434.19",
+    "sha256": "e31c68c5eaea6e6b1edc9715a5fe08bcac76889ff5b4232b0ba31b8051f237c9",
+    "category": "B",
+    "reason": "Test execution / scratch screenshot not referenced by application"
+  },
+  {
+    "relPath": "scratch/verify_cta_dark_material.png",
+    "filename": "verify_cta_dark_material.png",
+    "ext": ".png",
+    "sizeBytes": 423481,
+    "sizeKB": "413.56",
+    "sha256": "b8a774b5a818fe4ce16b83206eee00bc1ceec1e72443d52e95cbbb3b6aaa01d2",
+    "category": "B",
+    "reason": "Test execution / scratch screenshot not referenced by application"
+  },
+  {
+    "relPath": "scratch/verify_cta_light.png",
+    "filename": "verify_cta_light.png",
+    "ext": ".png",
+    "sizeBytes": 108226,
+    "sizeKB": "105.69",
+    "sha256": "4646cf0947e0343f853fc1ae85f80d3d4a3ad878de34f23cce844987fe95a535",
+    "category": "B",
+    "reason": "Test execution / scratch screenshot not referenced by application"
+  },
+  {
+    "relPath": "scratch/verify_cta_light_material.png",
+    "filename": "verify_cta_light_material.png",
+    "ext": ".png",
+    "sizeBytes": 693158,
+    "sizeKB": "676.91",
+    "sha256": "e7f74324655b962ca3d4b546e6484a10ae5d5b8ab8d6fb5ff0b3c7d967d99c3e",
+    "category": "B",
+    "reason": "Test execution / scratch screenshot not referenced by application"
+  },
+  {
+    "relPath": "scratch/verify_cta_mobile.png",
+    "filename": "verify_cta_mobile.png",
+    "ext": ".png",
+    "sizeBytes": 300581,
+    "sizeKB": "293.54",
+    "sha256": "8d9a89db25a3c389a796f1e65c8fcbccfe4025c2defe6d28be86ce475fbd9a9a",
+    "category": "B",
+    "reason": "Test execution / scratch screenshot not referenced by application"
+  },
+  {
+    "relPath": "scratch/verify_cta_mobile_exact.png",
+    "filename": "verify_cta_mobile_exact.png",
+    "ext": ".png",
+    "sizeBytes": 49227,
+    "sizeKB": "48.07",
+    "sha256": "ec6db87d9ffa628068f13929061d9c3f2745b9b01abb53c8d175fe1388f085c7",
+    "category": "B",
+    "reason": "Test execution / scratch screenshot not referenced by application"
+  },
+  {
+    "relPath": "scratch/verify_fan_artist.png",
+    "filename": "verify_fan_artist.png",
+    "ext": ".png",
+    "sizeBytes": 332329,
+    "sizeKB": "324.54",
+    "sha256": "863373daca77967c9876e3d2a2f60c4d74e4c9e6b51da8b336c060b3b77bdcdb",
+    "category": "B",
+    "reason": "Test execution / scratch screenshot not referenced by application"
+  },
+  {
+    "relPath": "scratch/verify_fan_artist_card.png",
+    "filename": "verify_fan_artist_card.png",
+    "ext": ".png",
+    "sizeBytes": 459780,
+    "sizeKB": "449.00",
+    "sha256": "c0c5b941c6f676bb6d8c280193ef79895a6af44a2bd7a16be611c17990f4e850",
+    "category": "B",
+    "reason": "Test execution / scratch screenshot not referenced by application"
+  },
+  {
+    "relPath": "scratch/verify_hero_clear_counters.png",
+    "filename": "verify_hero_clear_counters.png",
+    "ext": ".png",
+    "sizeBytes": 1041655,
+    "sizeKB": "1017.24",
+    "sha256": "1263c740d889088828e8be2c12e5626affd8284f2fb1726307d525fda8c73651",
+    "category": "B",
+    "reason": "Test execution / scratch screenshot not referenced by application"
+  },
+  {
+    "relPath": "scratch/verify_hero_dark.png",
+    "filename": "verify_hero_dark.png",
+    "ext": ".png",
+    "sizeBytes": 1388674,
+    "sizeKB": "1356.13",
+    "sha256": "569ca829fa6d37455cd0532852fad3ac9ed82e991096006d0cbac2f41a377e03",
+    "category": "B",
+    "reason": "Test execution / scratch screenshot not referenced by application"
+  },
+  {
+    "relPath": "scratch/verify_hero_repulsion_active.png",
+    "filename": "verify_hero_repulsion_active.png",
+    "ext": ".png",
+    "sizeBytes": 1078917,
+    "sizeKB": "1053.63",
+    "sha256": "ff15cc278f4deb6c3dc315352446972eef1bfa921b899aa74c1eb652f46e302f",
+    "category": "B",
+    "reason": "Test execution / scratch screenshot not referenced by application"
+  },
+  {
+    "relPath": "scratch/verify_hero_update.png",
+    "filename": "verify_hero_update.png",
+    "ext": ".png",
+    "sizeBytes": 1062289,
+    "sizeKB": "1037.39",
+    "sha256": "20149bbb052c79faba8e7addd21a6b261b7f609750f328baf3e64e822f2f9a63",
+    "category": "B",
+    "reason": "Test execution / scratch screenshot not referenced by application"
+  },
+  {
+    "relPath": "scratch/verify_hobbies_dark.png",
+    "filename": "verify_hobbies_dark.png",
+    "ext": ".png",
+    "sizeBytes": 675398,
+    "sizeKB": "659.57",
+    "sha256": "9df017421a7572a874909293b1e2349854890b2b0f7de4929e6605a519a2c304",
+    "category": "B",
+    "reason": "Test execution / scratch screenshot not referenced by application"
+  },
+  {
+    "relPath": "scratch/verify_hobbies_light.png",
+    "filename": "verify_hobbies_light.png",
+    "ext": ".png",
+    "sizeBytes": 625355,
+    "sizeKB": "610.70",
+    "sha256": "f83d896b7c3444f3865b22a6914ac4daec757eff2fe491721a1ccb71d49cc988",
+    "category": "B",
+    "reason": "Test execution / scratch screenshot not referenced by application"
+  },
+  {
+    "relPath": "scratch/verify_implementation_update.png",
+    "filename": "verify_implementation_update.png",
+    "ext": ".png",
+    "sizeBytes": 581173,
+    "sizeKB": "567.55",
+    "sha256": "34beb973bb5fa30443e9b237da10fe69a565de13960cae9d91ca66602309d38a",
+    "category": "B",
+    "reason": "Test execution / scratch screenshot not referenced by application"
+  },
+  {
+    "relPath": "scratch/verify_journey_order.png",
+    "filename": "verify_journey_order.png",
+    "ext": ".png",
+    "sizeBytes": 213013,
+    "sizeKB": "208.02",
+    "sha256": "13b58d9334c9480de495fc477bb522cc467776b584cf7a43f7d560c6d2708bf8",
+    "category": "B",
+    "reason": "Test execution / scratch screenshot not referenced by application"
+  },
+  {
+    "relPath": "scratch/verify_light_hyperspeed.png",
+    "filename": "verify_light_hyperspeed.png",
+    "ext": ".png",
+    "sizeBytes": 278022,
+    "sizeKB": "271.51",
+    "sha256": "fa83a74108e83d15432b8a667279627eb45a542527c5cea7fb191767a06d4a87",
+    "category": "B",
+    "reason": "Test execution / scratch screenshot not referenced by application"
+  },
+  {
+    "relPath": "scratch/verify_light_update.png",
+    "filename": "verify_light_update.png",
+    "ext": ".png",
+    "sizeBytes": 43532,
+    "sizeKB": "42.51",
+    "sha256": "33ce3379222a382ed9234d0e46258cf1e949f9ffb7303745baaa66f95d6c87cc",
+    "category": "B",
+    "reason": "Test execution / scratch screenshot not referenced by application"
+  },
+  {
+    "relPath": "scratch/verify_mobile_beyond_frame.png",
+    "filename": "verify_mobile_beyond_frame.png",
+    "ext": ".png",
+    "sizeBytes": 268223,
+    "sizeKB": "261.94",
+    "sha256": "c494365b61e8ac9e0517c5169f0d100dd04ba824ad5ca8546e871df2b749e1fc",
+    "category": "B",
+    "reason": "Test execution / scratch screenshot not referenced by application"
+  },
+  {
+    "relPath": "scratch/verify_mobile_beyond_frame_scrolled.png",
+    "filename": "verify_mobile_beyond_frame_scrolled.png",
+    "ext": ".png",
+    "sizeBytes": 327865,
+    "sizeKB": "320.18",
+    "sha256": "edb06681cc0adb8350445f42a05c82e4e05058354d313692e942bbfd33554375",
+    "category": "B",
+    "reason": "Test execution / scratch screenshot not referenced by application"
+  },
+  {
+    "relPath": "scratch/verify_mobile_core.png",
+    "filename": "verify_mobile_core.png",
+    "ext": ".png",
+    "sizeBytes": 137931,
+    "sizeKB": "134.70",
+    "sha256": "e2157bc59aebbb89423ecd746a21a363fe6ccfa599ae005e4ef83f4ae58c0516",
+    "category": "B",
+    "reason": "Test execution / scratch screenshot not referenced by application"
+  },
+  {
+    "relPath": "scratch/verify_mobile_cta.png",
+    "filename": "verify_mobile_cta.png",
+    "ext": ".png",
+    "sizeBytes": 264593,
+    "sizeKB": "258.39",
+    "sha256": "cab19222250d80f7ab5e86203ea9ee1d92e1a1f6da2eef43507126624a055fda",
+    "category": "B",
+    "reason": "Test execution / scratch screenshot not referenced by application"
+  },
+  {
+    "relPath": "scratch/verify_mobile_hero.png",
+    "filename": "verify_mobile_hero.png",
+    "ext": ".png",
+    "sizeBytes": 314944,
+    "sizeKB": "307.56",
+    "sha256": "1b28c86bf7b4e50d503b462d601541ed0184632c4a1e2582e92e28ef7bcbacd4",
+    "category": "B",
+    "reason": "Test execution / scratch screenshot not referenced by application"
+  },
+  {
+    "relPath": "scratch/verify_mobile_hobbies.png",
+    "filename": "verify_mobile_hobbies.png",
+    "ext": ".png",
+    "sizeBytes": 253966,
+    "sizeKB": "248.01",
+    "sha256": "74722b34798a19c090aabf03d22e5b917cd2b811dc3e8de40a2968ac3530da7d",
+    "category": "B",
+    "reason": "Test execution / scratch screenshot not referenced by application"
+  },
+  {
+    "relPath": "scratch/verify_morph_slider.png",
+    "filename": "verify_morph_slider.png",
+    "ext": ".png",
+    "sizeBytes": 434899,
+    "sizeKB": "424.71",
+    "sha256": "944cb9c0f69a94dd062569e701824d88d45879973c103115734ead1c20c58a66",
+    "category": "B",
+    "reason": "Test execution / scratch screenshot not referenced by application"
+  },
+  {
+    "relPath": "scratch/verify_orbit_update.png",
+    "filename": "verify_orbit_update.png",
+    "ext": ".png",
+    "sizeBytes": 105594,
+    "sizeKB": "103.12",
+    "sha256": "09b716ef0eac6775d83a9fe6f4c916d3071666ec532fd92873c4b7459445a3ea",
+    "category": "B",
+    "reason": "Test execution / scratch screenshot not referenced by application"
+  },
+  {
+    "relPath": "scratch/verify_precision_hero.png",
+    "filename": "verify_precision_hero.png",
+    "ext": ".png",
+    "sizeBytes": 1149445,
+    "sizeKB": "1122.50",
+    "sha256": "4e93f68cb05a78ec9ea0efc168145704aeef464973c88b151109e28193cdbfd4",
+    "category": "B",
+    "reason": "Test execution / scratch screenshot not referenced by application"
+  },
+  {
+    "relPath": "scratch/verify_the_core_dark.png",
+    "filename": "verify_the_core_dark.png",
+    "ext": ".png",
+    "sizeBytes": 285062,
+    "sizeKB": "278.38",
+    "sha256": "9ab7e16116a159e68aa4057d38ff645ff0eafacb2c2e940023d071c40965e6d0",
+    "category": "B",
+    "reason": "Test execution / scratch screenshot not referenced by application"
+  },
+  {
+    "relPath": "scratch/verify_the_core_light.png",
+    "filename": "verify_the_core_light.png",
+    "ext": ".png",
+    "sizeBytes": 272727,
+    "sizeKB": "266.33",
+    "sha256": "c570bd3e05a311bb5dca13d9ce6367e686320bfce4c34f786ca05802627663f6",
+    "category": "B",
+    "reason": "Test execution / scratch screenshot not referenced by application"
+  },
+  {
+    "relPath": "scratch/verify_the_core_mobile.png",
+    "filename": "verify_the_core_mobile.png",
+    "ext": ".png",
+    "sizeBytes": 55118,
+    "sizeKB": "53.83",
+    "sha256": "7d933628e5fdbfea1cd502d2ca9187137f768aca937a4692f2f84c110eb3a3c9",
+    "category": "B",
+    "reason": "Test execution / scratch screenshot not referenced by application"
+  },
+  {
+    "relPath": "scratch/verify_the_core_tablet.png",
+    "filename": "verify_the_core_tablet.png",
+    "ext": ".png",
+    "sizeBytes": 150417,
+    "sizeKB": "146.89",
+    "sha256": "fb7eea86eff53e366b3e28ada26e238466e4c3d1df47a5308c5b3c4747ad1a15",
+    "category": "B",
+    "reason": "Test execution / scratch screenshot not referenced by application"
+  },
+  {
+    "relPath": "scratch/verify_the_core_update.png",
+    "filename": "verify_the_core_update.png",
+    "ext": ".png",
+    "sizeBytes": 42270,
+    "sizeKB": "41.28",
+    "sha256": "02ad05908a842317a91356211e0426be147bc9511921795cadb2cadf47cf27c6",
+    "category": "B",
+    "reason": "Test execution / scratch screenshot not referenced by application"
+  },
+  {
+    "relPath": "scratch/verify_visual_orbit.png",
+    "filename": "verify_visual_orbit.png",
+    "ext": ".png",
+    "sizeBytes": 1011725,
+    "sizeKB": "988.01",
+    "sha256": "360b5448f272695a4528747f0f3f64f43cfe25879a93173383e866e30b5ebdee",
+    "category": "B",
+    "reason": "Test execution / scratch screenshot not referenced by application"
+  },
+  {
+    "relPath": "scratch/visual_orbit_backstage_panel.png",
+    "filename": "visual_orbit_backstage_panel.png",
+    "ext": ".png",
+    "sizeBytes": 622897,
+    "sizeKB": "608.30",
+    "sha256": "8ebfd41844012022b5714c3ac07c3d7933064d9e746b7ba8c67aee4a68032e12",
+    "category": "B",
+    "reason": "Test execution / scratch screenshot not referenced by application"
+  },
+  {
+    "relPath": "scratch/visual_orbit_dark.png",
+    "filename": "visual_orbit_dark.png",
+    "ext": ".png",
+    "sizeBytes": 513063,
+    "sizeKB": "501.04",
+    "sha256": "7a294c1407d83fdf15b98d736c7cf62c21b3b8a96df6436d57d11def62892d80",
+    "category": "B",
+    "reason": "Test execution / scratch screenshot not referenced by application"
+  },
+  {
+    "relPath": "scratch/visual_orbit_final_verified.png",
+    "filename": "visual_orbit_final_verified.png",
+    "ext": ".png",
+    "sizeBytes": 585705,
+    "sizeKB": "571.98",
+    "sha256": "8acca9ab727052a1604ac358d5be8788c3e9b629ddfc68bd2786758d7fb3d18d",
+    "category": "B",
+    "reason": "Test execution / scratch screenshot not referenced by application"
+  },
+  {
+    "relPath": "scratch/visual_orbit_light.png",
+    "filename": "visual_orbit_light.png",
+    "ext": ".png",
+    "sizeBytes": 432147,
+    "sizeKB": "422.02",
+    "sha256": "0b5e3dd73dc06855dea94338d4201450a560711e3961615d19bd098564432b17",
+    "category": "B",
+    "reason": "Test execution / scratch screenshot not referenced by application"
+  },
+  {
+    "relPath": "scratch/visual_orbit_light_verified.png",
+    "filename": "visual_orbit_light_verified.png",
+    "ext": ".png",
+    "sizeBytes": 534993,
+    "sizeKB": "522.45",
+    "sha256": "133ba97ae3d0758039c161725a4746f872c79c9c31cf4393cbc8d88ee0fa7a13",
+    "category": "B",
+    "reason": "Test execution / scratch screenshot not referenced by application"
+  },
+  {
+    "relPath": "scratch/visual_orbit_public_success.png",
+    "filename": "visual_orbit_public_success.png",
+    "ext": ".png",
+    "sizeBytes": 1051872,
+    "sizeKB": "1027.22",
+    "sha256": "eae38e88fdf2379037ff3cbc07358643e3755ba2c0124b9126158ee31878794a",
+    "category": "B",
+    "reason": "Test execution / scratch screenshot not referenced by application"
+  },
+  {
+    "relPath": "scratch/visual_orbit_section_live.png",
+    "filename": "visual_orbit_section_live.png",
+    "ext": ".png",
+    "sizeBytes": 1115015,
+    "sizeKB": "1088.88",
+    "sha256": "2c1d4bdaf467d8e81f0cd0e07dbe60fb8c3f785e3bd648800edcb8eb8b2f22d0",
+    "category": "B",
+    "reason": "Test execution / scratch screenshot not referenced by application"
+  },
+  {
+    "relPath": "test_dark_masked.png",
+    "filename": "test_dark_masked.png",
+    "ext": ".png",
+    "sizeBytes": 613452,
+    "sizeKB": "599.07",
+    "sha256": "e952ad91d304de166b1e7e554eff7d0d366329141ee6b01ceef7d37266e8b385",
+    "category": "B",
+    "reason": "No references found in HTML, JS, JSX, CSS, or CMS data"
+  },
+  {
+    "relPath": "test_light_masked.png",
+    "filename": "test_light_masked.png",
+    "ext": ".png",
+    "sizeBytes": 831680,
+    "sizeKB": "812.19",
+    "sha256": "e83fdceb72067cf9fde4edf4e928bdf67007156212a2bd5ce802d1afeba876fb",
+    "category": "B",
+    "reason": "No references found in HTML, JS, JSX, CSS, or CMS data"
+  },
+  {
+    "relPath": "2_VB.png",
+    "filename": "2_VB.png",
+    "ext": ".png",
+    "sizeBytes": 978103,
+    "sizeKB": "955.18",
+    "sha256": "7b30570fafbda84db377a2f7f8996d30682b2521b39e9523c607117fd0b69a5b",
+    "category": "C",
+    "reason": "Verified exact hash duplicate of referenced asset [VB.png]"
+  },
+  {
+    "relPath": "3_Firmware.png",
+    "filename": "3_Firmware.png",
+    "ext": ".png",
+    "sizeBytes": 1545869,
+    "sizeKB": "1509.64",
+    "sha256": "595383cfdfa2d9af87b477c49fb8bbf1ffc0a9aaa023353b654967f9e3dd71c3",
+    "category": "C",
+    "reason": "Verified exact hash duplicate of referenced asset [Firmware.png]"
+  },
+  {
+    "relPath": "ezgif-frame-013.jpg",
+    "filename": "ezgif-frame-013.jpg",
+    "ext": ".jpg",
+    "sizeBytes": 49017,
+    "sizeKB": "47.87",
+    "sha256": "0aa847eaa47eefbaf4565a9161378df02861c3ce48fde50f438fdc6c6ea66e55",
+    "category": "C",
+    "reason": "Duplicate of unreferenced file ezgif-frame-012.jpg"
+  },
+  {
+    "relPath": "ezgif-frame-018.jpg",
+    "filename": "ezgif-frame-018.jpg",
+    "ext": ".jpg",
+    "sizeBytes": 49656,
+    "sizeKB": "48.49",
+    "sha256": "9ba0031f10ec207a69fe7eecb17fee8c2381f7325a2b60627c6855f2e35dc2d7",
+    "category": "C",
+    "reason": "Duplicate of unreferenced file ezgif-frame-017.jpg"
+  },
+  {
+    "relPath": "ezgif-frame-023.jpg",
+    "filename": "ezgif-frame-023.jpg",
+    "ext": ".jpg",
+    "sizeBytes": 49599,
+    "sizeKB": "48.44",
+    "sha256": "489663c0ce9ffa04c7147910df0755a59e7e6aed240c9068835b174440d95ba0",
+    "category": "C",
+    "reason": "Duplicate of unreferenced file ezgif-frame-022.jpg"
+  },
+  {
+    "relPath": "ezgif-frame-028.jpg",
+    "filename": "ezgif-frame-028.jpg",
+    "ext": ".jpg",
+    "sizeBytes": 49816,
+    "sizeKB": "48.65",
+    "sha256": "5a9c74b1d59cc5c0811684a3ccc514af21ed4ea39ffe674b875113b4ae286176",
+    "category": "C",
+    "reason": "Duplicate of unreferenced file ezgif-frame-027.jpg"
+  },
+  {
+    "relPath": "ezgif-frame-033.jpg",
+    "filename": "ezgif-frame-033.jpg",
+    "ext": ".jpg",
+    "sizeBytes": 49624,
+    "sizeKB": "48.46",
+    "sha256": "bf6b8b5d23fc45eb2959703c2a04cc7f70c9fdd3342d940a2ed3233359c41b01",
+    "category": "C",
+    "reason": "Duplicate of unreferenced file ezgif-frame-032.jpg"
+  },
+  {
+    "relPath": "ezgif-frame-038.jpg",
+    "filename": "ezgif-frame-038.jpg",
+    "ext": ".jpg",
+    "sizeBytes": 49625,
+    "sizeKB": "48.46",
+    "sha256": "f798c4ca75845c1eec0293c5bc11ef5a62cf21a4b5d5cffe8e0269c2100f7fb2",
+    "category": "C",
+    "reason": "Duplicate of unreferenced file ezgif-frame-037.jpg"
+  },
+  {
+    "relPath": "ezgif-frame-043.jpg",
+    "filename": "ezgif-frame-043.jpg",
+    "ext": ".jpg",
+    "sizeBytes": 49539,
+    "sizeKB": "48.38",
+    "sha256": "91b183716aac06254c5448de43b577d5b68b5568c4b68de53d5b9dee6faa4df9",
+    "category": "C",
+    "reason": "Duplicate of unreferenced file ezgif-frame-042.jpg"
+  },
+  {
+    "relPath": "ezgif-frame-048.jpg",
+    "filename": "ezgif-frame-048.jpg",
+    "ext": ".jpg",
+    "sizeBytes": 49746,
+    "sizeKB": "48.58",
+    "sha256": "13edf6e4b886cc98fc3fe56ea628aac93158ea0cb38670765c2a5bd93c5c4105",
+    "category": "C",
+    "reason": "Duplicate of unreferenced file ezgif-frame-047.jpg"
+  },
+  {
+    "relPath": "ezgif-frame-053.jpg",
+    "filename": "ezgif-frame-053.jpg",
+    "ext": ".jpg",
+    "sizeBytes": 49608,
+    "sizeKB": "48.45",
+    "sha256": "20e24e6c075dd45aff9e715a806e5775638c45cc0e36fd9270634223199ee4ec",
+    "category": "C",
+    "reason": "Duplicate of unreferenced file ezgif-frame-052.jpg"
+  },
+  {
+    "relPath": "ezgif-frame-058.jpg",
+    "filename": "ezgif-frame-058.jpg",
+    "ext": ".jpg",
+    "sizeBytes": 49842,
+    "sizeKB": "48.67",
+    "sha256": "9e7d52cc8a1fa6a39b27999449e9ed4a72e7ccd72bcea19bdb0e989e9bd8e528",
+    "category": "C",
+    "reason": "Duplicate of unreferenced file ezgif-frame-057.jpg"
+  },
+  {
+    "relPath": "ezgif-frame-063.jpg",
+    "filename": "ezgif-frame-063.jpg",
+    "ext": ".jpg",
+    "sizeBytes": 48638,
+    "sizeKB": "47.50",
+    "sha256": "435ff15b88c0619b3449124561c09bc893bec4dbf10407d4e0d803160661e2fe",
+    "category": "C",
+    "reason": "Duplicate of unreferenced file ezgif-frame-062.jpg"
+  },
+  {
+    "relPath": "ezgif-frame-068.jpg",
+    "filename": "ezgif-frame-068.jpg",
+    "ext": ".jpg",
+    "sizeBytes": 48362,
+    "sizeKB": "47.23",
+    "sha256": "2d00638244e540d72c983c91cd50e0f19466dedc2767d8f4984dd50aedfe6b90",
+    "category": "C",
+    "reason": "Duplicate of unreferenced file ezgif-frame-067.jpg"
+  },
+  {
+    "relPath": "ezgif-frame-073.jpg",
+    "filename": "ezgif-frame-073.jpg",
+    "ext": ".jpg",
+    "sizeBytes": 46265,
+    "sizeKB": "45.18",
+    "sha256": "f1b699699f9fbcec8c0727c5ee99a3ba394cb6f9b3308c76973450b36b3fcda2",
+    "category": "C",
+    "reason": "Duplicate of unreferenced file ezgif-frame-072.jpg"
+  },
+  {
+    "relPath": "ezgif-frame-078.jpg",
+    "filename": "ezgif-frame-078.jpg",
+    "ext": ".jpg",
+    "sizeBytes": 46174,
+    "sizeKB": "45.09",
+    "sha256": "5a6ffe4dbc17e5253de375212a0204af7ff2e0e4777cc71f436790ac4dc5e24e",
+    "category": "C",
+    "reason": "Duplicate of unreferenced file ezgif-frame-077.jpg"
+  },
+  {
+    "relPath": "ezgif-frame-083.jpg",
+    "filename": "ezgif-frame-083.jpg",
+    "ext": ".jpg",
+    "sizeBytes": 44677,
+    "sizeKB": "43.63",
+    "sha256": "bde3137e50b6f918700f3ce0f2287018df12e9f6e2e5af1e0b56a2200b0b6376",
+    "category": "C",
+    "reason": "Duplicate of unreferenced file ezgif-frame-082.jpg"
+  },
+  {
+    "relPath": "ezgif-frame-088.jpg",
+    "filename": "ezgif-frame-088.jpg",
+    "ext": ".jpg",
+    "sizeBytes": 45089,
+    "sizeKB": "44.03",
+    "sha256": "227f0f6fff0bdf7e2fe81d57440eb2f1483dc49be3bdb879878cdb147a3d00a4",
+    "category": "C",
+    "reason": "Duplicate of unreferenced file ezgif-frame-087.jpg"
+  },
+  {
+    "relPath": "ezgif-frame-093.jpg",
+    "filename": "ezgif-frame-093.jpg",
+    "ext": ".jpg",
+    "sizeBytes": 43294,
+    "sizeKB": "42.28",
+    "sha256": "0bd3a141245313d105dc1a3cc552ee33954dbe35ba7e8a73f3cf646bfdf95f73",
+    "category": "C",
+    "reason": "Duplicate of unreferenced file ezgif-frame-092.jpg"
+  },
+  {
+    "relPath": "ezgif-frame-098.jpg",
+    "filename": "ezgif-frame-098.jpg",
+    "ext": ".jpg",
+    "sizeBytes": 44630,
+    "sizeKB": "43.58",
+    "sha256": "ca650d0e88dee76f55d79c8119a7b269c80444f9eb494d42dc3886c1e2eabc5f",
+    "category": "C",
+    "reason": "Duplicate of unreferenced file ezgif-frame-097.jpg"
+  },
+  {
+    "relPath": "ezgif-frame-103.jpg",
+    "filename": "ezgif-frame-103.jpg",
+    "ext": ".jpg",
+    "sizeBytes": 44338,
+    "sizeKB": "43.30",
+    "sha256": "f5a703e9fab3e5e69e406a7597de106402be378c2fd7f5b7ef2c553c10507e75",
+    "category": "C",
+    "reason": "Duplicate of unreferenced file ezgif-frame-102.jpg"
+  },
+  {
+    "relPath": "ezgif-frame-108.jpg",
+    "filename": "ezgif-frame-108.jpg",
+    "ext": ".jpg",
+    "sizeBytes": 46301,
+    "sizeKB": "45.22",
+    "sha256": "0d5cc5bdafed10923875395c0d6697d5eb95645e5aed9c05d36cd418a93250ba",
+    "category": "C",
+    "reason": "Duplicate of unreferenced file ezgif-frame-107.jpg"
+  },
+  {
+    "relPath": "ezgif-frame-113.jpg",
+    "filename": "ezgif-frame-113.jpg",
+    "ext": ".jpg",
+    "sizeBytes": 46570,
+    "sizeKB": "45.48",
+    "sha256": "a5401f0fbd2532501927103a490c6ac42b218044b20cc3c6d216794e7798497b",
+    "category": "C",
+    "reason": "Duplicate of unreferenced file ezgif-frame-112.jpg"
+  },
+  {
+    "relPath": "ezgif-frame-118.jpg",
+    "filename": "ezgif-frame-118.jpg",
+    "ext": ".jpg",
+    "sizeBytes": 47545,
+    "sizeKB": "46.43",
+    "sha256": "661288c884ef997dc0c6de3452f043b625aab778362cfb23954cc796551f4198",
+    "category": "C",
+    "reason": "Duplicate of unreferenced file ezgif-frame-117.jpg"
+  },
+  {
+    "relPath": "ezgif-frame-123.jpg",
+    "filename": "ezgif-frame-123.jpg",
+    "ext": ".jpg",
+    "sizeBytes": 47396,
+    "sizeKB": "46.29",
+    "sha256": "0df9c541259491404ac8072be2b1d3e0524a40b4d7c40272536f98861d3851a1",
+    "category": "C",
+    "reason": "Duplicate of unreferenced file ezgif-frame-122.jpg"
+  },
+  {
+    "relPath": "ezgif-frame-128.jpg",
+    "filename": "ezgif-frame-128.jpg",
+    "ext": ".jpg",
+    "sizeBytes": 48180,
+    "sizeKB": "47.05",
+    "sha256": "fc73d09256c078aa5fd9b6ed9e9c5c6a258ec1064e0954c0aaf7ad99be14e475",
+    "category": "C",
+    "reason": "Duplicate of unreferenced file ezgif-frame-127.jpg"
+  },
+  {
+    "relPath": "ezgif-frame-133.jpg",
+    "filename": "ezgif-frame-133.jpg",
+    "ext": ".jpg",
+    "sizeBytes": 47402,
+    "sizeKB": "46.29",
+    "sha256": "5f9d72cfa3778a63c5a5964510b9c9ddf1eb25c723f87a366e1b3e985b1cb94b",
+    "category": "C",
+    "reason": "Duplicate of unreferenced file ezgif-frame-132.jpg"
+  },
+  {
+    "relPath": "ezgif-frame-138.jpg",
+    "filename": "ezgif-frame-138.jpg",
+    "ext": ".jpg",
+    "sizeBytes": 47699,
+    "sizeKB": "46.58",
+    "sha256": "395ae8851fb5aa8c6a666f3efc7880827afa8bccb0b821b59300e26a74cc8103",
+    "category": "C",
+    "reason": "Duplicate of unreferenced file ezgif-frame-137.jpg"
+  },
+  {
+    "relPath": "ezgif-frame-143.jpg",
+    "filename": "ezgif-frame-143.jpg",
+    "ext": ".jpg",
+    "sizeBytes": 46963,
+    "sizeKB": "45.86",
+    "sha256": "7d45fc728800bfa85c3823368ace7afa3226f864ac6ac4ebe152a72084c2dc0e",
+    "category": "C",
+    "reason": "Duplicate of unreferenced file ezgif-frame-142.jpg"
+  },
+  {
+    "relPath": "ezgif-frame-148.jpg",
+    "filename": "ezgif-frame-148.jpg",
+    "ext": ".jpg",
+    "sizeBytes": 47132,
+    "sizeKB": "46.03",
+    "sha256": "9cfc2159cd194d32ab8abf47d4571c933c695d6d76c1f6898e3a8402a5f3df04",
+    "category": "C",
+    "reason": "Duplicate of unreferenced file ezgif-frame-147.jpg"
+  },
+  {
+    "relPath": "ezgif-frame-153.jpg",
+    "filename": "ezgif-frame-153.jpg",
+    "ext": ".jpg",
+    "sizeBytes": 46270,
+    "sizeKB": "45.19",
+    "sha256": "9254db57d01d2cb8c5a8bce055397f0e3ec6eedd59c8c7a34939ce5c2d4b9776",
+    "category": "C",
+    "reason": "Duplicate of unreferenced file ezgif-frame-152.jpg"
+  },
+  {
+    "relPath": "ezgif-frame-158.jpg",
+    "filename": "ezgif-frame-158.jpg",
+    "ext": ".jpg",
+    "sizeBytes": 46480,
+    "sizeKB": "45.39",
+    "sha256": "41cf5e88743464130f3e5e63adc86589f6ae2b2654865d21cb1c5f9f5a07c2bb",
+    "category": "C",
+    "reason": "Duplicate of unreferenced file ezgif-frame-157.jpg"
+  },
+  {
+    "relPath": "ezgif-frame-163.jpg",
+    "filename": "ezgif-frame-163.jpg",
+    "ext": ".jpg",
+    "sizeBytes": 44186,
+    "sizeKB": "43.15",
+    "sha256": "3b8fb1d80c7c8cbe18048aa7de83128960da20318e6b6bc517da951125c13276",
+    "category": "C",
+    "reason": "Duplicate of unreferenced file ezgif-frame-162.jpg"
+  },
+  {
+    "relPath": "ezgif-frame-168.jpg",
+    "filename": "ezgif-frame-168.jpg",
+    "ext": ".jpg",
+    "sizeBytes": 44543,
+    "sizeKB": "43.50",
+    "sha256": "3740d3b4a0333e2d789abbae664d2ad44330e6eb06e9014aa1bebadaba8e2941",
+    "category": "C",
+    "reason": "Duplicate of unreferenced file ezgif-frame-167.jpg"
+  },
+  {
+    "relPath": "ezgif-frame-173.jpg",
+    "filename": "ezgif-frame-173.jpg",
+    "ext": ".jpg",
+    "sizeBytes": 43988,
+    "sizeKB": "42.96",
+    "sha256": "41fb0bad0e039b1e3ec9006d6169499c59986c6547751acf2c4e2606014ea856",
+    "category": "C",
+    "reason": "Duplicate of unreferenced file ezgif-frame-172.jpg"
+  },
+  {
+    "relPath": "ezgif-frame-178.jpg",
+    "filename": "ezgif-frame-178.jpg",
+    "ext": ".jpg",
+    "sizeBytes": 44136,
+    "sizeKB": "43.10",
+    "sha256": "593c8d835fc1accad349ce2eddb22be65b2f583afd47edd21cf81724f6ecc6fb",
+    "category": "C",
+    "reason": "Duplicate of unreferenced file ezgif-frame-177.jpg"
+  },
+  {
+    "relPath": "ezgif-frame-183.jpg",
+    "filename": "ezgif-frame-183.jpg",
+    "ext": ".jpg",
+    "sizeBytes": 43833,
+    "sizeKB": "42.81",
+    "sha256": "1384deaccf5b34650c4d2ba5bd001ec6587cae33c97be185ff15bb9d4813fe47",
+    "category": "C",
+    "reason": "Duplicate of unreferenced file ezgif-frame-182.jpg"
+  },
+  {
+    "relPath": "ezgif-frame-188.jpg",
+    "filename": "ezgif-frame-188.jpg",
+    "ext": ".jpg",
+    "sizeBytes": 44199,
+    "sizeKB": "43.16",
+    "sha256": "714eeeec2c25b9949721bc9bc5aff40fa49d1ce44bdb3d728956ed6bccd42da3",
+    "category": "C",
+    "reason": "Duplicate of unreferenced file ezgif-frame-187.jpg"
+  },
+  {
+    "relPath": "ezgif-frame-193.jpg",
+    "filename": "ezgif-frame-193.jpg",
+    "ext": ".jpg",
+    "sizeBytes": 44180,
+    "sizeKB": "43.14",
+    "sha256": "eab4a1c805dbb8f59579cc0373e909fab6380e1c6c5b8f6176983a73fe8b73fe",
+    "category": "C",
+    "reason": "Duplicate of unreferenced file ezgif-frame-192.jpg"
+  },
+  {
+    "relPath": "ezgif-frame-198.jpg",
+    "filename": "ezgif-frame-198.jpg",
+    "ext": ".jpg",
+    "sizeBytes": 44350,
+    "sizeKB": "43.31",
+    "sha256": "c212203ba19dade107b0ebfd0ad4fa4c9d0e32fdbfd37041ea7baafede8e98ae",
+    "category": "C",
+    "reason": "Duplicate of unreferenced file ezgif-frame-197.jpg"
+  },
+  {
+    "relPath": "ezgif-frame-203.jpg",
+    "filename": "ezgif-frame-203.jpg",
+    "ext": ".jpg",
+    "sizeBytes": 44275,
+    "sizeKB": "43.24",
+    "sha256": "481bf841cc998fcb239d4cb510d13ffc58e4de9ceb83d05d4721bbd9074fd824",
+    "category": "C",
+    "reason": "Duplicate of unreferenced file ezgif-frame-202.jpg"
+  },
+  {
+    "relPath": "ezgif-frame-208.jpg",
+    "filename": "ezgif-frame-208.jpg",
+    "ext": ".jpg",
+    "sizeBytes": 44370,
+    "sizeKB": "43.33",
+    "sha256": "180f07dbd63163d42389c88ddc62709cd5eb81f3dbaf844b703a22e608f110be",
+    "category": "C",
+    "reason": "Duplicate of unreferenced file ezgif-frame-207.jpg"
+  },
+  {
+    "relPath": "ezgif-frame-213.jpg",
+    "filename": "ezgif-frame-213.jpg",
+    "ext": ".jpg",
+    "sizeBytes": 44092,
+    "sizeKB": "43.06",
+    "sha256": "10ed287c4f116ad02ec3ace9d714b1a7a80ed43d5459d6d0e0b3c51aca1f1bba",
+    "category": "C",
+    "reason": "Duplicate of unreferenced file ezgif-frame-212.jpg"
+  },
+  {
+    "relPath": "ezgif-frame-218.jpg",
+    "filename": "ezgif-frame-218.jpg",
+    "ext": ".jpg",
+    "sizeBytes": 44431,
+    "sizeKB": "43.39",
+    "sha256": "d61fd4080a076123c0c8f64d745bae0207f2a955fb606af602422e4964ef5d9d",
+    "category": "C",
+    "reason": "Duplicate of unreferenced file ezgif-frame-217.jpg"
+  },
+  {
+    "relPath": "ezgif-frame-223.jpg",
+    "filename": "ezgif-frame-223.jpg",
+    "ext": ".jpg",
+    "sizeBytes": 44102,
+    "sizeKB": "43.07",
+    "sha256": "aa670185f9d30e1e5af142274f4fdaaa27798a14574cf378662e6d3ede7d5ce8",
+    "category": "C",
+    "reason": "Duplicate of unreferenced file ezgif-frame-222.jpg"
+  },
+  {
+    "relPath": "ezgif-frame-228.jpg",
+    "filename": "ezgif-frame-228.jpg",
+    "ext": ".jpg",
+    "sizeBytes": 44654,
+    "sizeKB": "43.61",
+    "sha256": "5a52beb49a2f3ae0eab253daea43046b83cdc305829d1df4ba1fb3dd1f47915e",
+    "category": "C",
+    "reason": "Duplicate of unreferenced file ezgif-frame-227.jpg"
+  },
+  {
+    "relPath": "ezgif-frame-233.jpg",
+    "filename": "ezgif-frame-233.jpg",
+    "ext": ".jpg",
+    "sizeBytes": 45485,
+    "sizeKB": "44.42",
+    "sha256": "e1a2598a8eb195f33217e64b5bb1b0033f938a1d3a4db0b47f16f7f6daee6e6a",
+    "category": "C",
+    "reason": "Duplicate of unreferenced file ezgif-frame-232.jpg"
+  },
+  {
+    "relPath": "ezgif-frame-238.jpg",
+    "filename": "ezgif-frame-238.jpg",
+    "ext": ".jpg",
+    "sizeBytes": 45543,
+    "sizeKB": "44.48",
+    "sha256": "4f8f405e0dc6c510497bc24033d0e2f3fd534337ca2474e8e0792b50187e9c27",
+    "category": "C",
+    "reason": "Duplicate of unreferenced file ezgif-frame-237.jpg"
+  },
+  {
+    "relPath": "Gen ai stamp actual.png",
+    "filename": "Gen ai stamp actual.png",
+    "ext": ".png",
+    "sizeBytes": 88269,
+    "sizeKB": "86.20",
+    "sha256": "1244d5798537b824d7e83e6f88dc87d07e36382f06987ecd42020c2876f37f21",
+    "category": "C",
+    "reason": "Verified exact hash duplicate of referenced asset [Gen ai.png]"
+  },
+  {
+    "relPath": "poster_test_ac2.jpg",
+    "filename": "poster_test_ac2.jpg",
+    "ext": ".jpg",
+    "sizeBytes": 430539,
+    "sizeKB": "420.45",
+    "sha256": "f300eec7d17f83419bb2afc399e27066cbaf4b10d491b62581a441141a389f39",
+    "category": "C",
+    "reason": "Verified exact hash duplicate of referenced asset [poster-ashra-chapter-2.jpg]"
+  },
+  {
+    "relPath": "Rough dark.png",
+    "filename": "Rough dark.png",
+    "ext": ".png",
+    "sizeBytes": 2364592,
+    "sizeKB": "2309.17",
+    "sha256": "2fe5d15c6f5646debcdc62e5fcfe1e33343227e015c4de75de50bb513e31052c",
+    "category": "C",
+    "reason": "Verified exact hash duplicate of referenced asset [Rough dark(1).png]"
+  },
+  {
+    "relPath": "Rough white.png",
+    "filename": "Rough white.png",
+    "ext": ".png",
+    "sizeBytes": 1676421,
+    "sizeKB": "1637.13",
+    "sha256": "0c84ee1186c84b3c603881001d1bedc51978fe519d95bb06eb46fd5fb1415285",
+    "category": "C",
+    "reason": "Verified exact hash duplicate of referenced asset [Rough white(1).png]"
+  },
+  {
+    "relPath": "scratch/test_pointer_flip.png",
+    "filename": "test_pointer_flip.png",
+    "ext": ".png",
+    "sizeBytes": 68444,
+    "sizeKB": "66.84",
+    "sha256": "7377dd88cf475c32ff34e2253492f56f4a96de71cb2fe0e1a1906470586cd1af",
+    "category": "C",
+    "reason": "Duplicate of unreferenced file scratch/id_card_back.png"
+  },
+  {
+    "relPath": "tool-raw-0.png",
+    "filename": "tool-raw-0.png",
+    "ext": ".png",
+    "sizeBytes": 8661,
+    "sizeKB": "8.46",
+    "sha256": "3950dfd7659e06ac29bd0c3cebf471a22e75e38613979b3aac4252539b958d92",
+    "category": "C",
+    "reason": "Verified exact hash duplicate of referenced asset [logo-comfyui.png]"
+  },
+  {
+    "relPath": "tool-raw-4.png",
+    "filename": "tool-raw-4.png",
+    "ext": ".png",
+    "sizeBytes": 5139,
+    "sizeKB": "5.02",
+    "sha256": "c7fda0214c6a56e846fcfbd82fee4787d57096fafa66d9a9cb2f117db1ff2d2b",
+    "category": "C",
+    "reason": "Verified exact hash duplicate of referenced asset [logo-elevenlabs.png]"
+  }
+]
