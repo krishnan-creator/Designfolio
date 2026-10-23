@@ -4,9 +4,10 @@
 **Git Branch:** `main`  
 **Checkpoint Commit Hash:** `cfc47f7857393225f6fd124b1c180f48b02ba060`  
 **Git Remote:** `https://github.com/vautlabs-cpu/Portfolio-website.git`  
-**Backup Archive:** `CBK-DESIGNFOLIO-BACKUP-2026-10-23-1635.zip`  
-**Backup Folder:** `CBK-DESIGNFOLIO-BACKUP-2026-10-23-1635`  
-**Checksum File:** `CBK-DESIGNFOLIO-BACKUP-2026-10-23-1635.zip.sha256`  
+**Backup Archive:** `CBK-DESIGNFOLIO-BACKUP-2026-10-23-1635.zip` (6.47 GB / 6,949,670,264 bytes)  
+**Backup Folder:** `c:\Users\meet2\Desktop\CBK-DESIGNFOLIO-BACKUP-2026-10-23-1635`  
+**Archive SHA-256 Checksum:** `f77bf1f372f33ab79a7ab1fe5f4fb6f29aa3ccd44d075daee0f9b1091296181e`  
+**Checksum File:** `c:\Users\meet2\Desktop\CBK-DESIGNFOLIO-BACKUP-2026-10-23-1635.zip.sha256`  
 
 ---
 
