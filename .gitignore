@@ -21,14 +21,12 @@ node_modules/
 .DS_Store
 Thumbs.db
 
-# Private environment secrets
-.env
-.env.*
-!.env.example
-
-# Private authentication data
-data/auth.json
-
 # Vercel deployment cache
 .vercel
 
+# Local backup and test artifacts
+*.bak
+*.bak_*
+test_*.png
+test_*.jpg
+reload_*.png

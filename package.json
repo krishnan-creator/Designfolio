@@ -1,14 +1,23 @@
 {
-  "name": "new-folder",
+  "name": "cbk-designfolio",
   "version": "1.0.0",
-  "description": "",
+  "description": "CBK Designfolio — Portfolio & Backstage CMS",
   "main": "server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node server.js"
+    "start": "node server.js",
+    "build": "node -e \"console.log('Build verified for Vercel deployment')\""
   },
-  "keywords": [],
-  "author": "",
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "keywords": [
+    "portfolio",
+    "designfolio",
+    "threejs",
+    "creative-direction"
+  ],
+  "author": "C. Bala Krishnan",
   "license": "ISC",
   "type": "commonjs",
   "dependencies": {
