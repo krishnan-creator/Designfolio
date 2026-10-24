@@ -16,13 +16,30 @@
       const endpoint = isPreview ? '/api/content?draft=true' : '/api/content';
 
       const res = await fetch(endpoint);
-      if (!res.ok) throw new Error('API responded with ' + res.status);
-      const json = await res.json();
-      if (json.success && json.data) {
-        return json.data;
+      if (res.ok) {
+        const text = await res.text();
+        if (text && text.trim().startsWith('{')) {
+          const json = JSON.parse(text);
+          if (json && json.success && json.data) {
+            return json.data;
+          } else if (json && json.sections) {
+            return json;
+          }
+        }
       }
     } catch (err) {
-      console.warn('[CBK Hydrator] Could not fetch remote content, using embedded fallback:', err);
+      console.warn('[CBK Hydrator] Could not fetch remote content, using static fallback:', err);
+    }
+
+    try {
+      const staticRes = await fetch('/data/content.json');
+      if (staticRes.ok) {
+        const staticJson = await staticRes.json();
+        console.log('[CBK Hydrator] Successfully loaded content from /data/content.json fallback.');
+        return staticJson.data || staticJson;
+      }
+    } catch (fallbackErr) {
+      console.warn('[CBK Hydrator] Static fallback also failed:', fallbackErr);
     }
     return null;
   }
@@ -346,6 +363,7 @@
       card.addEventListener('mouseleave', () => {
         video.pause();
         video.currentTime = 0;
+        video.load();
       });
     });
   }
@@ -358,13 +376,14 @@
     const posterAttr = poster ? `poster="${escapeHtml(poster)}"` : '';
     const badgeText = p.badge || (p.category && p.year ? `${p.category} // ${p.year}` : 'INDEPENDENT IP // 2026');
     const mediaTag = isVideo
-      ? `<video src="${escapeHtml(src)}" ${posterAttr} preload="none" loop muted playsinline class="works-card-media-video"></video>`
+      ? `<video src="${escapeHtml(src)}" ${posterAttr} preload="metadata" loop muted playsinline class="works-card-media-video"></video>`
       : `<img src="${escapeHtml(src)}" alt="${escapeHtml(p.title || '')}" loading="lazy">`;
 
     return `
       <div class="works-card works-card-landscape" 
            data-video-src="${escapeHtml(src)}" 
            data-video-title="${escapeHtml(p.title || '')}" 
+           data-video-sub="${escapeHtml(p.subtitle || '')}"
            data-video-poster="${escapeHtml(poster)}"
            onclick="openCinematicLightbox(this)">
         <div class="works-media-wrap">
@@ -379,6 +398,9 @@
           <span class="film-meta-badge">${escapeHtml(badgeText)}</span>
         </div>
         <div class="works-card-body">
+          <div class="works-tag-row">
+            ${(p.tags || ['DNEG', '·', 'VFX PIPELINE']).map(t => `<span>${escapeHtml(t)}</span>`).join('')}
+          </div>
           <h3 class="works-title">${escapeHtml(p.title || '')}</h3>
           <div class="works-summary">${escapeHtml(p.summary || '')}</div>
           <p class="works-desc">${escapeHtml(p.description || '')}</p>
@@ -394,13 +416,14 @@
     const posterAttr = poster ? `poster="${escapeHtml(poster)}"` : '';
     const badgeText = r.badge || (r.category && r.year ? `${r.category} // ${r.year}` : 'COMMERCIAL AD // 2025');
     const mediaTag = isVideo
-      ? `<video src="${escapeHtml(src)}" ${posterAttr} preload="none" loop muted playsinline class="works-card-media-video"></video>`
+      ? `<video src="${escapeHtml(src)}" ${posterAttr} preload="metadata" loop muted playsinline class="works-card-media-video"></video>`
       : `<img src="${escapeHtml(src)}" alt="${escapeHtml(r.title || '')}" loading="lazy">`;
 
     return `
       <div class="works-card works-card-reel" 
            data-video-src="${escapeHtml(src)}" 
            data-video-title="${escapeHtml(r.title || '')}" 
+           data-video-sub="${escapeHtml(r.subtitle || '')}"
            data-video-poster="${escapeHtml(poster)}"
            onclick="openCinematicLightbox(this)">
         <div class="works-media-wrap">
@@ -415,6 +438,9 @@
           <span class="film-meta-badge">${escapeHtml(badgeText)}</span>
         </div>
         <div class="works-card-body">
+          <div class="works-tag-row">
+            ${(r.tags || ['PORTRAIT', '·', 'DIGITAL HUMAN']).map(t => `<span>${escapeHtml(t)}</span>`).join('')}
+          </div>
           <h3 class="works-title">${escapeHtml(r.title || '')}</h3>
           <div class="works-summary">${escapeHtml(r.summary || '')}</div>
           <p class="works-desc">${escapeHtml(r.description || '')}</p>
@@ -789,14 +815,7 @@
     const statement = secEl.querySelector('.build-statement');
     if (statement && c.statement) {
       const text = c.statement;
-      if (text.includes("resonates,") && (text.includes("let’s connect") || text.includes("let's connect"))) {
-        const parts = text.split(/(?=let[’']s connect)/i);
-        if (parts.length === 2) {
-          statement.innerHTML = `${escapeHtml(parts[0])}<br class="statement-desktop-break"> ${escapeHtml(parts[1])}`;
-        } else {
-          statement.textContent = text;
-        }
-      } else if (text.includes("I'd") || text.includes("I’d")) {
+      if (text.includes("I'd") || text.includes("I’d")) {
         const parts = text.split(/(?=I['’]d)/);
         if (parts.length === 2) {
           statement.innerHTML = `${escapeHtml(parts[0])}<span class="statement-break">${escapeHtml(parts[1])}</span>`;
