@@ -1,0 +1,20 @@
+# Dependencies
+node_modules/
+
+# Git & OS
+.git/
+.DS_Store
+Thumbs.db
+
+# Secrets & Local Config
+.env*
+!.env.example
+
+# Temporary files & tests
+.temp_uploads/
+scratch/
+*.log
+*.bak*
+test_*.png
+test_*.jpg
+reload_*.png
