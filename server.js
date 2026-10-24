@@ -1920,8 +1920,14 @@ async function requestHandler(req, res) {
 
   const filePath = path.normalize(path.join(ROOT_DIR, reqPath));
 
+  // Return JSON 404 if an unmatched /api route reaches static file handler
+  if (reqPath.startsWith('/api')) {
+    res.writeHead(404, { 'Content-Type': 'application/json' });
+    return res.end(JSON.stringify({ success: false, error: 'API endpoint not found: ' + reqPath }));
+  }
+
   // Security check: ensure path is within ROOT_DIR and blocks hidden/internal folders
-  if (!filePath.startsWith(ROOT_DIR) || reqPath.startsWith('/.temp_uploads') || reqPath.startsWith('/.env') || reqPath.startsWith('/.git') || reqPath === '/server.js') {
+  if (!filePath.startsWith(ROOT_DIR) || reqPath.startsWith('/.temp_uploads') || reqPath.startsWith('/.env') || reqPath.startsWith('/.git') || reqPath.startsWith('/.vercel') || reqPath === '/server.js' || reqPath === '/vercel.json') {
     res.writeHead(403, { 'Content-Type': 'text/plain' });
     return res.end('403 Forbidden');
   }

@@ -5,10 +5,6 @@
     {
       "source": "/backstage",
       "destination": "/backstage.html"
-    },
-    {
-      "source": "/api/(.*)",
-      "destination": "/api"
     }
   ]
 }
